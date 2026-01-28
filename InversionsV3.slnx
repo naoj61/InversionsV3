@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../Llibreries/Comuns/Comuns.csproj" Id="83fff275-a1a1-4df4-a669-591cb12dcbb4" />
+  <Project Path="../UnitTestInversionsV2/UnitTestInversionsV2.csproj" Id="d667449d-42ea-4604-877c-15f7e9d72dbd" />
+  <Project Path="InversionsV3.csproj" Id="d8b2c20e-819a-460a-ac87-b99c727e267b" />
+</Solution>

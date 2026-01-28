@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8B2C20E-819A-460A-AC87-B99C727E267B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Inversions</RootNamespace>
+    <AssemblyName>Inversions</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\SIGIOC_square.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2">
+      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.Data.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.2.Core">
+      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.Sparkline.v15.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.Utils.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.2">
+      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.XtraEditors.v15.2.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassesEntity\DesglosCompra.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Empresa.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Gestor.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\IngresExtern.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\InversionsBD.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InversionsBD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\InversionsBD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Mercat.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Moviment.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\NomEmpresa.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\ProdAccions.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\ProdFons.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Producte.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\TipusEmpresa.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\TipusFons.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\TipusMoviment.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Usuari.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Valoracio.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesParcials\DesglosCompra.cs" />
+    <Compile Include="ClassesParcials\Empresa.cs" />
+    <Compile Include="ClassesParcials\IngresExtern.cs" />
+    <Compile Include="ClassesParcials\InversionsBDContext.cs" />
+    <Compile Include="ClassesParcials\Mercat.cs" />
+    <Compile Include="ClassesParcials\Moviment.cs" />
+    <Compile Include="ClassesParcials\MovimentPig4.cs" />
+    <Compile Include="ClassesParcials\ProdAccions.cs" />
+    <Compile Include="ClassesParcials\ProdFons.cs" />
+    <Compile Include="ClassesParcials\Producte.cs" />
+    <Compile Include="ClassesParcials\ProductePig4.cs" />
+    <Compile Include="ClassesParcials\Usuari.cs" />
+    <Compile Include="ClassesParcials\Valoracio.cs" />
+    <Compile Include="Classes\Program.cs" />
+    <Compile Include="GUI\Controls\EdicioTaulesTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\EdicioTaulesTab.Designer.cs">
+      <DependentUpon>EdicioTaulesTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\EmpresesProductesTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\EmpresesProductesTab.Designer.cs">
+      <DependentUpon>EmpresesProductesTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\GrafiquesTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\GrafiquesTab.Designer.cs">
+      <DependentUpon>GrafiquesTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\MovimentsTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\MovimentsTab.Designer.cs">
+      <DependentUpon>MovimentsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\PerduesGuanysTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\PerduesGuanysTab.Designer.cs">
+      <DependentUpon>PerduesGuanysTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\SimulacioVendaTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\SimulacioVendaTab.Designer.cs">
+      <DependentUpon>SimulacioVendaTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\SimulacioVendaTabDgv.cs" />
+    <Compile Include="GUI\Controls\UsuarisTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\UsuarisTab.Designer.cs">
+      <DependentUpon>UsuarisTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\ValoracionsTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\ValoracionsTab.Designer.cs">
+      <DependentUpon>ValoracionsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Controls\_GestioProductes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\_GestioProductes.Designer.cs">
+      <DependentUpon>_GestioProductes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Forms\IRPF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\IRPF.Designer.cs">
+      <DependentUpon>IRPF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Forms\PasteSelfBank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\PasteSelfBank.Designer.cs">
+      <DependentUpon>PasteSelfBank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Forms\Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfases\TabX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\Controls\EdicioTaulesTab.resx">
+      <DependentUpon>EdicioTaulesTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\EmpresesProductesTab.resx">
+      <DependentUpon>EmpresesProductesTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\GrafiquesTab.resx">
+      <DependentUpon>GrafiquesTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\MovimentsTab.resx">
+      <DependentUpon>MovimentsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\PerduesGuanysTab.resx">
+      <DependentUpon>PerduesGuanysTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\SimulacioVendaTab.resx">
+      <DependentUpon>SimulacioVendaTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\UsuarisTab.resx">
+      <DependentUpon>UsuarisTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\ValoracionsTab.resx">
+      <DependentUpon>ValoracionsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Controls\_GestioProductes.resx">
+      <DependentUpon>_GestioProductes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\IRPF.resx">
+      <DependentUpon>IRPF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\PasteSelfBank.resx">
+      <DependentUpon>PasteSelfBank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="ClassesEntity\InversionsBD.edmx" />
+    <None Include="ClassesEntity\InversionsBD.edmx.diagram">
+      <DependentUpon>InversionsBD.edmx</DependentUpon>
+    </None>
+    <None Include="Docs\Arcelor-Perdues desde2018.xlsx" />
+    <None Include="Docs\Arcelor-VendesDeLaCompra.xlsx" />
+    <None Include="Docs\Bolsa Tecnologia BBVA.xlsx" />
+    <None Include="Docs\CanvisEnCalculPiGCompra.xlsx" />
+    <None Include="Docs\Cartera de Fons Inversio 20200710.pdf" />
+    <None Include="Docs\Comparació Simulacio Vendes.xlsx" />
+    <None Include="Docs\CompresFons.xlsx" />
+    <None Include="Docs\CompresOriginals.xlsx" />
+    <None Include="Docs\CompresOriginals2.xlsx" />
+    <None Include="Docs\Desglos per IRPF.xlsx" />
+    <None Include="Docs\Diferencies entre PiGs Meus i Self.xlsx" />
+    <None Include="Docs\EnCarteraPreuOrigPreuAct.xlsx" />
+    <None Include="Docs\Moviments Fons.xlsx" />
+    <None Include="Docs\Moviments-05-DWS Deutschland.xlsx" />
+    <None Include="Docs\Moviments-13-Indonesia Fund A-USD.xlsx" />
+    <None Include="Docs\Moviments-14-Patrimoine A EUR Acc.xlsx" />
+    <None Include="Docs\Moviments-15-Templeton Emerging Mkts Sm Cos N Acc %24.xlsx" />
+    <None Include="Docs\Moviments-16-DWS Aktien Strategie Deutschland.xlsx" />
+    <None Include="Docs\Moviments-27-Global Technology Fund A-acc-EUR.xlsx" />
+    <None Include="Docs\Moviments-28-Euro Fund.xlsx" />
+    <None Include="Docs\Moviments-29-CS Corto Plazo.xlsx" />
+    <None Include="Docs\Moviments-3-Asian Smaller Companies Fund.xlsx" />
+    <None Include="Docs\Moviments-4-Thailand A-USD.xlsx" />
+    <None Include="Docs\Moviments-6-Biotechnology C USD Acc.xlsx" />
+    <None Include="Docs\Moviments-Arcelor.xlsx" />
+    <None Include="Docs\Moviments-Compra 15.xlsx" />
+    <None Include="Docs\Moviments-Fons Amb Cartera.xlsx" />
+    <None Include="Docs\Moviments-Telefonica.xlsx" />
+    <None Include="Docs\PerRepassarAccionsEnDolars.xlsx" />
+    <None Include="Docs\PiG Arcelor 2018.xlsx" />
+    <None Include="Docs\PiG en cartera any.xlsx" />
+    <None Include="Docs\PiG Tributa 2013.xlsx" />
+    <None Include="Docs\PiG-Diferencies.xlsx" />
+    <None Include="Docs\PiG-Hisenda.xlsx" />
+    <None Include="Docs\PigHistoric.xlsx" />
+    <None Include="Docs\PiGProdsVenuts-Comprats-Lany.xlsx" />
+    <None Include="Docs\Proves-PiG Origen.xlsx" />
+    <None Include="Docs\ProvesMetode-CompresDeParticions2.xlsx" />
+    <None Include="Docs\ProvesPiG.xlsx" />
+    <None Include="Docs\RepartimentDesglosCompra.xlsx" />
+    <None Include="Docs\SimulacioVenda.xlsx" />
+    <None Include="Docs\SimulacioVenda2.xlsx" />
+    <None Include="Docs\ValidacioVendesFonsReals.xlsx" />
+    <None Include="Docs\VendaArcelor2018.xlsx" />
+    <None Include="Fitxers\InversionsBD.pdf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClassesEntity\InversionsBD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InversionsBD.edmx</DependentUpon>
+      <LastGenOutput>InversionsBD.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ClassesEntity\InversionsBD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>InversionsBD.edmx</DependentUpon>
+      <LastGenOutput>InversionsBD.cs</LastGenOutput>
+    </Content>
+    <Content Include="Docs\CarteraFons-2020604.png" />
+    <Content Include="Docs\Notes.txt" />
+    <Content Include="Docs\PiG.png" />
+    <Content Include="Fitxers\BaseDades.txt" />
+    <Content Include="Fitxers\ProvesAmbEntityFramework.txt" />
+    <Content Include="Resources\SIGIOC_square.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Llibreries\Comuns\Comuns.csproj">
+      <Project>{83fff275-a1a1-4df4-a669-591cb12dcbb4}</Project>
+      <Name>Comuns</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>

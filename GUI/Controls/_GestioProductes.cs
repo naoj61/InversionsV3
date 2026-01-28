@@ -1,0 +1,432 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
+using Inversions.ClassesEntity;
+
+namespace Inversions.GUI
+{
+    public partial class GestioProductes : UserControl
+    {
+        private string vDescripcioFons;
+        private ListBox vLbProductes;
+        private bool vMostraLlistaAmbChecks;
+        private Producte vProducteSeleccioatAnt;
+
+        public GestioProductes()
+        {
+            InitializeComponent();
+
+            tbIsin.Dock = DockStyle.Fill;
+            tbMercat.Dock = DockStyle.Fill;
+
+            cbTipusProducteFiltreTab2.SelectedIndexChanged -= cbTipusProducteFiltreTab2_SelectedIndexChanged;
+            cbTipusProducteFiltreTab2.DataSource = Enum.GetValues(typeof (Producte.TipusProducte));
+            cbTipusProducteFiltreTab2.Focus();
+            cbTipusProducteFiltreTab2.SelectedIndex = 0;
+            cbTipusProducteFiltreTab2.SelectedIndexChanged += cbTipusProducteFiltreTab2_SelectedIndexChanged;
+        }
+
+
+        [Browsable(false)]
+        public Producte _ProducteSeleccionat
+        {
+            get { return (Producte) vLbProductes.SelectedItem; }
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool _FiltreAnyVisible
+        {
+            get { return pnFiltreAny.Visible; }
+            set { pnFiltreAny.Visible = value; }
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool _NomesAmbParticipacions
+        {
+            get { return ckAmbMoviments.Checked; }
+            set { ckNomesAmbParticipacions.Checked = value; }
+        }
+
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool _AmbMoviments
+        {
+            get { return ckAmbMoviments.Checked; }
+            set { ckAmbMoviments.Checked = value; }
+        }
+
+        public bool _MostraLlistaAmbChecks
+        {
+            get { return vMostraLlistaAmbChecks; }
+            set
+            {
+                vMostraLlistaAmbChecks = value;
+                preparaLlistaProductes(value);
+            }
+        }
+
+        public event EventHandler EventProducteSeleccionat;
+        public event ItemCheckEventHandler EventItemCheck;
+
+
+        /// <summary>
+        ///     Torna tots els productes amb Check si és un CheckedListBox o el producte seleccionat si és un ListBox.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Producte> productesSeleccionats()
+        {
+            IEnumerable<Producte> prodSel;
+
+            if (vMostraLlistaAmbChecks)
+            {
+                prodSel = ((CheckedListBox) vLbProductes).CheckedItems.OfType<Producte>();
+            }
+            else
+            {
+                prodSel = new List<Producte>(1);
+                if (vLbProductes.SelectedItem != null)
+                    ((List<Producte>) prodSel).Add((Producte) vLbProductes.SelectedItem);
+            }
+            return prodSel;
+        }
+
+
+        private void netejaCamps()
+        {
+            lbEmpresa.Text = "";
+            lbFons.Text = "";
+            tbParticipacions.Text = "";
+            ntbPreuPartActual.Text = "";
+            tbValorActual.Text = "";
+            tbPigHistoric.Text = "";
+            tbIsin.Text = "";
+            tbMercat.Text = "";
+            tbMoneda.Text = "";
+            tbCostOrigPartsCartera.Text = "";
+            tbEnCartera.Text = "";
+            tbPigHistoricOrig.Text = "";
+            tbDividends.Text = "";
+        }
+
+
+        /// <summary>
+        ///     Refresca Dades Control i torna a seleccionar el producte actual.
+        /// </summary>
+        internal void refrescaDadesControl()
+        {
+            // Selecciona el producte actual.
+            refrescaDadesControl((Producte) vLbProductes.SelectedItem);
+        }
+
+
+        /// <summary>
+        ///     Refresca Dades Control i selecciona producte.
+        /// </summary>
+        /// <param name="prod">Si null no selecciona cap producte, sinó no prod.</param>
+        internal void refrescaDadesControl(Producte prod)
+        {
+            aplicaFiltre();
+
+            // Si prod és null, no selecciona cap producte.
+            try
+            {
+                vLbProductes.SelectedItem = prod;
+
+                if (vLbProductes.SelectedItem == null)
+                {
+                    netejaCamps();
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                refrescaDadesControl(null);
+            }
+        }
+
+
+        public void seleccionaProducte(Producte prod)
+        {
+            if (prod == null)
+            {
+                vLbProductes.ClearSelected();
+                netejaCamps();
+            }
+            else if (vLbProductes.Items.Contains(prod))
+                vLbProductes.SelectedItem = prod;
+            else
+            {
+                // Si el producte no existeix, l'afegeixo. 
+                // Aixó passa quan salto d'un traspàs a un altre que no compleix el filtre de productes mostrats.
+                var prods = (List<Producte>) vLbProductes.DataSource;
+                prods.Add(prod);
+                vLbProductes.DataSource = null; // Perquè refresqui la llista.
+                vLbProductes.DataSource = prods;
+
+                vLbProductes.SelectedItem = prod;
+            }
+        }
+
+        private void cbTipusProducteFiltreTab2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTipusProducteFiltreTab2.SelectedIndex >= 0)
+            {
+                netejaCamps();
+            }
+        }
+
+        /// <summary>
+        ///     Aplica el filtre i omple el ListBox amb els productes.
+        /// </summary>
+        internal void aplicaFiltre()
+        {
+            IEnumerable<Producte> prods;
+
+            if ((Producte.TipusProducte) cbTipusProducteFiltreTab2.SelectedItem == Producte.TipusProducte.Accions)
+            {
+                prods = ProdAccions.Tuples;
+            }
+            else if ((Producte.TipusProducte) cbTipusProducteFiltreTab2.SelectedItem == Producte.TipusProducte.Fons)
+            {
+                prods = ProdFons.Tuples;
+            }
+            else
+            {
+                prods = Producte.Tuples;
+            }
+
+            if (ckNomesAmbParticipacions.Checked)
+                // Filtra els productes amb participacions actualment pel usuari seleccionat.
+                prods = prods.Where(w => w._Participacions > 0);
+
+            if (ckAmbMoviments.Checked)
+                // Filtra els productes amb algun moviment en algun moment pel usuari seleccionat.
+                prods = prods.Where(w => w.MovimentsProducteUsuari.Any());
+
+
+            if (ckFiltreCompresAny.Checked || ckFiltreVendesAny.Checked || ckFiltreDivAny.Checked)
+            {
+                IEnumerable<Moviment> movs = Moviment.MovimentsUsuari.Where(w => w.Data.Year == (int) cbFiltreAny.SelectedItem
+                                                                                 && ((ckFiltreCompresAny.Checked && w.TipusMoviment == TipusMoviment.Compra)
+                                                                                     || (ckFiltreVendesAny.Checked && w.TipusMoviment == TipusMoviment.Venda)
+                                                                                     || (ckFiltreDivAny.Checked && w.TipusMoviment == TipusMoviment.Dividends)));
+
+                if (!ckFiltreTraspasAny.Checked)
+                    movs = movs.Where(w => !w._EsTraspas);
+
+                prods = prods.Where(prod => movs.Any(mov => mov.ProdId == prod.Id));
+            }
+
+            if (!String.IsNullOrEmpty(tbFiltreNom.Text))
+            {
+                prods = prods.Where(w => (w._NomProducte + w._NomEmpresa).IndexOf(tbFiltreNom.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            List<Producte> llistaProds = prods.OrderBy(o => o.OrdreGrid).ToList();
+            if (_MostraLlistaAmbChecks)
+            {
+                vLbProductes.DataSource = llistaProds;
+            }
+            else
+            {
+                vLbProductes.SelectedIndexChanged -= lbProductesTab2_SelectedIndexChanged;
+                vLbProductes.DataSource = llistaProds;
+                vLbProductes.SelectedIndexChanged += lbProductesTab2_SelectedIndexChanged;
+                vLbProductes.SelectedItem = null;
+            }
+        }
+
+
+        private void lbProductesTab2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Producte prod = _ProducteSeleccionat;
+
+            if (vProducteSeleccioatAnt != _ProducteSeleccionat)
+            {
+                if (prod == null)
+                {
+                    gbIsinMercat.Text = "ISIN";
+                    tbIsin.BringToFront();
+                }
+                else
+                {
+                    lbEmpresa.Text = prod._NomEmpresa;
+                    tbMoneda.Text = prod.Moneda;
+
+                    tbParticipacions.Valor = prod._Participacions;
+                    ntbPreuPartActual.Valor = prod._PreuParticipacioActual;
+                    tbDividends.Valor = prod.dividends();
+                    tbValorActual.Valor = prod._ValorActualEnCartera;
+
+                    tbCostOrigPartsCartera.Valor = prod.costOriginalEnCartera4();
+
+                    tbPigHistoric.Valor = prod.pigEnData4(); // PiG cartera + vendes reals + dividents - despeses, sense tenir en compte el preu original en cas de traspàs.
+                    //tbEnCartera.Valor = prod.pig2Cartera(DateTime.Now, false, true); // PiG cartera + dividents - despeses, sense tenir en  compte el preu original.
+                    tbEnCartera.Valor = prod.pigEnCartera4(false, true);
+
+                    if (prod is ProdFons)
+                    {
+                        tbPigHistoricOrig.Valor = prod.pigEntreDates4(DateTime.MinValue, DateTime.Now, true, true); // PiG cartera + vendes reals + dividents - despeses, tenint en compte el preu original en cas de traspàs.
+                        //tbPigEnCarteraOrig.Valor = prod.pig2Cartera(DateTime.Now, true, true); // PiG cartera, tenint en  compte el preu original.
+                        tbPigEnCarteraOrig.Valor = prod.pigEnCartera4(true, true);
+
+                        var prodFons = (ProdFons) prod;
+                        tbIsin.Text = prodFons.ISIN;
+                        vDescripcioFons = prodFons.Descripcio;
+
+                        gbIsinMercat.Text = "ISIN";
+                        tbIsin.BringToFront();
+
+                        tbIsin.TabStop = true;
+                        tbMercat.TabStop = false;
+
+                        lbFons.Text = String.Format("{0}-{1}", prod.Id, prod._NomProducte);
+                    }
+                    else if (prod is ProdAccions)
+                    {
+                        var prodAccions = (ProdAccions) prod;
+                        tbMercat.Text = prodAccions.Mercat.Nom;
+
+                        gbIsinMercat.Text = "Mercat";
+                        tbMercat.BringToFront();
+
+                        tbIsin.TabStop = false;
+                        tbMercat.TabStop = true;
+                    }
+                }
+
+
+                gbDividents.Visible = prod is ProdAccions;
+                gbFons.Visible = prod is ProdAccions;
+                pnDescripcioFons.Visible = prod is ProdAccions;
+
+                gbPigHistoricOrig.Visible = prod is ProdFons;
+                gbPigEnCarteraOrig.Visible = prod is ProdFons;
+                pnDescripcioFons.Visible = prod is ProdFons;
+                gbFons.Visible = prod is ProdFons;
+                pnDescripcioFons.Visible = prod is ProdFons;
+            }
+
+            if (EventProducteSeleccionat != null)
+                EventProducteSeleccionat(prod, EventArgs.Empty);
+        }
+
+
+        private void GestioProductes_Load(object sender, EventArgs e)
+        {
+            // Aquí només s'executa al entrar en la perstanya.
+            for (int any = Program.PrimerAny; any <= DateTime.Today.Year; any++)
+            {
+                cbFiltreAny.Items.Add(any);
+            }
+            cbFiltreAny.SelectedItem = DateTime.Today.Year;
+        }
+
+        private void ckFiltreAny_CheckedChanged(object sender, EventArgs e)
+        {
+            cbFiltreAny.Enabled = ckFiltreCompresAny.Checked || ckFiltreVendesAny.Checked || ckFiltreDivAny.Checked;
+            ckFiltreTraspasAny.Enabled = ckFiltreCompresAny.Checked || ckFiltreVendesAny.Checked;
+        }
+
+        private void btFiltra_Click(object sender, EventArgs e)
+        {
+            aplicaFiltre();
+        }
+
+        /// <summary>
+        ///     En funció de la propietat "_MostraLlistaAmbChecks", converteix la llista de productes en un Listbox o un
+        ///     CheckedListBox.
+        /// </summary>
+        /// <param name="seraCheckedListBox"></param>
+        private void preparaLlistaProductes(bool seraCheckedListBox)
+        {
+            if (seraCheckedListBox)
+            {
+                pnDadesProducte.Visible = false;
+                gbEmpresa.Visible = false;
+                gbFons.Visible = false;
+                pnSelDeselChecksProds.Visible = true;
+
+                vLbProductes = new CheckedListBox();
+                ((CheckedListBox) vLbProductes).CheckOnClick = true;
+                ((CheckedListBox) vLbProductes).ItemCheck += lbProductesTab2_ItemCheck;
+            }
+            else
+            {
+                pnDadesProducte.Visible = true;
+                gbEmpresa.Visible = true;
+                gbFons.Visible = false;
+                pnSelDeselChecksProds.Visible = false;
+
+                vLbProductes = new ListBox();
+            }
+
+            vLbProductes.SuspendLayout();
+            groupBox6.Controls.Add(vLbProductes);
+            vLbProductes.Dock = DockStyle.Fill;
+            vLbProductes.DisplayMember = "_TipusNomProducte";
+            vLbProductes.FormattingEnabled = true;
+            vLbProductes.Margin = new Padding(3, 4, 3, 4);
+            vLbProductes.ResumeLayout();
+        }
+
+        private void lbProductesTab2_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (EventItemCheck != null)
+                EventItemCheck(sender, e);
+        }
+
+        private void btSeleccionaTot_Click(object sender, EventArgs e)
+        {
+            // Selecciona tots els productes de la llista.
+            selDeselTot(true);
+        }
+
+        private void btDeseleccionaTot_Click(object sender, EventArgs e)
+        {
+            // Deselecciona tots els productes de la llista.
+            selDeselTot(false);
+        }
+
+        private void selDeselTot(bool selecciona)
+        {
+            var chLb = (CheckedListBox) vLbProductes;
+
+            for (int i = 0; i < chLb.Items.Count; i++)
+            {
+                if (chLb.GetItemChecked(i) != selecciona)
+                {
+                    chLb.SetItemChecked(i, selecciona);
+                }
+            }
+        }
+
+        private void btDescripcioFons_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, vDescripcioFons, "Descripció fons", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void lbEmpresa_DoubleClick(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(lbEmpresa.Text))
+                Clipboard.SetText(lbEmpresa.Text);
+        }
+
+        private void lbFons_DoubleClick(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(lbFons.Text))
+                Clipboard.SetText(lbFons.Text);
+        }
+
+        private void tbFiltreNom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                aplicaFiltre();
+            }
+        }
+    }
+}

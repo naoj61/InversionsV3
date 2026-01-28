@@ -1,0 +1,103 @@
+﻿*Accions*			*Fons*	
+					PiG Producte	PiG cartera + vendes reals + vendesT + dividents - despeses, sense tenir en compte el preu original en cas de traspàs.
+PiG Real			PiG Real	PiG cartera + vendes reals + dividents - despeses, tenint en compte el preu original.
+PiG des d'Origen	PiG des d'Origen	PiG participacions en cartera tenint en compte el preu original.
+		
+							**** Sempre amb despeses i dividents		
+*Accions*			*Fons*	
+PiG en cartera		PiG en cartera	El PiG de les participacions en cartera.
+Pig Historic		Pig Historic	PiG del producte de totes les compra vendes (Inclou traspassos) + PiG en cartera
+					PiG Orig en cartera	El PiG de les participacions en cartera preus origen
+					PiG Orig historic	PiG de les participacions en cartera mes les vendes reals calculades sobre preu orig.
+
+
+- En les accions sembla que no compto les despeses en el PiG
+
+-Afegir plataforma de compra en les accions. (Si compro la mateixa accio a diferents plataformes el fifo no funciona si les barrejo totes.)
+
+- En cas de venda de fons, és possible que les PiGs originals no coincideix amb el me càlcul, hauria de poder guardar el valor real a mes del calculat per mi.
+
+- A les llistes de valoracions, barrejar els preu de compra del usuari.
+	-(Com que pot ser que el preu de compra no coincideixi amb la valoració real degut a les comissions).
+		- Al crear un moviment no gravar la valoracio a "Valoracions", potser només en el cas que no hi hagi cap valoració prèvia.
+		- Al consultar les valoracion fer merge amb el valor dels moviments del usuari seleccionat.
+		- Si hi ha valoració i moviment en la mateixa data, mostrar valoració.
+
+------------------------------ Fet!!!! ------------------------------
+
+- 2.12.36.08 En valoracioms, no permetre introduir valors iguals o inferiors a 0.
+
+- 2.12.36.07. Al afegir una valoració manualment, no s'actualitza la llista de valoracions del producte.
+
+- 1.1.6.0. NumericTextBox2. Eliminar atribut "_PermetEspais".
+
+- Afegir filtres en Edició Taules BD
+
+- Crear una nova pestanya per modificar valors taules
+
+- En la finestra IRPF, l'apartat "Ingressos fora de l'aplicació" crear una taula amb els imports i la descripció per any.
+
+- En perdues i Guanys, en la taula PiG Que tributen, afegir l'any actual(Encara que sigui 0).
+
+- 2.13.09.00 
+	- Al mostrar les valoracions, eliminar les dates en que no hi ha participacions.
+
+- 2.13.08.00 
+	- Nova ponderació en les gràfiques.
+
+
+	- 2.13.07.00
+	-Simulació vendes
+		- Afegir Els ingressos de cada any aconseguits fora de les inversions(P.Ex. Interessos diposits).
+		- Desar l'import de la desgravació per anys. P. Ex. al 2023 és de 8.550€. Per defecte s'agafa la del últim any que s'hagi informat.
+	
+
+-Nova pestanya IRPF
+	Perdues pendents anys anteriors
+	PiG any
+	Vendes any. Id; Data; Prod; Parts; PU; Desp; Brut; Net.
+	Desgloç compres de les vendes any. Id; Data; Parts; PU; Desp; Brut; Net.
+	Import a tributar. Guanys - perdues anys anteriors.
+	Import mínim contribuent. 2021->8.550€
+
+	
+_Compra
+_Id
+_Data
+_Participacions
+_PreuUnitari
+_ParticipacionsUtilitzades
+_DespesesUtil
+
+_ImportCompraBrutUtil
+_ImportCompraNetUtil
+_ImportVendaBrutUtil
+_ImportVendaNetUtil
+
+
+- Mirar Arcelor PiG
+
+- Preu part i Preu part Origen, ha de sortir de desgloç compra.
+- Modificar moviments.
+- Revisar mida text.
+- Fet. Refrescar PiG al introduir noves valoracions.
+- Fet. Fer una comparativa entre gràfiques.
+- Fet. Llegir valors dels fons d'inversió fent Copy/Paste de la pàgina de fons.'
+- PiG d'una compra, a partir d'una compra o des de una data
+
+
+1.11.4.0
+- PiG Producte tributa no es mou.
+
+
+15-Templeton Emerging Mkts Sm Cos N Acc $
+3-Asian Smaller Companies Fund
+4-Thailand A-USD
+5-Deutschland
+
+	
+            // Todo: PiG Intermig.
+
+LU0122376428-BGF World Energy A2
+LU0122377152-BGF World Energy E2
+https://clientes.selfbank.es/fondos/quotes/LU0122377152.ISIN.WBANC
