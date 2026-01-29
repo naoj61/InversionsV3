@@ -12,7 +12,6 @@ namespace Inversions.GUI
 {
     internal class SimulacioVendaTabDgv : INotifyPropertyChanged
     {
-        private static Producte Producte;
         private static BindingSource BsDgvCompresOriginals;
         private static decimal PreuParticipacioSimulacio;
         static DataGridView DgvCompresOriginals;
@@ -54,8 +53,6 @@ namespace Inversions.GUI
         /// <param name="prod"></param>
         internal static void CarregaProducte(Producte prod, bool ompleDataGrid = true)
         {
-            Producte = prod;
-
             IOrderedEnumerable<DesglosCompraExt> desgloçPartsEnCartera;
             if (prod == null)
             {
