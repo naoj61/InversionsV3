@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -44,31 +45,24 @@ namespace Inversions.GUI
     {
         private const string RegImportMinimContribuent = "ImportMinimContribuent";
         private string vClauReg;
-        private bool vPendentRefrescar;
         private Producte vProducteSeleccionat;
+        private Producte vProducteUsuariAnterior;
+        private decimal vPreuPartUsuariAnterior;
+        private decimal vNumPartsUsuariAnterior;
+        private decimal vPartsSaltadesUsuariAnterior;
+        private decimal vPigAltresProductesUsuariAnterior;
+        private int vAnyRenda;
+        private int vAnyRendaUsuariAnterior;
 
         public SimulacioVendaTab()
         {
             InitializeComponent();
 
             dgvCompresOriginals.AutoGenerateColumns = false;
-
-            SimulacioVendaTabDgv.Inicialitza(dgvCompresOriginals);
-       
-            ctrProductes.refrescaDadesControl(null);
         }
 
+
         #region *** Overrides ***
-
-        private bool vNoValidaControlsNtb;
-
-
-        Producte vProducteUsuariAnterior;
-        int vAnyRendaUsuariAnterior;
-        decimal vPreuPartUsuariAnterior;
-        decimal vNumPartsUsuariAnterior;
-        decimal vPartsSaltadesUsuariAnterior;
-        decimal vPigAltresProductesUsuariAnterior;
 
         internal override void canviUsuari()
         {
@@ -118,13 +112,9 @@ namespace Inversions.GUI
             ompleValorsTotals();
         }
 
-
         internal override void refresca()
         {
             base.refresca();
-
-
-            vPendentRefrescar = true;
 
             // Guardar valors actuals
             var anyRenda = vAnyRenda;
@@ -161,10 +151,14 @@ namespace Inversions.GUI
 
         #endregion *** Overrides ***
 
+
         private bool _EsAnyActual
         {
             get { return Convert.ToInt32(cbAny.SelectedItem) == DateTime.Today.Year; }
         }
+
+
+        #region *** Mètodes ***
 
         private decimal valorTramExent(int any)
         {
@@ -176,24 +170,10 @@ namespace Inversions.GUI
             return tramExentAnual;
         }
 
-
         private decimal valorIngressosExterns(int any)
         {
             return Program.Sessio.IngressosExterns.Where(w => w.Usuari.Id == Usuari.Seleccionat.Id && w.Any == any).ToList().Sum(s => s.Import);
         }
-
-        private void carregaNouProducte(Producte prod, decimal? preuPart = null)
-        {
-            if (vPendentRefrescar)
-                vPendentRefrescar = false;
-            else
-                return;
-
-            SimulacioVendaTabDgv.CarregaProducte(prod);
-
-            return;
-        }
-
 
         /// <summary>
         ///     Calcula el valor a tributar. Si negatiu és que no s'ha arribat al límit que no tributa.
@@ -218,7 +198,6 @@ namespace Inversions.GUI
             }
         }
 
-
         /// <summary>
         ///     Son els controls que varien al canviar d'any o al refrescar.
         /// </summary>
@@ -231,7 +210,6 @@ namespace Inversions.GUI
             ntbDividents.Valor = Moviment.MovimentsUsuari.Where(w => w.Data.Year == vAnyRenda && w.TipusMoviment == TipusMoviment.Dividends)
                 .ToList().Sum(s => s.PreuParticipacio);
         }
-
 
         /// <summary>
         ///     Son els controls que varien al canviar de producte.
@@ -246,6 +224,7 @@ namespace Inversions.GUI
             ntbNumParticipacions.Enabled = ctrlActivat;
             ntbPreuParticipacio.Enabled = ctrlActivat;
             ntbPartsSaltades.Enabled = ctrlActivat;
+            btRecalcula.Enabled = ctrlActivat;
             btMaxPartsNoTributa.Enabled = ctrlActivat;
             btMaxParts.Enabled = ctrlActivat;
 
@@ -256,15 +235,56 @@ namespace Inversions.GUI
             ntbPartsSaltades.Valor = 0;
             ntbTributaRenda.Valor = 0;
 
-            carregaNouProducte(prod);
+            SimulacioVendaTabDgv.CarregaProducte(prod);
         }
+
+        private void ompleValorsTotals()
+        {
+            ntbImportBrut.Valor = ntbNumParticipacions.Valor * ntbPreuParticipacio.Valor;
+            ntbPigSimulacio.Valor = SimulacioVendaTabDgv._LlistaCompresOriginals.Sum(s => s._PigDeLaCompraPartsUtil);
+            ntbPigOrigSimulacio.Valor = SimulacioVendaTabDgv._LlistaCompresOriginals.Sum(s => s._PigDeLaCompraPartsUtilOrig);
+
+            calculaTotalATributar();
+        }
+
+        private void Validacions()
+        {
+            if (vProducteSeleccionat == null)
+            {
+                // No vull que es facin les validacions.
+                return;
+            }
+
+            if (ntbNumParticipacions.Valor > vProducteSeleccionat._Participacions)
+            {
+                throw new ValorMassaGranException("El número de participacions és superior a les participacions disponibles."
+                    , ntbNumParticipacions);
+            }
+
+            if (ntbPartsSaltades.Valor > vProducteSeleccionat._Participacions)
+            {
+                throw new ValorMassaGranException("El número de Parts Saltades supera les participacions disponibles."
+                    , ntbPartsSaltades);
+            }
+
+            if ((ntbNumParticipacions.Valor + ntbPartsSaltades.Valor) > vProducteSeleccionat._Participacions)
+            {
+                throw new ValorMassaGranException("La suma de 'Num, Partic.' + 'Parts Saltades' supera les participacions disponibles."
+                    , ntbPartsSaltades);
+            }
+        }
+
+        #endregion *** Mètodes ***
+
 
         #region *** Events ***
 
-        private int vAnyRenda;
-
         private void simulacióVendaTab_Load(object sender, EventArgs e)
         {
+            SimulacioVendaTabDgv.Inicialitza(dgvCompresOriginals);
+
+            ctrProductes.refrescaDadesControl(null);
+
             cbAny.SelectedIndexChanged -= cbAny_SelectedIndexChanged;
             for (int i = 2001; i <= DateTime.Today.Year; i++)
             {
@@ -273,23 +293,15 @@ namespace Inversions.GUI
 
             cbAny.SelectedIndexChanged += cbAny_SelectedIndexChanged;
             cbAny.SelectedItem = Convert.ToInt32(DateTime.Today.Year);
-        }
-
-        private void btRecalcula_Click(object sender, EventArgs e)
-        {
-            var cancel = new CancelEventArgs();
-            ntb_Validating(sender, cancel);
-            if (cancel.Cancel)
-                return;
+        
+            Principal.ActiveForm.AcceptButton = btRecalcula;
         }
 
         private void ctrProductes_EventProducteSeleccionat(object sender, EventArgs e)
         {
             var prod = (Producte)sender;
 
-            vPendentRefrescar = prod != vProducteSeleccionat;
-
-            if (vPendentRefrescar)
+            if (prod != vProducteSeleccionat)
                 actualitzaControlsProducte(prod);
 
             if (sender != null)
@@ -304,7 +316,6 @@ namespace Inversions.GUI
 
                 gbPigRealAny.Text = "PiG Any: " + cbAny.Text;
 
-                btRecalcula.Enabled = false;
                 ctrProductes.Enabled = _EsAnyActual;
 
                 ntbTramExentAnual.ReadOnly = !_EsAnyActual;
@@ -315,6 +326,11 @@ namespace Inversions.GUI
 
                 // *** Si no és l'any actual fa invisibles els groupBox que contenen els ntb ***
                 btRecalcula.Visible = _EsAnyActual;
+                btMaxPartsNoTributa.Visible = _EsAnyActual;
+                btMaxParts.Visible = _EsAnyActual;
+                lbParcialLliure.Visible = _EsAnyActual;
+                lbTotLliure.Visible = _EsAnyActual;
+                lbTotPle.Visible = _EsAnyActual;
                 ntbNumParticipacions.Parent.Visible = _EsAnyActual;
                 ntbPreuParticipacio.Parent.Visible = _EsAnyActual;
                 ntbPartsSaltades.Parent.Visible = _EsAnyActual;
@@ -329,77 +345,17 @@ namespace Inversions.GUI
             }
         }
 
-        private void ntb_KeyPress(object sender, KeyPressEventArgs e)
+        private void ntbTramExentAnual_Validating(object sender, CancelEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                var cancel = new CancelEventArgs();
-                ntb_Validating(sender, cancel);
-                if (cancel.Cancel)
-                {
-                    e.Handled = true;
-                    return;
-                }
-                ((NumericTextBox2)sender).SelectAll();
-            }
-        }
-
-        private void ntb_Validating(object sender, CancelEventArgs e)
-        {
-            Form form = FindForm();
-            if (form is Principal && ((Principal)form).SestaTancantForm)
+            if (Principal.SestaTancantForm)
             {
                 // S'està tancant el formulari → no validar
-                e.Cancel = false;
-                return;
-            }
-
-            if (!vPendentRefrescar)
-            {
-                return;
-            }
-
-            if (vNoValidaControlsNtb)
-            {
-                // Quan no vull que es facin les validacions. P.ex. si vProducteSeleccionat == null.
-                vNoValidaControlsNtb = false;
                 return;
             }
 
             var ntb = (NumericTextBox2)sender;
 
-            if (ntb == ntbNumParticipacions || ntb == ntbPartsSaltades)
-            {
-                if (ntb.Valor > vProducteSeleccionat._Participacions)
-                {
-                    MessageBox.Show("El valor és superior a les participacions disponibles. Max: " + vProducteSeleccionat._Participacions.ToString("0.000"),
-                        "Avís", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    e.Cancel = true;
-                    return;
-                }
-
-                if ((ntbNumParticipacions.Valor + ntbPartsSaltades.Valor) > vProducteSeleccionat._Participacions)
-                {
-                    string missatge = "La suma de 'Num, Partic.' + 'Parts Saltades' supera les participacions disponibles. " +
-                                      String.Format("Vols disminuir les participacions a: {0}?"
-                                          , ntb == ntbNumParticipacions ? "Parts saldates" : "Num Parts");
-
-                    if (MessageBox.Show(missatge, "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-                    {
-                        if (ntb == ntbNumParticipacions)
-                            ntbPartsSaltades.Valor = vProducteSeleccionat._Participacions - ntbNumParticipacions.Valor;
-                        else
-                            ntbNumParticipacions.Valor = vProducteSeleccionat._Participacions - ntbPartsSaltades.Valor;
-                    }
-                    else
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                }
-            }
-
-            if (ntb == ntbTramExentAnual && ntbTramExentAnual.Valor != valorTramExent(vAnyRenda))
+            if (ntb.Modified && ntb.Valor != valorTramExent(vAnyRenda))
             {
                 if (MessageBox.Show("S'ha modificat el valor del 'Tram Exent Anual'. Vols desar el nou valor al registre de Windows?"
                     , "Avís", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -408,19 +364,10 @@ namespace Inversions.GUI
                 }
                 else
                 {
-                    ntbTramExentAnual.Valor = valorTramExent(vAnyRenda);
-                    e.Cancel = true;
-                    return;
+                    ntb.Valor = valorTramExent(vAnyRenda);
                 }
+                return;
             }
-
-            SimulacioVendaTabDgv.OmpleDataGrid(ntbNumParticipacions.Valor, ntbPartsSaltades.Valor, ntbPreuParticipacio.Valor);
-            ompleValorsTotals();
-        }
-
-        private void ntb_TextChanged(object sender, EventArgs e)
-        {
-            vPendentRefrescar = true;
         }
 
         public void dgvCompresOriginals_SelectionChanged(object sender, EventArgs e)
@@ -428,9 +375,8 @@ namespace Inversions.GUI
             ntbNumPartsSelect.Valor = dgvCompresOriginals
                 .SelectedRows
                 .Cast<DataGridViewRow>()
-                .Sum(selectedRow => (decimal)selectedRow.Cells["PartsUtil"].Value);
+                .Sum(selectedRow => (decimal)selectedRow.Cells["PartsDisp"].Value);
         }
-
 
         private void dgvCompresOriginals_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -458,35 +404,61 @@ namespace Inversions.GUI
             }
         }
 
-        #endregion *** Events ***
-
-        private void ompleValorsTotals()
+        private void btRecalcula_Click(object sender, EventArgs e)
         {
-            ntbImportBrut.Valor = ntbNumParticipacions.Valor * ntbPreuParticipacio.Valor;
-            ntbPigSimulacio.Valor = SimulacioVendaTabDgv._LlistaCompresOriginals.Sum(s => s._PigDeLaCompraPartsUtil);
-            ntbPigOrigSimulacio.Valor = SimulacioVendaTabDgv._LlistaCompresOriginals.Sum(s => s._PigDeLaCompraPartsUtilOrig);
+            try
+            {
+                Validacions();
 
-            calculaTotalATributar();
+                SimulacioVendaTabDgv.OmpleDataGrid(ntbNumParticipacions.Valor, ntbPartsSaltades.Valor, ntbPreuParticipacio.Valor);
+                ompleValorsTotals();
+            }
+            catch (ValorMassaGranException ex)
+            {
+                MessageBox.Show(ex.Message, "Avís", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+         
+                ex.Control.Focus();
+            }
         }
 
         private void btMaxPartsNoTributa_Click(object sender, EventArgs e)
         {
-            vPendentRefrescar = true;
+            try
+            {
+                Validacions();
 
-            ntbNumParticipacions.Valor = SimulacioVendaTabDgv.CalculaPartPerLimitExent(ntbRestaTramNoTributa.Valor, ntbPartsSaltades.Valor);
+                ntbNumParticipacions.Valor = SimulacioVendaTabDgv.CalculaPartPerLimitExent(ntbRestaTramNoTributa.Valor, ntbPartsSaltades.Valor);
 
-            ompleValorsTotals();
+                ompleValorsTotals();
+            }
+            catch (ValorMassaGranException ex)
+            {
+                MessageBox.Show(ex.Message, "Avís", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+         
+                ex.Control.Focus();
+            }
         }
 
         private void btMaxParts_Click(object sender, EventArgs e)
         {
-            vPendentRefrescar = true;
+            try
+            {
+                Validacions();
 
-            ntbNumParticipacions.Valor = Math.Round(vProducteSeleccionat._Participacions, 3);
+                ntbNumParticipacions.Valor = Math.Round(vProducteSeleccionat._Participacions, 3) - ntbPartsSaltades.Valor;
 
-            SimulacioVendaTabDgv.OmpleDataGrid(ntbNumParticipacions.Valor, ntbPartsSaltades.Valor, ntbPreuParticipacio.Valor);
+                SimulacioVendaTabDgv.OmpleDataGrid(ntbNumParticipacions.Valor, ntbPartsSaltades.Valor, ntbPreuParticipacio.Valor);
 
-            ompleValorsTotals();
+                ompleValorsTotals();
+            }
+            catch (ValorMassaGranException ex)
+            {
+                MessageBox.Show(ex.Message, "Avís", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                ex.Control.Focus();
+            }
         }
+
+        #endregion *** Events ***
     }
 }

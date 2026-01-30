@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JParera")]
-[assembly: AssemblyProduct("InversionsV3")]
+[assembly: AssemblyProduct("Inversions")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("3.00.00.00")]
+[assembly: AssemblyVersion("3.00.01.01")]
 //[assembly: AssemblyFileVersion("2.13.24.00")]

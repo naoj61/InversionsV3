@@ -105,7 +105,7 @@ namespace Inversions.GUI
         /// <summary>
         ///     Indicador per què els controls del Form sàpiguuen que s'està tancant el formulari.
         /// </summary>
-        public bool SestaTancantForm { get; private set; }
+        public static bool SestaTancantForm { get; private set; }
 
         private void Principal_Load(object sender, EventArgs e)
         {
