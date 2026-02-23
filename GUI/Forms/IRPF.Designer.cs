@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using Controls;
-using DevExpress.Utils.CodedUISupport;
 
 namespace Inversions.GUI.Forms
 {

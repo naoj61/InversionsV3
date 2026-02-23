@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Comuns;
+using Controls;
+using Inversions.ClassesEntity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Infrastructure;
@@ -6,9 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using Comuns;
-using DevExpress.XtraEditors.Controls;
-using Inversions.ClassesEntity;
+using static Controls.DropDownClosedEventArgs;
 using Cursor = System.Windows.Forms.Cursor;
 
 namespace Inversions.GUI
@@ -209,8 +210,8 @@ namespace Inversions.GUI
 
                 if (chart.Series[0].Points.Count > 1)
                 {
-                    chart.ChartAreas[0].AxisY.Minimum = (double) minVal;
-                    chart.ChartAreas[0].AxisY.Maximum = (double) maxVal;
+                    chart.ChartAreas[0].AxisY.Minimum = (double)minVal;
+                    chart.ChartAreas[0].AxisY.Maximum = (double)maxVal;
                     chart.Update();
                 }
 
@@ -519,8 +520,8 @@ namespace Inversions.GUI
             }
             else
             {
-                chProd.ChartAreas[0].AxisY.Minimum = (double) (valoracionsProducte.Min(m => m.PreuParticipacio)); // / 1.02M);
-                chProd.ChartAreas[0].AxisY.Maximum = (double) (valoracionsProducte.Max(m => m.PreuParticipacio)); // * 1.02M);
+                chProd.ChartAreas[0].AxisY.Minimum = (double)(valoracionsProducte.Min(m => m.PreuParticipacio)); // / 1.02M);
+                chProd.ChartAreas[0].AxisY.Maximum = (double)(valoracionsProducte.Max(m => m.PreuParticipacio)); // * 1.02M);
 
                 chProd.DataSource = valoracionsProducte;
 
@@ -532,19 +533,23 @@ namespace Inversions.GUI
         private void actualitzaLlistaValoracionsTotal()
         {
             byte resultat = 0;
-            if (checkedComboBoxEdit1.Properties.Items[TipusProd.Accions].CheckState == CheckState.Checked) resultat |= 1 << 0; // Primer bit
-            if (checkedComboBoxEdit1.Properties.Items[TipusProd.Criptos].CheckState == CheckState.Checked) resultat |= 1 << 1; // Segon bit
-            if (checkedComboBoxEdit1.Properties.Items[TipusProd.RF].CheckState == CheckState.Checked) resultat |= 1 << 2; // Tercer bit
-            if (checkedComboBoxEdit1.Properties.Items[TipusProd.RV].CheckState == CheckState.Checked) resultat |= 1 << 3; // Quart bit
+            
+            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.Accions)) resultat |= 1 << 0; // Primer bit
+            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.Criptos)) resultat |= 1 << 1; // Segon bit
+            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.RF)) resultat |= 1 << 2; // Tercer bit
+            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.RV)) resultat |= 1 << 3; // Quart bit
+
+            if (resultat == 0)
+            {
+                dgvValoracionsPerData.Rows.Clear();
+                chTotals.Series[0].Points.Clear();
+                return;
+            }
 
             dgvValoracionsPerData.SuspendLayout();
 
-            //dgvValoracionsPerData.CellFormatting += NumericCell.CellFormatting;
-
             dgvValoracionsPerData.DataSource = StrDgvValoracionsPerData
                 .CarregaStruct(dtpDataIniciLlista.Value, resultat, chTotals).OrderBy(o => o._Data).ToList();
-
-            //dgvValoracionsPerData.CellFormatting -= NumericCell.CellFormatting;
 
             int ultimaFilaX = dgvValoracionsPerData.Rows.GetLastRow(DataGridViewElementStates.Visible);
             if (ultimaFilaX >= 0)
@@ -651,7 +656,7 @@ namespace Inversions.GUI
                         {
                             Exception xx = Utilitats.ExtreuInnerException(ex);
 
-                            if (xx is SqlException && ((SqlException) xx).Number == 2627)
+                            if (xx is SqlException && ((SqlException)xx).Number == 2627)
                                 MessageBox.Show("Valoració ja existeix", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             else
                                 MessageBox.Show(xx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -689,7 +694,7 @@ namespace Inversions.GUI
             tbImport.Valor = 0;
             pnEdicio.Visible = hiHaUnProducteSeleccionat;
 
-            var prodSelect = (Producte) sender;
+            var prodSelect = (Producte)sender;
 
             if (vProdAnt != prodSelect)
             {
@@ -705,10 +710,10 @@ namespace Inversions.GUI
             {
                 vValoracioSeleccionada = null;
             }
-            else if (vValoracioSeleccionada != ((StrDgvValoracions) dgvValoracions.Rows[e.RowIndex].DataBoundItem)._Valoracio)
+            else if (vValoracioSeleccionada != ((StrDgvValoracions)dgvValoracions.Rows[e.RowIndex].DataBoundItem)._Valoracio)
             {
                 //vValoracioSeleccionada = (Valoracio)dgvValoracions.Rows[e.RowIndex].DataBoundItem;
-                vValoracioSeleccionada = ((StrDgvValoracions) dgvValoracions.Rows[e.RowIndex].DataBoundItem)._Valoracio;
+                vValoracioSeleccionada = ((StrDgvValoracions)dgvValoracions.Rows[e.RowIndex].DataBoundItem)._Valoracio;
                 posaValorsDeLaFilaSeleccionada();
                 btModifica.Enabled = true;
                 btEsborra.Enabled = true;
@@ -726,20 +731,10 @@ namespace Inversions.GUI
             }
         }
 
-        private void checkedComboBoxEdit1_CloseUp(object sender, CloseUpEventArgs e)
-        {
-            if (e.AcceptValue)
-            {
-                actualitzaLlistaValoracionsTotal();
-            }
-        }
-
-
         private void btActualitzaLlista_Click(object sender, EventArgs e)
         {
             actualitzaLlistaValoracionsTotal();
         }
-
 
         private void chart1_GetToolTipText(object sender, ToolTipEventArgs e)
         {
@@ -756,7 +751,6 @@ namespace Inversions.GUI
                     break;
             }
         }
-
 
         private void tbImport_TextChanged(object sender, EventArgs e)
         {
@@ -786,11 +780,9 @@ namespace Inversions.GUI
 
         private void dtpDataIniciValoracions_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
                 actualitzaLlistaValoracionsPerProducte();
         }
-
-        #endregion *** Events ***
 
         private enum TipusProd
         {
@@ -799,5 +791,73 @@ namespace Inversions.GUI
             RV,
             Criptos
         }
+
+        private void ValoracionsTab_Load(object sender, EventArgs e)
+        {
+            ccbFiltreTipusProducte.DisplayMember = "Nom";
+            ccbFiltreTipusProducte.ValueMember = "Id";
+            ccbFiltreTipusProducte.Placeholder = "Selecciona...";
+            ccbFiltreTipusProducte.ShowPlaceholderAlways = true;
+
+            ccbFiltreTipusProducte.AddItem("--- Tot ---", true);
+            ccbFiltreTipusProducte.AddItem(new { Id = TipusProd.RF, Nom = "Renda Fixa" }, true);
+            ccbFiltreTipusProducte.AddItem(new { Id = TipusProd.RV, Nom = "Renda Variable" }, true);
+            ccbFiltreTipusProducte.AddItem(new { Id = TipusProd.Accions, Nom = "Accions" }, true);
+            ccbFiltreTipusProducte.AddItem(new { Id = TipusProd.Criptos, Nom = "Criptos" }, true);
+
+            ccbFiltreTipusProducte.ItemCheckChanged += ccbFiltreTipusProducte_ItemCheckChanged;
+        }
+
+        private void ccbFiltreTipusProducte_DropDownClosed(object sender, DropDownClosedEventArgs e)
+        {
+            if (e.Reason != DropDownCloseReason.Escape)
+            {
+                actualitzaLlistaValoracionsTotal();
+            }
+        }
+
+        private void ccbFiltreTipusProducte_ItemCheckChanged(object sender, ItemCheckEventArgs e)
+        {
+            if (e.Index == 0)
+            {
+                // Si es canvia "Selecciona-ho Tot", canvio tots els altres.
+                for (int i = 1; i < ccbFiltreTipusProducte.GetItems().Count; i++)
+                {
+                    ccbFiltreTipusProducte.SetItemChecked(i, e.NewValue == CheckState.Checked);
+                }
+            }
+            else
+            {
+                if (e.NewValue == CheckState.Unchecked)
+                {
+                    // Si desmarco qualsevol altre, desselecciona "Selecciona-ho Tot".
+                    if (ccbFiltreTipusProducte.GetItemChecked(0))
+                    {
+                        ccbFiltreTipusProducte.ItemCheckChanged -= ccbFiltreTipusProducte_ItemCheckChanged;
+                        ccbFiltreTipusProducte.SetItemChecked(0, false);
+                        ccbFiltreTipusProducte.ItemCheckChanged += ccbFiltreTipusProducte_ItemCheckChanged;
+                    }
+                }
+                else
+                {
+                    if (!ccbFiltreTipusProducte.GetItemChecked(0))
+                    {
+                        for (int i = 1; i < ccbFiltreTipusProducte.GetItems().Count; i++)
+                        {
+                            if(i == e.Index)
+                                continue; // El salto perquè encara no té el nou valor.
+                            if (!ccbFiltreTipusProducte.GetItemChecked(i))
+                                return; // Si algun no està seleccionat surto sense activar "Tot".
+                        }
+                        ccbFiltreTipusProducte.ItemCheckChanged -= ccbFiltreTipusProducte_ItemCheckChanged;
+                        ccbFiltreTipusProducte.SetItemChecked(0, true); // Activo "Selecciona-ho Tot" si tots els altres estan seleccionats.
+                        ccbFiltreTipusProducte.ItemCheckChanged += ccbFiltreTipusProducte_ItemCheckChanged;
+                    }
+                }
+            }
+        }
+
+        #endregion *** Events ***
+    
     }
 }

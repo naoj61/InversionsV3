@@ -31,6 +31,8 @@ namespace Inversions.GUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,8 +46,6 @@ namespace Inversions.GUI
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.gbData = new System.Windows.Forms.GroupBox();
@@ -55,6 +55,15 @@ namespace Inversions.GUI
             this.btCancela = new System.Windows.Forms.Button();
             this.btNouValor = new System.Windows.Forms.Button();
             this.btDesa = new System.Windows.Forms.Button();
+            this.pnEdicio = new System.Windows.Forms.Panel();
+            this.btModifica = new System.Windows.Forms.Button();
+            this.btActualitzaLlista = new System.Windows.Forms.Button();
+            this.gbFiltreTipusProducte = new System.Windows.Forms.GroupBox();
+            this.ccbFiltreTipusProducte = new Controls.CheckedComboBoxControl();
+            this.dtpDataIniciLlista = new System.Windows.Forms.DateTimePicker();
+            this.btEsborra = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.chProd = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvValoracions = new Controls.DataGridView3();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,21 +73,6 @@ namespace Inversions.GUI
             this.colValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVariacioPercent = new Controls.NumericTextBoxColumn2();
             this.colVariacioEuros = new Controls.NumericTextBoxColumn2();
-            this.pnEdicio = new System.Windows.Forms.Panel();
-            this.btModifica = new System.Windows.Forms.Button();
-            this.dgvValoracionsPerData = new Controls.DataGridView3();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new Controls.NumericTextBoxColumn2();
-            this.colVariacioPercentatge = new Controls.NumericTextBoxColumn2();
-            this.colVariacioEuros2 = new Controls.NumericTextBoxColumn2();
-            this.Column1 = new Controls.NumericTextBoxColumn2();
-            this.btActualitzaLlista = new System.Windows.Forms.Button();
-            this.gbFiltreTipusProducte = new System.Windows.Forms.GroupBox();
-            this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.dtpDataIniciLlista = new System.Windows.Forms.DateTimePicker();
-            this.btEsborra = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.chProd = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnFiltreValoracions = new System.Windows.Forms.Panel();
             this.tlpPercents = new System.Windows.Forms.TableLayoutPanel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -108,16 +102,20 @@ namespace Inversions.GUI
             this.lbTitolValoracionsPerData = new System.Windows.Forms.Label();
             this.btCopiaValorsDelPaste = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dgvValoracionsPerData = new Controls.DataGridView3();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new Controls.NumericTextBoxColumn2();
+            this.colVariacioPercentatge = new Controls.NumericTextBoxColumn2();
+            this.colVariacioEuros2 = new Controls.NumericTextBoxColumn2();
+            this.Column1 = new Controls.NumericTextBoxColumn2();
             this.chTotals = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gbData.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracions)).BeginInit();
             this.pnEdicio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracionsPerData)).BeginInit();
             this.gbFiltreTipusProducte.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chProd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracions)).BeginInit();
             this.pnFiltreValoracions.SuspendLayout();
             this.tlpPercents.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -128,6 +126,7 @@ namespace Inversions.GUI
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracionsPerData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chTotals)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,11 +134,11 @@ namespace Inversions.GUI
             // 
             this.gbData.Controls.Add(this.cData);
             this.gbData.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gbData.Location = new System.Drawing.Point(3, 6);
-            this.gbData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbData.Location = new System.Drawing.Point(2, 4);
+            this.gbData.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.gbData.Name = "gbData";
-            this.gbData.Padding = new System.Windows.Forms.Padding(6);
-            this.gbData.Size = new System.Drawing.Size(147, 66);
+            this.gbData.Padding = new System.Windows.Forms.Padding(4);
+            this.gbData.Size = new System.Drawing.Size(98, 42);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
             this.gbData.Text = "Data";
@@ -149,21 +148,21 @@ namespace Inversions.GUI
             this.cData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cData.Enabled = false;
             this.cData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.cData.Location = new System.Drawing.Point(6, 25);
-            this.cData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cData.Location = new System.Drawing.Point(4, 17);
+            this.cData.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cData.Name = "cData";
-            this.cData.Size = new System.Drawing.Size(135, 26);
+            this.cData.Size = new System.Drawing.Size(90, 20);
             this.cData.TabIndex = 0;
             // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.tbImport);
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox10.Location = new System.Drawing.Point(150, 6);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox10.Location = new System.Drawing.Point(100, 4);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox10.Size = new System.Drawing.Size(137, 66);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox10.Size = new System.Drawing.Size(91, 42);
             this.groupBox10.TabIndex = 1;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Import";
@@ -180,10 +179,10 @@ namespace Inversions.GUI
             this.tbImport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbImport.Enabled = false;
             this.tbImport.ForeColor = System.Drawing.Color.Black;
-            this.tbImport.Location = new System.Drawing.Point(6, 25);
-            this.tbImport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbImport.Location = new System.Drawing.Point(4, 17);
+            this.tbImport.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.tbImport.Name = "tbImport";
-            this.tbImport.Size = new System.Drawing.Size(125, 26);
+            this.tbImport.Size = new System.Drawing.Size(83, 20);
             this.tbImport.TabIndex = 0;
             this.tbImport.Text = "0,0 €";
             this.tbImport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -199,10 +198,10 @@ namespace Inversions.GUI
             // 
             this.btCancela.Enabled = false;
             this.btCancela.ForeColor = System.Drawing.Color.Red;
-            this.btCancela.Location = new System.Drawing.Point(495, 61);
-            this.btCancela.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btCancela.Location = new System.Drawing.Point(330, 40);
+            this.btCancela.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btCancela.Name = "btCancela";
-            this.btCancela.Size = new System.Drawing.Size(130, 45);
+            this.btCancela.Size = new System.Drawing.Size(87, 29);
             this.btCancela.TabIndex = 6;
             this.btCancela.Text = "Cancela";
             this.btCancela.UseVisualStyleBackColor = true;
@@ -211,10 +210,10 @@ namespace Inversions.GUI
             // btNouValor
             // 
             this.btNouValor.Enabled = false;
-            this.btNouValor.Location = new System.Drawing.Point(189, 9);
-            this.btNouValor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btNouValor.Location = new System.Drawing.Point(126, 6);
+            this.btNouValor.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btNouValor.Name = "btNouValor";
-            this.btNouValor.Size = new System.Drawing.Size(130, 45);
+            this.btNouValor.Size = new System.Drawing.Size(87, 29);
             this.btNouValor.TabIndex = 1;
             this.btNouValor.Text = "Nou Valor";
             this.btNouValor.UseVisualStyleBackColor = true;
@@ -224,14 +223,139 @@ namespace Inversions.GUI
             // 
             this.btDesa.Enabled = false;
             this.btDesa.ForeColor = System.Drawing.Color.Green;
-            this.btDesa.Location = new System.Drawing.Point(339, 61);
-            this.btDesa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btDesa.Location = new System.Drawing.Point(226, 40);
+            this.btDesa.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btDesa.Name = "btDesa";
-            this.btDesa.Size = new System.Drawing.Size(130, 45);
+            this.btDesa.Size = new System.Drawing.Size(87, 29);
             this.btDesa.TabIndex = 5;
             this.btDesa.Text = "Desa";
             this.btDesa.UseVisualStyleBackColor = true;
             this.btDesa.Click += new System.EventHandler(this.btDesa_Click);
+            // 
+            // pnEdicio
+            // 
+            this.pnEdicio.Controls.Add(this.groupBox10);
+            this.pnEdicio.Controls.Add(this.gbData);
+            this.pnEdicio.Location = new System.Drawing.Point(225, 77);
+            this.pnEdicio.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.pnEdicio.Name = "pnEdicio";
+            this.pnEdicio.Padding = new System.Windows.Forms.Padding(2, 4, 2, 3);
+            this.pnEdicio.Size = new System.Drawing.Size(193, 49);
+            this.pnEdicio.TabIndex = 7;
+            this.pnEdicio.Visible = false;
+            // 
+            // btModifica
+            // 
+            this.btModifica.Enabled = false;
+            this.btModifica.Location = new System.Drawing.Point(226, 6);
+            this.btModifica.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btModifica.Name = "btModifica";
+            this.btModifica.Size = new System.Drawing.Size(87, 29);
+            this.btModifica.TabIndex = 2;
+            this.btModifica.Text = "Modifica";
+            this.btModifica.UseVisualStyleBackColor = true;
+            this.btModifica.Click += new System.EventHandler(this.btModifica_Click);
+            // 
+            // btActualitzaLlista
+            // 
+            this.btActualitzaLlista.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btActualitzaLlista.Location = new System.Drawing.Point(4, 44);
+            this.btActualitzaLlista.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btActualitzaLlista.Name = "btActualitzaLlista";
+            this.btActualitzaLlista.Size = new System.Drawing.Size(209, 29);
+            this.btActualitzaLlista.TabIndex = 2;
+            this.btActualitzaLlista.Text = "Actualitza";
+            this.btActualitzaLlista.UseVisualStyleBackColor = true;
+            this.btActualitzaLlista.Click += new System.EventHandler(this.btActualitzaLlista_Click);
+            // 
+            // gbFiltreTipusProducte
+            // 
+            this.gbFiltreTipusProducte.Controls.Add(this.ccbFiltreTipusProducte);
+            this.gbFiltreTipusProducte.Controls.Add(this.dtpDataIniciLlista);
+            this.gbFiltreTipusProducte.Controls.Add(this.btActualitzaLlista);
+            this.gbFiltreTipusProducte.Location = new System.Drawing.Point(4, 49);
+            this.gbFiltreTipusProducte.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.gbFiltreTipusProducte.Name = "gbFiltreTipusProducte";
+            this.gbFiltreTipusProducte.Padding = new System.Windows.Forms.Padding(4);
+            this.gbFiltreTipusProducte.Size = new System.Drawing.Size(217, 77);
+            this.gbFiltreTipusProducte.TabIndex = 4;
+            this.gbFiltreTipusProducte.TabStop = false;
+            this.gbFiltreTipusProducte.Text = "Tipus Prod.                         Data Inici";
+            // 
+            // ccbFiltreTipusProducte
+            // 
+            this.ccbFiltreTipusProducte.CountFormat = "{0} seleccionats";
+            this.ccbFiltreTipusProducte.DisplayMember = null;
+            this.ccbFiltreTipusProducte.Location = new System.Drawing.Point(7, 16);
+            this.ccbFiltreTipusProducte.Name = "ccbFiltreTipusProducte";
+            this.ccbFiltreTipusProducte.Placeholder = "Selecciona...";
+            this.ccbFiltreTipusProducte.Separator = ", ";
+            this.ccbFiltreTipusProducte.ShowCountInsteadOfList = false;
+            this.ccbFiltreTipusProducte.ShowPlaceholderAlways = false;
+            this.ccbFiltreTipusProducte.Size = new System.Drawing.Size(113, 22);
+            this.ccbFiltreTipusProducte.TabIndex = 3;
+            this.ccbFiltreTipusProducte.ValueMember = null;
+            this.ccbFiltreTipusProducte.DropDownClosed += new System.EventHandler<Controls.DropDownClosedEventArgs>(this.ccbFiltreTipusProducte_DropDownClosed);
+            // 
+            // dtpDataIniciLlista
+            // 
+            this.dtpDataIniciLlista.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpDataIniciLlista.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataIniciLlista.Location = new System.Drawing.Point(124, 16);
+            this.dtpDataIniciLlista.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dtpDataIniciLlista.Name = "dtpDataIniciLlista";
+            this.dtpDataIniciLlista.Size = new System.Drawing.Size(90, 20);
+            this.dtpDataIniciLlista.TabIndex = 1;
+            // 
+            // btEsborra
+            // 
+            this.btEsborra.Enabled = false;
+            this.btEsborra.Location = new System.Drawing.Point(330, 6);
+            this.btEsborra.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btEsborra.Name = "btEsborra";
+            this.btEsborra.Size = new System.Drawing.Size(87, 29);
+            this.btEsborra.TabIndex = 3;
+            this.btEsborra.Text = "Esborra";
+            this.btEsborra.UseVisualStyleBackColor = true;
+            this.btEsborra.Click += new System.EventHandler(this.btEsborra_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.chProd);
+            this.panel1.Controls.Add(this.dgvValoracions);
+            this.panel1.Controls.Add(this.pnFiltreValoracions);
+            this.panel1.Controls.Add(this.gestioProductesTabValoracions);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(702, 532);
+            this.panel1.TabIndex = 0;
+            // 
+            // chProd
+            // 
+            this.chProd.BorderSkin.SkinStyle = System.Windows.Forms.DataVisualization.Charting.BorderSkinStyle.FrameThin1;
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.Name = "ChartArea1";
+            this.chProd.ChartAreas.Add(chartArea1);
+            this.chProd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chProd.Location = new System.Drawing.Point(307, 373);
+            this.chProd.Margin = new System.Windows.Forms.Padding(0);
+            this.chProd.Name = "chProd";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.Name = "Series1";
+            series1.XValueMember = "Data";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series1.YValueMembers = "PreuParticipacio";
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.chProd.Series.Add(series1);
+            this.chProd.Size = new System.Drawing.Size(395, 159);
+            this.chProd.TabIndex = 1;
+            this.chProd.Text = "chart1";
             // 
             // dgvValoracions
             // 
@@ -258,15 +382,15 @@ namespace Inversions.GUI
             this.colVariacioPercent,
             this.colVariacioEuros});
             this.dgvValoracions.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dgvValoracions.Location = new System.Drawing.Point(0, 574);
-            this.dgvValoracions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvValoracions.Location = new System.Drawing.Point(0, 373);
+            this.dgvValoracions.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.dgvValoracions.Name = "dgvValoracions";
             this.dgvValoracions.ReadOnly = true;
             this.dgvValoracions.RowHeadersVisible = false;
             this.dgvValoracions.RowTemplate.Height = 24;
             this.dgvValoracions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvValoracions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvValoracions.Size = new System.Drawing.Size(460, 245);
+            this.dgvValoracions.Size = new System.Drawing.Size(307, 159);
             this.dgvValoracions.TabIndex = 0;
             this.dgvValoracions.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.cDataGridView1_RowEnter);
             // 
@@ -279,7 +403,7 @@ namespace Inversions.GUI
             this.colId.ReadOnly = true;
             this.colId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colId.Width = 29;
+            this.colId.Width = 22;
             // 
             // colProducte
             // 
@@ -305,7 +429,7 @@ namespace Inversions.GUI
             this.colData.ReadOnly = true;
             this.colData.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colData.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colData.Width = 50;
+            this.colData.Width = 36;
             // 
             // NumPart
             // 
@@ -320,7 +444,7 @@ namespace Inversions.GUI
             this.NumPart.ReadOnly = true;
             this.NumPart.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.NumPart.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NumPart.Width = 89;
+            this.NumPart.Width = 57;
             // 
             // colImport
             // 
@@ -350,7 +474,7 @@ namespace Inversions.GUI
             this.colValor.ReadOnly = true;
             this.colValor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colValor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colValor.Width = 91;
+            this.colValor.Width = 58;
             // 
             // colVariacioPercent
             // 
@@ -366,7 +490,7 @@ namespace Inversions.GUI
             this.colVariacioPercent.ReadOnly = true;
             this.colVariacioPercent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colVariacioPercent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colVariacioPercent.Width = 90;
+            this.colVariacioPercent.Width = 56;
             // 
             // colVariacioEuros
             // 
@@ -382,31 +506,497 @@ namespace Inversions.GUI
             this.colVariacioEuros.ReadOnly = true;
             this.colVariacioEuros.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colVariacioEuros.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colVariacioEuros.Width = 85;
+            this.colVariacioEuros.Width = 54;
             // 
-            // pnEdicio
+            // pnFiltreValoracions
             // 
-            this.pnEdicio.Controls.Add(this.groupBox10);
-            this.pnEdicio.Controls.Add(this.gbData);
-            this.pnEdicio.Location = new System.Drawing.Point(337, 119);
-            this.pnEdicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnEdicio.Name = "pnEdicio";
-            this.pnEdicio.Padding = new System.Windows.Forms.Padding(3, 6, 3, 4);
-            this.pnEdicio.Size = new System.Drawing.Size(290, 76);
-            this.pnEdicio.TabIndex = 7;
-            this.pnEdicio.Visible = false;
+            this.pnFiltreValoracions.Controls.Add(this.tlpPercents);
+            this.pnFiltreValoracions.Controls.Add(this.panel5);
+            this.pnFiltreValoracions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnFiltreValoracions.Location = new System.Drawing.Point(0, 321);
+            this.pnFiltreValoracions.Margin = new System.Windows.Forms.Padding(2);
+            this.pnFiltreValoracions.Name = "pnFiltreValoracions";
+            this.pnFiltreValoracions.Padding = new System.Windows.Forms.Padding(3);
+            this.pnFiltreValoracions.Size = new System.Drawing.Size(702, 52);
+            this.pnFiltreValoracions.TabIndex = 1;
             // 
-            // btModifica
+            // tlpPercents
             // 
-            this.btModifica.Enabled = false;
-            this.btModifica.Location = new System.Drawing.Point(339, 9);
-            this.btModifica.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btModifica.Name = "btModifica";
-            this.btModifica.Size = new System.Drawing.Size(130, 45);
-            this.btModifica.TabIndex = 2;
-            this.btModifica.Text = "Modifica";
-            this.btModifica.UseVisualStyleBackColor = true;
-            this.btModifica.Click += new System.EventHandler(this.btModifica_Click);
+            this.tlpPercents.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tlpPercents.ColumnCount = 6;
+            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpPercents.Controls.Add(this.panel9, 4, 1);
+            this.tlpPercents.Controls.Add(this.panel8, 3, 1);
+            this.tlpPercents.Controls.Add(this.panel7, 2, 1);
+            this.tlpPercents.Controls.Add(this.panel6, 1, 1);
+            this.tlpPercents.Controls.Add(this.label6, 4, 0);
+            this.tlpPercents.Controls.Add(this.lbPercentAny, 3, 0);
+            this.tlpPercents.Controls.Add(this.label4, 2, 0);
+            this.tlpPercents.Controls.Add(this.label3, 1, 0);
+            this.tlpPercents.Controls.Add(this.label2, 0, 0);
+            this.tlpPercents.Controls.Add(this.panel4, 0, 1);
+            this.tlpPercents.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tlpPercents.Location = new System.Drawing.Point(238, 3);
+            this.tlpPercents.Margin = new System.Windows.Forms.Padding(2);
+            this.tlpPercents.Name = "tlpPercents";
+            this.tlpPercents.RowCount = 2;
+            this.tlpPercents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tlpPercents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpPercents.Size = new System.Drawing.Size(461, 46);
+            this.tlpPercents.TabIndex = 2;
+            // 
+            // panel9
+            // 
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.ntbPercent1A);
+            this.panel9.Location = new System.Drawing.Point(384, 18);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(2);
+            this.panel9.Size = new System.Drawing.Size(57, 26);
+            this.panel9.TabIndex = 9;
+            // 
+            // ntbPercent1A
+            // 
+            this.ntbPercent1A._CapturaEscape = true;
+            this.ntbPercent1A._Format = "0.00%";
+            this.ntbPercent1A._NegatiusEnVermell = true;
+            this.ntbPercent1A._PermetDecimals = true;
+            this.ntbPercent1A._PermetNegatius = true;
+            this.ntbPercent1A._PermetTextNull = false;
+            this.ntbPercent1A.BackColor = System.Drawing.Color.Khaki;
+            this.ntbPercent1A.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ntbPercent1A.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent1A.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent1A.Location = new System.Drawing.Point(2, 2);
+            this.ntbPercent1A.Margin = new System.Windows.Forms.Padding(2);
+            this.ntbPercent1A.Name = "ntbPercent1A";
+            this.ntbPercent1A.ReadOnly = true;
+            this.ntbPercent1A.Size = new System.Drawing.Size(51, 20);
+            this.ntbPercent1A.TabIndex = 1;
+            this.ntbPercent1A.Text = "0,00%";
+            this.ntbPercent1A.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent1A.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // panel8
+            // 
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.ntbPercentAny);
+            this.panel8.Location = new System.Drawing.Point(323, 18);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
+            this.panel8.Name = "panel8";
+            this.panel8.Padding = new System.Windows.Forms.Padding(2);
+            this.panel8.Size = new System.Drawing.Size(57, 26);
+            this.panel8.TabIndex = 8;
+            // 
+            // ntbPercentAny
+            // 
+            this.ntbPercentAny._CapturaEscape = true;
+            this.ntbPercentAny._Format = "0.00%";
+            this.ntbPercentAny._NegatiusEnVermell = true;
+            this.ntbPercentAny._PermetDecimals = true;
+            this.ntbPercentAny._PermetNegatius = true;
+            this.ntbPercentAny._PermetTextNull = false;
+            this.ntbPercentAny.BackColor = System.Drawing.SystemColors.Window;
+            this.ntbPercentAny.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ntbPercentAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercentAny.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercentAny.Location = new System.Drawing.Point(2, 2);
+            this.ntbPercentAny.Margin = new System.Windows.Forms.Padding(2);
+            this.ntbPercentAny.Name = "ntbPercentAny";
+            this.ntbPercentAny.ReadOnly = true;
+            this.ntbPercentAny.Size = new System.Drawing.Size(51, 20);
+            this.ntbPercentAny.TabIndex = 1;
+            this.ntbPercentAny.Text = "0,00%";
+            this.ntbPercentAny.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercentAny.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // panel7
+            // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.ntbPercent6M12);
+            this.panel7.Controls.Add(this.ntbPercent6M);
+            this.panel7.Location = new System.Drawing.Point(216, 18);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(2);
+            this.panel7.Size = new System.Drawing.Size(103, 26);
+            this.panel7.TabIndex = 7;
+            // 
+            // ntbPercent6M12
+            // 
+            this.ntbPercent6M12._CapturaEscape = true;
+            this.ntbPercent6M12._Format = "0.00%";
+            this.ntbPercent6M12._NegatiusEnVermell = true;
+            this.ntbPercent6M12._PermetDecimals = true;
+            this.ntbPercent6M12._PermetNegatius = true;
+            this.ntbPercent6M12._PermetTextNull = false;
+            this.ntbPercent6M12.BackColor = System.Drawing.Color.Khaki;
+            this.ntbPercent6M12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ntbPercent6M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent6M12.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent6M12.Location = new System.Drawing.Point(52, 2);
+            this.ntbPercent6M12.Margin = new System.Windows.Forms.Padding(2);
+            this.ntbPercent6M12.Name = "ntbPercent6M12";
+            this.ntbPercent6M12.ReadOnly = true;
+            this.ntbPercent6M12.Size = new System.Drawing.Size(47, 20);
+            this.ntbPercent6M12.TabIndex = 3;
+            this.ntbPercent6M12.Text = "0,00%";
+            this.ntbPercent6M12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent6M12.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // ntbPercent6M
+            // 
+            this.ntbPercent6M._CapturaEscape = true;
+            this.ntbPercent6M._Format = "0.00%";
+            this.ntbPercent6M._NegatiusEnVermell = true;
+            this.ntbPercent6M._PermetDecimals = true;
+            this.ntbPercent6M._PermetNegatius = true;
+            this.ntbPercent6M._PermetTextNull = false;
+            this.ntbPercent6M.BackColor = System.Drawing.SystemColors.Window;
+            this.ntbPercent6M.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ntbPercent6M.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent6M.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent6M.Location = new System.Drawing.Point(2, 2);
+            this.ntbPercent6M.Margin = new System.Windows.Forms.Padding(2);
+            this.ntbPercent6M.Name = "ntbPercent6M";
+            this.ntbPercent6M.ReadOnly = true;
+            this.ntbPercent6M.Size = new System.Drawing.Size(47, 20);
+            this.ntbPercent6M.TabIndex = 2;
+            this.ntbPercent6M.Text = "0,00%";
+            this.ntbPercent6M.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent6M.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.ntbPercent3M12);
+            this.panel6.Controls.Add(this.ntbPercent3M);
+            this.panel6.Location = new System.Drawing.Point(109, 18);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(2);
+            this.panel6.Size = new System.Drawing.Size(103, 26);
+            this.panel6.TabIndex = 6;
+            // 
+            // ntbPercent3M12
+            // 
+            this.ntbPercent3M12._CapturaEscape = true;
+            this.ntbPercent3M12._Format = "0.00%";
+            this.ntbPercent3M12._NegatiusEnVermell = true;
+            this.ntbPercent3M12._PermetDecimals = true;
+            this.ntbPercent3M12._PermetNegatius = true;
+            this.ntbPercent3M12._PermetTextNull = false;
+            this.ntbPercent3M12.BackColor = System.Drawing.Color.Khaki;
+            this.ntbPercent3M12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ntbPercent3M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent3M12.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent3M12.Location = new System.Drawing.Point(52, 2);
+            this.ntbPercent3M12.Margin = new System.Windows.Forms.Padding(7, 2, 2, 2);
+            this.ntbPercent3M12.Name = "ntbPercent3M12";
+            this.ntbPercent3M12.ReadOnly = true;
+            this.ntbPercent3M12.Size = new System.Drawing.Size(47, 20);
+            this.ntbPercent3M12.TabIndex = 3;
+            this.ntbPercent3M12.Text = "0,00%";
+            this.ntbPercent3M12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent3M12.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // ntbPercent3M
+            // 
+            this.ntbPercent3M._CapturaEscape = true;
+            this.ntbPercent3M._Format = "0.00%";
+            this.ntbPercent3M._NegatiusEnVermell = true;
+            this.ntbPercent3M._PermetDecimals = true;
+            this.ntbPercent3M._PermetNegatius = true;
+            this.ntbPercent3M._PermetTextNull = false;
+            this.ntbPercent3M.BackColor = System.Drawing.SystemColors.Window;
+            this.ntbPercent3M.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ntbPercent3M.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent3M.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent3M.Location = new System.Drawing.Point(2, 2);
+            this.ntbPercent3M.Margin = new System.Windows.Forms.Padding(2);
+            this.ntbPercent3M.Name = "ntbPercent3M";
+            this.ntbPercent3M.ReadOnly = true;
+            this.ntbPercent3M.Size = new System.Drawing.Size(47, 20);
+            this.ntbPercent3M.TabIndex = 2;
+            this.ntbPercent3M.Text = "0,00%";
+            this.ntbPercent3M.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent3M.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // label6
+            // 
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(382, 0);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 16);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "% 1A";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbPercentAny
+            // 
+            this.lbPercentAny.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbPercentAny.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPercentAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPercentAny.Location = new System.Drawing.Point(321, 0);
+            this.lbPercentAny.Margin = new System.Windows.Forms.Padding(0);
+            this.lbPercentAny.Name = "lbPercentAny";
+            this.lbPercentAny.Size = new System.Drawing.Size(61, 16);
+            this.lbPercentAny.TabIndex = 3;
+            this.lbPercentAny.Text = "% Any";
+            this.lbPercentAny.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(214, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 16);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "% 6M";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(107, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 16);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "% 3M";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "% 1M";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.ntbPercent1M12);
+            this.panel4.Controls.Add(this.ntbPercent1M);
+            this.panel4.Location = new System.Drawing.Point(2, 18);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(2);
+            this.panel4.Size = new System.Drawing.Size(103, 26);
+            this.panel4.TabIndex = 5;
+            // 
+            // ntbPercent1M12
+            // 
+            this.ntbPercent1M12._CapturaEscape = true;
+            this.ntbPercent1M12._Format = "0.00%";
+            this.ntbPercent1M12._NegatiusEnVermell = true;
+            this.ntbPercent1M12._PermetDecimals = true;
+            this.ntbPercent1M12._PermetNegatius = true;
+            this.ntbPercent1M12._PermetTextNull = false;
+            this.ntbPercent1M12.BackColor = System.Drawing.Color.Khaki;
+            this.ntbPercent1M12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ntbPercent1M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent1M12.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent1M12.Location = new System.Drawing.Point(52, 2);
+            this.ntbPercent1M12.Margin = new System.Windows.Forms.Padding(7, 2, 2, 2);
+            this.ntbPercent1M12.Name = "ntbPercent1M12";
+            this.ntbPercent1M12.ReadOnly = true;
+            this.ntbPercent1M12.Size = new System.Drawing.Size(47, 20);
+            this.ntbPercent1M12.TabIndex = 3;
+            this.ntbPercent1M12.Text = "0,00%";
+            this.ntbPercent1M12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent1M12.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // ntbPercent1M
+            // 
+            this.ntbPercent1M._CapturaEscape = true;
+            this.ntbPercent1M._Format = "0.00%";
+            this.ntbPercent1M._NegatiusEnVermell = true;
+            this.ntbPercent1M._PermetDecimals = true;
+            this.ntbPercent1M._PermetNegatius = true;
+            this.ntbPercent1M._PermetTextNull = false;
+            this.ntbPercent1M.BackColor = System.Drawing.SystemColors.Window;
+            this.ntbPercent1M.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ntbPercent1M.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ntbPercent1M.ForeColor = System.Drawing.Color.Black;
+            this.ntbPercent1M.Location = new System.Drawing.Point(2, 2);
+            this.ntbPercent1M.Margin = new System.Windows.Forms.Padding(2);
+            this.ntbPercent1M.Name = "ntbPercent1M";
+            this.ntbPercent1M.ReadOnly = true;
+            this.ntbPercent1M.Size = new System.Drawing.Size(47, 20);
+            this.ntbPercent1M.TabIndex = 2;
+            this.ntbPercent1M.Text = "0,00%";
+            this.ntbPercent1M.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ntbPercent1M.Valor = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.ckValsAmbParticipacions);
+            this.panel5.Controls.Add(this.dtpDataIniciValoracions);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(155, 46);
+            this.panel5.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 3);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Data Inici";
+            // 
+            // ckValsAmbParticipacions
+            // 
+            this.ckValsAmbParticipacions.AutoSize = true;
+            this.ckValsAmbParticipacions.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckValsAmbParticipacions.Checked = true;
+            this.ckValsAmbParticipacions.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckValsAmbParticipacions.Location = new System.Drawing.Point(3, 24);
+            this.ckValsAmbParticipacions.Margin = new System.Windows.Forms.Padding(0);
+            this.ckValsAmbParticipacions.Name = "ckValsAmbParticipacions";
+            this.ckValsAmbParticipacions.Size = new System.Drawing.Size(150, 17);
+            this.ckValsAmbParticipacions.TabIndex = 2;
+            this.ckValsAmbParticipacions.Text = "Només amb participacions";
+            this.ckValsAmbParticipacions.UseVisualStyleBackColor = true;
+            this.ckValsAmbParticipacions.CheckedChanged += new System.EventHandler(this.ckValsAmbParticipacions_CheckedChanged);
+            // 
+            // dtpDataIniciValoracions
+            // 
+            this.dtpDataIniciValoracions.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataIniciValoracions.Location = new System.Drawing.Point(57, 1);
+            this.dtpDataIniciValoracions.Margin = new System.Windows.Forms.Padding(0);
+            this.dtpDataIniciValoracions.Name = "dtpDataIniciValoracions";
+            this.dtpDataIniciValoracions.Size = new System.Drawing.Size(94, 20);
+            this.dtpDataIniciValoracions.TabIndex = 1;
+            this.dtpDataIniciValoracions.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpDataIniciValoracions_KeyPress);
+            this.dtpDataIniciValoracions.Validating += new System.ComponentModel.CancelEventHandler(this.dtpDataIniciValoracions_Validating);
+            // 
+            // gestioProductesTabValoracions
+            // 
+            this.gestioProductesTabValoracions._AmbMoviments = true;
+            this.gestioProductesTabValoracions._FiltreAnyVisible = false;
+            this.gestioProductesTabValoracions._MostraLlistaAmbChecks = false;
+            this.gestioProductesTabValoracions._NomesAmbParticipacions = true;
+            this.gestioProductesTabValoracions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gestioProductesTabValoracions.Location = new System.Drawing.Point(0, 0);
+            this.gestioProductesTabValoracions.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.gestioProductesTabValoracions.MinimumSize = new System.Drawing.Size(550, 321);
+            this.gestioProductesTabValoracions.Name = "gestioProductesTabValoracions";
+            this.gestioProductesTabValoracions.Size = new System.Drawing.Size(702, 321);
+            this.gestioProductesTabValoracions.TabIndex = 0;
+            this.gestioProductesTabValoracions.EventProducteSeleccionat += new System.EventHandler(this.gestioProductesTabValoracions_ProducteSeleccionat);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lbTitolValoracionsPerData);
+            this.panel2.Controls.Add(this.btCopiaValorsDelPaste);
+            this.panel2.Controls.Add(this.btModifica);
+            this.panel2.Controls.Add(this.btDesa);
+            this.panel2.Controls.Add(this.btNouValor);
+            this.panel2.Controls.Add(this.gbFiltreTipusProducte);
+            this.panel2.Controls.Add(this.btEsborra);
+            this.panel2.Controls.Add(this.btCancela);
+            this.panel2.Controls.Add(this.pnEdicio);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(430, 154);
+            this.panel2.TabIndex = 0;
+            // 
+            // lbTitolValoracionsPerData
+            // 
+            this.lbTitolValoracionsPerData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTitolValoracionsPerData.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbTitolValoracionsPerData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitolValoracionsPerData.Location = new System.Drawing.Point(0, 145);
+            this.lbTitolValoracionsPerData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbTitolValoracionsPerData.Name = "lbTitolValoracionsPerData";
+            this.lbTitolValoracionsPerData.Size = new System.Drawing.Size(430, 9);
+            this.lbTitolValoracionsPerData.TabIndex = 8;
+            this.lbTitolValoracionsPerData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btCopiaValorsDelPaste
+            // 
+            this.btCopiaValorsDelPaste.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btCopiaValorsDelPaste.Location = new System.Drawing.Point(13, 3);
+            this.btCopiaValorsDelPaste.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btCopiaValorsDelPaste.Name = "btCopiaValorsDelPaste";
+            this.btCopiaValorsDelPaste.Size = new System.Drawing.Size(87, 35);
+            this.btCopiaValorsDelPaste.TabIndex = 0;
+            this.btCopiaValorsDelPaste.Text = "Còpia des d\'un Paste";
+            this.btCopiaValorsDelPaste.UseVisualStyleBackColor = false;
+            this.btCopiaValorsDelPaste.Click += new System.EventHandler(this.btCopiaValorsDelPaste_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgvValoracionsPerData);
+            this.panel3.Controls.Add(this.chTotals);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(702, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(430, 532);
+            this.panel3.TabIndex = 10;
             // 
             // dgvValoracionsPerData
             // 
@@ -431,14 +1021,14 @@ namespace Inversions.GUI
             this.colVariacioEuros2,
             this.Column1});
             this.dgvValoracionsPerData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvValoracionsPerData.Location = new System.Drawing.Point(0, 237);
-            this.dgvValoracionsPerData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvValoracionsPerData.Location = new System.Drawing.Point(0, 154);
+            this.dgvValoracionsPerData.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.dgvValoracionsPerData.Name = "dgvValoracionsPerData";
             this.dgvValoracionsPerData.ReadOnly = true;
             this.dgvValoracionsPerData.RowHeadersVisible = false;
             this.dgvValoracionsPerData.RowTemplate.Height = 24;
             this.dgvValoracionsPerData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvValoracionsPerData.Size = new System.Drawing.Size(636, 298);
+            this.dgvValoracionsPerData.Size = new System.Drawing.Size(430, 193);
             this.dgvValoracionsPerData.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn3
@@ -454,7 +1044,7 @@ namespace Inversions.GUI
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.Width = 80;
+            this.dataGridViewTextBoxColumn3.Width = 55;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -470,7 +1060,7 @@ namespace Inversions.GUI
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn4.Width = 150;
+            this.dataGridViewTextBoxColumn4.Width = 101;
             // 
             // colVariacioPercentatge
             // 
@@ -486,7 +1076,7 @@ namespace Inversions.GUI
             this.colVariacioPercentatge.Name = "colVariacioPercentatge";
             this.colVariacioPercentatge.ReadOnly = true;
             this.colVariacioPercentatge.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colVariacioPercentatge.Width = 120;
+            this.colVariacioPercentatge.Width = 81;
             // 
             // colVariacioEuros2
             // 
@@ -502,7 +1092,7 @@ namespace Inversions.GUI
             this.colVariacioEuros2.Name = "colVariacioEuros2";
             this.colVariacioEuros2.ReadOnly = true;
             this.colVariacioEuros2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colVariacioEuros2.Width = 115;
+            this.colVariacioEuros2.Width = 79;
             // 
             // Column1
             // 
@@ -517,588 +1107,7 @@ namespace Inversions.GUI
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Width = 117;
-            // 
-            // btActualitzaLlista
-            // 
-            this.btActualitzaLlista.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btActualitzaLlista.Location = new System.Drawing.Point(6, 68);
-            this.btActualitzaLlista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btActualitzaLlista.Name = "btActualitzaLlista";
-            this.btActualitzaLlista.Size = new System.Drawing.Size(313, 45);
-            this.btActualitzaLlista.TabIndex = 2;
-            this.btActualitzaLlista.Text = "Actualitza";
-            this.btActualitzaLlista.UseVisualStyleBackColor = true;
-            this.btActualitzaLlista.Click += new System.EventHandler(this.btActualitzaLlista_Click);
-            // 
-            // gbFiltreTipusProducte
-            // 
-            this.gbFiltreTipusProducte.Controls.Add(this.checkedComboBoxEdit1);
-            this.gbFiltreTipusProducte.Controls.Add(this.dtpDataIniciLlista);
-            this.gbFiltreTipusProducte.Controls.Add(this.btActualitzaLlista);
-            this.gbFiltreTipusProducte.Location = new System.Drawing.Point(6, 76);
-            this.gbFiltreTipusProducte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbFiltreTipusProducte.Name = "gbFiltreTipusProducte";
-            this.gbFiltreTipusProducte.Padding = new System.Windows.Forms.Padding(6);
-            this.gbFiltreTipusProducte.Size = new System.Drawing.Size(325, 119);
-            this.gbFiltreTipusProducte.TabIndex = 4;
-            this.gbFiltreTipusProducte.TabStop = false;
-            this.gbFiltreTipusProducte.Text = "Tipus Prod.                         Data Inici";
-            // 
-            // checkedComboBoxEdit1
-            // 
-            this.checkedComboBoxEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedComboBoxEdit1.EditValue = "RF, RV, Accions, Criptos";
-            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(11, 25);
-            this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
-            this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.checkedComboBoxEdit1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(Inversions.GUI.ValoracionsTab.TipusProd.RF, "Fons RF", System.Windows.Forms.CheckState.Checked),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(Inversions.GUI.ValoracionsTab.TipusProd.RV, "Fons RV", System.Windows.Forms.CheckState.Checked),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(Inversions.GUI.ValoracionsTab.TipusProd.Accions, "Accions", System.Windows.Forms.CheckState.Checked),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(Inversions.GUI.ValoracionsTab.TipusProd.Criptos, "Criptos", System.Windows.Forms.CheckState.Checked)});
-            this.checkedComboBoxEdit1.Properties.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D;
-            this.checkedComboBoxEdit1.Properties.SelectAllItemCaption = "Selecciona-ho Tot";
-            this.checkedComboBoxEdit1.Properties.ShowButtons = false;
-            this.checkedComboBoxEdit1.Size = new System.Drawing.Size(166, 26);
-            this.checkedComboBoxEdit1.TabIndex = 0;
-            this.checkedComboBoxEdit1.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.checkedComboBoxEdit1_CloseUp);
-            // 
-            // dtpDataIniciLlista
-            // 
-            this.dtpDataIniciLlista.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpDataIniciLlista.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataIniciLlista.Location = new System.Drawing.Point(186, 25);
-            this.dtpDataIniciLlista.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtpDataIniciLlista.Name = "dtpDataIniciLlista";
-            this.dtpDataIniciLlista.Size = new System.Drawing.Size(133, 26);
-            this.dtpDataIniciLlista.TabIndex = 1;
-            // 
-            // btEsborra
-            // 
-            this.btEsborra.Enabled = false;
-            this.btEsborra.Location = new System.Drawing.Point(495, 9);
-            this.btEsborra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btEsborra.Name = "btEsborra";
-            this.btEsborra.Size = new System.Drawing.Size(130, 45);
-            this.btEsborra.TabIndex = 3;
-            this.btEsborra.Text = "Esborra";
-            this.btEsborra.UseVisualStyleBackColor = true;
-            this.btEsborra.Click += new System.EventHandler(this.btEsborra_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.chProd);
-            this.panel1.Controls.Add(this.dgvValoracions);
-            this.panel1.Controls.Add(this.pnFiltreValoracions);
-            this.panel1.Controls.Add(this.gestioProductesTabValoracions);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1006, 819);
-            this.panel1.TabIndex = 0;
-            // 
-            // chProd
-            // 
-            this.chProd.BorderSkin.SkinStyle = System.Windows.Forms.DataVisualization.Charting.BorderSkinStyle.FrameThin1;
-            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea1.Name = "ChartArea1";
-            this.chProd.ChartAreas.Add(chartArea1);
-            this.chProd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chProd.Location = new System.Drawing.Point(460, 574);
-            this.chProd.Margin = new System.Windows.Forms.Padding(0);
-            this.chProd.Name = "chProd";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsVisibleInLegend = false;
-            series1.Name = "Series1";
-            series1.XValueMember = "Data";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series1.YValueMembers = "PreuParticipacio";
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.chProd.Series.Add(series1);
-            this.chProd.Size = new System.Drawing.Size(546, 245);
-            this.chProd.TabIndex = 1;
-            this.chProd.Text = "chart1";
-            // 
-            // pnFiltreValoracions
-            // 
-            this.pnFiltreValoracions.Controls.Add(this.tlpPercents);
-            this.pnFiltreValoracions.Controls.Add(this.panel5);
-            this.pnFiltreValoracions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnFiltreValoracions.Location = new System.Drawing.Point(0, 494);
-            this.pnFiltreValoracions.Name = "pnFiltreValoracions";
-            this.pnFiltreValoracions.Padding = new System.Windows.Forms.Padding(5);
-            this.pnFiltreValoracions.Size = new System.Drawing.Size(1006, 80);
-            this.pnFiltreValoracions.TabIndex = 1;
-            // 
-            // tlpPercents
-            // 
-            this.tlpPercents.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tlpPercents.ColumnCount = 6;
-            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpPercents.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPercents.Controls.Add(this.panel9, 4, 1);
-            this.tlpPercents.Controls.Add(this.panel8, 3, 1);
-            this.tlpPercents.Controls.Add(this.panel7, 2, 1);
-            this.tlpPercents.Controls.Add(this.panel6, 1, 1);
-            this.tlpPercents.Controls.Add(this.label6, 4, 0);
-            this.tlpPercents.Controls.Add(this.lbPercentAny, 3, 0);
-            this.tlpPercents.Controls.Add(this.label4, 2, 0);
-            this.tlpPercents.Controls.Add(this.label3, 1, 0);
-            this.tlpPercents.Controls.Add(this.label2, 0, 0);
-            this.tlpPercents.Controls.Add(this.panel4, 0, 1);
-            this.tlpPercents.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tlpPercents.Location = new System.Drawing.Point(310, 5);
-            this.tlpPercents.Name = "tlpPercents";
-            this.tlpPercents.RowCount = 2;
-            this.tlpPercents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpPercents.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPercents.Size = new System.Drawing.Size(691, 70);
-            this.tlpPercents.TabIndex = 2;
-            // 
-            // panel9
-            // 
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.ntbPercent1A);
-            this.panel9.Location = new System.Drawing.Point(570, 28);
-            this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(3);
-            this.panel9.Size = new System.Drawing.Size(84, 39);
-            this.panel9.TabIndex = 9;
-            // 
-            // ntbPercent1A
-            // 
-            this.ntbPercent1A._CapturaEscape = true;
-            this.ntbPercent1A._Format = "0.00%";
-            this.ntbPercent1A._NegatiusEnVermell = true;
-            this.ntbPercent1A._PermetDecimals = true;
-            this.ntbPercent1A._PermetNegatius = true;
-            this.ntbPercent1A._PermetTextNull = false;
-            this.ntbPercent1A.BackColor = System.Drawing.Color.Khaki;
-            this.ntbPercent1A.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ntbPercent1A.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent1A.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent1A.Location = new System.Drawing.Point(3, 3);
-            this.ntbPercent1A.Name = "ntbPercent1A";
-            this.ntbPercent1A.ReadOnly = true;
-            this.ntbPercent1A.Size = new System.Drawing.Size(76, 26);
-            this.ntbPercent1A.TabIndex = 1;
-            this.ntbPercent1A.Text = "0,00%";
-            this.ntbPercent1A.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent1A.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // panel8
-            // 
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.ntbPercentAny);
-            this.panel8.Location = new System.Drawing.Point(480, 28);
-            this.panel8.Name = "panel8";
-            this.panel8.Padding = new System.Windows.Forms.Padding(3);
-            this.panel8.Size = new System.Drawing.Size(84, 39);
-            this.panel8.TabIndex = 8;
-            // 
-            // ntbPercentAny
-            // 
-            this.ntbPercentAny._CapturaEscape = true;
-            this.ntbPercentAny._Format = "0.00%";
-            this.ntbPercentAny._NegatiusEnVermell = true;
-            this.ntbPercentAny._PermetDecimals = true;
-            this.ntbPercentAny._PermetNegatius = true;
-            this.ntbPercentAny._PermetTextNull = false;
-            this.ntbPercentAny.BackColor = System.Drawing.SystemColors.Window;
-            this.ntbPercentAny.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ntbPercentAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercentAny.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercentAny.Location = new System.Drawing.Point(3, 3);
-            this.ntbPercentAny.Name = "ntbPercentAny";
-            this.ntbPercentAny.ReadOnly = true;
-            this.ntbPercentAny.Size = new System.Drawing.Size(76, 26);
-            this.ntbPercentAny.TabIndex = 1;
-            this.ntbPercentAny.Text = "0,00%";
-            this.ntbPercentAny.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercentAny.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // panel7
-            // 
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.ntbPercent6M12);
-            this.panel7.Controls.Add(this.ntbPercent6M);
-            this.panel7.Location = new System.Drawing.Point(321, 28);
-            this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(3);
-            this.panel7.Size = new System.Drawing.Size(153, 39);
-            this.panel7.TabIndex = 7;
-            // 
-            // ntbPercent6M12
-            // 
-            this.ntbPercent6M12._CapturaEscape = true;
-            this.ntbPercent6M12._Format = "0.00%";
-            this.ntbPercent6M12._NegatiusEnVermell = true;
-            this.ntbPercent6M12._PermetDecimals = true;
-            this.ntbPercent6M12._PermetNegatius = true;
-            this.ntbPercent6M12._PermetTextNull = false;
-            this.ntbPercent6M12.BackColor = System.Drawing.Color.Khaki;
-            this.ntbPercent6M12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ntbPercent6M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent6M12.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent6M12.Location = new System.Drawing.Point(80, 3);
-            this.ntbPercent6M12.Name = "ntbPercent6M12";
-            this.ntbPercent6M12.ReadOnly = true;
-            this.ntbPercent6M12.Size = new System.Drawing.Size(68, 26);
-            this.ntbPercent6M12.TabIndex = 3;
-            this.ntbPercent6M12.Text = "0,00%";
-            this.ntbPercent6M12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent6M12.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // ntbPercent6M
-            // 
-            this.ntbPercent6M._CapturaEscape = true;
-            this.ntbPercent6M._Format = "0.00%";
-            this.ntbPercent6M._NegatiusEnVermell = true;
-            this.ntbPercent6M._PermetDecimals = true;
-            this.ntbPercent6M._PermetNegatius = true;
-            this.ntbPercent6M._PermetTextNull = false;
-            this.ntbPercent6M.BackColor = System.Drawing.SystemColors.Window;
-            this.ntbPercent6M.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ntbPercent6M.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent6M.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent6M.Location = new System.Drawing.Point(3, 3);
-            this.ntbPercent6M.Name = "ntbPercent6M";
-            this.ntbPercent6M.ReadOnly = true;
-            this.ntbPercent6M.Size = new System.Drawing.Size(68, 26);
-            this.ntbPercent6M.TabIndex = 2;
-            this.ntbPercent6M.Text = "0,00%";
-            this.ntbPercent6M.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent6M.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.ntbPercent3M12);
-            this.panel6.Controls.Add(this.ntbPercent3M);
-            this.panel6.Location = new System.Drawing.Point(162, 28);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(3);
-            this.panel6.Size = new System.Drawing.Size(153, 39);
-            this.panel6.TabIndex = 6;
-            // 
-            // ntbPercent3M12
-            // 
-            this.ntbPercent3M12._CapturaEscape = true;
-            this.ntbPercent3M12._Format = "0.00%";
-            this.ntbPercent3M12._NegatiusEnVermell = true;
-            this.ntbPercent3M12._PermetDecimals = true;
-            this.ntbPercent3M12._PermetNegatius = true;
-            this.ntbPercent3M12._PermetTextNull = false;
-            this.ntbPercent3M12.BackColor = System.Drawing.Color.Khaki;
-            this.ntbPercent3M12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ntbPercent3M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent3M12.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent3M12.Location = new System.Drawing.Point(80, 3);
-            this.ntbPercent3M12.Margin = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.ntbPercent3M12.Name = "ntbPercent3M12";
-            this.ntbPercent3M12.ReadOnly = true;
-            this.ntbPercent3M12.Size = new System.Drawing.Size(68, 26);
-            this.ntbPercent3M12.TabIndex = 3;
-            this.ntbPercent3M12.Text = "0,00%";
-            this.ntbPercent3M12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent3M12.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // ntbPercent3M
-            // 
-            this.ntbPercent3M._CapturaEscape = true;
-            this.ntbPercent3M._Format = "0.00%";
-            this.ntbPercent3M._NegatiusEnVermell = true;
-            this.ntbPercent3M._PermetDecimals = true;
-            this.ntbPercent3M._PermetNegatius = true;
-            this.ntbPercent3M._PermetTextNull = false;
-            this.ntbPercent3M.BackColor = System.Drawing.SystemColors.Window;
-            this.ntbPercent3M.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ntbPercent3M.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent3M.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent3M.Location = new System.Drawing.Point(3, 3);
-            this.ntbPercent3M.Name = "ntbPercent3M";
-            this.ntbPercent3M.ReadOnly = true;
-            this.ntbPercent3M.Size = new System.Drawing.Size(68, 26);
-            this.ntbPercent3M.TabIndex = 2;
-            this.ntbPercent3M.Text = "0,00%";
-            this.ntbPercent3M.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent3M.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // label6
-            // 
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(567, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 25);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "% 1A";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbPercentAny
-            // 
-            this.lbPercentAny.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbPercentAny.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbPercentAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPercentAny.Location = new System.Drawing.Point(477, 0);
-            this.lbPercentAny.Margin = new System.Windows.Forms.Padding(0);
-            this.lbPercentAny.Name = "lbPercentAny";
-            this.lbPercentAny.Size = new System.Drawing.Size(90, 25);
-            this.lbPercentAny.TabIndex = 3;
-            this.lbPercentAny.Text = "% Any";
-            this.lbPercentAny.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(318, 0);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(159, 25);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "% 6M";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(159, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 25);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "% 3M";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 25);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "% 1M";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.ntbPercent1M12);
-            this.panel4.Controls.Add(this.ntbPercent1M);
-            this.panel4.Location = new System.Drawing.Point(3, 28);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(3);
-            this.panel4.Size = new System.Drawing.Size(153, 39);
-            this.panel4.TabIndex = 5;
-            // 
-            // ntbPercent1M12
-            // 
-            this.ntbPercent1M12._CapturaEscape = true;
-            this.ntbPercent1M12._Format = "0.00%";
-            this.ntbPercent1M12._NegatiusEnVermell = true;
-            this.ntbPercent1M12._PermetDecimals = true;
-            this.ntbPercent1M12._PermetNegatius = true;
-            this.ntbPercent1M12._PermetTextNull = false;
-            this.ntbPercent1M12.BackColor = System.Drawing.Color.Khaki;
-            this.ntbPercent1M12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ntbPercent1M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent1M12.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent1M12.Location = new System.Drawing.Point(80, 3);
-            this.ntbPercent1M12.Margin = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.ntbPercent1M12.Name = "ntbPercent1M12";
-            this.ntbPercent1M12.ReadOnly = true;
-            this.ntbPercent1M12.Size = new System.Drawing.Size(68, 26);
-            this.ntbPercent1M12.TabIndex = 3;
-            this.ntbPercent1M12.Text = "0,00%";
-            this.ntbPercent1M12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent1M12.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // ntbPercent1M
-            // 
-            this.ntbPercent1M._CapturaEscape = true;
-            this.ntbPercent1M._Format = "0.00%";
-            this.ntbPercent1M._NegatiusEnVermell = true;
-            this.ntbPercent1M._PermetDecimals = true;
-            this.ntbPercent1M._PermetNegatius = true;
-            this.ntbPercent1M._PermetTextNull = false;
-            this.ntbPercent1M.BackColor = System.Drawing.SystemColors.Window;
-            this.ntbPercent1M.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ntbPercent1M.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ntbPercent1M.ForeColor = System.Drawing.Color.Black;
-            this.ntbPercent1M.Location = new System.Drawing.Point(3, 3);
-            this.ntbPercent1M.Name = "ntbPercent1M";
-            this.ntbPercent1M.ReadOnly = true;
-            this.ntbPercent1M.Size = new System.Drawing.Size(68, 26);
-            this.ntbPercent1M.TabIndex = 2;
-            this.ntbPercent1M.Text = "0,00%";
-            this.ntbPercent1M.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ntbPercent1M.Valor = new decimal(new int[] {
-            0,
-            0,
-            0,
-            131072});
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.ckValsAmbParticipacions);
-            this.panel5.Controls.Add(this.dtpDataIniciValoracions);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(5, 5);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(233, 70);
-            this.panel5.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Data Inici";
-            // 
-            // ckValsAmbParticipacions
-            // 
-            this.ckValsAmbParticipacions.AutoSize = true;
-            this.ckValsAmbParticipacions.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckValsAmbParticipacions.Checked = true;
-            this.ckValsAmbParticipacions.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckValsAmbParticipacions.Location = new System.Drawing.Point(4, 37);
-            this.ckValsAmbParticipacions.Margin = new System.Windows.Forms.Padding(0);
-            this.ckValsAmbParticipacions.Name = "ckValsAmbParticipacions";
-            this.ckValsAmbParticipacions.Size = new System.Drawing.Size(221, 24);
-            this.ckValsAmbParticipacions.TabIndex = 2;
-            this.ckValsAmbParticipacions.Text = "Només amb participacions";
-            this.ckValsAmbParticipacions.UseVisualStyleBackColor = true;
-            this.ckValsAmbParticipacions.CheckedChanged += new System.EventHandler(this.ckValsAmbParticipacions_CheckedChanged);
-            // 
-            // dtpDataIniciValoracions
-            // 
-            this.dtpDataIniciValoracions.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataIniciValoracions.Location = new System.Drawing.Point(86, 2);
-            this.dtpDataIniciValoracions.Margin = new System.Windows.Forms.Padding(0);
-            this.dtpDataIniciValoracions.Name = "dtpDataIniciValoracions";
-            this.dtpDataIniciValoracions.Size = new System.Drawing.Size(139, 26);
-            this.dtpDataIniciValoracions.TabIndex = 1;
-            this.dtpDataIniciValoracions.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpDataIniciValoracions_KeyPress);
-            this.dtpDataIniciValoracions.Validating += new System.ComponentModel.CancelEventHandler(this.dtpDataIniciValoracions_Validating);
-            // 
-            // gestioProductesTabValoracions
-            // 
-            this.gestioProductesTabValoracions._AmbMoviments = true;
-            this.gestioProductesTabValoracions._FiltreAnyVisible = false;
-            this.gestioProductesTabValoracions._MostraLlistaAmbChecks = false;
-            this.gestioProductesTabValoracions._NomesAmbParticipacions = true;
-            this.gestioProductesTabValoracions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gestioProductesTabValoracions.Location = new System.Drawing.Point(0, 0);
-            this.gestioProductesTabValoracions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gestioProductesTabValoracions.MinimumSize = new System.Drawing.Size(825, 494);
-            this.gestioProductesTabValoracions.Name = "gestioProductesTabValoracions";
-            this.gestioProductesTabValoracions.Size = new System.Drawing.Size(1006, 494);
-            this.gestioProductesTabValoracions.TabIndex = 0;
-            this.gestioProductesTabValoracions.EventProducteSeleccionat += new System.EventHandler(this.gestioProductesTabValoracions_ProducteSeleccionat);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.lbTitolValoracionsPerData);
-            this.panel2.Controls.Add(this.btCopiaValorsDelPaste);
-            this.panel2.Controls.Add(this.btModifica);
-            this.panel2.Controls.Add(this.btDesa);
-            this.panel2.Controls.Add(this.btNouValor);
-            this.panel2.Controls.Add(this.gbFiltreTipusProducte);
-            this.panel2.Controls.Add(this.btEsborra);
-            this.panel2.Controls.Add(this.btCancela);
-            this.panel2.Controls.Add(this.pnEdicio);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(636, 237);
-            this.panel2.TabIndex = 0;
-            // 
-            // lbTitolValoracionsPerData
-            // 
-            this.lbTitolValoracionsPerData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbTitolValoracionsPerData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbTitolValoracionsPerData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitolValoracionsPerData.Location = new System.Drawing.Point(0, 208);
-            this.lbTitolValoracionsPerData.Name = "lbTitolValoracionsPerData";
-            this.lbTitolValoracionsPerData.Size = new System.Drawing.Size(636, 29);
-            this.lbTitolValoracionsPerData.TabIndex = 8;
-            this.lbTitolValoracionsPerData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btCopiaValorsDelPaste
-            // 
-            this.btCopiaValorsDelPaste.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btCopiaValorsDelPaste.Location = new System.Drawing.Point(20, 4);
-            this.btCopiaValorsDelPaste.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btCopiaValorsDelPaste.Name = "btCopiaValorsDelPaste";
-            this.btCopiaValorsDelPaste.Size = new System.Drawing.Size(130, 54);
-            this.btCopiaValorsDelPaste.TabIndex = 0;
-            this.btCopiaValorsDelPaste.Text = "Còpia des d\'un Paste";
-            this.btCopiaValorsDelPaste.UseVisualStyleBackColor = false;
-            this.btCopiaValorsDelPaste.Click += new System.EventHandler(this.btCopiaValorsDelPaste_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dgvValoracionsPerData);
-            this.panel3.Controls.Add(this.chTotals);
-            this.panel3.Controls.Add(this.panel2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1006, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(636, 819);
-            this.panel3.TabIndex = 10;
+            this.Column1.Width = 79;
             // 
             // chTotals
             // 
@@ -1108,7 +1117,7 @@ namespace Inversions.GUI
             chartArea2.Name = "ChartArea1";
             this.chTotals.ChartAreas.Add(chartArea2);
             this.chTotals.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.chTotals.Location = new System.Drawing.Point(0, 535);
+            this.chTotals.Location = new System.Drawing.Point(0, 347);
             this.chTotals.Margin = new System.Windows.Forms.Padding(0);
             this.chTotals.Name = "chTotals";
             series2.BorderWidth = 2;
@@ -1121,30 +1130,29 @@ namespace Inversions.GUI
             series2.YValueMembers = "PreuParticipacio";
             series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chTotals.Series.Add(series2);
-            this.chTotals.Size = new System.Drawing.Size(636, 284);
+            this.chTotals.Size = new System.Drawing.Size(430, 185);
             this.chTotals.TabIndex = 4;
             this.chTotals.Text = "chart2";
             // 
             // ValoracionsTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1464, 819);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.MinimumSize = new System.Drawing.Size(976, 532);
             this.Name = "ValoracionsTab";
-            this.Size = new System.Drawing.Size(1642, 819);
+            this.Size = new System.Drawing.Size(1132, 532);
+            this.Load += new System.EventHandler(this.ValoracionsTab_Load);
             this.gbData.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracions)).EndInit();
             this.pnEdicio.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracionsPerData)).EndInit();
             this.gbFiltreTipusProducte.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chProd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracions)).EndInit();
             this.pnFiltreValoracions.ResumeLayout(false);
             this.tlpPercents.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
@@ -1161,6 +1169,7 @@ namespace Inversions.GUI
             this.panel5.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvValoracionsPerData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chTotals)).EndInit();
             this.ResumeLayout(false);
 
@@ -1187,7 +1196,6 @@ namespace Inversions.GUI
         private GestioProductes gestioProductesTabValoracions;
         private System.Windows.Forms.Button btCopiaValorsDelPaste;
         private System.Windows.Forms.DateTimePicker dtpDataIniciLlista;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbTitolValoracionsPerData;
         private System.Windows.Forms.Panel pnFiltreValoracions;
@@ -1229,5 +1237,6 @@ namespace Inversions.GUI
         private NumericTextBoxColumn2 colVariacioPercentatge;
         private NumericTextBoxColumn2 colVariacioEuros2;
         private NumericTextBoxColumn2 Column1;
+        private CheckedComboBoxControl ccbFiltreTipusProducte;
     }
 }

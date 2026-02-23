@@ -1,0 +1,19 @@
+--- Flux d'Amend + Push (Pas a pas)
+git add .
+O
+git add GUI\Controls\SimulacioVendaTab.cs
+git add Properties\AssemblyInfo.cs
+
+git commit --amend --no-edit
+
+git push origin master --force-with-lease
+
+-- Si diu que està a mig merge
+git merge --abort
+
+--⚠️ Una nota per al teu "altre PC"
+Recorda que cada vegada que facis un Force Push, el teu altre ordinador es quedarà "confós". Quan el tornis a obrir, no facis pull, fes això:
+
+git fetch origin
+
+git reset --hard origin/master
