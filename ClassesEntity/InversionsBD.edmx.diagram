@@ -32,6 +32,8 @@
         <AssociationConnector Association="InversionsBD.FK_MovCompraOrig" />
         <EntityTypeShape EntityType="InversionsBD.IngresExtern" Width="1.5" PointX="15" PointY="1.25" />
         <AssociationConnector Association="InversionsBD.FK_IngressosUsuaris" />
+        <EntityTypeShape EntityType="InversionsBD.Monedes" Width="1.5" PointX="6.875" PointY="3.25" />
+        <AssociationConnector Association="InversionsBD.FK_MonedaProducte" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

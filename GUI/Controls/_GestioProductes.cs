@@ -254,7 +254,7 @@ namespace Inversions.GUI
                 else
                 {
                     lbEmpresa.Text = prod._NomEmpresa;
-                    tbMoneda.Text = prod.Moneda;
+                    tbMoneda.Text = prod.MonedaCodi;
 
                     tbParticipacions.Valor = prod._Participacions;
                     ntbPreuPartActual.Valor = prod._PreuParticipacioActual;

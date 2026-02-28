@@ -138,7 +138,7 @@ namespace Inversions.GUI
                 if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                 {
                     cbMercatProducte.SelectedItem = producte._Mercat;
-                    cbMonedaProducte.SelectedItem = (Utilitats.Monedes) Enum.Parse(typeof (Utilitats.Monedes), producte.Moneda);
+                    cbMonedaProducte.SelectedItem = (Utilitats.Monedes) Enum.Parse(typeof (Utilitats.Monedes), producte.MonedaCodi);
                     gbTipusProducte.Visible = false;
                 }
                 else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
@@ -316,7 +316,7 @@ namespace Inversions.GUI
             if (vProducteSeleccionat != null)
             {
                 vProducteSeleccionat.Empresa = vConnProductes.Empreses.Find(vEmpresaSeleccionada.Id);
-                vProducteSeleccionat.Moneda = Utilitats.Monedes.EUR.ToString();
+                vProducteSeleccionat.MonedaCodi = Utilitats.Monedes.EUR.ToString();
                 vProducteSeleccionat.OrdreGrid = 999;
             }
 
@@ -340,7 +340,7 @@ namespace Inversions.GUI
                     if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                     {
                         ((ProdAccions) vProducteSeleccionat).Mercat = vConnProductes.Mercats.Find(((Mercat) cbMercatProducte.SelectedItem).Id);
-                        vProducteSeleccionat.Moneda = cbMonedaProducte.SelectedItem.ToString();
+                        vProducteSeleccionat.MonedaCodi = cbMonedaProducte.SelectedItem.ToString();
                     }
                     else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
                     {
