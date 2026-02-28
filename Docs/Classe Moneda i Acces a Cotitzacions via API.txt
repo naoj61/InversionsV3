@@ -1,0 +1,63 @@
+-- Taula Moneda
+	-- Creating table 'Moneda'
+		CREATE TABLE [dbo].[Moneda] (
+			[Codi] char(3)  NOT NULL,
+			[Ticker] char(15)  NOT NULL,
+			[Descripcio] varchar(max) NOT NULL);
+
+	-- Creating primary key on [Codi] in table 'Moneda'
+		ALTER TABLE [dbo].[Moneda]
+			ADD CONSTRAINT [PK_Moneda]
+			PRIMARY KEY CLUSTERED ([Codi] ASC);
+
+	INSERT INTO Moneda	VALUES ('EUR', 'Euro', 'EUREUR.FOREX');
+	INSERT INTO Moneda	VALUES ('USD', 'Dolar USA', 'EURUSD.FOREX');
+	INSERT INTO Moneda	VALUES ('DKK', 'Corona Danesa', 'EURDKK.FOREX');
+
+-- Taula Productes
+	EXEC sp_rename 'Productes.Moneda', 'MonedaCodi', 'COLUMN';
+	
+	-- Creating non-clustered index for FOREIGN KEY 'FK_MonedaProducte'
+	CREATE INDEX [IX_FK_MonedaProducte]	ON [dbo].[Productes] ([MonedaCodi]);
+
+	-- Creating foreign key on [MonedaCodi] in table 'Productes'
+	ALTER TABLE [dbo].[Productes]
+		ADD CONSTRAINT [FK_MonedaProducte]
+			FOREIGN KEY ([MonedaCodi])
+			REFERENCES [dbo].[Moneda] ([Codi])
+			ON DELETE NO ACTION ON UPDATE NO ACTION;	
+		
+------------------------------------------------------------------------------------------ 
+A partir d'aquí s'ha de repensar.
+Millor no tocar ISIN i afegir Ticker a Productes_ProdAccions
+
+
+
+
+
+		
+		
+	ALTER TABLE Productes ADD [Ticker_ISIN] varchar(15);
+	
+	-- Moure de Productes_ProdFons.ISIN a Productes.Ticker_ISIN
+	UPDATE p SET p.Ticker_ISIN = pf.ISIN 
+	FROM Productes p 
+	INNER JOIN Productes_ProdFons pf ON p.Id = pf.Id;
+	
+	-- Informar Ticker_ISIN a Accions
+	
+	ALTER TABLE Productes ALTER COLUMN Ticker_ISIN varchar(15) NOT NULL;
+
+	ALTER TABLE Productes ADD CONSTRAINT UQ_Productes_Ticker_ISIN UNIQUE (Ticker_ISIN);
+
+
+-- Modificar taula Productes_ProdFons
+	ALTER TABLE Productes_ProdFons DROP COLUMN ISIN;
+
+
+
+	Select p.id, e.nom
+	FROM Productes p 
+	INNER JOIN Empreses e ON p.EmpresaId = e.Id
+	WHERE p.Ticker_ISIN Is NULL;
+	
