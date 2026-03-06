@@ -58,8 +58,9 @@
             <PropertyRef Name="Codi" />
           </Key>
           <Property Name="Codi" Type="char" MaxLength="3" Nullable="false" />
-          <Property Name="Ticker" Type="char" MaxLength="15" Nullable="false" />
-          <Property Name="Descripcio" Type="varchar(max)" Nullable="false" />
+          <Property Name="Ordre" Type="int" Nullable="false" />
+          <Property Name="TickerExchange" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Descripcio" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Moviments">
           <Key>
@@ -96,6 +97,7 @@
           <Property Name="MonedaCodi" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="OrdreGrid" Type="int" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TickerExchange" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Productes_ProdAccions">
           <Key>
@@ -103,6 +105,7 @@
           </Key>
           <Property Name="MercatId" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ticker" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Productes_ProdFons">
           <Key>
@@ -448,9 +451,9 @@
             <End Role="Usuari" EntitySet="Usuaris" />
             <End Role="IngressosExtern" EntitySet="IngressosExterns" />
           </AssociationSet>
-          <EntitySet Name="Monedes" EntityType="InversionsBD.Monedes" />
+          <EntitySet Name="Monedes" EntityType="InversionsBD.Moneda" />
           <AssociationSet Name="FK_MonedaProducte" Association="InversionsBD.FK_MonedaProducte">
-            <End Role="Monedes" EntitySet="Monedes" />
+            <End Role="Moneda" EntitySet="Monedes" />
             <End Role="Producte" EntitySet="Productes" />
           </AssociationSet>
           </EntityContainer>
@@ -520,10 +523,11 @@
           <Property Name="EmpresaId" Type="Int32" Nullable="false" cg:SetterAccess="Private" />
           <NavigationProperty Name="ValoracionsProducte" Relationship="InversionsBD.ProdValoracio" FromRole="Prod" ToRole="Valoracio" />
           <Property Name="OrdreGrid" Type="Int32" />
+          <Property Name="MonedaCodi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="RowVersion" Type="Binary" Nullable="false" ConcurrencyMode="Fixed" cg:SetterAccess="Private" annotation:StoreGeneratedPattern="Computed" MaxLength="8" FixedLength="true" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <NavigationProperty Name="Moviments" Relationship="InversionsBD.FK_ProdMov" FromRole="Producte" ToRole="Moviment" />
-          <Property Name="MonedaCodi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Monedes" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Producte" ToRole="Monedes" />
+          <NavigationProperty Name="Moneda" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Producte" ToRole="Moneda" />
+          <Property Name="TickerExchange" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="EmpresaP2">
           <End Type="InversionsBD.Empresa" Role="Empresa" Multiplicity="1" />
@@ -551,6 +555,7 @@
         <EntityType Name="ProdAccions" BaseType="InversionsBD.Producte" >
           <NavigationProperty Name="Mercat" Relationship="InversionsBD.MercatProdAccions" FromRole="ProdAccions" ToRole="Mercat" />
           <Property Name="MercatId" Type="Int32" Nullable="false" />
+          <Property Name="Ticker" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Mercat">
           <Key>
@@ -731,20 +736,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Monedes">
+        <EntityType Name="Moneda">
           <Key>
             <PropertyRef Name="Codi" />
           </Key>
           <Property Name="Codi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="Ticker" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
-          <Property Name="Descripcio" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Productes" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Monedes" ToRole="Producte" />
+          <Property Name="Ordre" Type="Int32" Nullable="false" />
+          <Property Name="TickerExchange" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcio" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Productes" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Moneda" ToRole="Producte" />
         </EntityType>
         <Association Name="FK_MonedaProducte">
-          <End Type="InversionsBD.Monedes" Role="Monedes" Multiplicity="1" />
+          <End Type="InversionsBD.Moneda" Role="Moneda" Multiplicity="1" />
           <End Type="InversionsBD.Producte" Role="Producte" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Monedes">
+            <Principal Role="Moneda">
               <PropertyRef Name="Codi" />
             </Principal>
             <Dependent Role="Producte">
@@ -793,6 +799,7 @@
     <EntitySetMapping Name="Productes">
       <EntityTypeMapping TypeName="IsTypeOf(InversionsBD.Producte)">
         <MappingFragment StoreEntitySet="Productes">
+                <ScalarProperty Name="TickerExchange" ColumnName="TickerExchange" />
                 <ScalarProperty Name="MonedaCodi" ColumnName="MonedaCodi" />
                 <ScalarProperty Name="OrdreGrid" ColumnName="OrdreGrid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -811,7 +818,8 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(InversionsBD.ProdAccions)">
         <MappingFragment StoreEntitySet="Productes_ProdAccions">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ticker" ColumnName="Ticker" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="MercatId" ColumnName="MercatId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -884,10 +892,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Monedes">
-            <EntityTypeMapping TypeName="InversionsBD.Monedes">
+            <EntityTypeMapping TypeName="InversionsBD.Moneda">
               <MappingFragment StoreEntitySet="Monedes">
+                <ScalarProperty Name="TickerExchange" ColumnName="TickerExchange" />
+                <ScalarProperty Name="Ordre" ColumnName="Ordre" />
                 <ScalarProperty Name="Descripcio" ColumnName="Descripcio" />
-                <ScalarProperty Name="Ticker" ColumnName="Ticker" />
                 <ScalarProperty Name="Codi" ColumnName="Codi" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -905,7 +914,7 @@
     <edmx:Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />

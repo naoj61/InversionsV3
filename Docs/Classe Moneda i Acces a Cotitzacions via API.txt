@@ -1,31 +1,53 @@
--- Taula Moneda
-	-- Creating table 'Moneda'
-		CREATE TABLE [dbo].[Moneda] (
+-- Taula Monedes
+	-- Creating table 'Monedes'
+		CREATE TABLE [dbo].[Monedes] (
 			[Codi] char(3)  NOT NULL,
-			[Ticker] char(15)  NOT NULL,
-			[Descripcio] varchar(max) NOT NULL);
+			[Ordre] Int  NOT NULL,
+			[TickerExchange] varchar(15)  NOT NULL,
+			[Descripcio] varchar(25) NOT NULL);
 
-	-- Creating primary key on [Codi] in table 'Moneda'
-		ALTER TABLE [dbo].[Moneda]
-			ADD CONSTRAINT [PK_Moneda]
+	-- Creating primary key on [Codi] in table 'Monedes'
+		ALTER TABLE [dbo].[Monedes]
+			ADD CONSTRAINT [PK_Monedes]
 			PRIMARY KEY CLUSTERED ([Codi] ASC);
 
-	INSERT INTO Moneda	VALUES ('EUR', 'Euro', 'EUREUR.FOREX');
-	INSERT INTO Moneda	VALUES ('USD', 'Dolar USA', 'EURUSD.FOREX');
-	INSERT INTO Moneda	VALUES ('DKK', 'Corona Danesa', 'EURDKK.FOREX');
-
+	INSERT INTO Monedes (Codi, Ordre, Descripcio, TickerExchange)
+		VALUES ('EUR', 1, 'Euro', 'EUREUR.FOREX');
+	INSERT INTO Monedes (Codi, Ordre, Descripcio, TickerExchange)
+		VALUES ('USD', 2, 'Dolar USA', 'EURUSD.FOREX');
+	INSERT INTO Monedes (Codi, Ordre, Descripcio, TickerExchange)
+		VALUES ('DKK', 3, 'Corona Danesa', 'EURDKK.FOREX');
+	
 -- Taula Productes
+	-- Reanomeno camp Moneda
 	EXEC sp_rename 'Productes.Moneda', 'MonedaCodi', 'COLUMN';
 	
+	ALTER TABLE Productes ADD [TickerExchange] varchar(15);
+
 	-- Creating non-clustered index for FOREIGN KEY 'FK_MonedaProducte'
 	CREATE INDEX [IX_FK_MonedaProducte]	ON [dbo].[Productes] ([MonedaCodi]);
+
+	-- Omplir camp TickerExchange
+	-- S'ha de crear quan la taula Productes tingui TickerExchange informat.
+	ALTER TABLE Productes ADD [TickerExchange] varchar(15) NOT NULL;
+	ALTER TABLE Productes ADD CONSTRAINT UQ_Prod_TickerExchange UNIQUE (TickerExchange);
 
 	-- Creating foreign key on [MonedaCodi] in table 'Productes'
 	ALTER TABLE [dbo].[Productes]
 		ADD CONSTRAINT [FK_MonedaProducte]
 			FOREIGN KEY ([MonedaCodi])
-			REFERENCES [dbo].[Moneda] ([Codi])
+			REFERENCES [dbo].[Monedes] ([Codi])
 			ON DELETE NO ACTION ON UPDATE NO ACTION;	
+	
+-- Taula Productes_ProdFons	
+	ALTER TABLE Productes_ProdFons ADD CONSTRAINT UQ_ProdFons_ISIN UNIQUE (ISIN);
+	
+-- Taula Productes_ProdAccions
+	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(15);
+	
+	-- Un cop posats tots els Tickers:
+	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(15) NOT NULL;
+	ALTER TABLE Productes_ProdAccions ADD CONSTRAINT UQ_ProdAccions_Ticker UNIQUE (Ticker);
 		
 ------------------------------------------------------------------------------------------ 
 A partir d'aquí s'ha de repensar.
@@ -37,7 +59,7 @@ Millor no tocar ISIN i afegir Ticker a Productes_ProdAccions
 
 		
 		
-	ALTER TABLE Productes ADD [Ticker_ISIN] varchar(15);
+	ALTER TABLE Productes ADD [TickerExchange] varchar(15);
 	
 	-- Moure de Productes_ProdFons.ISIN a Productes.Ticker_ISIN
 	UPDATE p SET p.Ticker_ISIN = pf.ISIN 

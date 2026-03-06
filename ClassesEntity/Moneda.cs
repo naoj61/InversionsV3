@@ -12,15 +12,16 @@ namespace Inversions.ClassesEntity
     using System;
     using System.Collections.Generic;
     
-    public partial class Monedes
+    public partial class Moneda
     {
-        public Monedes()
+        public Moneda()
         {
             this.Productes = new HashSet<Producte>();
         }
     
         public string Codi { get; set; }
-        public string Ticker { get; set; }
+        public int Ordre { get; set; }
+        public string TickerExchange { get; set; }
         public string Descripcio { get; set; }
     
         public virtual ICollection<Producte> Productes { get; set; }

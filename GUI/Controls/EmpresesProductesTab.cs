@@ -38,9 +38,9 @@ namespace Inversions.GUI
             if (ckTotesLesEmpreses.Checked)
             {
                 grNomProducte.Enabled = false;
-                grMercatProducte.Visible = false;
-                grMonedaProducte.Visible = false;
-                grIsinProducte.Visible = false;
+
+                pnFons.Visible = false;
+                pnAccions.Visible = false;
                 grDescripcioProducte.Visible = false;
 
                 ntbOrdreGridProducte.Focus();
@@ -48,9 +48,9 @@ namespace Inversions.GUI
             else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
             {
                 grNomProducte.Enabled = false;
-                grMercatProducte.Visible = true;
-                grMonedaProducte.Visible = true;
-                grIsinProducte.Visible = false;
+
+                pnFons.Visible = false;
+                pnAccions.Visible = true;
                 grDescripcioProducte.Visible = false;
 
                 ntbOrdreGridProducte.Focus();
@@ -58,9 +58,9 @@ namespace Inversions.GUI
             else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
             {
                 grNomProducte.Enabled = true;
-                grMercatProducte.Visible = false;
-                grMonedaProducte.Visible = false;
-                grIsinProducte.Visible = true;
+
+                pnFons.Visible = true;
+                pnAccions.Visible = false;
                 grDescripcioProducte.Visible = true;
 
                 tbNomProducte.Focus();
@@ -134,11 +134,11 @@ namespace Inversions.GUI
             {
                 tbNomProducte.Text = producte._NomProducte;
                 ntbOrdreGridProducte.Valor = producte.OrdreGrid.GetValueOrDefault();
+                cbMonedaProducte.SelectedItem = producte.Moneda;
 
                 if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                 {
                     cbMercatProducte.SelectedItem = producte._Mercat;
-                    cbMonedaProducte.SelectedItem = (Utilitats.Monedes) Enum.Parse(typeof (Utilitats.Monedes), producte.MonedaCodi);
                     gbTipusProducte.Visible = false;
                 }
                 else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
@@ -176,7 +176,13 @@ namespace Inversions.GUI
             dgvEmpreses.AutoGenerateColumns = false;
             dgvProductes.AutoGenerateColumns = false;
 
+            carregaCombos();
 
+            modeConsulta();
+        }
+
+        private void carregaCombos()
+        {
             cbMercatProducte.SuspendLayout();
             cbMercatProducte.DisplayMember = "Nom";
             cbMercatProducte.DataSource = Mercat.Tuples.ToList();
@@ -184,17 +190,16 @@ namespace Inversions.GUI
             cbMercatProducte.ResumeLayout();
 
             cbMonedaProducte.SuspendLayout();
-            cbMonedaProducte.DataSource = Enum.GetValues(typeof (Utilitats.Monedes));
-            cbMonedaProducte.SelectedItem = null;
+            cbMonedaProducte.DataSource = Moneda.Tuples.OrderBy(o => o.Ordre).ToList();
+            cbMonedaProducte.DisplayMember = "Descripcio";
+            cbMonedaProducte.ValueMember = "Codi";
             cbMonedaProducte.ResumeLayout();
 
 
             cbTipusProducte.SuspendLayout();
-            cbTipusProducte.DataSource = Enum.GetValues(typeof (TipusFons));
+            cbTipusProducte.DataSource = Enum.GetValues(typeof(TipusFons));
             cbTipusProducte.SelectedItem = null;
             cbTipusProducte.ResumeLayout();
-
-            modeConsulta();
         }
 
         protected override void modeEdicio()
@@ -211,7 +216,6 @@ namespace Inversions.GUI
             cbMonedaProducte.Enabled = true;
             cbMercatProducte.Enabled = true;
             cbTipusProducte.Enabled = true;
-            //pnCampsProductes.Enabled = true;
             tbNomProducte.ReadOnly = false;
             ntbOrdreGridProducte.ReadOnly = false;
             tbIsinProducte.ReadOnly = false;
@@ -233,7 +237,6 @@ namespace Inversions.GUI
             cbMonedaProducte.Enabled = false;
             cbMercatProducte.Enabled = false;
             cbTipusProducte.Enabled = false;
-            //pnCampsProductes.Enabled = false;
             tbNomProducte.ReadOnly = true;
             ntbOrdreGridProducte.ReadOnly = true;
             tbIsinProducte.ReadOnly = true;
@@ -250,6 +253,8 @@ namespace Inversions.GUI
         internal override void refresca()
         {
             base.refresca();
+
+            carregaCombos();
 
             if (dgvEmpreses.CurrentRow == null)
             {
@@ -334,13 +339,13 @@ namespace Inversions.GUI
                 bool esProdNou = vProducteSeleccionat.Id == 0;
 
                 vProducteSeleccionat.OrdreGrid = ntbOrdreGridProducte._IntValue;
+                vProducteSeleccionat.MonedaCodi = cbMonedaProducte.SelectedItem.ToString();
 
                 if (!ckTotesLesEmpreses.Checked)
                 {
                     if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                     {
                         ((ProdAccions) vProducteSeleccionat).Mercat = vConnProductes.Mercats.Find(((Mercat) cbMercatProducte.SelectedItem).Id);
-                        vProducteSeleccionat.MonedaCodi = cbMonedaProducte.SelectedItem.ToString();
                     }
                     else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
                     {

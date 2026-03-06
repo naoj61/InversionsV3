@@ -15,6 +15,7 @@ namespace Inversions.ClassesEntity
     public partial class ProdAccions : Producte
     {
         public int MercatId { get; set; }
+        public string Ticker { get; set; }
     
         public virtual Mercat Mercat { get; set; }
     }

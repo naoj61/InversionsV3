@@ -23,12 +23,13 @@ namespace Inversions.ClassesEntity
         public int Id { get; private set; }
         public int EmpresaId { get; private set; }
         public Nullable<int> OrdreGrid { get; set; }
-        public byte[] RowVersion { get; private set; }
         public string MonedaCodi { get; set; }
+        public byte[] RowVersion { get; private set; }
+        public string TickerExchange { get; set; }
     
         public virtual Empresa Empresa { get; set; }
         public virtual ICollection<Valoracio> ValoracionsProducte { get; set; }
         public virtual ICollection<Moviment> Moviments { get; set; }
-        public virtual Monedes Monedes { get; set; }
+        public virtual Moneda Moneda { get; set; }
     }
 }
