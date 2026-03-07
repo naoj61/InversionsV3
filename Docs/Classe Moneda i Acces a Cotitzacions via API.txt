@@ -53,7 +53,11 @@
 	UPDATE Productes SET TickerExchange = 'LU0128499588.EUFUND' WHERE Id = 1041;
 	UPDATE Productes SET TickerExchange = 'LU0034353002.EUFUND' WHERE Id = 1042;
 	UPDATE Productes SET TickerExchange = 'LU1235294995.EUFUND' WHERE Id = 1043;
-	UPDATE Productes SET TickerExchange = 'TEF.MC.EUFUND' WHERE Id = 9;
+	UPDATE Productes SET TickerExchange = 'MTS.AU' WHERE Id = 7;
+	UPDATE Productes SET TickerExchange = 'SAN.MC' WHERE Id = 8;
+	UPDATE Productes SET TickerExchange = 'TEF.MC' WHERE Id = 9;
+	UPDATE Productes SET TickerExchange = 'SAB.VN' WHERE Id = 22;
+	UPDATE Productes SET TickerExchange = 'ITX.MC' WHERE Id = 23;
 	UPDATE Productes SET TickerExchange = 'CLAR.US' WHERE Id = 1045;
 	UPDATE Productes SET TickerExchange = 'LU1965927921.EUFUND' WHERE Id = 1046;
 	UPDATE Productes SET TickerExchange = 'M4I.MU' WHERE Id = 1053;
@@ -68,7 +72,7 @@
 		ADD CONSTRAINT [FK_MonedaProducte]
 			FOREIGN KEY ([MonedaCodi])
 			REFERENCES [dbo].[Monedes] ([Codi])
-			ON DELETE NO ACTION ON UPDATE NO ACTION;	
+			ON DELETE NO ACTION ON UPDATE NO ACTION;
 	
 -- Taula Productes_ProdFons	
 	ALTER TABLE Productes_ProdFons ADD CONSTRAINT UQ_ProdFons_ISIN UNIQUE (ISIN);
@@ -77,6 +81,12 @@
 	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(10);
 
 	-- Updates camp Ticker
+	UPDATE Productes_ProdAccions SET Ticker = 'MTS' WHERE Id = 7;
+	UPDATE Productes_ProdAccions SET Ticker = 'SAN' WHERE Id = 8;
+	UPDATE Productes_ProdAccions SET Ticker = 'TEF' WHERE Id = 9;
+	UPDATE Productes_ProdAccions SET Ticker = 'SAB' WHERE Id = 22;
+	UPDATE Productes_ProdAccions SET Ticker = 'ITX' WHERE Id = 23;
+	UPDATE Productes_ProdAccions SET Ticker = 'NDUEEGF' WHERE Id = 24;
 	UPDATE Productes_ProdAccions SET Ticker = 'TEF' WHERE Id = 9;
 	UPDATE Productes_ProdAccions SET Ticker = 'CLAR' WHERE Id = 1045;
 	UPDATE Productes_ProdAccions SET Ticker = 'M4I' WHERE Id = 1053;

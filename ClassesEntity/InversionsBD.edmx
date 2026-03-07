@@ -59,7 +59,7 @@
           </Key>
           <Property Name="Codi" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="Ordre" Type="int" Nullable="false" />
-          <Property Name="TickerExchange" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TickerExchange" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Descripcio" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Moviments">
@@ -97,7 +97,7 @@
           <Property Name="MonedaCodi" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="OrdreGrid" Type="int" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
-          <Property Name="TickerExchange" Type="varchar" MaxLength="15" />
+          <Property Name="TickerExchange" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Productes_ProdAccions">
           <Key>
@@ -105,7 +105,7 @@
           </Key>
           <Property Name="MercatId" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Ticker" Type="varchar" MaxLength="15" />
+          <Property Name="Ticker" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Productes_ProdFons">
           <Key>
@@ -555,7 +555,7 @@
         <EntityType Name="ProdAccions" BaseType="InversionsBD.Producte" >
           <NavigationProperty Name="Mercat" Relationship="InversionsBD.MercatProdAccions" FromRole="ProdAccions" ToRole="Mercat" />
           <Property Name="MercatId" Type="Int32" Nullable="false" />
-          <Property Name="Ticker" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Ticker" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Mercat">
           <Key>
@@ -742,7 +742,7 @@
           </Key>
           <Property Name="Codi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="Ordre" Type="Int32" Nullable="false" />
-          <Property Name="TickerExchange" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TickerExchange" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Descripcio" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Productes" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Moneda" ToRole="Producte" />
         </EntityType>

@@ -95,6 +95,8 @@ namespace Inversions.GUI
             if (((ICollection)dgvProductes.DataSource).Count == 0)
             {
                 tbNomProducte.Text = String.Empty;
+                tbTickerExchangeFons.Text = String.Empty;
+                tbTickerExchangeAccions.Text = String.Empty;
                 ntbOrdreGridProducte.Valor = 0;
                 cbMercatProducte.SelectedItem = null;
                 cbMonedaProducte.SelectedItem = null;
@@ -126,6 +128,8 @@ namespace Inversions.GUI
             if (producte == null)
             {
                 tbNomProducte.Text = String.Empty;
+                tbTickerExchangeFons.Text = String.Empty;
+                tbTickerExchangeAccions.Text = String.Empty;
                 ntbOrdreGridProducte.Valor = 0;
                 cbMercatProducte.SelectedItem = null;
                 cbMonedaProducte.SelectedItem = null;
@@ -142,12 +146,14 @@ namespace Inversions.GUI
 
                 if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                 {
+                    tbTickerExchangeAccions.Text = producte.TickerExchange;
                     tbTickerAccio.Text = ((ProdAccions)producte).Ticker;
                     cbMercatProducte.SelectedItem = producte._Mercat;
                     gbTipusProducte.Visible = false;
                 }
                 else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
                 {
+                    tbTickerExchangeFons.Text = producte.TickerExchange;
                     tbIsinProducte.Text = producte._Isin;
                     tbDescripcioProducte.Text = producte._Descripcio;
                     cbTipusProducte.SelectedItem = ((ProdFons)producte).Tipus;
@@ -377,7 +383,11 @@ namespace Inversions.GUI
                                         vProducteSeleccionat.TickerExchange = tickerExchange;
                                     }
                                 }
-                                catch { }
+                                catch(EodhdApiException ex)
+                                {
+                                    MessageBox.Show($"No s'ha pogut obtenir el ticker exchange de la acció. \nError: {ex.Message}"
+                                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                                }
                             }
                         }
                     }
@@ -715,6 +725,11 @@ namespace Inversions.GUI
         private void ckMostraAccionsFons_CheckedChanged(object sender, EventArgs e)
         {
             carregaGridEmpreses();
+        }
+
+        private void tbTickerAccio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
         }
 
         #endregion *** Events ***}
