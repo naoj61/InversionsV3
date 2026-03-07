@@ -24,8 +24,8 @@ namespace Inversions.ClassesEntity
         public int EmpresaId { get; private set; }
         public Nullable<int> OrdreGrid { get; set; }
         public string MonedaCodi { get; set; }
-        public byte[] RowVersion { get; private set; }
         public string TickerExchange { get; set; }
+        public byte[] RowVersion { get; private set; }
     
         public virtual Empresa Empresa { get; set; }
         public virtual ICollection<Valoracio> ValoracionsProducte { get; set; }

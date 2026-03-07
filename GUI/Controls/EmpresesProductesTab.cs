@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Comuns;
+using Controls;
+using Inversions.ClassesEntity;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
@@ -7,9 +12,6 @@ using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-using Comuns;
-using Controls;
-using Inversions.ClassesEntity;
 
 namespace Inversions.GUI
 {
@@ -90,7 +92,7 @@ namespace Inversions.GUI
                 }
             }
 
-            if (((ICollection) dgvProductes.DataSource).Count == 0)
+            if (((ICollection)dgvProductes.DataSource).Count == 0)
             {
                 tbNomProducte.Text = String.Empty;
                 ntbOrdreGridProducte.Valor = 0;
@@ -98,6 +100,7 @@ namespace Inversions.GUI
                 cbMonedaProducte.SelectedItem = null;
                 cbTipusProducte.SelectedItem = null;
                 tbIsinProducte.Text = String.Empty;
+                tbTickerAccio.Text = String.Empty;
                 tbDescripcioProducte.Text = String.Empty;
 
                 modeConsulta();
@@ -128,6 +131,7 @@ namespace Inversions.GUI
                 cbMonedaProducte.SelectedItem = null;
                 cbTipusProducte.SelectedItem = null;
                 tbIsinProducte.Text = String.Empty;
+                tbTickerAccio.Text = String.Empty;
                 tbDescripcioProducte.Text = String.Empty;
             }
             else
@@ -138,6 +142,7 @@ namespace Inversions.GUI
 
                 if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                 {
+                    tbTickerAccio.Text = ((ProdAccions)producte).Ticker;
                     cbMercatProducte.SelectedItem = producte._Mercat;
                     gbTipusProducte.Visible = false;
                 }
@@ -145,7 +150,7 @@ namespace Inversions.GUI
                 {
                     tbIsinProducte.Text = producte._Isin;
                     tbDescripcioProducte.Text = producte._Descripcio;
-                    cbTipusProducte.SelectedItem = ((ProdFons) producte).Tipus;
+                    cbTipusProducte.SelectedItem = ((ProdFons)producte).Tipus;
                     gbTipusProducte.Visible = true;
                 }
             }
@@ -156,7 +161,14 @@ namespace Inversions.GUI
             vConnEmpreses = new InversionsBDContext(); // Creo la connexió per si he fet cancel rellegeixi les dades de la taula.
             vConnEmpreses.Empreses.Load();
 
-            dgvEmpreses.DataSource = vConnEmpreses.Empreses.Local.ToBindingList();
+            var empreses = vConnEmpreses.Empreses.Local.ToList();
+
+            if (!ckMostraAccions.Checked)
+                empreses = empreses.Where(w => w.TipusEmpresa != TipusEmpresa.Accions).ToList();
+            if (!ckMostraFons.Checked)
+                empreses = empreses.Where(w => w.TipusEmpresa != TipusEmpresa.GestoraFons).ToList();
+
+            dgvEmpreses.DataSource = new BindingList<Empresa>(empreses);
         }
 
         private void teclaEscapeEdicioProducte()
@@ -195,7 +207,6 @@ namespace Inversions.GUI
             cbMonedaProducte.ValueMember = "Codi";
             cbMonedaProducte.ResumeLayout();
 
-
             cbTipusProducte.SuspendLayout();
             cbTipusProducte.DataSource = Enum.GetValues(typeof(TipusFons));
             cbTipusProducte.SelectedItem = null;
@@ -219,6 +230,7 @@ namespace Inversions.GUI
             tbNomProducte.ReadOnly = false;
             ntbOrdreGridProducte.ReadOnly = false;
             tbIsinProducte.ReadOnly = false;
+            tbTickerAccio.ReadOnly = false;
             tbDescripcioProducte.ReadOnly = false;
         }
 
@@ -240,6 +252,7 @@ namespace Inversions.GUI
             tbNomProducte.ReadOnly = true;
             ntbOrdreGridProducte.ReadOnly = true;
             tbIsinProducte.ReadOnly = true;
+            tbTickerAccio.ReadOnly = true;
             tbDescripcioProducte.ReadOnly = true;
         }
 
@@ -329,7 +342,7 @@ namespace Inversions.GUI
             modeEdicio();
         }
 
-        private void btDesaProducte_Click(object sender, EventArgs e)
+        private async void btDesaProducte_Click(object sender, EventArgs e)
         {
             try
             {
@@ -345,14 +358,35 @@ namespace Inversions.GUI
                 {
                     if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                     {
-                        ((ProdAccions) vProducteSeleccionat).Mercat = vConnProductes.Mercats.Find(((Mercat) cbMercatProducte.SelectedItem).Id);
+                        ((ProdAccions)vProducteSeleccionat).Mercat = vConnProductes.Mercats.Find(((Mercat)cbMercatProducte.SelectedItem).Id);
+                        var nouTicker = tbTickerAccio.Text.ToUpper();
+                        if (((ProdAccions)vProducteSeleccionat).Ticker != nouTicker)
+                        {
+                            ((ProdAccions)vProducteSeleccionat).Ticker = nouTicker;
+                            if (String.IsNullOrEmpty(nouTicker))
+                            {
+                                vProducteSeleccionat.TickerExchange = null;
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    var tickerExchange = await EodhdUserService.GetTicker(nouTicker);
+                                    if (tickerExchange != null)
+                                    {
+                                        vProducteSeleccionat.TickerExchange = tickerExchange;
+                                    }
+                                }
+                                catch { }
+                            }
+                        }
                     }
                     else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
                     {
-                        ((ProdFons) vProducteSeleccionat).Nom = tbNomProducte.Text;
-                        ((ProdFons) vProducteSeleccionat).ISIN = tbIsinProducte.Text;
-                        ((ProdFons) vProducteSeleccionat).Tipus = ((TipusFons) cbTipusProducte.SelectedItem);
-                        ((ProdFons) vProducteSeleccionat).Descripcio = tbDescripcioProducte.Text;
+                        ((ProdFons)vProducteSeleccionat).Nom = tbNomProducte.Text;
+                        ((ProdFons)vProducteSeleccionat).ISIN = tbIsinProducte.Text.ToUpper();
+                        ((ProdFons)vProducteSeleccionat).Tipus = ((TipusFons)cbTipusProducte.SelectedItem);
+                        ((ProdFons)vProducteSeleccionat).Descripcio = tbDescripcioProducte.Text;
                     }
                 }
 
@@ -384,7 +418,7 @@ namespace Inversions.GUI
                 {
                     if (inEx is SqlException)
                     {
-                        var sqlEx = (SqlException) inEx;
+                        var sqlEx = (SqlException)inEx;
 
                         if (sqlEx.Number == 2601 || sqlEx.Number == 2627)
                         {
@@ -458,7 +492,7 @@ namespace Inversions.GUI
             try
             {
                 DataGridViewCell cela = dgvEmpreses[e.ColumnIndex, e.RowIndex];
-                var valorNou = (string) cela.EditedFormattedValue;
+                var valorNou = (string)cela.EditedFormattedValue;
                 if (cela.OwningRow.DataBoundItem != null)
                 {
                     switch (cela.OwningColumn.DataPropertyName)
@@ -470,11 +504,11 @@ namespace Inversions.GUI
 
                         case "TipusEmpresa":
                             object valorInicial = cela.Value;
-                            var tipusEmp = (TipusEmpresa) Enum.Parse(typeof (TipusEmpresa), valorNou);
+                            var tipusEmp = (TipusEmpresa)Enum.Parse(typeof(TipusEmpresa), valorNou);
 
-                            if ((TipusEmpresa) valorInicial != tipusEmp)
+                            if ((TipusEmpresa)valorInicial != tipusEmp)
                             {
-                                var empresa = (Empresa) cela.OwningRow.DataBoundItem;
+                                var empresa = (Empresa)cela.OwningRow.DataBoundItem;
                                 if (empresa.Productes.Any())
                                     throw new Exception("No es pot canviar el tipus d'empresa si ja te productes");
                             }
@@ -513,7 +547,7 @@ namespace Inversions.GUI
                 return;
 
             vProducteSeleccionat = null;
-            vEmpresaSeleccionada = (Empresa) dgvEmpreses.Rows[e.RowIndex].DataBoundItem;
+            vEmpresaSeleccionada = (Empresa)dgvEmpreses.Rows[e.RowIndex].DataBoundItem;
 
             carregaGridProductes(vEmpresaSeleccionada);
 
@@ -550,14 +584,14 @@ namespace Inversions.GUI
 
         private void btCancelaProducte_Click(object sender, EventArgs e)
         {
-            ompleCampsProducte((Producte) (dgvProductes.CurrentRow == null ? null : dgvProductes.CurrentRow.DataBoundItem));
+            ompleCampsProducte((Producte)(dgvProductes.CurrentRow == null ? null : dgvProductes.CurrentRow.DataBoundItem));
 
             modeConsulta();
         }
 
         private void tbNomProducte_TextChanged(object sender, EventArgs e)
         {
-            if (!_EnModeEdicio && ((TextBoxBase) sender).Modified)
+            if (!_EnModeEdicio && ((TextBoxBase)sender).Modified)
             {
                 modeEdicio();
             }
@@ -565,7 +599,7 @@ namespace Inversions.GUI
 
         private void cbTipusProducte_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (((IValorControlRestaurable) sender).Modified)
+            if (((IValorControlRestaurable)sender).Modified)
             {
                 modeEdicio();
             }
@@ -617,7 +651,7 @@ namespace Inversions.GUI
             if (dgvProductes.CurrentRow != null && dgvProductes.CurrentRow.Index == e.RowIndex)
                 return;
 
-            vProducteSeleccionat = (Producte) dgvProductes.Rows[e.RowIndex].DataBoundItem;
+            vProducteSeleccionat = (Producte)dgvProductes.Rows[e.RowIndex].DataBoundItem;
 
             if (vProducteSeleccionat == null)
             {
@@ -641,7 +675,7 @@ namespace Inversions.GUI
             {
                 foreach (DataGridViewRow dgvEmprese in dgvEmpreses.Rows)
                 {
-                    var empresa = (Empresa) dgvEmprese.DataBoundItem;
+                    var empresa = (Empresa)dgvEmprese.DataBoundItem;
 
                     if (empresa.Id == vProducteSeleccionat.Empresa.Id)
                     {
@@ -656,7 +690,7 @@ namespace Inversions.GUI
 
         private void ntbOrdreGridProducte_TextChanged(object sender, EventArgs e)
         {
-            if (!_EnModeEdicio && ((TextBoxBase) sender).Modified)
+            if (!_EnModeEdicio && ((TextBoxBase)sender).Modified)
             {
                 modeEdicio();
             }
@@ -677,6 +711,12 @@ namespace Inversions.GUI
                 carregaGridProductes(vEmpresaSeleccionada);
         }
 
-        #endregion *** Events ***
+
+        private void ckMostraAccionsFons_CheckedChanged(object sender, EventArgs e)
+        {
+            carregaGridEmpreses();
+        }
+
+        #endregion *** Events ***}
     }
 }

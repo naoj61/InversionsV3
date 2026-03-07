@@ -524,10 +524,10 @@
           <NavigationProperty Name="ValoracionsProducte" Relationship="InversionsBD.ProdValoracio" FromRole="Prod" ToRole="Valoracio" />
           <Property Name="OrdreGrid" Type="Int32" />
           <Property Name="MonedaCodi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TickerExchange" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RowVersion" Type="Binary" Nullable="false" ConcurrencyMode="Fixed" cg:SetterAccess="Private" annotation:StoreGeneratedPattern="Computed" MaxLength="8" FixedLength="true" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <NavigationProperty Name="Moviments" Relationship="InversionsBD.FK_ProdMov" FromRole="Producte" ToRole="Moviment" />
           <NavigationProperty Name="Moneda" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Producte" ToRole="Moneda" />
-          <Property Name="TickerExchange" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="EmpresaP2">
           <End Type="InversionsBD.Empresa" Role="Empresa" Multiplicity="1" />

@@ -3,7 +3,7 @@
 		CREATE TABLE [dbo].[Monedes] (
 			[Codi] char(3)  NOT NULL,
 			[Ordre] Int  NOT NULL,
-			[TickerExchange] varchar(15)  NOT NULL,
+			[TickerExchange] varchar(20)  NOT NULL,
 			[Descripcio] varchar(25) NOT NULL);
 
 	-- Creating primary key on [Codi] in table 'Monedes'
@@ -22,15 +22,46 @@
 	-- Reanomeno camp Moneda
 	EXEC sp_rename 'Productes.Moneda', 'MonedaCodi', 'COLUMN';
 	
-	ALTER TABLE Productes ADD [TickerExchange] varchar(15);
+	ALTER TABLE Productes ADD [TickerExchange] varchar(20);
 
 	-- Creating non-clustered index for FOREIGN KEY 'FK_MonedaProducte'
 	CREATE INDEX [IX_FK_MonedaProducte]	ON [dbo].[Productes] ([MonedaCodi]);
 
-	-- Omplir camp TickerExchange
-	-- S'ha de crear quan la taula Productes tingui TickerExchange informat.
-	ALTER TABLE Productes ADD [TickerExchange] varchar(15) NOT NULL;
-	ALTER TABLE Productes ADD CONSTRAINT UQ_Prod_TickerExchange UNIQUE (TickerExchange);
+	-- Updates camp TickerExchange
+	UPDATE Productes SET TickerExchange = 'LU0122612764.EUFUND' WHERE Id = 2;
+	UPDATE Productes SET TickerExchange = 'LU0231459107.EUFUND' WHERE Id = 3;
+	UPDATE Productes SET TickerExchange = 'LU0048621477.EUFUND' WHERE Id = 4;
+	UPDATE Productes SET TickerExchange = 'DE0008490962.EUFUND' WHERE Id = 5;
+	UPDATE Productes SET TickerExchange = 'LU0108459040.EUFUND' WHERE Id = 6;
+	UPDATE Productes SET TickerExchange = 'ES0147711032.EUFUND' WHERE Id = 10;
+	UPDATE Productes SET TickerExchange = 'LU0294221253.EUFUND' WHERE Id = 11;
+	UPDATE Productes SET TickerExchange = 'LU0055114457.EUFUND' WHERE Id = 13;
+	UPDATE Productes SET TickerExchange = 'FR0010135103.EUFUND' WHERE Id = 14;
+	UPDATE Productes SET TickerExchange = 'LU0300739322.EUFUND' WHERE Id = 15;
+	UPDATE Productes SET TickerExchange = 'HJUI.F' WHERE Id = 16;
+	UPDATE Productes SET TickerExchange = 'ES0125240038.EUFUND' WHERE Id = 19;
+	UPDATE Productes SET TickerExchange = 'ES0178521037.EUFUND' WHERE Id = 26;
+	UPDATE Productes SET TickerExchange = 'LU1213836080.EUFUND' WHERE Id = 27;
+	UPDATE Productes SET TickerExchange = 'LU0090865873.EUFUND' WHERE Id = 28;
+	UPDATE Productes SET TickerExchange = 'ES0155598032.EUFUND' WHERE Id = 29;
+	UPDATE Productes SET TickerExchange = 'LU0122377152.EUFUND' WHERE Id = 30;
+	UPDATE Productes SET TickerExchange = 'LU0230918368.EUFUND' WHERE Id = 1036;
+	UPDATE Productes SET TickerExchange = 'LU0515769262.EUFUND' WHERE Id = 1037;
+	UPDATE Productes SET TickerExchange = 'LU0049014870.EUFUND' WHERE Id = 1038;
+	UPDATE Productes SET TickerExchange = 'FR0010149161.EUFUND' WHERE Id = 1039;
+	UPDATE Productes SET TickerExchange = 'LU0171306680.EUFUND' WHERE Id = 1040;
+	UPDATE Productes SET TickerExchange = 'LU0128499588.EUFUND' WHERE Id = 1041;
+	UPDATE Productes SET TickerExchange = 'LU0034353002.EUFUND' WHERE Id = 1042;
+	UPDATE Productes SET TickerExchange = 'LU1235294995.EUFUND' WHERE Id = 1043;
+	UPDATE Productes SET TickerExchange = 'TEF.MC.EUFUND' WHERE Id = 9;
+	UPDATE Productes SET TickerExchange = 'CLAR.US' WHERE Id = 1045;
+	UPDATE Productes SET TickerExchange = 'LU1965927921.EUFUND' WHERE Id = 1046;
+	UPDATE Productes SET TickerExchange = 'M4I.MU' WHERE Id = 1053;
+	UPDATE Productes SET TickerExchange = 'BRYN.XETRA' WHERE Id = 1054;
+	UPDATE Productes SET TickerExchange = 'NVO.US' WHERE Id = 1058;
+	UPDATE Productes SET TickerExchange = 'NOVO-B.CO' WHERE Id = 1059;
+
+	CREATE UNIQUE INDEX UQ_Prod_TickerExchange ON Productes (TickerExchange) WHERE TickerExchange IS NOT NULL;
 
 	-- Creating foreign key on [MonedaCodi] in table 'Productes'
 	ALTER TABLE [dbo].[Productes]
@@ -43,23 +74,34 @@
 	ALTER TABLE Productes_ProdFons ADD CONSTRAINT UQ_ProdFons_ISIN UNIQUE (ISIN);
 	
 -- Taula Productes_ProdAccions
-	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(15);
-	
-	-- Un cop posats tots els Tickers:
-	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(15) NOT NULL;
-	ALTER TABLE Productes_ProdAccions ADD CONSTRAINT UQ_ProdAccions_Ticker UNIQUE (Ticker);
+	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(10);
+
+	-- Updates camp Ticker
+	UPDATE Productes_ProdAccions SET Ticker = 'TEF' WHERE Id = 9;
+	UPDATE Productes_ProdAccions SET Ticker = 'CLAR' WHERE Id = 1045;
+	UPDATE Productes_ProdAccions SET Ticker = 'M4I' WHERE Id = 1053;
+	UPDATE Productes_ProdAccions SET Ticker = 'BRYN' WHERE Id = 1054;
+	UPDATE Productes_ProdAccions SET Ticker = 'NVO' WHERE Id = 1058;
+	UPDATE Productes_ProdAccions SET Ticker = 'NOVO-B' WHERE Id = 1059;
+
+	CREATE UNIQUE INDEX UQ_ProdAccions_Ticker ON Productes_ProdAccions (Ticker) WHERE Ticker IS NOT NULL;
+
+
+
 		
 ------------------------------------------------------------------------------------------ 
 A partir d'aquí s'ha de repensar.
 Millor no tocar ISIN i afegir Ticker a Productes_ProdAccions
 
 
+	ALTER TABLE Productes ADD [TickerExchange] varchar(20) NOT NULL;
 
+	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(10) NOT NULL;
+	ALTER TABLE Productes_ProdAccions ADD CONSTRAINT UQ_ProdAccions_Ticker UNIQUE (Ticker);
 
 
 		
 		
-	ALTER TABLE Productes ADD [TickerExchange] varchar(15);
 	
 	-- Moure de Productes_ProdFons.ISIN a Productes.Ticker_ISIN
 	UPDATE p SET p.Ticker_ISIN = pf.ISIN 

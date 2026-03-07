@@ -52,15 +52,15 @@ namespace Inversions.GUI
             this.pnFons = new System.Windows.Forms.Panel();
             this.grIsinProducte = new System.Windows.Forms.GroupBox();
             this.tbIsinProducte = new System.Windows.Forms.TextBox();
-            this.grTicker = new System.Windows.Forms.GroupBox();
-            this.cbTicker = new System.Windows.Forms.ComboBox();
+            this.gbTipusProducte = new System.Windows.Forms.GroupBox();
+            this.cbTipusProducte = new Controls.ComboBox2();
             this.pnAccions = new System.Windows.Forms.Panel();
             this.grMonedaProducte = new System.Windows.Forms.GroupBox();
             this.cbMonedaProducte = new Controls.ComboBox2();
+            this.grTicker = new System.Windows.Forms.GroupBox();
+            this.tbTickerAccio = new System.Windows.Forms.TextBox();
             this.grMercatProducte = new System.Windows.Forms.GroupBox();
             this.cbMercatProducte = new Controls.ComboBox2();
-            this.gbTipusProducte = new System.Windows.Forms.GroupBox();
-            this.cbTipusProducte = new Controls.ComboBox2();
             this.grDescripcioProducte = new System.Windows.Forms.GroupBox();
             this.tbDescripcioProducte = new System.Windows.Forms.TextBox();
             this.pnDesaCanvisProductes = new System.Windows.Forms.Panel();
@@ -70,6 +70,8 @@ namespace Inversions.GUI
             this.btNouProducte = new System.Windows.Forms.Button();
             this.btDesaProducte = new System.Windows.Forms.Button();
             this.ckTotesLesEmpreses = new System.Windows.Forms.CheckBox();
+            this.ckMostraFons = new System.Windows.Forms.CheckBox();
+            this.ckMostraAccions = new System.Windows.Forms.CheckBox();
             this.grEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpreses)).BeginInit();
             this.pnDesaCanvisEmpreses.SuspendLayout();
@@ -80,11 +82,11 @@ namespace Inversions.GUI
             this.grOrdreGridProducte.SuspendLayout();
             this.pnFons.SuspendLayout();
             this.grIsinProducte.SuspendLayout();
-            this.grTicker.SuspendLayout();
+            this.gbTipusProducte.SuspendLayout();
             this.pnAccions.SuspendLayout();
             this.grMonedaProducte.SuspendLayout();
+            this.grTicker.SuspendLayout();
             this.grMercatProducte.SuspendLayout();
-            this.gbTipusProducte.SuspendLayout();
             this.grDescripcioProducte.SuspendLayout();
             this.pnDesaCanvisProductes.SuspendLayout();
             this.SuspendLayout();
@@ -204,11 +206,11 @@ namespace Inversions.GUI
             this.grProductes.Controls.Add(this.grDescripcioProducte);
             this.grProductes.Controls.Add(this.pnDesaCanvisProductes);
             this.grProductes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grProductes.Location = new System.Drawing.Point(811, 4);
+            this.grProductes.Location = new System.Drawing.Point(811, 57);
             this.grProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grProductes.Name = "grProductes";
             this.grProductes.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grProductes.Size = new System.Drawing.Size(578, 503);
+            this.grProductes.Size = new System.Drawing.Size(578, 450);
             this.grProductes.TabIndex = 2;
             this.grProductes.TabStop = false;
             this.grProductes.Text = "Productes";
@@ -229,7 +231,7 @@ namespace Inversions.GUI
             this.dgvProductes.Name = "dgvProductes";
             this.dgvProductes.RowHeadersWidth = 62;
             this.dgvProductes.RowTemplate.Height = 24;
-            this.dgvProductes.Size = new System.Drawing.Size(572, 87);
+            this.dgvProductes.Size = new System.Drawing.Size(572, 34);
             this.dgvProductes.TabIndex = 0;
             this.dgvProductes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductes_RowEnter);
             // 
@@ -273,7 +275,7 @@ namespace Inversions.GUI
             this.panel1.Controls.Add(this.grNomProducte);
             this.panel1.Controls.Add(this.grOrdreGridProducte);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 106);
+            this.panel1.Location = new System.Drawing.Point(3, 53);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(572, 57);
             this.panel1.TabIndex = 1;
@@ -296,6 +298,7 @@ namespace Inversions.GUI
             this.tbNomProducte.Name = "tbNomProducte";
             this.tbNomProducte.Size = new System.Drawing.Size(365, 22);
             this.tbNomProducte.TabIndex = 0;
+            this.tbNomProducte.TextChanged += new System.EventHandler(this.tbNomProducte_TextChanged);
             // 
             // grOrdreGridProducte
             // 
@@ -329,13 +332,14 @@ namespace Inversions.GUI
             0,
             0,
             0});
+            this.ntbOrdreGridProducte.TextChanged += new System.EventHandler(this.ntbOrdreGridProducte_TextChanged);
             // 
             // pnFons
             // 
             this.pnFons.Controls.Add(this.grIsinProducte);
             this.pnFons.Controls.Add(this.gbTipusProducte);
             this.pnFons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnFons.Location = new System.Drawing.Point(3, 163);
+            this.pnFons.Location = new System.Drawing.Point(3, 110);
             this.pnFons.Name = "pnFons";
             this.pnFons.Size = new System.Drawing.Size(572, 57);
             this.pnFons.TabIndex = 2;
@@ -359,26 +363,27 @@ namespace Inversions.GUI
             this.tbIsinProducte.Size = new System.Drawing.Size(241, 22);
             this.tbIsinProducte.TabIndex = 0;
             // 
-            // grTicker
+            // gbTipusProducte
             // 
-            this.grTicker.Controls.Add(this.cbTicker);
-            this.grTicker.Location = new System.Drawing.Point(301, 6);
-            this.grTicker.Name = "grTicker";
-            this.grTicker.Size = new System.Drawing.Size(99, 43);
-            this.grTicker.TabIndex = 2;
-            this.grTicker.TabStop = false;
-            this.grTicker.Text = "Ticker";
+            this.gbTipusProducte.Controls.Add(this.cbTipusProducte);
+            this.gbTipusProducte.Location = new System.Drawing.Point(267, 6);
+            this.gbTipusProducte.Name = "gbTipusProducte";
+            this.gbTipusProducte.Size = new System.Drawing.Size(88, 43);
+            this.gbTipusProducte.TabIndex = 1;
+            this.gbTipusProducte.TabStop = false;
+            this.gbTipusProducte.Text = "Tipus";
             // 
-            // cbTicker
+            // cbTipusProducte
             // 
-            this.cbTicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTicker.FormattingEnabled = true;
-            this.cbTicker.Location = new System.Drawing.Point(3, 18);
-            this.cbTicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbTicker.Name = "cbTicker";
-            this.cbTicker.Size = new System.Drawing.Size(93, 24);
-            this.cbTicker.TabIndex = 0;
+            this.cbTipusProducte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTipusProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipusProducte.FormattingEnabled = true;
+            this.cbTipusProducte.Location = new System.Drawing.Point(3, 18);
+            this.cbTipusProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTipusProducte.Name = "cbTipusProducte";
+            this.cbTipusProducte.Size = new System.Drawing.Size(82, 24);
+            this.cbTipusProducte.TabIndex = 0;
+            this.cbTipusProducte.SelectedIndexChanged += new System.EventHandler(this.cbTipusProducte_SelectedIndexChanged);
             // 
             // pnAccions
             // 
@@ -386,7 +391,7 @@ namespace Inversions.GUI
             this.pnAccions.Controls.Add(this.grTicker);
             this.pnAccions.Controls.Add(this.grMercatProducte);
             this.pnAccions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnAccions.Location = new System.Drawing.Point(3, 220);
+            this.pnAccions.Location = new System.Drawing.Point(3, 167);
             this.pnAccions.Name = "pnAccions";
             this.pnAccions.Size = new System.Drawing.Size(572, 57);
             this.pnAccions.TabIndex = 3;
@@ -412,6 +417,25 @@ namespace Inversions.GUI
             this.cbMonedaProducte.Size = new System.Drawing.Size(155, 24);
             this.cbMonedaProducte.TabIndex = 0;
             // 
+            // grTicker
+            // 
+            this.grTicker.Controls.Add(this.tbTickerAccio);
+            this.grTicker.Location = new System.Drawing.Point(301, 6);
+            this.grTicker.Name = "grTicker";
+            this.grTicker.Size = new System.Drawing.Size(99, 43);
+            this.grTicker.TabIndex = 2;
+            this.grTicker.TabStop = false;
+            this.grTicker.Text = "Ticker";
+            // 
+            // tbTickerAccio
+            // 
+            this.tbTickerAccio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbTickerAccio.Location = new System.Drawing.Point(3, 18);
+            this.tbTickerAccio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTickerAccio.Name = "tbTickerAccio";
+            this.tbTickerAccio.Size = new System.Drawing.Size(93, 22);
+            this.tbTickerAccio.TabIndex = 1;
+            // 
             // grMercatProducte
             // 
             this.grMercatProducte.Controls.Add(this.cbMercatProducte);
@@ -433,32 +457,11 @@ namespace Inversions.GUI
             this.cbMercatProducte.Size = new System.Drawing.Size(106, 24);
             this.cbMercatProducte.TabIndex = 0;
             // 
-            // gbTipusProducte
-            // 
-            this.gbTipusProducte.Controls.Add(this.cbTipusProducte);
-            this.gbTipusProducte.Location = new System.Drawing.Point(267, 6);
-            this.gbTipusProducte.Name = "gbTipusProducte";
-            this.gbTipusProducte.Size = new System.Drawing.Size(88, 43);
-            this.gbTipusProducte.TabIndex = 1;
-            this.gbTipusProducte.TabStop = false;
-            this.gbTipusProducte.Text = "Tipus";
-            // 
-            // cbTipusProducte
-            // 
-            this.cbTipusProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTipusProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipusProducte.FormattingEnabled = true;
-            this.cbTipusProducte.Location = new System.Drawing.Point(3, 18);
-            this.cbTipusProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbTipusProducte.Name = "cbTipusProducte";
-            this.cbTipusProducte.Size = new System.Drawing.Size(82, 24);
-            this.cbTipusProducte.TabIndex = 0;
-            // 
             // grDescripcioProducte
             // 
             this.grDescripcioProducte.Controls.Add(this.tbDescripcioProducte);
             this.grDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grDescripcioProducte.Location = new System.Drawing.Point(3, 277);
+            this.grDescripcioProducte.Location = new System.Drawing.Point(3, 224);
             this.grDescripcioProducte.Name = "grDescripcioProducte";
             this.grDescripcioProducte.Size = new System.Drawing.Size(572, 178);
             this.grDescripcioProducte.TabIndex = 4;
@@ -484,7 +487,7 @@ namespace Inversions.GUI
             this.pnDesaCanvisProductes.Controls.Add(this.btNouProducte);
             this.pnDesaCanvisProductes.Controls.Add(this.btDesaProducte);
             this.pnDesaCanvisProductes.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnDesaCanvisProductes.Location = new System.Drawing.Point(3, 455);
+            this.pnDesaCanvisProductes.Location = new System.Drawing.Point(3, 402);
             this.pnDesaCanvisProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnDesaCanvisProductes.Name = "pnDesaCanvisProductes";
             this.pnDesaCanvisProductes.Size = new System.Drawing.Size(572, 44);
@@ -500,6 +503,7 @@ namespace Inversions.GUI
             this.btCancelaProducte.TabIndex = 4;
             this.btCancelaProducte.Text = "Cancel·la";
             this.btCancelaProducte.UseVisualStyleBackColor = true;
+            this.btCancelaProducte.Click += new System.EventHandler(this.btCancelaProducte_Click);
             // 
             // btEsborraProducte
             // 
@@ -511,6 +515,7 @@ namespace Inversions.GUI
             this.btEsborraProducte.TabIndex = 1;
             this.btEsborraProducte.Text = "Esborra";
             this.btEsborraProducte.UseVisualStyleBackColor = true;
+            this.btEsborraProducte.Click += new System.EventHandler(this.btEsborraProducte_Click);
             // 
             // btEditaProducte
             // 
@@ -522,6 +527,7 @@ namespace Inversions.GUI
             this.btEditaProducte.TabIndex = 2;
             this.btEditaProducte.Text = "Edita";
             this.btEditaProducte.UseVisualStyleBackColor = true;
+            this.btEditaProducte.Click += new System.EventHandler(this.btEditaProducte_Click);
             // 
             // btNouProducte
             // 
@@ -533,6 +539,7 @@ namespace Inversions.GUI
             this.btNouProducte.TabIndex = 0;
             this.btNouProducte.Text = "Nou";
             this.btNouProducte.UseVisualStyleBackColor = true;
+            this.btNouProducte.Click += new System.EventHandler(this.btNouProducte_Click);
             // 
             // btDesaProducte
             // 
@@ -544,6 +551,7 @@ namespace Inversions.GUI
             this.btDesaProducte.TabIndex = 3;
             this.btDesaProducte.Text = "Desa";
             this.btDesaProducte.UseVisualStyleBackColor = true;
+            this.btDesaProducte.Click += new System.EventHandler(this.btDesaProducte_Click);
             // 
             // ckTotesLesEmpreses
             // 
@@ -559,10 +567,44 @@ namespace Inversions.GUI
             this.ckTotesLesEmpreses.UseVisualStyleBackColor = true;
             this.ckTotesLesEmpreses.CheckedChanged += new System.EventHandler(this.ckTotesLesEmpreses_CheckedChanged);
             // 
+            // ckMostraFons
+            // 
+            this.ckMostraFons.AutoSize = true;
+            this.ckMostraFons.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckMostraFons.Checked = true;
+            this.ckMostraFons.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckMostraFons.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMostraFons.Location = new System.Drawing.Point(184, 23);
+            this.ckMostraFons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckMostraFons.Name = "ckMostraFons";
+            this.ckMostraFons.Size = new System.Drawing.Size(119, 21);
+            this.ckMostraFons.TabIndex = 0;
+            this.ckMostraFons.Text = "Mostra Fons";
+            this.ckMostraFons.UseVisualStyleBackColor = true;
+            this.ckMostraFons.CheckedChanged += new System.EventHandler(this.ckMostraAccionsFons_CheckedChanged);
+            // 
+            // ckMostraAccions
+            // 
+            this.ckMostraAccions.AutoSize = true;
+            this.ckMostraAccions.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckMostraAccions.Checked = true;
+            this.ckMostraAccions.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckMostraAccions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMostraAccions.Location = new System.Drawing.Point(326, 23);
+            this.ckMostraAccions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckMostraAccions.Name = "ckMostraAccions";
+            this.ckMostraAccions.Size = new System.Drawing.Size(140, 21);
+            this.ckMostraAccions.TabIndex = 0;
+            this.ckMostraAccions.Text = "Mostra Accions";
+            this.ckMostraAccions.UseVisualStyleBackColor = true;
+            this.ckMostraAccions.CheckedChanged += new System.EventHandler(this.ckMostraAccionsFons_CheckedChanged);
+            // 
             // EmpresesProductesTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ckMostraAccions);
+            this.Controls.Add(this.ckMostraFons);
             this.Controls.Add(this.ckTotesLesEmpreses);
             this.Controls.Add(this.grProductes);
             this.Controls.Add(this.grEmpresa);
@@ -584,11 +626,12 @@ namespace Inversions.GUI
             this.pnFons.ResumeLayout(false);
             this.grIsinProducte.ResumeLayout(false);
             this.grIsinProducte.PerformLayout();
-            this.grTicker.ResumeLayout(false);
+            this.gbTipusProducte.ResumeLayout(false);
             this.pnAccions.ResumeLayout(false);
             this.grMonedaProducte.ResumeLayout(false);
+            this.grTicker.ResumeLayout(false);
+            this.grTicker.PerformLayout();
             this.grMercatProducte.ResumeLayout(false);
-            this.gbTipusProducte.ResumeLayout(false);
             this.grDescripcioProducte.ResumeLayout(false);
             this.grDescripcioProducte.PerformLayout();
             this.pnDesaCanvisProductes.ResumeLayout(false);
@@ -622,7 +665,6 @@ namespace Inversions.GUI
         private System.Windows.Forms.Button btNouProducte;
         private System.Windows.Forms.Button btDesaProducte;
         private System.Windows.Forms.GroupBox grTicker;
-        private System.Windows.Forms.ComboBox cbTicker;
         private System.Windows.Forms.GroupBox grDescripcioProducte;
         private System.Windows.Forms.TextBox tbDescripcioProducte;
         private System.Windows.Forms.GroupBox grMonedaProducte;
@@ -639,5 +681,8 @@ namespace Inversions.GUI
         private System.Windows.Forms.Panel pnAccions;
         private System.Windows.Forms.Panel pnFons;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox tbTickerAccio;
+        private System.Windows.Forms.CheckBox ckMostraFons;
+        private System.Windows.Forms.CheckBox ckMostraAccions;
     }
 }
