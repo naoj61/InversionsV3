@@ -5,11 +5,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -37,10 +39,8 @@ namespace Inversions.GUI
             if (vEmpresaSeleccionada == null)
                 return;
 
-            if (ckTotesLesEmpreses.Checked)
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses))
             {
-                grNomProducte.Enabled = false;
-
                 pnFons.Visible = false;
                 pnAccions.Visible = false;
                 grDescripcioProducte.Visible = false;
@@ -49,8 +49,6 @@ namespace Inversions.GUI
             }
             else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
             {
-                grNomProducte.Enabled = false;
-
                 pnFons.Visible = false;
                 pnAccions.Visible = true;
                 grDescripcioProducte.Visible = false;
@@ -59,8 +57,6 @@ namespace Inversions.GUI
             }
             else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
             {
-                grNomProducte.Enabled = true;
-
                 pnFons.Visible = true;
                 pnAccions.Visible = false;
                 grDescripcioProducte.Visible = true;
@@ -72,6 +68,8 @@ namespace Inversions.GUI
         private void carregaGridProductes(Empresa empresa)
         {
             vConnProductes = new InversionsBDContext(); // Creo la connexió per si he fet cancel rellegeixi les dades de la taula.
+
+            dgvProductes.RowEnter -= dgvProductes_RowEnter;
 
             if (empresa == null)
             {
@@ -91,8 +89,10 @@ namespace Inversions.GUI
                     dgvProductes.DataSource = vConnProductes.ProdFons.Local.ToBindingList();
                 }
             }
+            dgvProductes.ClearSelection();
+            dgvProductes.RowEnter += dgvProductes_RowEnter;
 
-            if (((ICollection)dgvProductes.DataSource).Count == 0)
+            if (((ICollection)dgvProductes.DataSource).Count == 0 || dgvProductes.SelectedRows.Count == 0)
             {
                 tbNomProducte.Text = String.Empty;
                 tbTickerExchangeFons.Text = String.Empty;
@@ -144,20 +144,18 @@ namespace Inversions.GUI
                 ntbOrdreGridProducte.Valor = producte.OrdreGrid.GetValueOrDefault();
                 cbMonedaProducte.SelectedItem = producte.Moneda;
 
-                if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
+                if (producte is ProdAccions)
                 {
                     tbTickerExchangeAccions.Text = producte.TickerExchange;
                     tbTickerAccio.Text = ((ProdAccions)producte).Ticker;
                     cbMercatProducte.SelectedItem = producte._Mercat;
-                    gbTipusProducte.Visible = false;
                 }
-                else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
+                else if (producte is ProdFons)
                 {
                     tbTickerExchangeFons.Text = producte.TickerExchange;
                     tbIsinProducte.Text = producte._Isin;
                     tbDescripcioProducte.Text = producte._Descripcio;
                     cbTipusProducte.SelectedItem = ((ProdFons)producte).Tipus;
-                    gbTipusProducte.Visible = true;
                 }
             }
         }
@@ -169,9 +167,9 @@ namespace Inversions.GUI
 
             var empreses = vConnEmpreses.Empreses.Local.ToList();
 
-            if (!ckMostraAccions.Checked)
+            if (!ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions))
                 empreses = empreses.Where(w => w.TipusEmpresa != TipusEmpresa.Accions).ToList();
-            if (!ckMostraFons.Checked)
+            if (!ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons))
                 empreses = empreses.Where(w => w.TipusEmpresa != TipusEmpresa.GestoraFons).ToList();
 
             dgvEmpreses.DataSource = new BindingList<Empresa>(empreses);
@@ -246,8 +244,10 @@ namespace Inversions.GUI
 
             btDesaProducte.Enabled = false;
             btCancelaProducte.Enabled = false;
-            //btNouProducte.Enabled = vProducteSeleccionat != null;
-            btNouProducte.Enabled = true;
+            btNouProducte.Enabled =
+                vEmpresaSeleccionada != null
+                && (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons 
+                || dgvProductes.RowCount == 0);
             btEsborraProducte.Enabled = vProducteSeleccionat != null;
             btEditaProducte.Enabled = vProducteSeleccionat != null;
             grEmpresa.Enabled = true;
@@ -360,7 +360,7 @@ namespace Inversions.GUI
                 vProducteSeleccionat.OrdreGrid = ntbOrdreGridProducte._IntValue;
                 vProducteSeleccionat.MonedaCodi = cbMonedaProducte.SelectedItem.ToString();
 
-                if (!ckTotesLesEmpreses.Checked)
+                if (!ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses))
                 {
                     if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
                     {
@@ -383,10 +383,10 @@ namespace Inversions.GUI
                                         vProducteSeleccionat.TickerExchange = tickerExchange;
                                     }
                                 }
-                                catch(EodhdApiException ex)
+                                catch (EodhdApiException ex)
                                 {
                                     MessageBox.Show($"No s'ha pogut obtenir el ticker exchange de la acció. \nError: {ex.Message}"
-                                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
@@ -658,7 +658,9 @@ namespace Inversions.GUI
 
         private void dgvProductes_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvProductes.CurrentRow != null && dgvProductes.CurrentRow.Index == e.RowIndex)
+            if (dgvProductes.CurrentRow != null 
+                && dgvProductes.SelectedRows.Count > 0
+                && dgvProductes.CurrentRow.Index == e.RowIndex)
                 return;
 
             vProducteSeleccionat = (Producte)dgvProductes.Rows[e.RowIndex].DataBoundItem;
@@ -681,16 +683,16 @@ namespace Inversions.GUI
                 ompleCampsProducte(vProducteSeleccionat);
             }
 
-            if (ckTotesLesEmpreses.Checked && vProducteSeleccionat != null)
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses) && vProducteSeleccionat != null)
             {
-                foreach (DataGridViewRow dgvEmprese in dgvEmpreses.Rows)
+                foreach (DataGridViewRow filaEmpresa in dgvEmpreses.Rows)
                 {
-                    var empresa = (Empresa)dgvEmprese.DataBoundItem;
+                    var empresa = (Empresa)filaEmpresa.DataBoundItem;
 
                     if (empresa.Id == vProducteSeleccionat.Empresa.Id)
                     {
-                        dgvEmprese.Selected = true;
-                        dgvEmpreses.FirstDisplayedScrollingRowIndex = dgvEmprese.Index;
+                        filaEmpresa.Selected = true;
+                        dgvEmpreses.FirstDisplayedScrollingRowIndex = filaEmpresa.Index;
                         vEmpresaSeleccionada = empresa;
                         break;
                     }
@@ -706,25 +708,33 @@ namespace Inversions.GUI
             }
         }
 
+
+        private enum FiltreSeleccionat
+        {
+            TotesLesEmpreses,
+            Fons,
+            Accions
+        }
+
         private void EmpresesProductesTab_Load(object sender, EventArgs e)
         {
             carregaGridEmpreses();
-        }
 
-        private void ckTotesLesEmpreses_CheckedChanged(object sender, EventArgs e)
-        {
-            dgvEmpreses.Enabled = !ckTotesLesEmpreses.Checked;
+            ccbFiltres.DisplayMember = "Nom";
+            ccbFiltres.ValueMember = "Id";
+            //ccbFiltres.Placeholder = "Selecciona...";
+            //ccbFiltres.ShowPlaceholderAlways = true;
 
-            if (ckTotesLesEmpreses.Checked)
-                carregaGridProductes(null);
-            else
-                carregaGridProductes(vEmpresaSeleccionada);
-        }
+            ccbFiltres.AddItem(new { Id = FiltreSeleccionat.TotesLesEmpreses, Nom = "Totes Les Empreses" }, false);
+            ccbFiltres.AddItem(new { Id = FiltreSeleccionat.Fons, Nom = "Fons" }, true);
+            ccbFiltres.AddItem(new { Id = FiltreSeleccionat.Accions, Nom = "Accions" }, true);
 
+            // Desa la situació inicial dels filtres.
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses)) vFiltreEmpresesAct |= 1 << 0; // Primer bit
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons)) vFiltreEmpresesAct |= 1 << 1; // Segon bit
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions)) vFiltreEmpresesAct |= 1 << 2; // Tercer bit
 
-        private void ckMostraAccionsFons_CheckedChanged(object sender, EventArgs e)
-        {
-            carregaGridEmpreses();
+            carregaDadesFiltrades();
         }
 
         private void tbTickerAccio_KeyPress(object sender, KeyPressEventArgs e)
@@ -733,5 +743,46 @@ namespace Inversions.GUI
         }
 
         #endregion *** Events ***}
+
+        byte vFiltreEmpresesAct = 0;
+
+        private void ccbFiltres_DropDownClosed(object sender, DropDownClosedEventArgs e)
+        {
+            if (e.Reason != DropDownCloseReason.Escape)
+            {
+                byte filtreEmpreses = 0;
+                if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses)) filtreEmpreses |= 1 << 0; // Primer bit
+                if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons)) filtreEmpreses |= 1 << 1; // Segon bit
+                if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions)) filtreEmpreses |= 1 << 2; // Tercer bit
+
+                if (filtreEmpreses != vFiltreEmpresesAct)
+                {
+                    carregaDadesFiltrades();
+
+                    vFiltreEmpresesAct = filtreEmpreses;
+                }
+            }
+        }
+
+        private void carregaDadesFiltrades()
+        {
+            carregaGridEmpreses();
+
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses))
+            {
+                dgvEmpreses.Enabled = false;
+                dgvEmpreses.DefaultCellStyle.BackColor = Color.LightGray;
+                dgvEmpreses.ClearSelection();
+
+                carregaGridProductes(null);
+            }
+            else
+            {
+                dgvEmpreses.Enabled = true;
+                dgvEmpreses.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Window;
+
+                carregaGridProductes(vEmpresaSeleccionada);
+            }
+        }
     }
 }

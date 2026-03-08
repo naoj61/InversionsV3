@@ -45,18 +45,20 @@ namespace Inversions.GUI
             this.colIsin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._NomProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbTickerExchangeFons = new System.Windows.Forms.TextBox();
             this.grNomProducte = new System.Windows.Forms.GroupBox();
             this.tbNomProducte = new System.Windows.Forms.TextBox();
             this.grOrdreGridProducte = new System.Windows.Forms.GroupBox();
             this.ntbOrdreGridProducte = new Controls.NumericTextBox2();
             this.pnFons = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbTickerExchangeFons = new System.Windows.Forms.TextBox();
             this.grIsinProducte = new System.Windows.Forms.GroupBox();
             this.tbIsinProducte = new System.Windows.Forms.TextBox();
             this.gbTipusProducte = new System.Windows.Forms.GroupBox();
             this.cbTipusProducte = new Controls.ComboBox2();
             this.pnAccions = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbTickerExchangeAccions = new System.Windows.Forms.TextBox();
             this.grMonedaProducte = new System.Windows.Forms.GroupBox();
             this.cbMonedaProducte = new Controls.ComboBox2();
             this.grTicker = new System.Windows.Forms.GroupBox();
@@ -71,30 +73,28 @@ namespace Inversions.GUI
             this.btEditaProducte = new System.Windows.Forms.Button();
             this.btNouProducte = new System.Windows.Forms.Button();
             this.btDesaProducte = new System.Windows.Forms.Button();
-            this.ckTotesLesEmpreses = new System.Windows.Forms.CheckBox();
-            this.ckMostraFons = new System.Windows.Forms.CheckBox();
-            this.ckMostraAccions = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tbTickerExchangeAccions = new System.Windows.Forms.TextBox();
+            this.ccbFiltres = new Controls.CheckedComboBoxControl();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.grEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpreses)).BeginInit();
             this.pnDesaCanvisEmpreses.SuspendLayout();
             this.grProductes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).BeginInit();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.grNomProducte.SuspendLayout();
             this.grOrdreGridProducte.SuspendLayout();
             this.pnFons.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.grIsinProducte.SuspendLayout();
             this.gbTipusProducte.SuspendLayout();
             this.pnAccions.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.grMonedaProducte.SuspendLayout();
             this.grTicker.SuspendLayout();
             this.grMercatProducte.SuspendLayout();
             this.grDescripcioProducte.SuspendLayout();
             this.pnDesaCanvisProductes.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // grEmpresa
@@ -286,26 +286,6 @@ namespace Inversions.GUI
             this.panel1.Size = new System.Drawing.Size(694, 57);
             this.panel1.TabIndex = 1;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tbTickerExchangeFons);
-            this.groupBox1.Location = new System.Drawing.Point(363, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 43);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ticker Exchange";
-            // 
-            // tbTickerExchangeFons
-            // 
-            this.tbTickerExchangeFons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTickerExchangeFons.Location = new System.Drawing.Point(3, 18);
-            this.tbTickerExchangeFons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbTickerExchangeFons.Name = "tbTickerExchangeFons";
-            this.tbTickerExchangeFons.ReadOnly = true;
-            this.tbTickerExchangeFons.Size = new System.Drawing.Size(185, 22);
-            this.tbTickerExchangeFons.TabIndex = 0;
-            // 
             // grNomProducte
             // 
             this.grNomProducte.Controls.Add(this.tbNomProducte);
@@ -371,6 +351,26 @@ namespace Inversions.GUI
             this.pnFons.Size = new System.Drawing.Size(694, 57);
             this.pnFons.TabIndex = 2;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbTickerExchangeFons);
+            this.groupBox1.Location = new System.Drawing.Point(363, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(191, 43);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ticker Exchange";
+            // 
+            // tbTickerExchangeFons
+            // 
+            this.tbTickerExchangeFons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbTickerExchangeFons.Location = new System.Drawing.Point(3, 18);
+            this.tbTickerExchangeFons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTickerExchangeFons.Name = "tbTickerExchangeFons";
+            this.tbTickerExchangeFons.ReadOnly = true;
+            this.tbTickerExchangeFons.Size = new System.Drawing.Size(185, 22);
+            this.tbTickerExchangeFons.TabIndex = 0;
+            // 
             // grIsinProducte
             // 
             this.grIsinProducte.Controls.Add(this.tbIsinProducte);
@@ -423,6 +423,26 @@ namespace Inversions.GUI
             this.pnAccions.Name = "pnAccions";
             this.pnAccions.Size = new System.Drawing.Size(694, 57);
             this.pnAccions.TabIndex = 3;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbTickerExchangeAccions);
+            this.groupBox2.Location = new System.Drawing.Point(408, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(152, 43);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Ticker Exchange";
+            // 
+            // tbTickerExchangeAccions
+            // 
+            this.tbTickerExchangeAccions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbTickerExchangeAccions.Location = new System.Drawing.Point(3, 18);
+            this.tbTickerExchangeAccions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTickerExchangeAccions.Name = "tbTickerExchangeAccions";
+            this.tbTickerExchangeAccions.ReadOnly = true;
+            this.tbTickerExchangeAccions.Size = new System.Drawing.Size(146, 22);
+            this.tbTickerExchangeAccions.TabIndex = 0;
             // 
             // grMonedaProducte
             // 
@@ -582,79 +602,38 @@ namespace Inversions.GUI
             this.btDesaProducte.UseVisualStyleBackColor = true;
             this.btDesaProducte.Click += new System.EventHandler(this.btDesaProducte_Click);
             // 
-            // ckTotesLesEmpreses
+            // ccbFiltres
             // 
-            this.ckTotesLesEmpreses.AutoSize = true;
-            this.ckTotesLesEmpreses.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckTotesLesEmpreses.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckTotesLesEmpreses.Location = new System.Drawing.Point(6, 23);
-            this.ckTotesLesEmpreses.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ckTotesLesEmpreses.Name = "ckTotesLesEmpreses";
-            this.ckTotesLesEmpreses.Size = new System.Drawing.Size(172, 21);
-            this.ckTotesLesEmpreses.TabIndex = 0;
-            this.ckTotesLesEmpreses.Text = "Totes les empreses";
-            this.ckTotesLesEmpreses.UseVisualStyleBackColor = true;
-            this.ckTotesLesEmpreses.CheckedChanged += new System.EventHandler(this.ckTotesLesEmpreses_CheckedChanged);
+            this.ccbFiltres.CountFormat = "{0} seleccionats";
+            this.ccbFiltres.DisplayMember = null;
+            this.ccbFiltres.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ccbFiltres.Location = new System.Drawing.Point(3, 18);
+            this.ccbFiltres.Name = "ccbFiltres";
+            this.ccbFiltres.Placeholder = "Selecciona...";
+            this.ccbFiltres.Separator = ", ";
+            this.ccbFiltres.ShowCountInsteadOfList = false;
+            this.ccbFiltres.ShowPlaceholderAlways = false;
+            this.ccbFiltres.Size = new System.Drawing.Size(246, 31);
+            this.ccbFiltres.TabIndex = 3;
+            this.ccbFiltres.ValueMember = null;
+            this.ccbFiltres.DropDownClosed += new System.EventHandler<Controls.DropDownClosedEventArgs>(this.ccbFiltres_DropDownClosed);
             // 
-            // ckMostraFons
+            // groupBox3
             // 
-            this.ckMostraFons.AutoSize = true;
-            this.ckMostraFons.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckMostraFons.Checked = true;
-            this.ckMostraFons.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckMostraFons.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckMostraFons.Location = new System.Drawing.Point(184, 23);
-            this.ckMostraFons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ckMostraFons.Name = "ckMostraFons";
-            this.ckMostraFons.Size = new System.Drawing.Size(119, 21);
-            this.ckMostraFons.TabIndex = 0;
-            this.ckMostraFons.Text = "Mostra Fons";
-            this.ckMostraFons.UseVisualStyleBackColor = true;
-            this.ckMostraFons.CheckedChanged += new System.EventHandler(this.ckMostraAccionsFons_CheckedChanged);
-            // 
-            // ckMostraAccions
-            // 
-            this.ckMostraAccions.AutoSize = true;
-            this.ckMostraAccions.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckMostraAccions.Checked = true;
-            this.ckMostraAccions.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckMostraAccions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckMostraAccions.Location = new System.Drawing.Point(326, 23);
-            this.ckMostraAccions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ckMostraAccions.Name = "ckMostraAccions";
-            this.ckMostraAccions.Size = new System.Drawing.Size(140, 21);
-            this.ckMostraAccions.TabIndex = 0;
-            this.ckMostraAccions.Text = "Mostra Accions";
-            this.ckMostraAccions.UseVisualStyleBackColor = true;
-            this.ckMostraAccions.CheckedChanged += new System.EventHandler(this.ckMostraAccionsFons_CheckedChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.tbTickerExchangeAccions);
-            this.groupBox2.Location = new System.Drawing.Point(408, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(152, 43);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ticker Exchange";
-            // 
-            // tbTickerExchangeAccions
-            // 
-            this.tbTickerExchangeAccions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTickerExchangeAccions.Location = new System.Drawing.Point(3, 18);
-            this.tbTickerExchangeAccions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbTickerExchangeAccions.Name = "tbTickerExchangeAccions";
-            this.tbTickerExchangeAccions.ReadOnly = true;
-            this.tbTickerExchangeAccions.Size = new System.Drawing.Size(146, 22);
-            this.tbTickerExchangeAccions.TabIndex = 0;
+            this.groupBox3.Controls.Add(this.ccbFiltres);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(6, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(252, 52);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Filtres";
             // 
             // EmpresesProductesTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ckMostraAccions);
-            this.Controls.Add(this.ckMostraFons);
-            this.Controls.Add(this.ckTotesLesEmpreses);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grProductes);
             this.Controls.Add(this.grEmpresa);
             this.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
@@ -668,17 +647,19 @@ namespace Inversions.GUI
             this.grProductes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.grNomProducte.ResumeLayout(false);
             this.grNomProducte.PerformLayout();
             this.grOrdreGridProducte.ResumeLayout(false);
             this.grOrdreGridProducte.PerformLayout();
             this.pnFons.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.grIsinProducte.ResumeLayout(false);
             this.grIsinProducte.PerformLayout();
             this.gbTipusProducte.ResumeLayout(false);
             this.pnAccions.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.grMonedaProducte.ResumeLayout(false);
             this.grTicker.ResumeLayout(false);
             this.grTicker.PerformLayout();
@@ -686,10 +667,8 @@ namespace Inversions.GUI
             this.grDescripcioProducte.ResumeLayout(false);
             this.grDescripcioProducte.PerformLayout();
             this.pnDesaCanvisProductes.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -701,7 +680,6 @@ namespace Inversions.GUI
         private System.Windows.Forms.Button btCancelaCanvisEmpreses;
         private System.Windows.Forms.Button btDesaCanvisEmpreses;
         private System.Windows.Forms.GroupBox grProductes;
-        private System.Windows.Forms.CheckBox ckTotesLesEmpreses;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn _TipusEmpresa;
@@ -735,11 +713,11 @@ namespace Inversions.GUI
         private System.Windows.Forms.Panel pnFons;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox tbTickerAccio;
-        private System.Windows.Forms.CheckBox ckMostraFons;
-        private System.Windows.Forms.CheckBox ckMostraAccions;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tbTickerExchangeFons;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tbTickerExchangeAccions;
+        private Controls.CheckedComboBoxControl ccbFiltres;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
