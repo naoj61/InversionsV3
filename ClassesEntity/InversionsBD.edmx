@@ -593,10 +593,6 @@
         <ComplexType Name="NomEmpresa">
           <Property Type="String" Name="Nom" Nullable="false" cg:SetterAccess="Public" MaxLength="50" FixedLength="false" Unicode="true" />
         </ComplexType>
-        <EnumType Name="TipusEmpresa">
-          <Member Name="GestoraFons" />
-          <Member Name="Accions" />
-        </EnumType>
         <EntityType Name="Usuari">
           <Key>
             <PropertyRef Name="Id" />
@@ -758,6 +754,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="TipusEmpresa">
+          <Member Name="GestoraFons" Value="0" />
+          <Member Name="Accions" Value="1" />
+        </EnumType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

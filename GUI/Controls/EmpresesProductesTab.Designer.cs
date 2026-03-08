@@ -30,11 +30,12 @@ namespace Inversions.GUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grEmpresa = new System.Windows.Forms.GroupBox();
             this.dgvEmpreses = new System.Windows.Forms.DataGridView();
             this._Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._TipusEmpresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._TipusEmpresa = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.pnDesaCanvisEmpreses = new System.Windows.Forms.Panel();
             this.btCancelaCanvisEmpreses = new System.Windows.Forms.Button();
             this.btDesaCanvisEmpreses = new System.Windows.Forms.Button();
@@ -99,8 +100,6 @@ namespace Inversions.GUI
             // 
             // grEmpresa
             // 
-            this.grEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.grEmpresa.Controls.Add(this.dgvEmpreses);
             this.grEmpresa.Controls.Add(this.pnDesaCanvisEmpreses);
             this.grEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -155,11 +154,12 @@ namespace Inversions.GUI
             // 
             this._TipusEmpresa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this._TipusEmpresa.DataPropertyName = "TipusEmpresa";
-            this._TipusEmpresa.HeaderText = "Tipus";
+            this._TipusEmpresa.HeaderText = "Tipus Empresa";
             this._TipusEmpresa.MinimumWidth = 8;
             this._TipusEmpresa.Name = "_TipusEmpresa";
             this._TipusEmpresa.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this._TipusEmpresa.Width = 75;
+            this._TipusEmpresa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this._TipusEmpresa.Width = 129;
             // 
             // pnDesaCanvisEmpreses
             // 
@@ -225,6 +225,14 @@ namespace Inversions.GUI
             // 
             this.dgvProductes.AllowUserToAddRows = false;
             this.dgvProductes.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._IdProd,
@@ -233,10 +241,14 @@ namespace Inversions.GUI
             this._NomProducte});
             this.dgvProductes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvProductes.EnableHeadersVisualStyles = false;
             this.dgvProductes.Location = new System.Drawing.Point(3, 19);
+            this.dgvProductes.MultiSelect = false;
             this.dgvProductes.Name = "dgvProductes";
+            this.dgvProductes.ReadOnly = true;
             this.dgvProductes.RowHeadersWidth = 62;
             this.dgvProductes.RowTemplate.Height = 24;
+            this.dgvProductes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductes.Size = new System.Drawing.Size(694, 34);
             this.dgvProductes.TabIndex = 0;
             this.dgvProductes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductes_RowEnter);
@@ -257,6 +269,7 @@ namespace Inversions.GUI
             this._OrdreGrid.HeaderText = "Ordre Grid";
             this._OrdreGrid.MinimumWidth = 8;
             this._OrdreGrid.Name = "_OrdreGrid";
+            this._OrdreGrid.ReadOnly = true;
             this._OrdreGrid.Width = 150;
             // 
             // colIsin
@@ -266,6 +279,7 @@ namespace Inversions.GUI
             this.colIsin.HeaderText = "ISIN";
             this.colIsin.MinimumWidth = 8;
             this.colIsin.Name = "colIsin";
+            this.colIsin.ReadOnly = true;
             this.colIsin.Width = 65;
             // 
             // _NomProducte
@@ -275,6 +289,7 @@ namespace Inversions.GUI
             this._NomProducte.HeaderText = "Nom";
             this._NomProducte.MinimumWidth = 200;
             this._NomProducte.Name = "_NomProducte";
+            this._NomProducte.ReadOnly = true;
             // 
             // panel1
             // 
@@ -520,6 +535,7 @@ namespace Inversions.GUI
             // tbDescripcioProducte
             // 
             this.tbDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbDescripcioProducte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDescripcioProducte.Location = new System.Drawing.Point(3, 18);
             this.tbDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbDescripcioProducte.Multiline = true;
@@ -675,14 +691,10 @@ namespace Inversions.GUI
         #endregion
 
         private System.Windows.Forms.GroupBox grEmpresa;
-        private System.Windows.Forms.DataGridView dgvEmpreses;
         private System.Windows.Forms.Panel pnDesaCanvisEmpreses;
         private System.Windows.Forms.Button btCancelaCanvisEmpreses;
         private System.Windows.Forms.Button btDesaCanvisEmpreses;
         private System.Windows.Forms.GroupBox grProductes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _Nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _TipusEmpresa;
         private System.Windows.Forms.GroupBox grNomProducte;
         private System.Windows.Forms.TextBox tbNomProducte;
         private System.Windows.Forms.GroupBox grOrdreGridProducte;
@@ -719,5 +731,9 @@ namespace Inversions.GUI
         private System.Windows.Forms.TextBox tbTickerExchangeAccions;
         private Controls.CheckedComboBoxControl ccbFiltres;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dgvEmpreses;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _Nom;
+        private System.Windows.Forms.DataGridViewComboBoxColumn _TipusEmpresa;
     }
 }
