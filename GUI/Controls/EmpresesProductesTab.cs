@@ -3,8 +3,6 @@ using Controls;
 using Inversions.ClassesEntity;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -13,9 +11,7 @@ using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Inversions.GUI
 {
@@ -83,6 +79,22 @@ namespace Inversions.GUI
             }
         }
 
+        private void carregaGridEmpreses()
+        {
+            // Creo la connexió per utilitzar-la a desar les modificacions.
+            vConnEmpreses = new InversionsBDContext();
+
+            // Carrega les empreses segons els filtres seleccionats.
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions))
+                vConnEmpreses.Empreses.Where(e => e.TipusEmpresa == TipusEmpresa.Accions).Load();
+
+            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons))
+                vConnEmpreses.Empreses.Where(e => e.TipusEmpresa == TipusEmpresa.GestoraFons).Load();
+
+            vBindingSourceEmpreses.DataSource = vConnEmpreses.Empreses.Local.ToBindingList();
+            dgvEmpreses.DataSource = vBindingSourceEmpreses;
+        }
+
         private void carregaGridProductes(Empresa empresa)
         {
             // Creo una connexió diferent per a productes perquè si es produeix un error al desar els canvis dels productes no perdi els canvis dels empreses que encara no s'han desat.
@@ -90,17 +102,29 @@ namespace Inversions.GUI
             vConnProductes = new InversionsBDContext();
 
             if (empresa == null)
-                dgvProductes.DataSource = null;
+            {
+                if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses))
+                {
+                    // Carrega els Productes segons els filtres seleccionats.
+                    if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions))
+                        vConnProductes.Productes
+                            .Where(e => e.Empresa.TipusEmpresa == TipusEmpresa.Accions).Load();
+
+                    if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons))
+                        vConnProductes.Productes
+                            .Where(e => e.Empresa.TipusEmpresa == TipusEmpresa.GestoraFons).Load();
+                }
+            }
             else
             {
                 vConnProductes.Productes.Where(w => w.EmpresaId == empresa.Id).Load();
-                dgvProductes.DataSource = vConnProductes.Productes.Local.ToBindingList();
             }
+            
+            dgvProductes.DataSource = vConnProductes.Productes.Local.ToBindingList();
 
             dgvProductes.ClearSelection();
 
-            if (dgvProductes.DataSource == null 
-                || ((ICollection)dgvProductes.DataSource).Count == 0 
+            if (((ICollection)dgvProductes.DataSource).Count == 0 
                 || dgvProductes.SelectedRows.Count == 0)
             {
                 tbNomProducte.Text = String.Empty;
@@ -167,23 +191,6 @@ namespace Inversions.GUI
                     cbTipusProducte.SelectedItem = ((ProdFons)producte).Tipus;
                 }
             }
-        }
-
-        private void carregaGridEmpreses()
-        {
-            // Creo la connexió per utilitzar-la a desar les modificacions.
-            vConnEmpreses = new InversionsBDContext();
-
-            // Carrega les empreses segons els filtres seleccionats.
-            if (!ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions))
-                vConnEmpreses.Empreses.Where(e => e.TipusEmpresa == TipusEmpresa.Accions).Load();
-            else if (!ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons))
-                vConnEmpreses.Empreses.Where(e => e.TipusEmpresa == TipusEmpresa.GestoraFons).Load();
-            else
-                vConnEmpreses.Empreses.Load();
-
-            vBindingSourceEmpreses.DataSource = vConnEmpreses.Empreses.Local.ToBindingList();
-            dgvEmpreses.DataSource = vBindingSourceEmpreses;
         }
 
         private void teclaEscapeEdicioProducte()
@@ -338,7 +345,7 @@ namespace Inversions.GUI
                 dgvEmpreses.Enabled = true;
                 dgvEmpreses.DefaultCellStyle.BackColor = System.Drawing.SystemColors.Window;
 
-                carregaGridProductes(vEmpresaSeleccionada);
+                //carregaGridProductes(vEmpresaSeleccionada);
             }
         }
 
@@ -348,7 +355,7 @@ namespace Inversions.GUI
         #region *** Events ***
         private void EmpresesProductesTab_Load(object sender, EventArgs e)
         {
-            carregaGridEmpreses();
+            //carregaGridEmpreses();
 
             ccbFiltres.DisplayMember = "Nom";
             ccbFiltres.ValueMember = "Id";
@@ -570,7 +577,12 @@ namespace Inversions.GUI
                             {
                                 var empresa = (Empresa)cela.OwningRow.DataBoundItem;
                                 if (empresa.Productes.Any())
-                                    throw new Exception("No es pot canviar el tipus d'empresa si ja te productes");
+                                {
+                                    //throw new Exception("No es pot canviar el tipus d'empresa si ja te productes");
+                                    MessageBox.Show("No es pot canviar el tipus d'empresa si ja te productes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    cela.Value = valorInicial;
+                                    e.Cancel = true;
+                                }
                             }
                             break;
                     }
