@@ -74,8 +74,13 @@
 			REFERENCES [dbo].[Monedes] ([Codi])
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
 	
--- Taula Productes_ProdFons	
-	ALTER TABLE Productes_ProdFons ADD CONSTRAINT UQ_ProdFons_ISIN UNIQUE (ISIN);
+-- Taula Productes_ProdFons
+	-- Permeto nulls
+	ALTER TABLE Productes_ProdFons ALTER COLUMN ISIN varchar(25);
+	-- Elimino constraint que no em permet NULL duplicats.
+	ALTER TABLE Productes_ProdFons DROP CONSTRAINT IU_IsinProductes_ProdFons;
+	-- Creo index que permet NULL duplicats.
+	CREATE UNIQUE INDEX IU_Isin_Productes_ProdFons ON Productes_ProdFons (ISIN) WHERE ISIN IS NOT NULL;
 	
 -- Taula Productes_ProdAccions
 	ALTER TABLE Productes_ProdAccions ADD [Ticker] varchar(10);

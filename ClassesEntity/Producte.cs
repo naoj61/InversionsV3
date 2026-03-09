@@ -21,7 +21,7 @@ namespace Inversions.ClassesEntity
         }
     
         public int Id { get; private set; }
-        public int EmpresaId { get; private set; }
+        public int EmpresaId { get; set; }
         public Nullable<int> OrdreGrid { get; set; }
         public string MonedaCodi { get; set; }
         public string TickerExchange { get; set; }

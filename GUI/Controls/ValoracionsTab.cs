@@ -637,30 +637,28 @@ namespace Inversions.GUI
             {
                 using (var conn = new InversionsBDContext())
                 {
+                    try
                     {
-                        try
+                        if (vEsNouValor)
                         {
-                            if (vEsNouValor)
-                            {
-                                Valoracio.Nova(conn, gestioProductesTabValoracions._ProducteSeleccionat, cData.Value, tbImport._DecimalValue);
-                                conn.SaveChanges();
-                                Valoracio.RefrescaTaula();
-                            }
-                            else
-                            {
-                                vValoracioSeleccionada.modifica(conn, cData.Value, tbImport._DecimalValue);
-                                conn.SaveChanges();
-                            }
+                            Valoracio.Nova(conn, gestioProductesTabValoracions._ProducteSeleccionat, cData.Value, tbImport._DecimalValue);
+                            conn.SaveChanges();
+                            Valoracio.RefrescaTaula();
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            Exception xx = Utilitats.ExtreuInnerException(ex);
+                            vValoracioSeleccionada.modifica(conn, cData.Value, tbImport._DecimalValue);
+                            conn.SaveChanges();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Exception xx = Utilitats.ExtreuInnerException(ex);
 
-                            if (xx is SqlException && ((SqlException)xx).Number == 2627)
-                                MessageBox.Show("Valoració ja existeix", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            else
-                                MessageBox.Show(xx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        if (xx is SqlException && ((SqlException)xx).Number == 2627)
+                            MessageBox.Show("Valoració ja existeix", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show(xx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 

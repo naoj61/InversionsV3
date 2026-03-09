@@ -113,7 +113,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ISIN" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ISIN" Type="varchar" MaxLength="25" />
           <Property Name="Tipus" Type="int" Nullable="false" />
           <Property Name="Descripcio" Type="nvarchar(max)" />
         </EntityType>
@@ -520,7 +520,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" cg:SetterAccess="Private" />
           <NavigationProperty Name="Empresa" Relationship="InversionsBD.EmpresaP2" FromRole="Producte" ToRole="Empresa" />
-          <Property Name="EmpresaId" Type="Int32" Nullable="false" cg:SetterAccess="Private" />
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" cg:SetterAccess="Public" />
           <NavigationProperty Name="ValoracionsProducte" Relationship="InversionsBD.ProdValoracio" FromRole="Prod" ToRole="Valoracio" />
           <Property Name="OrdreGrid" Type="Int32" />
           <Property Name="MonedaCodi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
@@ -543,7 +543,7 @@
         </Association>
         <EntityType Name="ProdFons" BaseType="InversionsBD.Producte" >
           <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ISIN" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="ISIN" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Gestors" Relationship="InversionsBD.ProdFonsGestor" FromRole="ProdFons" ToRole="Gestor" />
           <Property Name="Tipus" Type="InversionsBD.TipusFons" Nullable="false" />
           <Property Name="Descripcio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
