@@ -23,7 +23,7 @@ namespace Inversions.GUI
     {
         private InversionsBDContext vConnEmpreses;
         private InversionsBDContext vConnProductes;
-        
+
         private Empresa vEmpresaSeleccionada;
         private Producte vProducteSeleccionat;
         private BindingSource vBindingSourceEmpreses = new BindingSource();
@@ -51,22 +51,14 @@ namespace Inversions.GUI
         #region *** Mètodes ***
 
         /// <summary>
-        ///     Mostra o amaga els controls en funvio del tipus d'empresa seleccionada.
+        /// Mostra o amaga els controls en funvio del tipus d'empresa seleccionada.
         /// </summary>
         private void preparaControlsProducte()
         {
             if (vEmpresaSeleccionada == null)
                 return;
 
-            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses))
-            {
-                flpFons.Visible = false;
-                flpAccions.Visible = false;
-                grDescripcioProducte.Visible = false;
-
-                ntbOrdreGridProducte.Focus();
-            }
-            else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
+            if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
             {
                 flpFons.Visible = false;
                 flpAccions.Visible = true;
@@ -123,6 +115,8 @@ namespace Inversions.GUI
                 // per veure els productes associats a cada empresa.
                 dgvEmpreses.SelectionChanged -= dgvEmpreses_SelectionChanged;
                 dgvEmpreses.RowEnter += dgvEmpreses_RowEnter;
+
+                dgvProductes.DataSource = null;
             }
 
             dgvEmpreses.CurrentCell = null;
@@ -146,8 +140,8 @@ namespace Inversions.GUI
                     if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons))
                         productes.AddRange(Program.Sessio.Productes
                             .Where(e => e.Empresa.TipusEmpresa == TipusEmpresa.GestoraFons));
-                
-                    dgvProductes.DataSource = productes.OrderBy(o=>o.Id).ToList();
+
+                    dgvProductes.DataSource = productes.OrderBy(o => o.Id).ToList();
                 }
             }
             else
@@ -187,7 +181,6 @@ namespace Inversions.GUI
                     btNouProducte.Enabled = empresa.TipusEmpresa == TipusEmpresa.GestoraFons;
             }
         }
-
 
         private void ompleCampsProducte(Producte producte)
         {
@@ -298,7 +291,7 @@ namespace Inversions.GUI
             btCancelaProducte.Enabled = false;
             btNouProducte.Enabled =
                 vEmpresaSeleccionada != null
-                && (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons 
+                && (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons
                 || dgvProductes.RowCount == 0);
             btEsborraProducte.Enabled = vProducteSeleccionat != null;
             btEditaProducte.Enabled = vProducteSeleccionat != null;
@@ -397,7 +390,7 @@ namespace Inversions.GUI
         {
             if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.Accions)
             {
-                vProducteSeleccionat =  new ProdAccions();
+                vProducteSeleccionat = new ProdAccions();
 
             }
             else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
@@ -470,8 +463,8 @@ namespace Inversions.GUI
                     else
                     {
                         var prodFons = (ProdFons)prod;
-                        var isin = String.IsNullOrWhiteSpace(tbIsinProducte.Text) 
-                            ? null 
+                        var isin = String.IsNullOrWhiteSpace(tbIsinProducte.Text)
+                            ? null
                             : tbIsinProducte.Text.ToUpper();
 
                         if (prodFons.ISIN != isin)
@@ -612,8 +605,8 @@ namespace Inversions.GUI
 
             carregaGridProductes(vEmpresaSeleccionada);
 
-            if (vEmpresaSeleccionada != null)
-                colIsin.Visible = vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons;
+            colIsin.Visible = vEmpresaSeleccionada != null && 
+                vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons;
         }
 
         private void dgvProductes_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -634,6 +627,22 @@ namespace Inversions.GUI
             }
             else
             {
+                if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses))
+                {
+                    foreach (DataGridViewRow filaEmpresa in dgvEmpreses.Rows)
+                    {
+                        var empresa = (Empresa)filaEmpresa.DataBoundItem;
+
+                        if (empresa != null && empresa.Id == vProducteSeleccionat.Empresa.Id)
+                        {
+                            filaEmpresa.Selected = true;
+                            dgvEmpreses.FirstDisplayedScrollingRowIndex = filaEmpresa.Index;
+                            vEmpresaSeleccionada = empresa;
+                            break;
+                        }
+                    }
+                }
+
                 btDesaProducte.Enabled = false;
                 btCancelaProducte.Enabled = false;
 
@@ -642,22 +651,6 @@ namespace Inversions.GUI
                 btEditaProducte.Enabled = true;
 
                 ompleCampsProducte(vProducteSeleccionat);
-            }
-
-            if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses) && vProducteSeleccionat != null)
-            {
-                foreach (DataGridViewRow filaEmpresa in dgvEmpreses.Rows)
-                {
-                    var empresa = (Empresa)filaEmpresa.DataBoundItem;
-
-                    if (empresa != null && empresa.Id == vProducteSeleccionat.Empresa.Id)
-                    {
-                        filaEmpresa.Selected = true;
-                        dgvEmpreses.FirstDisplayedScrollingRowIndex = filaEmpresa.Index;
-                        vEmpresaSeleccionada = empresa;
-                        break;
-                    }
-                }
             }
         }
 
@@ -781,8 +774,13 @@ namespace Inversions.GUI
 
                     vFiltreEmpresesAct = filtreEmpreses;
                 }
+
+                colIsin.Visible = ccbFiltres.IsCheckedByValue(FiltreSeleccionat.TotesLesEmpreses)
+                    && ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Fons);
             }
         }
+
+        int lastSortedColumnIndex = -1;
 
         /// <summary>
         /// Per ordenar els productes mostrats a la grid de productes segons la columna del header que s'ha clicat.
@@ -804,22 +802,60 @@ namespace Inversions.GUI
             switch (e.ColumnIndex)
             {
                 case 0: // Id
-                    dgvProductes.DataSource = productes.OrderBy(o => o.Id).ToList();
+                    if (lastSortedColumnIndex == e.ColumnIndex)
+                    {
+                        // Si se hace clic nuevamente en la misma columna, invertir el orden
+                        dgvProductes.DataSource = productes.OrderByDescending(o => o.Id).ToList();
+                        lastSortedColumnIndex = -1; // Reiniciar para permitir ordenar de nuevo
+                    }
+                    else
+                    {
+                        dgvProductes.DataSource = productes.OrderBy(o => o.Id).ToList();
+                        lastSortedColumnIndex = e.ColumnIndex;
+                    }
                     break;
-                case 1: // Nom
-                    dgvProductes.DataSource = productes.OrderBy(o => o._NomProducte).ToList();
+                case 1: // OrdreGrid
+                    if (lastSortedColumnIndex == e.ColumnIndex)
+                    {
+                        // Si se hace clic nuevamente en la misma columna, invertir el orden
+                        dgvProductes.DataSource = productes.OrderByDescending(o => o.OrdreGrid).ToList();
+                        lastSortedColumnIndex = -1; // Reiniciar para permitir ordenar de nuevo
+                    }
+                    else
+                    {
+                        dgvProductes.DataSource = productes.OrderBy(o => o.OrdreGrid).ToList();
+                        lastSortedColumnIndex = e.ColumnIndex;
+                    }
                     break;
-                case 2: // OrdreGrid
-                    dgvProductes.DataSource = productes.OrderBy(o => o.OrdreGrid).ToList();
+                case 2: // ISIN
+                    if (lastSortedColumnIndex == e.ColumnIndex)
+                    {
+                        // Si se hace clic nuevamente en la misma columna, invertir el orden
+                        dgvProductes.DataSource = productes.OrderByDescending(o => o._Isin).ToList();
+                        lastSortedColumnIndex = -1; // Reiniciar para permitir ordenar de nuevo
+                    }
+                    else
+                    {
+                        dgvProductes.DataSource = productes.OrderBy(o => o._Isin).ToList();
+                        lastSortedColumnIndex = e.ColumnIndex;
+                    }
                     break;
-                case 3: // Moneda
-                    dgvProductes.DataSource = productes.OrderBy(o => o.MonedaCodi).ToList();
-                    break;
-                case 4: // Ticker Exchange
-                    dgvProductes.DataSource = productes.OrderBy(o => o.TickerExchange).ToList();
+                case 3: // Nom
+                    if (lastSortedColumnIndex == e.ColumnIndex)
+                    {
+                        // Si se hace clic nuevamente en la misma columna, invertir el orden
+                        dgvProductes.DataSource = productes.OrderByDescending(o => o._NomProducte).ToList();
+                        lastSortedColumnIndex = -1; // Reiniciar para permitir ordenar de nuevo
+                    }
+                    else
+                    {
+                        dgvProductes.DataSource = productes.OrderBy(o => o._NomProducte).ToList();
+                        lastSortedColumnIndex = e.ColumnIndex;
+                    }
                     break;
             }
         }
+
 
         private void dgvEmpreses_SelectionChanged(object sender, EventArgs e)
         {

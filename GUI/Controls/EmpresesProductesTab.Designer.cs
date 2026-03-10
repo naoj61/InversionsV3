@@ -40,6 +40,14 @@ namespace Inversions.GUI
             this.btCancelaCanvisEmpreses = new System.Windows.Forms.Button();
             this.btDesaCanvisEmpreses = new System.Windows.Forms.Button();
             this.grProductes = new System.Windows.Forms.GroupBox();
+            this.dgvProductes = new System.Windows.Forms.DataGridView();
+            this._IdProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._OrdreGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._NomProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.grDescripcioProducte = new System.Windows.Forms.GroupBox();
+            this.tbDescripcioProducte = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grOrdreGridProducte = new System.Windows.Forms.GroupBox();
             this.ntbOrdreGridProducte = new Controls.NumericTextBox2();
@@ -47,11 +55,11 @@ namespace Inversions.GUI
             this.cbMonedaProducte = new Controls.ComboBox2();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbTickerExchange = new System.Windows.Forms.TextBox();
-            this.dgvProductes = new System.Windows.Forms.DataGridView();
-            this._IdProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._OrdreGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._NomProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flpAccions = new System.Windows.Forms.FlowLayoutPanel();
+            this.grTicker = new System.Windows.Forms.GroupBox();
+            this.tbTickerAccio = new System.Windows.Forms.TextBox();
+            this.grMercatProducte = new System.Windows.Forms.GroupBox();
+            this.cbMercatProducte = new Controls.ComboBox2();
             this.flpFons = new System.Windows.Forms.FlowLayoutPanel();
             this.grNomProducte = new System.Windows.Forms.GroupBox();
             this.tbNomProducte = new System.Windows.Forms.TextBox();
@@ -59,13 +67,6 @@ namespace Inversions.GUI
             this.tbIsinProducte = new System.Windows.Forms.TextBox();
             this.gbTipusProducte = new System.Windows.Forms.GroupBox();
             this.cbTipusProducte = new Controls.ComboBox2();
-            this.flpAccions = new System.Windows.Forms.FlowLayoutPanel();
-            this.grTicker = new System.Windows.Forms.GroupBox();
-            this.tbTickerAccio = new System.Windows.Forms.TextBox();
-            this.grMercatProducte = new System.Windows.Forms.GroupBox();
-            this.cbMercatProducte = new Controls.ComboBox2();
-            this.grDescripcioProducte = new System.Windows.Forms.GroupBox();
-            this.tbDescripcioProducte = new System.Windows.Forms.TextBox();
             this.pnDesaCanvisProductes = new System.Windows.Forms.Panel();
             this.btCancelaProducte = new System.Windows.Forms.Button();
             this.btEsborraProducte = new System.Windows.Forms.Button();
@@ -78,25 +79,28 @@ namespace Inversions.GUI
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpreses)).BeginInit();
             this.pnDesaCanvisEmpreses.SuspendLayout();
             this.grProductes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.grDescripcioProducte.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.grOrdreGridProducte.SuspendLayout();
             this.grMonedaProducte.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).BeginInit();
+            this.flpAccions.SuspendLayout();
+            this.grTicker.SuspendLayout();
+            this.grMercatProducte.SuspendLayout();
             this.flpFons.SuspendLayout();
             this.grNomProducte.SuspendLayout();
             this.grIsinProducte.SuspendLayout();
             this.gbTipusProducte.SuspendLayout();
-            this.flpAccions.SuspendLayout();
-            this.grTicker.SuspendLayout();
-            this.grMercatProducte.SuspendLayout();
-            this.grDescripcioProducte.SuspendLayout();
             this.pnDesaCanvisProductes.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // grEmpresa
             // 
+            this.grEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grEmpresa.Controls.Add(this.dgvEmpreses);
             this.grEmpresa.Controls.Add(this.pnDesaCanvisEmpreses);
             this.grEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,7 +108,7 @@ namespace Inversions.GUI
             this.grEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grEmpresa.Name = "grEmpresa";
             this.grEmpresa.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grEmpresa.Size = new System.Drawing.Size(805, 450);
+            this.grEmpresa.Size = new System.Drawing.Size(805, 515);
             this.grEmpresa.TabIndex = 1;
             this.grEmpresa.TabStop = false;
             this.grEmpresa.Text = "Empreses";
@@ -124,7 +128,7 @@ namespace Inversions.GUI
             this.dgvEmpreses.RowHeadersWidth = 62;
             this.dgvEmpreses.RowTemplate.Height = 24;
             this.dgvEmpreses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvEmpreses.Size = new System.Drawing.Size(799, 383);
+            this.dgvEmpreses.Size = new System.Drawing.Size(799, 448);
             this.dgvEmpreses.TabIndex = 0;
             this.dgvEmpreses.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvEmpreses_CellValidating);
             this.dgvEmpreses.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvEmpreses_RowValidating);
@@ -165,7 +169,7 @@ namespace Inversions.GUI
             this.pnDesaCanvisEmpreses.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnDesaCanvisEmpreses.Enabled = false;
             this.pnDesaCanvisEmpreses.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnDesaCanvisEmpreses.Location = new System.Drawing.Point(3, 402);
+            this.pnDesaCanvisEmpreses.Location = new System.Drawing.Point(3, 467);
             this.pnDesaCanvisEmpreses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnDesaCanvisEmpreses.Name = "pnDesaCanvisEmpreses";
             this.pnDesaCanvisEmpreses.Padding = new System.Windows.Forms.Padding(5);
@@ -199,32 +203,135 @@ namespace Inversions.GUI
             // 
             // grProductes
             // 
-            this.grProductes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grProductes.Controls.Add(this.flowLayoutPanel1);
+            this.grProductes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grProductes.Controls.Add(this.dgvProductes);
-            this.grProductes.Controls.Add(this.flpFons);
-            this.grProductes.Controls.Add(this.flpAccions);
-            this.grProductes.Controls.Add(this.grDescripcioProducte);
+            this.grProductes.Controls.Add(this.panel1);
             this.grProductes.Controls.Add(this.pnDesaCanvisProductes);
             this.grProductes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grProductes.Location = new System.Drawing.Point(811, 57);
             this.grProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grProductes.Name = "grProductes";
             this.grProductes.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grProductes.Size = new System.Drawing.Size(700, 450);
+            this.grProductes.Size = new System.Drawing.Size(700, 515);
             this.grProductes.TabIndex = 2;
             this.grProductes.TabStop = false;
             this.grProductes.Text = "Productes";
+            // 
+            // dgvProductes
+            // 
+            this.dgvProductes.AllowUserToAddRows = false;
+            this.dgvProductes.AllowUserToDeleteRows = false;
+            this.dgvProductes.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProductes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this._IdProd,
+            this._OrdreGrid,
+            this.colIsin,
+            this._NomProducte});
+            this.dgvProductes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProductes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvProductes.EnableHeadersVisualStyles = false;
+            this.dgvProductes.Location = new System.Drawing.Point(3, 19);
+            this.dgvProductes.MultiSelect = false;
+            this.dgvProductes.Name = "dgvProductes";
+            this.dgvProductes.ReadOnly = true;
+            this.dgvProductes.RowHeadersWidth = 62;
+            this.dgvProductes.RowTemplate.Height = 24;
+            this.dgvProductes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProductes.Size = new System.Drawing.Size(694, 165);
+            this.dgvProductes.TabIndex = 0;
+            this.dgvProductes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductes_ColumnHeaderMouseClick);
+            this.dgvProductes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductes_RowEnter);
+            // 
+            // _IdProd
+            // 
+            this._IdProd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._IdProd.DataPropertyName = "Id";
+            this._IdProd.HeaderText = "Id";
+            this._IdProd.MinimumWidth = 8;
+            this._IdProd.Name = "_IdProd";
+            this._IdProd.ReadOnly = true;
+            this._IdProd.Width = 49;
+            // 
+            // _OrdreGrid
+            // 
+            this._OrdreGrid.DataPropertyName = "OrdreGrid";
+            this._OrdreGrid.HeaderText = "Ordre Grid";
+            this._OrdreGrid.MinimumWidth = 8;
+            this._OrdreGrid.Name = "_OrdreGrid";
+            this._OrdreGrid.ReadOnly = true;
+            this._OrdreGrid.Width = 150;
+            // 
+            // colIsin
+            // 
+            this.colIsin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colIsin.DataPropertyName = "_Isin";
+            this.colIsin.HeaderText = "ISIN";
+            this.colIsin.MinimumWidth = 8;
+            this.colIsin.Name = "colIsin";
+            this.colIsin.ReadOnly = true;
+            this.colIsin.Width = 65;
+            // 
+            // _NomProducte
+            // 
+            this._NomProducte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this._NomProducte.DataPropertyName = "_NomProducte";
+            this._NomProducte.HeaderText = "Nom";
+            this._NomProducte.MinimumWidth = 200;
+            this._NomProducte.Name = "_NomProducte";
+            this._NomProducte.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.grDescripcioProducte);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.flpAccions);
+            this.panel1.Controls.Add(this.flpFons);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(3, 184);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(694, 283);
+            this.panel1.TabIndex = 5;
+            // 
+            // grDescripcioProducte
+            // 
+            this.grDescripcioProducte.Controls.Add(this.tbDescripcioProducte);
+            this.grDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grDescripcioProducte.Location = new System.Drawing.Point(0, 174);
+            this.grDescripcioProducte.Name = "grDescripcioProducte";
+            this.grDescripcioProducte.Size = new System.Drawing.Size(694, 109);
+            this.grDescripcioProducte.TabIndex = 4;
+            this.grDescripcioProducte.TabStop = false;
+            this.grDescripcioProducte.Text = "Descripció";
+            // 
+            // tbDescripcioProducte
+            // 
+            this.tbDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbDescripcioProducte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDescripcioProducte.Location = new System.Drawing.Point(3, 18);
+            this.tbDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbDescripcioProducte.Multiline = true;
+            this.tbDescripcioProducte.Name = "tbDescripcioProducte";
+            this.tbDescripcioProducte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbDescripcioProducte.Size = new System.Drawing.Size(688, 88);
+            this.tbDescripcioProducte.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.grOrdreGridProducte);
             this.flowLayoutPanel1.Controls.Add(this.grMonedaProducte);
             this.flowLayoutPanel1.Controls.Add(this.groupBox2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 110);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 114);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(694, 60);
             this.flowLayoutPanel1.TabIndex = 6;
@@ -303,85 +410,64 @@ namespace Inversions.GUI
             this.tbTickerExchange.Size = new System.Drawing.Size(200, 22);
             this.tbTickerExchange.TabIndex = 0;
             // 
-            // dgvProductes
+            // flpAccions
             // 
-            this.dgvProductes.AllowUserToAddRows = false;
-            this.dgvProductes.AllowUserToDeleteRows = false;
-            this.dgvProductes.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProductes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this._IdProd,
-            this._OrdreGrid,
-            this.colIsin,
-            this._NomProducte});
-            this.dgvProductes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProductes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvProductes.EnableHeadersVisualStyles = false;
-            this.dgvProductes.Location = new System.Drawing.Point(3, 19);
-            this.dgvProductes.MultiSelect = false;
-            this.dgvProductes.Name = "dgvProductes";
-            this.dgvProductes.ReadOnly = true;
-            this.dgvProductes.RowHeadersWidth = 62;
-            this.dgvProductes.RowTemplate.Height = 24;
-            this.dgvProductes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductes.Size = new System.Drawing.Size(694, 151);
-            this.dgvProductes.TabIndex = 0;
-            this.dgvProductes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductes_ColumnHeaderMouseClick);
-            this.dgvProductes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductes_RowEnter);
+            this.flpAccions.Controls.Add(this.grTicker);
+            this.flpAccions.Controls.Add(this.grMercatProducte);
+            this.flpAccions.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpAccions.Location = new System.Drawing.Point(0, 57);
+            this.flpAccions.Name = "flpAccions";
+            this.flpAccions.Size = new System.Drawing.Size(694, 57);
+            this.flpAccions.TabIndex = 3;
             // 
-            // _IdProd
+            // grTicker
             // 
-            this._IdProd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this._IdProd.DataPropertyName = "Id";
-            this._IdProd.HeaderText = "Id";
-            this._IdProd.MinimumWidth = 8;
-            this._IdProd.Name = "_IdProd";
-            this._IdProd.ReadOnly = true;
-            this._IdProd.Width = 49;
+            this.grTicker.Controls.Add(this.tbTickerAccio);
+            this.grTicker.Location = new System.Drawing.Point(3, 3);
+            this.grTicker.Name = "grTicker";
+            this.grTicker.Size = new System.Drawing.Size(99, 43);
+            this.grTicker.TabIndex = 2;
+            this.grTicker.TabStop = false;
+            this.grTicker.Text = "Ticker";
             // 
-            // _OrdreGrid
+            // tbTickerAccio
             // 
-            this._OrdreGrid.DataPropertyName = "OrdreGrid";
-            this._OrdreGrid.HeaderText = "Ordre Grid";
-            this._OrdreGrid.MinimumWidth = 8;
-            this._OrdreGrid.Name = "_OrdreGrid";
-            this._OrdreGrid.ReadOnly = true;
-            this._OrdreGrid.Width = 150;
+            this.tbTickerAccio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbTickerAccio.Location = new System.Drawing.Point(3, 18);
+            this.tbTickerAccio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTickerAccio.Name = "tbTickerAccio";
+            this.tbTickerAccio.Size = new System.Drawing.Size(93, 22);
+            this.tbTickerAccio.TabIndex = 1;
+            this.tbTickerAccio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTickerAccio_KeyPress);
             // 
-            // colIsin
+            // grMercatProducte
             // 
-            this.colIsin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colIsin.DataPropertyName = "_Isin";
-            this.colIsin.HeaderText = "ISIN";
-            this.colIsin.MinimumWidth = 8;
-            this.colIsin.Name = "colIsin";
-            this.colIsin.ReadOnly = true;
-            this.colIsin.Width = 65;
+            this.grMercatProducte.Controls.Add(this.cbMercatProducte);
+            this.grMercatProducte.Location = new System.Drawing.Point(108, 3);
+            this.grMercatProducte.Name = "grMercatProducte";
+            this.grMercatProducte.Size = new System.Drawing.Size(112, 43);
+            this.grMercatProducte.TabIndex = 1;
+            this.grMercatProducte.TabStop = false;
+            this.grMercatProducte.Text = "Mercat";
             // 
-            // _NomProducte
+            // cbMercatProducte
             // 
-            this._NomProducte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this._NomProducte.DataPropertyName = "_NomProducte";
-            this._NomProducte.HeaderText = "Nom";
-            this._NomProducte.MinimumWidth = 200;
-            this._NomProducte.Name = "_NomProducte";
-            this._NomProducte.ReadOnly = true;
+            this.cbMercatProducte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbMercatProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMercatProducte.FormattingEnabled = true;
+            this.cbMercatProducte.Location = new System.Drawing.Point(3, 18);
+            this.cbMercatProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbMercatProducte.Name = "cbMercatProducte";
+            this.cbMercatProducte.Size = new System.Drawing.Size(106, 24);
+            this.cbMercatProducte.TabIndex = 0;
             // 
             // flpFons
             // 
             this.flpFons.Controls.Add(this.grNomProducte);
             this.flpFons.Controls.Add(this.grIsinProducte);
             this.flpFons.Controls.Add(this.gbTipusProducte);
-            this.flpFons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpFons.Location = new System.Drawing.Point(3, 170);
+            this.flpFons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpFons.Location = new System.Drawing.Point(0, 0);
             this.flpFons.Name = "flpFons";
             this.flpFons.Size = new System.Drawing.Size(694, 57);
             this.flpFons.TabIndex = 2;
@@ -446,80 +532,6 @@ namespace Inversions.GUI
             this.cbTipusProducte.TabIndex = 0;
             this.cbTipusProducte.SelectedIndexChanged += new System.EventHandler(this.cbTipusProducte_SelectedIndexChanged);
             // 
-            // flpAccions
-            // 
-            this.flpAccions.Controls.Add(this.grTicker);
-            this.flpAccions.Controls.Add(this.grMercatProducte);
-            this.flpAccions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpAccions.Location = new System.Drawing.Point(3, 227);
-            this.flpAccions.Name = "flpAccions";
-            this.flpAccions.Size = new System.Drawing.Size(694, 57);
-            this.flpAccions.TabIndex = 3;
-            // 
-            // grTicker
-            // 
-            this.grTicker.Controls.Add(this.tbTickerAccio);
-            this.grTicker.Location = new System.Drawing.Point(3, 3);
-            this.grTicker.Name = "grTicker";
-            this.grTicker.Size = new System.Drawing.Size(99, 43);
-            this.grTicker.TabIndex = 2;
-            this.grTicker.TabStop = false;
-            this.grTicker.Text = "Ticker";
-            // 
-            // tbTickerAccio
-            // 
-            this.tbTickerAccio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTickerAccio.Location = new System.Drawing.Point(3, 18);
-            this.tbTickerAccio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbTickerAccio.Name = "tbTickerAccio";
-            this.tbTickerAccio.Size = new System.Drawing.Size(93, 22);
-            this.tbTickerAccio.TabIndex = 1;
-            this.tbTickerAccio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTickerAccio_KeyPress);
-            // 
-            // grMercatProducte
-            // 
-            this.grMercatProducte.Controls.Add(this.cbMercatProducte);
-            this.grMercatProducte.Location = new System.Drawing.Point(108, 3);
-            this.grMercatProducte.Name = "grMercatProducte";
-            this.grMercatProducte.Size = new System.Drawing.Size(112, 43);
-            this.grMercatProducte.TabIndex = 1;
-            this.grMercatProducte.TabStop = false;
-            this.grMercatProducte.Text = "Mercat";
-            // 
-            // cbMercatProducte
-            // 
-            this.cbMercatProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbMercatProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMercatProducte.FormattingEnabled = true;
-            this.cbMercatProducte.Location = new System.Drawing.Point(3, 18);
-            this.cbMercatProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbMercatProducte.Name = "cbMercatProducte";
-            this.cbMercatProducte.Size = new System.Drawing.Size(106, 24);
-            this.cbMercatProducte.TabIndex = 0;
-            // 
-            // grDescripcioProducte
-            // 
-            this.grDescripcioProducte.Controls.Add(this.tbDescripcioProducte);
-            this.grDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grDescripcioProducte.Location = new System.Drawing.Point(3, 284);
-            this.grDescripcioProducte.Name = "grDescripcioProducte";
-            this.grDescripcioProducte.Size = new System.Drawing.Size(694, 118);
-            this.grDescripcioProducte.TabIndex = 4;
-            this.grDescripcioProducte.TabStop = false;
-            this.grDescripcioProducte.Text = "Descripció";
-            // 
-            // tbDescripcioProducte
-            // 
-            this.tbDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDescripcioProducte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDescripcioProducte.Location = new System.Drawing.Point(3, 18);
-            this.tbDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbDescripcioProducte.Multiline = true;
-            this.tbDescripcioProducte.Name = "tbDescripcioProducte";
-            this.tbDescripcioProducte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescripcioProducte.Size = new System.Drawing.Size(688, 97);
-            this.tbDescripcioProducte.TabIndex = 0;
-            // 
             // pnDesaCanvisProductes
             // 
             this.pnDesaCanvisProductes.Controls.Add(this.btCancelaProducte);
@@ -528,7 +540,7 @@ namespace Inversions.GUI
             this.pnDesaCanvisProductes.Controls.Add(this.btNouProducte);
             this.pnDesaCanvisProductes.Controls.Add(this.btDesaProducte);
             this.pnDesaCanvisProductes.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnDesaCanvisProductes.Location = new System.Drawing.Point(3, 402);
+            this.pnDesaCanvisProductes.Location = new System.Drawing.Point(3, 467);
             this.pnDesaCanvisProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnDesaCanvisProductes.Name = "pnDesaCanvisProductes";
             this.pnDesaCanvisProductes.Size = new System.Drawing.Size(694, 44);
@@ -637,25 +649,26 @@ namespace Inversions.GUI
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpreses)).EndInit();
             this.pnDesaCanvisEmpreses.ResumeLayout(false);
             this.grProductes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.grDescripcioProducte.ResumeLayout(false);
+            this.grDescripcioProducte.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.grOrdreGridProducte.ResumeLayout(false);
             this.grOrdreGridProducte.PerformLayout();
             this.grMonedaProducte.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).EndInit();
+            this.flpAccions.ResumeLayout(false);
+            this.grTicker.ResumeLayout(false);
+            this.grTicker.PerformLayout();
+            this.grMercatProducte.ResumeLayout(false);
             this.flpFons.ResumeLayout(false);
             this.grNomProducte.ResumeLayout(false);
             this.grNomProducte.PerformLayout();
             this.grIsinProducte.ResumeLayout(false);
             this.grIsinProducte.PerformLayout();
             this.gbTipusProducte.ResumeLayout(false);
-            this.flpAccions.ResumeLayout(false);
-            this.grTicker.ResumeLayout(false);
-            this.grTicker.PerformLayout();
-            this.grMercatProducte.ResumeLayout(false);
-            this.grDescripcioProducte.ResumeLayout(false);
-            this.grDescripcioProducte.PerformLayout();
             this.pnDesaCanvisProductes.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -707,5 +720,6 @@ namespace Inversions.GUI
         private Controls.NumericTextBox2 ntbOrdreGridProducte;
         private System.Windows.Forms.GroupBox grMonedaProducte;
         private Controls.ComboBox2 cbMonedaProducte;
+        private System.Windows.Forms.Panel panel1;
     }
 }
