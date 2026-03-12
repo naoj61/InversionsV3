@@ -48,13 +48,14 @@ namespace Inversions.GUI
             this.panel1 = new System.Windows.Forms.Panel();
             this.grDescripcioProducte = new System.Windows.Forms.GroupBox();
             this.tbDescripcioProducte = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpProducte = new System.Windows.Forms.FlowLayoutPanel();
             this.grOrdreGridProducte = new System.Windows.Forms.GroupBox();
             this.ntbOrdreGridProducte = new Controls.NumericTextBox2();
             this.grMonedaProducte = new System.Windows.Forms.GroupBox();
             this.cbMonedaProducte = new Controls.ComboBox2();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbTickerExchange = new System.Windows.Forms.TextBox();
+            this.ckBuscaTickerExchange = new System.Windows.Forms.CheckBox();
             this.flpAccions = new System.Windows.Forms.FlowLayoutPanel();
             this.grTicker = new System.Windows.Forms.GroupBox();
             this.tbTickerAccio = new System.Windows.Forms.TextBox();
@@ -82,7 +83,7 @@ namespace Inversions.GUI
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductes)).BeginInit();
             this.panel1.SuspendLayout();
             this.grDescripcioProducte.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flpProducte.SuspendLayout();
             this.grOrdreGridProducte.SuspendLayout();
             this.grMonedaProducte.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -295,7 +296,7 @@ namespace Inversions.GUI
             // panel1
             // 
             this.panel1.Controls.Add(this.grDescripcioProducte);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.flpProducte);
             this.panel1.Controls.Add(this.flpAccions);
             this.panel1.Controls.Add(this.flpFons);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -330,17 +331,18 @@ namespace Inversions.GUI
             this.tbDescripcioProducte.Size = new System.Drawing.Size(776, 111);
             this.tbDescripcioProducte.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // flpProducte
             // 
-            this.flowLayoutPanel1.Controls.Add(this.grOrdreGridProducte);
-            this.flowLayoutPanel1.Controls.Add(this.grMonedaProducte);
-            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 142);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(782, 75);
-            this.flowLayoutPanel1.TabIndex = 6;
+            this.flpProducte.Controls.Add(this.grOrdreGridProducte);
+            this.flpProducte.Controls.Add(this.grMonedaProducte);
+            this.flpProducte.Controls.Add(this.groupBox2);
+            this.flpProducte.Controls.Add(this.ckBuscaTickerExchange);
+            this.flpProducte.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpProducte.Location = new System.Drawing.Point(0, 142);
+            this.flpProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.flpProducte.Name = "flpProducte";
+            this.flpProducte.Size = new System.Drawing.Size(782, 75);
+            this.flpProducte.TabIndex = 6;
             // 
             // grOrdreGridProducte
             // 
@@ -421,6 +423,17 @@ namespace Inversions.GUI
             this.tbTickerExchange.ReadOnly = true;
             this.tbTickerExchange.Size = new System.Drawing.Size(226, 25);
             this.tbTickerExchange.TabIndex = 0;
+            // 
+            // ckBuscaTickerExchange
+            // 
+            this.ckBuscaTickerExchange.AutoSize = true;
+            this.ckBuscaTickerExchange.Location = new System.Drawing.Point(550, 10);
+            this.ckBuscaTickerExchange.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.ckBuscaTickerExchange.Name = "ckBuscaTickerExchange";
+            this.ckBuscaTickerExchange.Size = new System.Drawing.Size(222, 24);
+            this.ckBuscaTickerExchange.TabIndex = 3;
+            this.ckBuscaTickerExchange.Text = "Busca Ticker Exchange";
+            this.ckBuscaTickerExchange.UseVisualStyleBackColor = true;
             // 
             // flpAccions
             // 
@@ -680,7 +693,8 @@ namespace Inversions.GUI
             this.panel1.ResumeLayout(false);
             this.grDescripcioProducte.ResumeLayout(false);
             this.grDescripcioProducte.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flpProducte.ResumeLayout(false);
+            this.flpProducte.PerformLayout();
             this.grOrdreGridProducte.ResumeLayout(false);
             this.grOrdreGridProducte.PerformLayout();
             this.grMonedaProducte.ResumeLayout(false);
@@ -740,7 +754,7 @@ namespace Inversions.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn _Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn _Nom;
         private System.Windows.Forms.DataGridViewComboBoxColumn _TipusEmpresa;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flpProducte;
         private System.Windows.Forms.GroupBox grNomProducte;
         private System.Windows.Forms.TextBox tbNomProducte;
         private System.Windows.Forms.GroupBox grOrdreGridProducte;
@@ -748,5 +762,6 @@ namespace Inversions.GUI
         private System.Windows.Forms.GroupBox grMonedaProducte;
         private Controls.ComboBox2 cbMonedaProducte;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox ckBuscaTickerExchange;
     }
 }
