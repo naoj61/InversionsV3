@@ -104,11 +104,11 @@ namespace Inversions.GUI
             this.grEmpresa.Controls.Add(this.dgvEmpreses);
             this.grEmpresa.Controls.Add(this.pnDesaCanvisEmpreses);
             this.grEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grEmpresa.Location = new System.Drawing.Point(3, 57);
-            this.grEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grEmpresa.Location = new System.Drawing.Point(3, 71);
+            this.grEmpresa.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grEmpresa.Name = "grEmpresa";
-            this.grEmpresa.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grEmpresa.Size = new System.Drawing.Size(805, 515);
+            this.grEmpresa.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.grEmpresa.Size = new System.Drawing.Size(906, 644);
             this.grEmpresa.TabIndex = 1;
             this.grEmpresa.TabStop = false;
             this.grEmpresa.Text = "Empreses";
@@ -121,18 +121,19 @@ namespace Inversions.GUI
             this._Nom,
             this._TipusEmpresa});
             this.dgvEmpreses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEmpreses.Location = new System.Drawing.Point(3, 19);
-            this.dgvEmpreses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvEmpreses.Location = new System.Drawing.Point(3, 23);
+            this.dgvEmpreses.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.dgvEmpreses.MultiSelect = false;
             this.dgvEmpreses.Name = "dgvEmpreses";
-            this.dgvEmpreses.RowHeadersWidth = 62;
+            this.dgvEmpreses.RowHeadersWidth = 25;
             this.dgvEmpreses.RowTemplate.Height = 24;
-            this.dgvEmpreses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvEmpreses.Size = new System.Drawing.Size(799, 448);
+            this.dgvEmpreses.Size = new System.Drawing.Size(900, 561);
             this.dgvEmpreses.TabIndex = 0;
             this.dgvEmpreses.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvEmpreses_CellValidating);
+            this.dgvEmpreses.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmpreses_RowHeaderMouseClick);
             this.dgvEmpreses.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvEmpreses_RowValidating);
             this.dgvEmpreses.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvEmpreses_UserDeletedRow);
+            this.dgvEmpreses.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvEmpreses_UserDeletingRow);
             // 
             // _Id
             // 
@@ -160,7 +161,7 @@ namespace Inversions.GUI
             this._TipusEmpresa.Name = "_TipusEmpresa";
             this._TipusEmpresa.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this._TipusEmpresa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this._TipusEmpresa.Width = 129;
+            this._TipusEmpresa.Width = 151;
             // 
             // pnDesaCanvisEmpreses
             // 
@@ -169,21 +170,21 @@ namespace Inversions.GUI
             this.pnDesaCanvisEmpreses.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnDesaCanvisEmpreses.Enabled = false;
             this.pnDesaCanvisEmpreses.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnDesaCanvisEmpreses.Location = new System.Drawing.Point(3, 467);
-            this.pnDesaCanvisEmpreses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnDesaCanvisEmpreses.Location = new System.Drawing.Point(3, 584);
+            this.pnDesaCanvisEmpreses.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.pnDesaCanvisEmpreses.Name = "pnDesaCanvisEmpreses";
-            this.pnDesaCanvisEmpreses.Padding = new System.Windows.Forms.Padding(5);
-            this.pnDesaCanvisEmpreses.Size = new System.Drawing.Size(799, 44);
+            this.pnDesaCanvisEmpreses.Padding = new System.Windows.Forms.Padding(6);
+            this.pnDesaCanvisEmpreses.Size = new System.Drawing.Size(900, 55);
             this.pnDesaCanvisEmpreses.TabIndex = 1;
             this.pnDesaCanvisEmpreses.Text = "Canvis pendents de desar";
             // 
             // btCancelaCanvisEmpreses
             // 
             this.btCancelaCanvisEmpreses.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancelaCanvisEmpreses.Location = new System.Drawing.Point(699, 9);
+            this.btCancelaCanvisEmpreses.Location = new System.Drawing.Point(787, 11);
             this.btCancelaCanvisEmpreses.Margin = new System.Windows.Forms.Padding(0);
             this.btCancelaCanvisEmpreses.Name = "btCancelaCanvisEmpreses";
-            this.btCancelaCanvisEmpreses.Size = new System.Drawing.Size(95, 31);
+            this.btCancelaCanvisEmpreses.Size = new System.Drawing.Size(107, 39);
             this.btCancelaCanvisEmpreses.TabIndex = 1;
             this.btCancelaCanvisEmpreses.Text = "Cancel·la";
             this.btCancelaCanvisEmpreses.UseVisualStyleBackColor = true;
@@ -192,10 +193,10 @@ namespace Inversions.GUI
             // btDesaCanvisEmpreses
             // 
             this.btDesaCanvisEmpreses.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDesaCanvisEmpreses.Location = new System.Drawing.Point(596, 9);
+            this.btDesaCanvisEmpreses.Location = new System.Drawing.Point(671, 11);
             this.btDesaCanvisEmpreses.Margin = new System.Windows.Forms.Padding(0);
             this.btDesaCanvisEmpreses.Name = "btDesaCanvisEmpreses";
-            this.btDesaCanvisEmpreses.Size = new System.Drawing.Size(95, 31);
+            this.btDesaCanvisEmpreses.Size = new System.Drawing.Size(107, 39);
             this.btDesaCanvisEmpreses.TabIndex = 0;
             this.btDesaCanvisEmpreses.Text = "Desa";
             this.btDesaCanvisEmpreses.UseVisualStyleBackColor = true;
@@ -209,11 +210,11 @@ namespace Inversions.GUI
             this.grProductes.Controls.Add(this.panel1);
             this.grProductes.Controls.Add(this.pnDesaCanvisProductes);
             this.grProductes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grProductes.Location = new System.Drawing.Point(811, 57);
-            this.grProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grProductes.Location = new System.Drawing.Point(912, 71);
+            this.grProductes.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grProductes.Name = "grProductes";
-            this.grProductes.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grProductes.Size = new System.Drawing.Size(700, 515);
+            this.grProductes.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.grProductes.Size = new System.Drawing.Size(788, 644);
             this.grProductes.TabIndex = 2;
             this.grProductes.TabStop = false;
             this.grProductes.Text = "Productes";
@@ -240,14 +241,15 @@ namespace Inversions.GUI
             this.dgvProductes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvProductes.EnableHeadersVisualStyles = false;
-            this.dgvProductes.Location = new System.Drawing.Point(3, 19);
+            this.dgvProductes.Location = new System.Drawing.Point(3, 23);
+            this.dgvProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvProductes.MultiSelect = false;
             this.dgvProductes.Name = "dgvProductes";
             this.dgvProductes.ReadOnly = true;
-            this.dgvProductes.RowHeadersWidth = 62;
+            this.dgvProductes.RowHeadersWidth = 10;
             this.dgvProductes.RowTemplate.Height = 24;
             this.dgvProductes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductes.Size = new System.Drawing.Size(694, 165);
+            this.dgvProductes.Size = new System.Drawing.Size(782, 207);
             this.dgvProductes.TabIndex = 0;
             this.dgvProductes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductes_ColumnHeaderMouseClick);
             this.dgvProductes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductes_RowEnter);
@@ -260,7 +262,7 @@ namespace Inversions.GUI
             this._IdProd.MinimumWidth = 8;
             this._IdProd.Name = "_IdProd";
             this._IdProd.ReadOnly = true;
-            this._IdProd.Width = 49;
+            this._IdProd.Width = 61;
             // 
             // _OrdreGrid
             // 
@@ -279,7 +281,7 @@ namespace Inversions.GUI
             this.colIsin.MinimumWidth = 8;
             this.colIsin.Name = "colIsin";
             this.colIsin.ReadOnly = true;
-            this.colIsin.Width = 65;
+            this.colIsin.Width = 81;
             // 
             // _NomProducte
             // 
@@ -297,18 +299,21 @@ namespace Inversions.GUI
             this.panel1.Controls.Add(this.flpAccions);
             this.panel1.Controls.Add(this.flpFons);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 184);
+            this.panel1.Location = new System.Drawing.Point(3, 230);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(694, 283);
+            this.panel1.Size = new System.Drawing.Size(782, 354);
             this.panel1.TabIndex = 5;
             // 
             // grDescripcioProducte
             // 
             this.grDescripcioProducte.Controls.Add(this.tbDescripcioProducte);
             this.grDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDescripcioProducte.Location = new System.Drawing.Point(0, 174);
+            this.grDescripcioProducte.Location = new System.Drawing.Point(0, 217);
+            this.grDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grDescripcioProducte.Name = "grDescripcioProducte";
-            this.grDescripcioProducte.Size = new System.Drawing.Size(694, 109);
+            this.grDescripcioProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grDescripcioProducte.Size = new System.Drawing.Size(782, 137);
             this.grDescripcioProducte.TabIndex = 4;
             this.grDescripcioProducte.TabStop = false;
             this.grDescripcioProducte.Text = "Descripció";
@@ -317,12 +322,12 @@ namespace Inversions.GUI
             // 
             this.tbDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbDescripcioProducte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDescripcioProducte.Location = new System.Drawing.Point(3, 18);
-            this.tbDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbDescripcioProducte.Location = new System.Drawing.Point(3, 22);
+            this.tbDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tbDescripcioProducte.Multiline = true;
             this.tbDescripcioProducte.Name = "tbDescripcioProducte";
             this.tbDescripcioProducte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescripcioProducte.Size = new System.Drawing.Size(688, 88);
+            this.tbDescripcioProducte.Size = new System.Drawing.Size(776, 111);
             this.tbDescripcioProducte.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -331,17 +336,20 @@ namespace Inversions.GUI
             this.flowLayoutPanel1.Controls.Add(this.grMonedaProducte);
             this.flowLayoutPanel1.Controls.Add(this.groupBox2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 114);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 142);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(694, 60);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(782, 75);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // grOrdreGridProducte
             // 
             this.grOrdreGridProducte.Controls.Add(this.ntbOrdreGridProducte);
-            this.grOrdreGridProducte.Location = new System.Drawing.Point(3, 3);
+            this.grOrdreGridProducte.Location = new System.Drawing.Point(3, 4);
+            this.grOrdreGridProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grOrdreGridProducte.Name = "grOrdreGridProducte";
-            this.grOrdreGridProducte.Size = new System.Drawing.Size(103, 43);
+            this.grOrdreGridProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grOrdreGridProducte.Size = new System.Drawing.Size(116, 54);
             this.grOrdreGridProducte.TabIndex = 2;
             this.grOrdreGridProducte.TabStop = false;
             this.grOrdreGridProducte.Text = "Ordre Grid";
@@ -356,10 +364,10 @@ namespace Inversions.GUI
             this.ntbOrdreGridProducte._PermetTextNull = false;
             this.ntbOrdreGridProducte.BackColor = System.Drawing.SystemColors.Window;
             this.ntbOrdreGridProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ntbOrdreGridProducte.Location = new System.Drawing.Point(3, 18);
-            this.ntbOrdreGridProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ntbOrdreGridProducte.Location = new System.Drawing.Point(3, 22);
+            this.ntbOrdreGridProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ntbOrdreGridProducte.Name = "ntbOrdreGridProducte";
-            this.ntbOrdreGridProducte.Size = new System.Drawing.Size(97, 22);
+            this.ntbOrdreGridProducte.Size = new System.Drawing.Size(110, 25);
             this.ntbOrdreGridProducte.TabIndex = 0;
             this.ntbOrdreGridProducte.Text = "999";
             this.ntbOrdreGridProducte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -372,9 +380,11 @@ namespace Inversions.GUI
             // grMonedaProducte
             // 
             this.grMonedaProducte.Controls.Add(this.cbMonedaProducte);
-            this.grMonedaProducte.Location = new System.Drawing.Point(112, 3);
+            this.grMonedaProducte.Location = new System.Drawing.Point(125, 4);
+            this.grMonedaProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grMonedaProducte.Name = "grMonedaProducte";
-            this.grMonedaProducte.Size = new System.Drawing.Size(161, 43);
+            this.grMonedaProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grMonedaProducte.Size = new System.Drawing.Size(181, 54);
             this.grMonedaProducte.TabIndex = 1;
             this.grMonedaProducte.TabStop = false;
             this.grMonedaProducte.Text = "Moneda";
@@ -384,18 +394,20 @@ namespace Inversions.GUI
             this.cbMonedaProducte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbMonedaProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMonedaProducte.FormattingEnabled = true;
-            this.cbMonedaProducte.Location = new System.Drawing.Point(3, 18);
-            this.cbMonedaProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbMonedaProducte.Location = new System.Drawing.Point(3, 22);
+            this.cbMonedaProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cbMonedaProducte.Name = "cbMonedaProducte";
-            this.cbMonedaProducte.Size = new System.Drawing.Size(155, 24);
+            this.cbMonedaProducte.Size = new System.Drawing.Size(175, 28);
             this.cbMonedaProducte.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbTickerExchange);
-            this.groupBox2.Location = new System.Drawing.Point(279, 3);
+            this.groupBox2.Location = new System.Drawing.Point(312, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(206, 43);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(232, 54);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ticker Exchange";
@@ -403,11 +415,11 @@ namespace Inversions.GUI
             // tbTickerExchange
             // 
             this.tbTickerExchange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTickerExchange.Location = new System.Drawing.Point(3, 18);
-            this.tbTickerExchange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTickerExchange.Location = new System.Drawing.Point(3, 22);
+            this.tbTickerExchange.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tbTickerExchange.Name = "tbTickerExchange";
             this.tbTickerExchange.ReadOnly = true;
-            this.tbTickerExchange.Size = new System.Drawing.Size(200, 22);
+            this.tbTickerExchange.Size = new System.Drawing.Size(226, 25);
             this.tbTickerExchange.TabIndex = 0;
             // 
             // flpAccions
@@ -415,17 +427,20 @@ namespace Inversions.GUI
             this.flpAccions.Controls.Add(this.grTicker);
             this.flpAccions.Controls.Add(this.grMercatProducte);
             this.flpAccions.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flpAccions.Location = new System.Drawing.Point(0, 57);
+            this.flpAccions.Location = new System.Drawing.Point(0, 71);
+            this.flpAccions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flpAccions.Name = "flpAccions";
-            this.flpAccions.Size = new System.Drawing.Size(694, 57);
+            this.flpAccions.Size = new System.Drawing.Size(782, 71);
             this.flpAccions.TabIndex = 3;
             // 
             // grTicker
             // 
             this.grTicker.Controls.Add(this.tbTickerAccio);
-            this.grTicker.Location = new System.Drawing.Point(3, 3);
+            this.grTicker.Location = new System.Drawing.Point(3, 4);
+            this.grTicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grTicker.Name = "grTicker";
-            this.grTicker.Size = new System.Drawing.Size(99, 43);
+            this.grTicker.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grTicker.Size = new System.Drawing.Size(111, 54);
             this.grTicker.TabIndex = 2;
             this.grTicker.TabStop = false;
             this.grTicker.Text = "Ticker";
@@ -433,19 +448,21 @@ namespace Inversions.GUI
             // tbTickerAccio
             // 
             this.tbTickerAccio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTickerAccio.Location = new System.Drawing.Point(3, 18);
-            this.tbTickerAccio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTickerAccio.Location = new System.Drawing.Point(3, 22);
+            this.tbTickerAccio.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tbTickerAccio.Name = "tbTickerAccio";
-            this.tbTickerAccio.Size = new System.Drawing.Size(93, 22);
+            this.tbTickerAccio.Size = new System.Drawing.Size(105, 25);
             this.tbTickerAccio.TabIndex = 1;
             this.tbTickerAccio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTickerAccio_KeyPress);
             // 
             // grMercatProducte
             // 
             this.grMercatProducte.Controls.Add(this.cbMercatProducte);
-            this.grMercatProducte.Location = new System.Drawing.Point(108, 3);
+            this.grMercatProducte.Location = new System.Drawing.Point(120, 4);
+            this.grMercatProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grMercatProducte.Name = "grMercatProducte";
-            this.grMercatProducte.Size = new System.Drawing.Size(112, 43);
+            this.grMercatProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grMercatProducte.Size = new System.Drawing.Size(126, 54);
             this.grMercatProducte.TabIndex = 1;
             this.grMercatProducte.TabStop = false;
             this.grMercatProducte.Text = "Mercat";
@@ -455,10 +472,10 @@ namespace Inversions.GUI
             this.cbMercatProducte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbMercatProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMercatProducte.FormattingEnabled = true;
-            this.cbMercatProducte.Location = new System.Drawing.Point(3, 18);
-            this.cbMercatProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbMercatProducte.Location = new System.Drawing.Point(3, 22);
+            this.cbMercatProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cbMercatProducte.Name = "cbMercatProducte";
-            this.cbMercatProducte.Size = new System.Drawing.Size(106, 24);
+            this.cbMercatProducte.Size = new System.Drawing.Size(120, 28);
             this.cbMercatProducte.TabIndex = 0;
             // 
             // flpFons
@@ -468,16 +485,19 @@ namespace Inversions.GUI
             this.flpFons.Controls.Add(this.gbTipusProducte);
             this.flpFons.Dock = System.Windows.Forms.DockStyle.Top;
             this.flpFons.Location = new System.Drawing.Point(0, 0);
+            this.flpFons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flpFons.Name = "flpFons";
-            this.flpFons.Size = new System.Drawing.Size(694, 57);
+            this.flpFons.Size = new System.Drawing.Size(782, 71);
             this.flpFons.TabIndex = 2;
             // 
             // grNomProducte
             // 
             this.grNomProducte.Controls.Add(this.tbNomProducte);
-            this.grNomProducte.Location = new System.Drawing.Point(3, 3);
+            this.grNomProducte.Location = new System.Drawing.Point(3, 4);
+            this.grNomProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grNomProducte.Name = "grNomProducte";
-            this.grNomProducte.Size = new System.Drawing.Size(326, 43);
+            this.grNomProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grNomProducte.Size = new System.Drawing.Size(367, 54);
             this.grNomProducte.TabIndex = 0;
             this.grNomProducte.TabStop = false;
             this.grNomProducte.Text = "Nom";
@@ -485,18 +505,20 @@ namespace Inversions.GUI
             // tbNomProducte
             // 
             this.tbNomProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNomProducte.Location = new System.Drawing.Point(3, 18);
-            this.tbNomProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbNomProducte.Location = new System.Drawing.Point(3, 22);
+            this.tbNomProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tbNomProducte.Name = "tbNomProducte";
-            this.tbNomProducte.Size = new System.Drawing.Size(320, 22);
+            this.tbNomProducte.Size = new System.Drawing.Size(361, 25);
             this.tbNomProducte.TabIndex = 0;
             // 
             // grIsinProducte
             // 
             this.grIsinProducte.Controls.Add(this.tbIsinProducte);
-            this.grIsinProducte.Location = new System.Drawing.Point(335, 3);
+            this.grIsinProducte.Location = new System.Drawing.Point(376, 4);
+            this.grIsinProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grIsinProducte.Name = "grIsinProducte";
-            this.grIsinProducte.Size = new System.Drawing.Size(261, 43);
+            this.grIsinProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grIsinProducte.Size = new System.Drawing.Size(294, 54);
             this.grIsinProducte.TabIndex = 0;
             this.grIsinProducte.TabStop = false;
             this.grIsinProducte.Text = "ISIN";
@@ -504,18 +526,20 @@ namespace Inversions.GUI
             // tbIsinProducte
             // 
             this.tbIsinProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbIsinProducte.Location = new System.Drawing.Point(3, 18);
-            this.tbIsinProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbIsinProducte.Location = new System.Drawing.Point(3, 22);
+            this.tbIsinProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tbIsinProducte.Name = "tbIsinProducte";
-            this.tbIsinProducte.Size = new System.Drawing.Size(255, 22);
+            this.tbIsinProducte.Size = new System.Drawing.Size(288, 25);
             this.tbIsinProducte.TabIndex = 0;
             // 
             // gbTipusProducte
             // 
             this.gbTipusProducte.Controls.Add(this.cbTipusProducte);
-            this.gbTipusProducte.Location = new System.Drawing.Point(602, 3);
+            this.gbTipusProducte.Location = new System.Drawing.Point(676, 4);
+            this.gbTipusProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbTipusProducte.Name = "gbTipusProducte";
-            this.gbTipusProducte.Size = new System.Drawing.Size(88, 43);
+            this.gbTipusProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbTipusProducte.Size = new System.Drawing.Size(99, 54);
             this.gbTipusProducte.TabIndex = 1;
             this.gbTipusProducte.TabStop = false;
             this.gbTipusProducte.Text = "Tipus";
@@ -525,10 +549,10 @@ namespace Inversions.GUI
             this.cbTipusProducte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbTipusProducte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipusProducte.FormattingEnabled = true;
-            this.cbTipusProducte.Location = new System.Drawing.Point(3, 18);
-            this.cbTipusProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTipusProducte.Location = new System.Drawing.Point(3, 22);
+            this.cbTipusProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cbTipusProducte.Name = "cbTipusProducte";
-            this.cbTipusProducte.Size = new System.Drawing.Size(82, 24);
+            this.cbTipusProducte.Size = new System.Drawing.Size(93, 28);
             this.cbTipusProducte.TabIndex = 0;
             this.cbTipusProducte.SelectedIndexChanged += new System.EventHandler(this.cbTipusProducte_SelectedIndexChanged);
             // 
@@ -540,19 +564,19 @@ namespace Inversions.GUI
             this.pnDesaCanvisProductes.Controls.Add(this.btNouProducte);
             this.pnDesaCanvisProductes.Controls.Add(this.btDesaProducte);
             this.pnDesaCanvisProductes.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnDesaCanvisProductes.Location = new System.Drawing.Point(3, 467);
-            this.pnDesaCanvisProductes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnDesaCanvisProductes.Location = new System.Drawing.Point(3, 584);
+            this.pnDesaCanvisProductes.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.pnDesaCanvisProductes.Name = "pnDesaCanvisProductes";
-            this.pnDesaCanvisProductes.Size = new System.Drawing.Size(694, 44);
+            this.pnDesaCanvisProductes.Size = new System.Drawing.Size(782, 55);
             this.pnDesaCanvisProductes.TabIndex = 5;
             // 
             // btCancelaProducte
             // 
             this.btCancelaProducte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancelaProducte.Location = new System.Drawing.Point(590, 9);
+            this.btCancelaProducte.Location = new System.Drawing.Point(665, 11);
             this.btCancelaProducte.Margin = new System.Windows.Forms.Padding(0);
             this.btCancelaProducte.Name = "btCancelaProducte";
-            this.btCancelaProducte.Size = new System.Drawing.Size(95, 31);
+            this.btCancelaProducte.Size = new System.Drawing.Size(107, 39);
             this.btCancelaProducte.TabIndex = 4;
             this.btCancelaProducte.Text = "Cancel·la";
             this.btCancelaProducte.UseVisualStyleBackColor = true;
@@ -561,10 +585,10 @@ namespace Inversions.GUI
             // btEsborraProducte
             // 
             this.btEsborraProducte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btEsborraProducte.Location = new System.Drawing.Point(116, 9);
+            this.btEsborraProducte.Location = new System.Drawing.Point(130, 11);
             this.btEsborraProducte.Margin = new System.Windows.Forms.Padding(0);
             this.btEsborraProducte.Name = "btEsborraProducte";
-            this.btEsborraProducte.Size = new System.Drawing.Size(95, 31);
+            this.btEsborraProducte.Size = new System.Drawing.Size(107, 39);
             this.btEsborraProducte.TabIndex = 1;
             this.btEsborraProducte.Text = "Esborra";
             this.btEsborraProducte.UseVisualStyleBackColor = true;
@@ -573,10 +597,10 @@ namespace Inversions.GUI
             // btEditaProducte
             // 
             this.btEditaProducte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btEditaProducte.Location = new System.Drawing.Point(222, 9);
+            this.btEditaProducte.Location = new System.Drawing.Point(250, 11);
             this.btEditaProducte.Margin = new System.Windows.Forms.Padding(0);
             this.btEditaProducte.Name = "btEditaProducte";
-            this.btEditaProducte.Size = new System.Drawing.Size(95, 31);
+            this.btEditaProducte.Size = new System.Drawing.Size(107, 39);
             this.btEditaProducte.TabIndex = 2;
             this.btEditaProducte.Text = "Edita";
             this.btEditaProducte.UseVisualStyleBackColor = true;
@@ -585,10 +609,10 @@ namespace Inversions.GUI
             // btNouProducte
             // 
             this.btNouProducte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btNouProducte.Location = new System.Drawing.Point(12, 9);
+            this.btNouProducte.Location = new System.Drawing.Point(14, 11);
             this.btNouProducte.Margin = new System.Windows.Forms.Padding(0);
             this.btNouProducte.Name = "btNouProducte";
-            this.btNouProducte.Size = new System.Drawing.Size(95, 31);
+            this.btNouProducte.Size = new System.Drawing.Size(107, 39);
             this.btNouProducte.TabIndex = 0;
             this.btNouProducte.Text = "Nou";
             this.btNouProducte.UseVisualStyleBackColor = true;
@@ -597,10 +621,10 @@ namespace Inversions.GUI
             // btDesaProducte
             // 
             this.btDesaProducte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDesaProducte.Location = new System.Drawing.Point(485, 9);
+            this.btDesaProducte.Location = new System.Drawing.Point(547, 11);
             this.btDesaProducte.Margin = new System.Windows.Forms.Padding(0);
             this.btDesaProducte.Name = "btDesaProducte";
-            this.btDesaProducte.Size = new System.Drawing.Size(95, 31);
+            this.btDesaProducte.Size = new System.Drawing.Size(107, 39);
             this.btDesaProducte.TabIndex = 3;
             this.btDesaProducte.Text = "Desa";
             this.btDesaProducte.UseVisualStyleBackColor = true;
@@ -611,13 +635,14 @@ namespace Inversions.GUI
             this.ccbFiltres.CountFormat = "{0} seleccionats";
             this.ccbFiltres.DisplayMember = null;
             this.ccbFiltres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ccbFiltres.Location = new System.Drawing.Point(3, 18);
+            this.ccbFiltres.Location = new System.Drawing.Point(3, 22);
+            this.ccbFiltres.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ccbFiltres.Name = "ccbFiltres";
             this.ccbFiltres.Placeholder = "Selecciona...";
             this.ccbFiltres.Separator = ", ";
             this.ccbFiltres.ShowCountInsteadOfList = false;
             this.ccbFiltres.ShowPlaceholderAlways = false;
-            this.ccbFiltres.Size = new System.Drawing.Size(246, 31);
+            this.ccbFiltres.Size = new System.Drawing.Size(278, 39);
             this.ccbFiltres.TabIndex = 3;
             this.ccbFiltres.ValueMember = null;
             this.ccbFiltres.DropDownClosed += new System.EventHandler<Controls.DropDownClosedEventArgs>(this.ccbFiltres_DropDownClosed);
@@ -626,24 +651,26 @@ namespace Inversions.GUI
             // 
             this.groupBox3.Controls.Add(this.ccbFiltres);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(6, 3);
+            this.groupBox3.Location = new System.Drawing.Point(7, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(252, 52);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox3.Size = new System.Drawing.Size(284, 65);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filtres";
             // 
             // EmpresesProductesTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grProductes);
             this.Controls.Add(this.grEmpresa);
             this.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.MinimumSize = new System.Drawing.Size(1301, 655);
+            this.MinimumSize = new System.Drawing.Size(1464, 819);
             this.Name = "EmpresesProductesTab";
-            this.Size = new System.Drawing.Size(1514, 655);
+            this.Size = new System.Drawing.Size(1703, 819);
             this.Load += new System.EventHandler(this.EmpresesProductesTab_Load);
             this.grEmpresa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpreses)).EndInit();

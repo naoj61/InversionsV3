@@ -1,15 +1,15 @@
 -- Taula Monedes
 	-- Creating table 'Monedes'
-		CREATE TABLE [dbo].[Monedes] (
-			[Codi] char(3)  NOT NULL,
-			[Ordre] Int  NOT NULL,
-			[TickerExchange] varchar(20)  NOT NULL,
-			[Descripcio] varchar(25) NOT NULL);
+	CREATE TABLE [dbo].[Monedes] (
+		[Codi] char(3)  NOT NULL,
+		[Ordre] Int  NOT NULL,
+		[TickerExchange] varchar(20)  NOT NULL,
+		[Descripcio] varchar(25) NOT NULL);
 
 	-- Creating primary key on [Codi] in table 'Monedes'
-		ALTER TABLE [dbo].[Monedes]
-			ADD CONSTRAINT [PK_Monedes]
-			PRIMARY KEY CLUSTERED ([Codi] ASC);
+	ALTER TABLE [dbo].[Monedes]
+		ADD CONSTRAINT [PK_Monedes]
+		PRIMARY KEY CLUSTERED ([Codi] ASC);
 
 	INSERT INTO Monedes (Codi, Ordre, Descripcio, TickerExchange)
 		VALUES ('EUR', 1, 'Euro', 'EUREUR.FOREX');
@@ -75,10 +75,10 @@
 			ON DELETE NO ACTION ON UPDATE NO ACTION;
 	
 -- Taula Productes_ProdFons
-	-- Permeto nulls
-	ALTER TABLE Productes_ProdFons ALTER COLUMN ISIN varchar(25);
 	-- Elimino constraint que no em permet NULL duplicats.
 	ALTER TABLE Productes_ProdFons DROP CONSTRAINT IU_IsinProductes_ProdFons;
+	-- Permeto nulls
+	ALTER TABLE Productes_ProdFons ALTER COLUMN ISIN varchar(25);
 	-- Creo index que permet NULL duplicats.
 	CREATE UNIQUE INDEX IU_Isin_Productes_ProdFons ON Productes_ProdFons (ISIN) WHERE ISIN IS NOT NULL;
 	

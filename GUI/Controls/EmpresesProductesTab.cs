@@ -63,16 +63,12 @@ namespace Inversions.GUI
                 flpFons.Visible = false;
                 flpAccions.Visible = true;
                 grDescripcioProducte.Visible = false;
-
-                ntbOrdreGridProducte.Focus();
             }
             else if (vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons)
             {
                 flpFons.Visible = true;
                 flpAccions.Visible = false;
                 grDescripcioProducte.Visible = true;
-
-                tbNomProducte.Focus();
             }
         }
 
@@ -358,6 +354,29 @@ namespace Inversions.GUI
             }
         }
 
+
+        private void desaCanvisEmpreses()
+        {
+            try
+            {
+                vConnEmpreses.SaveChanges();
+
+                Empresa.RefrescaTaula();
+
+                ActivaRefrescaEnTabs(this);
+
+                pnDesaCanvisEmpreses.Enabled = false;
+            }
+            catch (DbEntityValidationException ex2)
+            {
+                Utilitats.EscriuLog(ex2);
+            }
+            catch (Exception ex1)
+            {
+                Utilitats.EscriuLog(ex1);
+            }
+        }
+
         #endregion *** Mètodes ***
 
 
@@ -419,7 +438,7 @@ namespace Inversions.GUI
         {
             try
             {
-                if (String.IsNullOrWhiteSpace(tbNomProducte.Text))
+                if (vProducteSeleccionat is ProdFons && String.IsNullOrWhiteSpace(tbNomProducte.Text))
                     throw new ApplicationException("El nom del producte no pot ser buit");
                 if (cbMonedaProducte.SelectedItem == null)
                     throw new ApplicationException("S'ha de seleccionar una moneda");
@@ -450,22 +469,23 @@ namespace Inversions.GUI
 
                     string tickerIsin = null;
 
-                    if (empresa.TipusEmpresa == TipusEmpresa.Accions)
+                    if (vProducteSeleccionat is ProdAccions)
                     {
                         var prodAccio = (ProdAccions)prod;
 
-                        if (prodAccio.Ticker != tbTickerAccio.Text.ToUpper())
-                            tickerIsin = tbTickerAccio.Text.ToUpper();
+                        var ticker = String.IsNullOrWhiteSpace(tbTickerAccio.Text) ? null : tbTickerAccio.Text.Trim().ToUpper();
+
+                        if (prodAccio.Ticker != ticker)
+                            tickerIsin = ticker;
 
                         prodAccio.MercatId = ((Mercat)cbMercatProducte.SelectedItem).Id;
-                        prodAccio.Ticker = tbTickerAccio.Text.ToUpper();
+                        prodAccio.Ticker = ticker;
                     }
                     else
                     {
                         var prodFons = (ProdFons)prod;
-                        var isin = String.IsNullOrWhiteSpace(tbIsinProducte.Text)
-                            ? null
-                            : tbIsinProducte.Text.ToUpper();
+
+                        var isin = String.IsNullOrWhiteSpace(tbIsinProducte.Text) ? null : tbIsinProducte.Text.Trim().ToUpper();
 
                         if (prodFons.ISIN != isin)
                             tickerIsin = isin;
@@ -533,6 +553,53 @@ namespace Inversions.GUI
                 Exception xx = Utilitats.ExtreuInnerException(ex);
                 MessageBox.Show(xx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btEsborraProducte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var conn = new InversionsBDContext())
+                {
+                    if (Moviment.Tuples.Any(a => a.ProdId == vProducteSeleccionat.Id))
+                        throw new ApplicationException("No es pot esborrar el producte perquè té moviments");
+
+                    var prod = conn.Productes.Find(vProducteSeleccionat.Id);
+
+                    conn.Valoracions.RemoveRange(conn.Valoracions.Where(w => w.ProdId == prod.Id));
+
+                    conn.Productes.Remove(prod);
+
+                    conn.SaveChanges();
+
+                    Valoracio.RefrescaTaula();
+                    Producte.RefrescaTaula();
+                    ProdAccions.RefrescaTaula();
+                    ProdFons.RefrescaTaula();
+
+                    carregaGridProductes(vEmpresaSeleccionada);
+                }
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                var errorMessages = dbEx.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.ErrorMessage);
+                string fullErrorMessage = string.Join("; ", errorMessages);
+                MessageBox.Show(fullErrorMessage, "Error de validació", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                Exception xx = Utilitats.ExtreuInnerException(ex);
+                MessageBox.Show(xx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btCancelaProducte_Click(object sender, EventArgs e)
+        {
+            ompleCampsProducte((Producte)(dgvProductes.CurrentRow == null ? null : dgvProductes.CurrentRow.DataBoundItem));
+
+            modeConsulta();
         }
 
 
@@ -605,7 +672,7 @@ namespace Inversions.GUI
 
             carregaGridProductes(vEmpresaSeleccionada);
 
-            colIsin.Visible = vEmpresaSeleccionada != null && 
+            colIsin.Visible = vEmpresaSeleccionada != null &&
                 vEmpresaSeleccionada.TipusEmpresa == TipusEmpresa.GestoraFons;
         }
 
@@ -654,40 +721,6 @@ namespace Inversions.GUI
             }
         }
 
-
-        private void btEsborraProducte_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Moviment.Tuples.Any(a => a.ProdId == vProducteSeleccionat.Id))
-                    throw new ApplicationException("No es pot esborrar el producte perquè té moviments");
-
-                Producte prod = vProducteSeleccionat;
-
-                vConnProductes.Valoracions.RemoveRange(vConnProductes.Valoracions.Where(w => w.ProdId == prod.Id));
-
-                vConnProductes.Productes.Remove(prod);
-
-                vConnProductes.SaveChanges();
-
-                Valoracio.RefrescaTaula();
-                Producte.RefrescaTaula();
-                ProdAccions.RefrescaTaula();
-                ProdFons.RefrescaTaula();
-            }
-            catch (Exception ex1)
-            {
-                Utilitats.EscriuLog(ex1);
-            }
-        }
-
-        private void btCancelaProducte_Click(object sender, EventArgs e)
-        {
-            ompleCampsProducte((Producte)(dgvProductes.CurrentRow == null ? null : dgvProductes.CurrentRow.DataBoundItem));
-
-            modeConsulta();
-        }
-
         private void tbNomProducte_TextChanged(object sender, EventArgs e)
         {
             if (!_EnModeEdicio && ((TextBoxBase)sender).Modified)
@@ -706,24 +739,7 @@ namespace Inversions.GUI
 
         private void btDesaCanvisEmpreses_Click(object sender, EventArgs e)
         {
-            try
-            {
-                vConnEmpreses.SaveChanges();
-
-                Empresa.RefrescaTaula();
-
-                ActivaRefrescaEnTabs(this);
-
-                pnDesaCanvisEmpreses.Enabled = false;
-            }
-            catch (DbEntityValidationException ex2)
-            {
-                Utilitats.EscriuLog(ex2);
-            }
-            catch (Exception ex1)
-            {
-                Utilitats.EscriuLog(ex1);
-            }
+            desaCanvisEmpreses();
         }
 
         private void btCancelaCanvisEmpreses_Click(object sender, EventArgs e)
@@ -856,12 +872,45 @@ namespace Inversions.GUI
             }
         }
 
-
         private void dgvEmpreses_SelectionChanged(object sender, EventArgs e)
         {
             dgvEmpreses.ClearSelection();
         }
+
+        private void dgvEmpreses_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            var emp = e.Row.DataBoundItem as Empresa;
+            if (emp == null)
+                return;
+
+            // Exemple de validació: no permetre eliminar si té productes
+            if (emp.Productes != null && emp.Productes.Any())
+            {
+                MessageBox.Show("No es pot eliminar l'empresa perquè té productes associats.");
+                e.Cancel = true;   // ❗ Atura l’esborrat
+                return;
+            }
+
+            if (MessageBox.Show($"Segur que vols eliminar l'empresa : {emp.Nom}?", "Confirmació"
+                , MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                e.Cancel = true;   // ❗ Atura l’esborrat
+            }
+
+            desaCanvisEmpreses();
+        }
+
         #endregion *** Events ***}
 
+        private void dgvEmpreses_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+                dgvEmpreses.CurrentCell = dgvEmpreses.Rows[e.RowIndex].Cells[1];
+
+//            MessageBox.Show(
+//    $"SelectedRows: {dgvEmpreses.SelectedRows.Count}\n" +
+//    $"CurrentCell: {dgvEmpreses.CurrentCell}"
+//);
+        }
     }
 }

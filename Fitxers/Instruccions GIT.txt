@@ -6,6 +6,7 @@ git add Properties\AssemblyInfo.cs
 
 git commit --amend --no-edit
 
+-- Després de fer Amend, si el commit ja està a Github, S'ha de fer:
 git push origin master --force-with-lease
 
 -- Si diu que està a mig merge
@@ -17,3 +18,5 @@ Recorda que cada vegada que facis un Force Push, el teu altre ordinador es queda
 git fetch origin
 
 git reset --hard origin/master
+
+git push origin Afegir-taula-Moneda-i-accés-a-cotitzacions
