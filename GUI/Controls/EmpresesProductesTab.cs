@@ -501,13 +501,13 @@ namespace Inversions.GUI
                     {
                         try
                         {
-                            var tickerExchange = await EodhdUserService.GetTicker(tickerIsin);
+                            var tickerExchange = await EodhdUserService.TrobaTickerEODHd(tickerIsin);
                             if (tickerExchange != null)
                             {
                                 prod.TickerExchange = tickerExchange;
                             }
                         }
-                        catch (EodhdApiException ex)
+                        catch (ExceptionApi ex)
                         {
                             MessageBox.Show($"No s'ha pogut obtenir el ticker exchange de la acció. \nError: {ex.Message}"
                                 , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
