@@ -25,6 +25,16 @@
           <Property Name="TipusEmpresa" Type="int" Nullable="false" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="Festius">
+          <Key>
+            <PropertyRef Name="Calendari" />
+            <PropertyRef Name="Any" />
+            <PropertyRef Name="DiaFestiu" />
+          </Key>
+          <Property Name="Calendari" Type="int" Nullable="false" />
+          <Property Name="Any" Type="int" Nullable="false" />
+          <Property Name="DiaFestiu" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Gestors">
           <Key>
             <PropertyRef Name="Id" />
@@ -133,6 +143,7 @@
           <Property Name="Data" Type="date" Nullable="false" />
           <Property Name="PreuParticipacio" Type="decimal" Precision="20" Scale="13" Nullable="false" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="PreuParticipacioApi" Type="decimal" Precision="20" Scale="13" />
         </EntityType>
         <Association Name="FK_EmpresaGestor">
           <End Role="Empreses" Type="Self.Empreses" Multiplicity="1" />
@@ -321,6 +332,7 @@
         <EntityContainer Name="InversionsBDStoreContainer">
           <EntitySet Name="DesglosCompres" EntityType="Self.DesglosCompres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empreses" EntityType="Self.Empreses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Festius" EntityType="Self.Festius" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gestors" EntityType="Self.Gestors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IngressosExterns" EntityType="Self.IngressosExterns" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mercats" EntityType="Self.Mercats" Schema="dbo" store:Type="Tables" />
@@ -456,6 +468,7 @@
             <End Role="Moneda" EntitySet="Monedes" />
             <End Role="Producte" EntitySet="Productes" />
           </AssociationSet>
+          <EntitySet Name="Festius" EntityType="InversionsBD.Festiu" />
           </EntityContainer>
         <EntityType Name="Empresa">
           <Key>
@@ -493,6 +506,7 @@
           <NavigationProperty Name="Prod" Relationship="InversionsBD.ProdValoracio" FromRole="Valoracio" ToRole="Prod" />
           <Property Name="PreuParticipacio" Type="Decimal" Nullable="false" Precision="20" Scale="13" />
           <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" cg:SetterAccess="Private" ConcurrencyMode="Fixed" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="PreuParticipacioApi" Type="Decimal" Precision="20" Scale="13" />
         </EntityType>
         <Association Name="FK_EmpresaGestor">
           <End Type="InversionsBD.Empresa" Role="Empresa" Multiplicity="1" />
@@ -758,6 +772,20 @@
           <Member Name="GestoraFons" Value="0" />
           <Member Name="Accions" Value="1" />
         </EnumType>
+        <EntityType Name="Festiu">
+          <Key>
+            <PropertyRef Name="Calendari" />
+            <PropertyRef Name="Any" />
+            <PropertyRef Name="DiaFestiu" />
+          </Key>
+          <Property Name="Calendari" Type="InversionsBD.Calendaris" Nullable="false" />
+          <Property Name="Any" Type="Int32" Nullable="false" />
+          <Property Name="DiaFestiu" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EnumType Name="Calendaris">
+          <Member Name="USA" Value="0" />
+          <Member Name="CAT" Value="1" />
+        </EnumType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -788,7 +816,8 @@
     <EntitySetMapping Name="Valoracions">
       <EntityTypeMapping TypeName="IsTypeOf(InversionsBD.Valoracio)">
         <MappingFragment StoreEntitySet="Valoracions">
-          <ScalarProperty Name="PreuParticipacio" ColumnName="PreuParticipacio" />
+          <ScalarProperty Name="PreuParticipacioApi" ColumnName="PreuParticipacioApi" />
+                <ScalarProperty Name="PreuParticipacio" ColumnName="PreuParticipacio" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProdId" ColumnName="ProdId" />
           <ScalarProperty Name="Data" ColumnName="Data" />
@@ -898,6 +927,15 @@
                 <ScalarProperty Name="Ordre" ColumnName="Ordre" />
                 <ScalarProperty Name="Descripcio" ColumnName="Descripcio" />
                 <ScalarProperty Name="Codi" ColumnName="Codi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Festius">
+            <EntityTypeMapping TypeName="InversionsBD.Festiu">
+              <MappingFragment StoreEntitySet="Festius">
+                <ScalarProperty Name="DiaFestiu" ColumnName="DiaFestiu" />
+                <ScalarProperty Name="Any" ColumnName="Any" />
+                <ScalarProperty Name="Calendari" ColumnName="Calendari" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

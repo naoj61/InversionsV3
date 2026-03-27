@@ -1,0 +1,13 @@
+-- Taula Valoracions
+	-- Afegeixo camp PreuParticipacioApi
+	ALTER TABLE Valoracions ADD [PreuParticipacioApi] DECIMAL (20, 13);
+
+-- Taula Festius
+	-- Creating table 'Festius'
+	CREATE TABLE [dbo].[Festius] (
+		[Calendari] Int NOT NULL,
+		[Any] Int NOT NULL,
+		[DiaFestiu] DateTime NOT NULL);
+
+	ALTER TABLE [dbo].[Festius]
+	ADD CONSTRAINT PK_Festius PRIMARY KEY ([Calendari], [Any], [DiaFestiu]);

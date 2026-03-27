@@ -35,5 +35,6 @@ namespace Inversions.ClassesEntity
         public virtual DbSet<DesglosCompra> DesglosCompres { get; set; }
         public virtual DbSet<IngresExtern> IngressosExterns { get; set; }
         public virtual DbSet<Moneda> Monedes { get; set; }
+        public virtual DbSet<Festiu> Festius { get; set; }
     }
 }

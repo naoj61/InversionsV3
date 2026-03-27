@@ -247,7 +247,7 @@ namespace Inversions.GUI
         {
             base.carregaInicial();
 
-            cData.Value = DateTime.Today.AddDays(-1);
+            cData.Value = Festiu.UltimDiaLaborable(DateTime.Today.AddDays(-1));
 
             dtpDataIniciLlista.Value = DateTime.Now.AddMonths(-6);
             dtpDataIniciValoracions.Value = DateTime.Now.AddMonths(-6);

@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Windows.Forms;
-using Comuns;
+﻿using Comuns;
 using Inversions.ClassesEntity;
 using Inversions.GUI;
 using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Inversions
 {
@@ -94,6 +97,7 @@ namespace Inversions
 
                         CanviUsuari(usuari);
 
+                        ComprovaCalendari();
 
                         //Application.EnableVisualStyles();
                         //Application.SetCompatibleTextRenderingDefault(false);
@@ -114,6 +118,15 @@ namespace Inversions
             {
                 Utilitats.EscriuLog(ex, FitxerLog, Versio);
             }
+        }
+
+        private static void ComprovaCalendari()
+        {
+            var any = DateTime.Now.Year;
+            var cal = Calendaris.USA;
+
+            if (!Festiu.Tuples.Any(w => w.Any == any && w.Calendari == cal))
+                Festiu.CreaCalendari(any, cal);
         }
 
 
