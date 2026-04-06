@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
@@ -12,6 +13,60 @@ namespace Inversions.ClassesEntity
 {
     public partial class InversionsBDContext
     {
+        private InversionsBDContext(string connectionString) : base(connectionString) { }
+
+        /// <summary>
+        /// Creates a new instance of the InversionsBDContext class using the configured connection string.
+        /// </summary>
+        /// <remarks>Use this method to obtain a properly configured database context for interacting with
+        /// the application's data store. The returned context should be disposed of when no longer needed.</remarks>
+        /// <returns>A new InversionsBDContext initialized with the application's configured database connection settings.</returns>
+        public static InversionsBDContext Create()
+        {
+            return new InversionsBDContext(ObtenirCadenaConfigurada());
+        }
+
+
+        /// <summary>
+        /// Builds and returns the configured Entity Framework connection string for the application's database, using
+        /// the appropriate file path based on the current build configuration.Podem afegir una lògica "estàtica" per obtenir la cadena correctament
+        /// </summary>
+        /// <remarks>The returned connection string is constructed by modifying the base connection string
+        /// from the application's configuration to include the correct database file path. The file path is determined
+        /// by the build configuration (Debug or Release) and application settings. This method is intended for internal
+        /// use when a dynamically constructed connection string is required.</remarks>
+        /// <returns>A connection string that can be used to connect to the application's database with Entity Framework. The
+        /// string reflects the correct database file path for the current environment.</returns>
+        private static string ObtenirCadenaConfigurada()
+        {
+            string directoriBd;
+#if DEBUG
+            directoriBd = "DirBdDebug";
+#else
+            directoriBd = "DirBd";
+#endif
+            // Trova el valor de la variable a app.config segons el build configuration (Debug o Release).
+            directoriBd = ConfigurationManager.AppSettings[directoriBd];
+            
+            // Expandeix les variables d'entorn en el path, si n'hi ha.
+            directoriBd = Environment.ExpandEnvironmentVariables(directoriBd);
+
+            // 1. Obtenim la cadena base de l'App.config
+            var configString = ConfigurationManager.ConnectionStrings["InversionsBDContext"].ConnectionString;
+
+            // 2. Utilitzem l'EntityConnectionStringBuilder per modificar NOMÉS el path del fitxer
+            var entityBuilder = new System.Data.Entity.Core.EntityClient.EntityConnectionStringBuilder(configString);
+            var sqlBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(entityBuilder.ProviderConnectionString);
+
+            // 3. Injectem el path correcte directament. Substitueix TOKEN_PATH.
+            sqlBuilder.AttachDBFilename = System.IO.Path.Combine(directoriBd, ConfigurationManager.AppSettings["NomBd"]);
+
+            // 4. Tornem a muntar la cadena
+            entityBuilder.ProviderConnectionString = sqlBuilder.ToString();
+            
+            return entityBuilder.ToString();
+        }
+
         public virtual DbSet<ProdFons> ProdFons { get; set; }
         public virtual DbSet<ProdAccions> ProdAccions { get; set; }
         public virtual DbSet<Valoracio> Valoracio { get; set; }

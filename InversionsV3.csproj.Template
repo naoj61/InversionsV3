@@ -55,34 +55,55 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\SIGIOC_square.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v15.2">
-      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.Data.v15.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Sparkline.v15.2.Core">
-      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.Sparkline.v15.2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v15.2">
-      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.Utils.v15.2.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v15.2">
-      <HintPath>..\InversionsV3\packages\DevExpress\DevExpress.XtraEditors.v15.2.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.10.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Pipelines, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.10.0.5\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.10.0.5\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=10.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.10.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -96,10 +117,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassesEntity\Calendaris.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="ClassesEntity\DesglosCompra.cs">
       <DependentUpon>InversionsBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassesEntity\Empresa.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Festiu.cs">
       <DependentUpon>InversionsBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassesEntity\Gestor.cs">
@@ -119,6 +146,9 @@
       <DependentUpon>InversionsBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassesEntity\Mercat.cs">
+      <DependentUpon>InversionsBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesEntity\Moneda.cs">
       <DependentUpon>InversionsBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassesEntity\Moviment.cs">
@@ -152,6 +182,8 @@
       <DependentUpon>InversionsBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassesParcials\DesglosCompra.cs" />
+    <Compile Include="ClassesParcials\Festiu.cs" />
+    <Compile Include="ClassesParcials\Moneda.cs" />
     <Compile Include="ClassesParcials\Empresa.cs" />
     <Compile Include="ClassesParcials\IngresExtern.cs" />
     <Compile Include="ClassesParcials\InversionsBDContext.cs" />
@@ -201,7 +233,7 @@
     <Compile Include="GUI\Controls\SimulacioVendaTab.Designer.cs">
       <DependentUpon>SimulacioVendaTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Controls\SimulacioVendaTabDgv.cs" />
+    <Compile Include="Classes\SimulacioVendaTabDgv.cs" />
     <Compile Include="GUI\Controls\UsuarisTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -259,6 +291,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Controls\SimulacioVendaTab.resx">
       <DependentUpon>SimulacioVendaTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Controls\UsuarisTab.resx">
       <DependentUpon>UsuarisTab.cs</DependentUpon>
@@ -397,6 +430,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets" Condition="Exists('packages\System.ValueTuple.4.6.2\build\net471\System.ValueTuple.targets')" />
 </Project>

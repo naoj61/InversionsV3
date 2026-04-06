@@ -15,7 +15,7 @@ namespace Inversions.ClassesEntity
     
     public partial class InversionsBDContext : DbContext
     {
-        public InversionsBDContext()
+        private InversionsBDContext()
             : base("name=InversionsBDContext")
         {
         }
