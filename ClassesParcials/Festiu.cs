@@ -31,7 +31,7 @@ namespace Inversions.ClassesEntity
         /// <param name="cal">The calendar type indicating which calendar entries to create.</param>
         internal static void CreaCalendari(int any, Calendaris cal)
         {
-            using (var conn = new InversionsBDContext())
+            using (var conn = InversionsBDContext.Create())
             {
                 using (DbContextTransaction dbContextTransaction = conn.Database.BeginTransaction())
                 {

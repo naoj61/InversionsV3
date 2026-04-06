@@ -76,7 +76,7 @@ namespace Inversions.GUI
         private void carregaGridEmpreses()
         {
             // Creo la connexió per utilitzar-la a desar les modificacions.
-            vConnEmpreses = new InversionsBDContext();
+            vConnEmpreses = InversionsBDContext.Create();
 
             // Carrega les empreses segons els filtres seleccionats.
             if (ccbFiltres.IsCheckedByValue(FiltreSeleccionat.Accions))
@@ -442,7 +442,7 @@ namespace Inversions.GUI
                     throw new ApplicationException("S'ha de seleccionar un mercat");
 
 
-                using (var conn = new InversionsBDContext())
+                using (var conn = InversionsBDContext.Create())
                 {
                     Producte prod = vProducteSeleccionat;
                     //var prod = conn.Productes.Find(vProducteSeleccionat.Id);
@@ -568,7 +568,7 @@ namespace Inversions.GUI
         {
             try
             {
-                using (var conn = new InversionsBDContext())
+                using (var conn = InversionsBDContext.Create())
                 {
                     if (Moviment.Tuples.Any(a => a.ProdId == vProducteSeleccionat.Id))
                         throw new ApplicationException("No es pot esborrar el producte perquè té moviments");

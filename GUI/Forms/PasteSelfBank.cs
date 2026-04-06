@@ -254,7 +254,7 @@ namespace Inversions.GUI
 
         private void btDesa_Click(object sender, EventArgs e)
         {
-            using (var connexio = new InversionsBDContext())
+            using (var connexio = InversionsBDContext.Create())
             {
                 try
                 {

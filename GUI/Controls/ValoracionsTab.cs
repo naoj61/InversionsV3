@@ -588,7 +588,7 @@ namespace Inversions.GUI
 
             if (MessageBox.Show(String.Format("S'esborrarà: {0}-{1}", vValoracioSeleccionada.Prod.Empresa.Nom, vValoracioSeleccionada.Data.ToShortDateString()), "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                using (var conn = new InversionsBDContext())
+                using (var conn = InversionsBDContext.Create())
                 {
                     try
                     {
@@ -635,7 +635,7 @@ namespace Inversions.GUI
 
             try
             {
-                using (var conn = new InversionsBDContext())
+                using (var conn = InversionsBDContext.Create())
                 {
                     try
                     {

@@ -34,7 +34,7 @@ namespace Inversions
         public static void ConnectaSessio()
         {
             //Sessio = null;
-            Sessio = new InversionsBDContext();
+            Sessio = InversionsBDContext.Create();
             Sessio.Configuration.AutoDetectChangesEnabled = true; // Si poso true, dona error quan inserto una fila i l'esborro en la mateixa sessió.
             Sessio.Configuration.LazyLoadingEnabled = true;
         }
@@ -86,10 +86,6 @@ namespace Inversions
                 {
                     if (createdNew)
                     {
-                        // Informa la variable |DataDirectory|, s'utilitza en App.config.
-                        // ***** A partir d'aquí, ja es pot accedir a la Bd *****
-                        Utilitats.AssignaDataDirectory(bd, "InversionsBD.mdf");
-
                         Usuari usuari = Sessio.Usuaris.Find(idUsuari.Value);
 
                         if (usuari == null)

@@ -14,15 +14,16 @@
   </entityFramework>
   <appSettings>
     <add key="FitxerLog" value="..\..\Temp\Inversions.log" />
+    <!-- "DirBd" i "DirBdDebug" Son els directoris on està la base de dades: InversionsBD.mdf -->
     <add key="DirBd" value="%appdata%\JParera\Inversions" />
-    <!-- És el directori on està la base de dades: InversionsBD.mdf -->
-    <add key="DirBdDebug" value="%LOCALAPPDATA%\JParera\BD" />
+    <add key="DirBdDebug" value="D:\Users\joanp\BD" />
+    <add key="NomBd" value="InversionsBD.mdf" />
     <add key="ClientSettingsProvider.ServiceUri" value="" />
   </appSettings>
   <!-- (LocalDB)\v11.0        Per Visual Studio 2013
        (LocalDB)\MSSQLLocalDB Per Visual Studio 2026 -->
   <connectionStrings>
-    <add name="InversionsBDContext" connectionString="metadata=res://*/ClassesEntity.InversionsBD.csdl|res://*/ClassesEntity.InversionsBD.ssdl|res://*/ClassesEntity.InversionsBD.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\InversionsBD.mdf;integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="InversionsBDContext" connectionString="metadata=res://*/ClassesEntity.InversionsBD.csdl|res://*/ClassesEntity.InversionsBD.ssdl|res://*/ClassesEntity.InversionsBD.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=TOKEN_PATH;integrated security=True;connect timeout=30;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
   <system.web>
     <membership defaultProvider="ClientAuthenticationMembershipProvider">
