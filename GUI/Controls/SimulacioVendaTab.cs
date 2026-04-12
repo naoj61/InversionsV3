@@ -99,7 +99,7 @@ namespace Inversions.GUI
             // Carregar dades de l'usuari actual
             cbAny.SelectedItem = anyRenda == 0 ? DateTime.Today.Year : anyRenda; ;
             vProducteSeleccionat = prod;
-            ctrProductes.seleccionaProducte(vProducteSeleccionat);
+            ctrProductes.refrescaDadesControl(prod);
             ntbPreuParticipacio.Valor = preuPart;
             ntbNumParticipacions.Valor = numParts;
             ntbPartsSaltades.Valor = partsSaltades;
