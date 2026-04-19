@@ -182,12 +182,14 @@ namespace Inversions.GUI.Forms
             {
                 _Prod = prod;
                 _Divident = prod.dividends(any);
+                _PartsVenudes = prod.Moviments.Where(w => w._EsVenda && w.Data.Year == any).Sum(s => s.Participacions);
             }
 
             // ReSharper disable MemberCanBePrivate.Local
             // ReSharper disable UnusedAutoPropertyAccessor.Local
             public Producte _Prod { get; private set; }
             public decimal _Divident { get; private set; }
+            public decimal _PartsVenudes { get; private set; }
             // ReSharper restore MemberCanBePrivate.Local
             // ReSharper restore UnusedAutoPropertyAccessor.Local
         }
@@ -393,7 +395,7 @@ namespace Inversions.GUI.Forms
 
             vCompresVendesAny = vVendesAny.ToDictionary(x => x, x => x.compresDeLaVenda().ToList());
 
-            dgvProductes.DataSource = vProdsAmbVendesDividentsAny;
+            ompleGridProductes();
 
             ntbPerduesAnysAnteriors.Valor = -Producte.PerduesDarrersQuatreAnys(vAny);
 
@@ -580,6 +582,18 @@ namespace Inversions.GUI.Forms
             }
         }
 
+        private void ompleGridProductes()
+        {
+            if (cbVendes.Checked && cbDividents.Checked)
+                dgvProductes.DataSource = vProdsAmbVendesDividentsAny;
+            else if (cbVendes.Checked)
+                dgvProductes.DataSource = vProdsAmbVendesDividentsAny.Where(w => w._PartsVenudes > 0).ToList();
+            else if (cbDividents.Checked)
+                dgvProductes.DataSource = vProdsAmbVendesDividentsAny.Where(w => w._Divident > 0).ToList();
+            else
+                dgvProductes.DataSource = null;
+        }
+
         private void btCancela_Click(object sender, EventArgs e)
         {
             carregaTaulaIngressosExterns(vAny);
@@ -614,6 +628,11 @@ namespace Inversions.GUI.Forms
 
                 e.Cancel = true;
             }
+        }
+
+        private void cb_CheckedChanged(object sender, EventArgs e)
+        {
+            ompleGridProductes();
         }
 
         #region *** Gestiona Ingressos fora de l'aplicació ***
