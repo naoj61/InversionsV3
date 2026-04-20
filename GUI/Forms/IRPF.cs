@@ -381,15 +381,19 @@ namespace Inversions.GUI.Forms
             carregaTaulaIngressosExterns(vAny);
 
             vVendesAny = Moviment.MovimentsUsuari.Where(w => w._EsVendaReal && w.Data.Year == vAny).ToList();
-            vProdsAmbVendesDividentsAny = vVendesAny.Select(s => s.Prod).Distinct().Select(i => new StrDgvProductes(vAny, i)).ToList();
+            vProdsAmbVendesDividentsAny = vVendesAny.Select(s => s.Prod).Distinct().Select(prod => new StrDgvProductes(vAny, prod)).ToList();
 
             // Afegeixo dividents.
             var prodsAmbDividentsAny = new List<StrDgvProductes>();
             foreach (Moviment mov in Moviment.MovimentsUsuari.Where(w => w._EsDividents && w.Data.Year == vAny))
             {
-                var xx = new StrDgvProductes(vAny, mov.Prod);
-                if (!prodsAmbDividentsAny.Contains(xx))
-                    prodsAmbDividentsAny.Add(xx);
+                var filaProd = new StrDgvProductes(vAny, mov.Prod);
+                
+                if(vProdsAmbVendesDividentsAny.Contains(filaProd))
+                    continue;
+                
+                if (!prodsAmbDividentsAny.Contains(filaProd))
+                    prodsAmbDividentsAny.Add(filaProd);
             }
             vProdsAmbVendesDividentsAny.AddRange(prodsAmbDividentsAny);
 

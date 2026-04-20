@@ -115,6 +115,7 @@ namespace Inversions.GUI.Forms
             this.cDespesesCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new Controls.NumericTextBoxColumn2();
             this.pnAny = new System.Windows.Forms.Panel();
+            this.cbDividents = new System.Windows.Forms.CheckBox();
             this.cbVendes = new System.Windows.Forms.CheckBox();
             this.cbAny = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -125,7 +126,6 @@ namespace Inversions.GUI.Forms
             this.ColumnaAny = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaRao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaImport = new Controls.NumericTextBoxColumn2();
-            this.cbDividents = new System.Windows.Forms.CheckBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -996,6 +996,19 @@ namespace Inversions.GUI.Forms
             this.pnAny.Size = new System.Drawing.Size(1194, 43);
             this.pnAny.TabIndex = 4;
             // 
+            // cbDividents
+            // 
+            this.cbDividents.AutoSize = true;
+            this.cbDividents.Checked = true;
+            this.cbDividents.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDividents.Location = new System.Drawing.Point(296, 11);
+            this.cbDividents.Name = "cbDividents";
+            this.cbDividents.Size = new System.Drawing.Size(100, 24);
+            this.cbDividents.TabIndex = 2;
+            this.cbDividents.Text = "Dividents";
+            this.cbDividents.UseVisualStyleBackColor = true;
+            this.cbDividents.CheckedChanged += new System.EventHandler(this.cb_CheckedChanged);
+            // 
             // cbVendes
             // 
             this.cbVendes.AutoSize = true;
@@ -1113,19 +1126,6 @@ namespace Inversions.GUI.Forms
             this.ColumnaImport.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnaImport.Width = 97;
             // 
-            // cbDividents
-            // 
-            this.cbDividents.AutoSize = true;
-            this.cbDividents.Checked = true;
-            this.cbDividents.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDividents.Location = new System.Drawing.Point(296, 11);
-            this.cbDividents.Name = "cbDividents";
-            this.cbDividents.Size = new System.Drawing.Size(100, 24);
-            this.cbDividents.TabIndex = 2;
-            this.cbDividents.Text = "Dividents";
-            this.cbDividents.UseVisualStyleBackColor = true;
-            this.cbDividents.CheckedChanged += new System.EventHandler(this.cb_CheckedChanged);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "_Any";
@@ -1153,10 +1153,9 @@ namespace Inversions.GUI.Forms
             dataGridViewCellStyle17.Format = "C2";
             this.Column12.DefaultCellStyle = dataGridViewCellStyle17;
             this.Column12.HeaderText = "Parts. Venudes";
-            this.Column12.MinimumWidth = 8;
+            this.Column12.MinimumWidth = 50;
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
-            this.Column12.Width = 150;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -1166,10 +1165,9 @@ namespace Inversions.GUI.Forms
             dataGridViewCellStyle18.NullValue = null;
             this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewTextBoxColumn6.HeaderText = "Dividents";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 150;
             // 
             // IRPF
             // 
