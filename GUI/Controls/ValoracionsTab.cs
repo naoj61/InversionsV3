@@ -752,14 +752,14 @@ namespace Inversions.GUI
 
         private void tbImport_TextChanged(object sender, EventArgs e)
         {
-            cancelButton(tbImport.Modified ? null : btCancela);
+            cancelButton(tbImport._Modificat ? null : btCancela);
         }
 
         private void tbImport_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                if (tbImport.Modified)
+                if (tbImport._Modificat)
                 {
                     cancelButton(btCancela);
                 }

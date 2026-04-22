@@ -355,7 +355,7 @@ namespace Inversions.GUI
 
             var ntb = (NumericTextBox2)sender;
 
-            if (ntb.Modified && ntb.Valor != valorTramExent(vAnyRenda))
+            if (ntb._Modificat && ntb.Valor != valorTramExent(vAnyRenda))
             {
                 if (MessageBox.Show("S'ha modificat el valor del 'Tram Exent Anual'. Vols desar el nou valor al registre de Windows?"
                     , "Avís", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

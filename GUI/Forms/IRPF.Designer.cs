@@ -48,6 +48,8 @@ namespace Inversions.GUI.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -58,8 +60,6 @@ namespace Inversions.GUI.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbCompres = new System.Windows.Forms.GroupBox();
             this.dgvCompresVenda = new Controls.DataGridView3();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,6 +102,10 @@ namespace Inversions.GUI.Forms
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.gbDividents = new System.Windows.Forms.GroupBox();
             this.dgvProductes = new Controls.DataGridView3();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbVendes = new System.Windows.Forms.GroupBox();
             this.dgvVendes = new Controls.DataGridView3();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,10 +130,6 @@ namespace Inversions.GUI.Forms
             this.ColumnaAny = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaRao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaImport = new Controls.NumericTextBoxColumn2();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbCompres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompresVenda)).BeginInit();
             this.flpTotals.SuspendLayout();
@@ -479,6 +479,7 @@ namespace Inversions.GUI.Forms
             131072});
             this.ntbMinimContribuent.TextChanged += new System.EventHandler(this.ntbMinimContribuent_TextChanged);
             this.ntbMinimContribuent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ntbMinimContribuent_KeyDown);
+            this.ntbMinimContribuent.Validating += new System.ComponentModel.CancelEventHandler(this.ntbMinimContribuent_Validating);
             // 
             // groupBox6
             // 
@@ -801,6 +802,51 @@ namespace Inversions.GUI.Forms
             this.dgvProductes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductes.Size = new System.Drawing.Size(1184, 113);
             this.dgvProductes.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "_Any";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Any";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "_Prod";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Producte";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 117;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "_PartsVenudes";
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle17.Format = "C2";
+            this.Column12.DefaultCellStyle = dataGridViewCellStyle17;
+            this.Column12.HeaderText = "Parts. Venudes";
+            this.Column12.MinimumWidth = 50;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "_Divident";
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle18.Format = "C2";
+            dataGridViewCellStyle18.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Dividents";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 50;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 150;
             // 
             // gbVendes
             // 
@@ -1125,49 +1171,6 @@ namespace Inversions.GUI.Forms
             this.ColumnaImport.Name = "ColumnaImport";
             this.ColumnaImport.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnaImport.Width = 97;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "_Any";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Any";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "_Prod";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Producte";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 117;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "_PartsVenudes";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "C2";
-            this.Column12.DefaultCellStyle = dataGridViewCellStyle17;
-            this.Column12.HeaderText = "Parts. Venudes";
-            this.Column12.MinimumWidth = 50;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "_Divident";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle18.Format = "C2";
-            dataGridViewCellStyle18.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Dividents";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 50;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // IRPF
             // 

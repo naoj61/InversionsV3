@@ -698,5 +698,11 @@ namespace Inversions.GUI.Forms
         }
 
         #endregion *** Gestiona Ingressos fora de l'aplicació ***
+
+        private void ntbMinimContribuent_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (ntbMinimContribuent._Modificat)
+                modeEdicio(true);
+        }
     }
 }
