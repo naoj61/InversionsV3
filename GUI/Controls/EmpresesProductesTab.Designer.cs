@@ -41,16 +41,14 @@ namespace Inversions.GUI
             this.btDesaCanvisEmpreses = new System.Windows.Forms.Button();
             this.grProductes = new System.Windows.Forms.GroupBox();
             this.dgvProductes = new System.Windows.Forms.DataGridView();
-            this._IdProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._OrdreGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._NomProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grDescripcioProducte = new System.Windows.Forms.GroupBox();
             this.tbDescripcioProducte = new System.Windows.Forms.TextBox();
             this.flpProducte = new System.Windows.Forms.FlowLayoutPanel();
             this.grOrdreGridProducte = new System.Windows.Forms.GroupBox();
             this.ntbOrdreGridProducte = new Controls.NumericTextBox2();
+            this.grIsinProducte = new System.Windows.Forms.GroupBox();
+            this.tbIsinProducte = new System.Windows.Forms.TextBox();
             this.grMonedaProducte = new System.Windows.Forms.GroupBox();
             this.cbMonedaProducte = new Controls.ComboBox2();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,8 +62,6 @@ namespace Inversions.GUI
             this.flpFons = new System.Windows.Forms.FlowLayoutPanel();
             this.grNomProducte = new System.Windows.Forms.GroupBox();
             this.tbNomProducte = new System.Windows.Forms.TextBox();
-            this.grIsinProducte = new System.Windows.Forms.GroupBox();
-            this.tbIsinProducte = new System.Windows.Forms.TextBox();
             this.gbTipusProducte = new System.Windows.Forms.GroupBox();
             this.cbTipusProducte = new Controls.ComboBox2();
             this.pnDesaCanvisProductes = new System.Windows.Forms.Panel();
@@ -76,6 +72,10 @@ namespace Inversions.GUI
             this.btDesaProducte = new System.Windows.Forms.Button();
             this.ccbFiltres = new Controls.CheckedComboBoxControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this._IdProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._OrdreGrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._NomProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpreses)).BeginInit();
             this.pnDesaCanvisEmpreses.SuspendLayout();
@@ -85,6 +85,7 @@ namespace Inversions.GUI
             this.grDescripcioProducte.SuspendLayout();
             this.flpProducte.SuspendLayout();
             this.grOrdreGridProducte.SuspendLayout();
+            this.grIsinProducte.SuspendLayout();
             this.grMonedaProducte.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flpAccions.SuspendLayout();
@@ -92,7 +93,6 @@ namespace Inversions.GUI
             this.grMercatProducte.SuspendLayout();
             this.flpFons.SuspendLayout();
             this.grNomProducte.SuspendLayout();
-            this.grIsinProducte.SuspendLayout();
             this.gbTipusProducte.SuspendLayout();
             this.pnDesaCanvisProductes.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -255,44 +255,6 @@ namespace Inversions.GUI
             this.dgvProductes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductes_ColumnHeaderMouseClick);
             this.dgvProductes.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductes_RowEnter);
             // 
-            // _IdProd
-            // 
-            this._IdProd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this._IdProd.DataPropertyName = "Id";
-            this._IdProd.HeaderText = "Id";
-            this._IdProd.MinimumWidth = 8;
-            this._IdProd.Name = "_IdProd";
-            this._IdProd.ReadOnly = true;
-            this._IdProd.Width = 61;
-            // 
-            // _OrdreGrid
-            // 
-            this._OrdreGrid.DataPropertyName = "OrdreGrid";
-            this._OrdreGrid.HeaderText = "Ordre Grid";
-            this._OrdreGrid.MinimumWidth = 8;
-            this._OrdreGrid.Name = "_OrdreGrid";
-            this._OrdreGrid.ReadOnly = true;
-            this._OrdreGrid.Width = 150;
-            // 
-            // colIsin
-            // 
-            this.colIsin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colIsin.DataPropertyName = "_Isin";
-            this.colIsin.HeaderText = "ISIN";
-            this.colIsin.MinimumWidth = 8;
-            this.colIsin.Name = "colIsin";
-            this.colIsin.ReadOnly = true;
-            this.colIsin.Width = 81;
-            // 
-            // _NomProducte
-            // 
-            this._NomProducte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this._NomProducte.DataPropertyName = "_NomProducte";
-            this._NomProducte.HeaderText = "Nom";
-            this._NomProducte.MinimumWidth = 200;
-            this._NomProducte.Name = "_NomProducte";
-            this._NomProducte.ReadOnly = true;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.grDescripcioProducte);
@@ -310,11 +272,11 @@ namespace Inversions.GUI
             // 
             this.grDescripcioProducte.Controls.Add(this.tbDescripcioProducte);
             this.grDescripcioProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDescripcioProducte.Location = new System.Drawing.Point(0, 217);
+            this.grDescripcioProducte.Location = new System.Drawing.Point(0, 267);
             this.grDescripcioProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grDescripcioProducte.Name = "grDescripcioProducte";
             this.grDescripcioProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grDescripcioProducte.Size = new System.Drawing.Size(782, 137);
+            this.grDescripcioProducte.Size = new System.Drawing.Size(782, 87);
             this.grDescripcioProducte.TabIndex = 4;
             this.grDescripcioProducte.TabStop = false;
             this.grDescripcioProducte.Text = "Descripció";
@@ -328,12 +290,13 @@ namespace Inversions.GUI
             this.tbDescripcioProducte.Multiline = true;
             this.tbDescripcioProducte.Name = "tbDescripcioProducte";
             this.tbDescripcioProducte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescripcioProducte.Size = new System.Drawing.Size(776, 111);
+            this.tbDescripcioProducte.Size = new System.Drawing.Size(776, 61);
             this.tbDescripcioProducte.TabIndex = 0;
             // 
             // flpProducte
             // 
             this.flpProducte.Controls.Add(this.grOrdreGridProducte);
+            this.flpProducte.Controls.Add(this.grIsinProducte);
             this.flpProducte.Controls.Add(this.grMonedaProducte);
             this.flpProducte.Controls.Add(this.groupBox2);
             this.flpProducte.Controls.Add(this.ckBuscaTickerExchange);
@@ -341,7 +304,7 @@ namespace Inversions.GUI
             this.flpProducte.Location = new System.Drawing.Point(0, 142);
             this.flpProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flpProducte.Name = "flpProducte";
-            this.flpProducte.Size = new System.Drawing.Size(782, 75);
+            this.flpProducte.Size = new System.Drawing.Size(782, 125);
             this.flpProducte.TabIndex = 6;
             // 
             // grOrdreGridProducte
@@ -379,10 +342,31 @@ namespace Inversions.GUI
             0,
             0});
             // 
+            // grIsinProducte
+            // 
+            this.grIsinProducte.Controls.Add(this.tbIsinProducte);
+            this.grIsinProducte.Location = new System.Drawing.Point(125, 4);
+            this.grIsinProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grIsinProducte.Name = "grIsinProducte";
+            this.grIsinProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grIsinProducte.Size = new System.Drawing.Size(294, 54);
+            this.grIsinProducte.TabIndex = 0;
+            this.grIsinProducte.TabStop = false;
+            this.grIsinProducte.Text = "ISIN";
+            // 
+            // tbIsinProducte
+            // 
+            this.tbIsinProducte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbIsinProducte.Location = new System.Drawing.Point(3, 22);
+            this.tbIsinProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tbIsinProducte.Name = "tbIsinProducte";
+            this.tbIsinProducte.Size = new System.Drawing.Size(288, 25);
+            this.tbIsinProducte.TabIndex = 0;
+            // 
             // grMonedaProducte
             // 
             this.grMonedaProducte.Controls.Add(this.cbMonedaProducte);
-            this.grMonedaProducte.Location = new System.Drawing.Point(125, 4);
+            this.grMonedaProducte.Location = new System.Drawing.Point(425, 4);
             this.grMonedaProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grMonedaProducte.Name = "grMonedaProducte";
             this.grMonedaProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -405,7 +389,7 @@ namespace Inversions.GUI
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbTickerExchange);
-            this.groupBox2.Location = new System.Drawing.Point(312, 4);
+            this.groupBox2.Location = new System.Drawing.Point(3, 66);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -427,7 +411,7 @@ namespace Inversions.GUI
             // ckBuscaTickerExchange
             // 
             this.ckBuscaTickerExchange.AutoSize = true;
-            this.ckBuscaTickerExchange.Location = new System.Drawing.Point(550, 10);
+            this.ckBuscaTickerExchange.Location = new System.Drawing.Point(241, 72);
             this.ckBuscaTickerExchange.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.ckBuscaTickerExchange.Name = "ckBuscaTickerExchange";
             this.ckBuscaTickerExchange.Size = new System.Drawing.Size(222, 24);
@@ -494,7 +478,6 @@ namespace Inversions.GUI
             // flpFons
             // 
             this.flpFons.Controls.Add(this.grNomProducte);
-            this.flpFons.Controls.Add(this.grIsinProducte);
             this.flpFons.Controls.Add(this.gbTipusProducte);
             this.flpFons.Dock = System.Windows.Forms.DockStyle.Top;
             this.flpFons.Location = new System.Drawing.Point(0, 0);
@@ -524,31 +507,10 @@ namespace Inversions.GUI
             this.tbNomProducte.Size = new System.Drawing.Size(361, 25);
             this.tbNomProducte.TabIndex = 0;
             // 
-            // grIsinProducte
-            // 
-            this.grIsinProducte.Controls.Add(this.tbIsinProducte);
-            this.grIsinProducte.Location = new System.Drawing.Point(376, 4);
-            this.grIsinProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grIsinProducte.Name = "grIsinProducte";
-            this.grIsinProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grIsinProducte.Size = new System.Drawing.Size(294, 54);
-            this.grIsinProducte.TabIndex = 0;
-            this.grIsinProducte.TabStop = false;
-            this.grIsinProducte.Text = "ISIN";
-            // 
-            // tbIsinProducte
-            // 
-            this.tbIsinProducte.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbIsinProducte.Location = new System.Drawing.Point(3, 22);
-            this.tbIsinProducte.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tbIsinProducte.Name = "tbIsinProducte";
-            this.tbIsinProducte.Size = new System.Drawing.Size(288, 25);
-            this.tbIsinProducte.TabIndex = 0;
-            // 
             // gbTipusProducte
             // 
             this.gbTipusProducte.Controls.Add(this.cbTipusProducte);
-            this.gbTipusProducte.Location = new System.Drawing.Point(676, 4);
+            this.gbTipusProducte.Location = new System.Drawing.Point(376, 4);
             this.gbTipusProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbTipusProducte.Name = "gbTipusProducte";
             this.gbTipusProducte.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -673,6 +635,44 @@ namespace Inversions.GUI
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filtres";
             // 
+            // _IdProd
+            // 
+            this._IdProd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this._IdProd.DataPropertyName = "Id";
+            this._IdProd.HeaderText = "Id";
+            this._IdProd.MinimumWidth = 8;
+            this._IdProd.Name = "_IdProd";
+            this._IdProd.ReadOnly = true;
+            this._IdProd.Width = 61;
+            // 
+            // _OrdreGrid
+            // 
+            this._OrdreGrid.DataPropertyName = "OrdreGrid";
+            this._OrdreGrid.HeaderText = "Ordre Grid";
+            this._OrdreGrid.MinimumWidth = 8;
+            this._OrdreGrid.Name = "_OrdreGrid";
+            this._OrdreGrid.ReadOnly = true;
+            this._OrdreGrid.Width = 150;
+            // 
+            // colIsin
+            // 
+            this.colIsin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colIsin.DataPropertyName = "ISIN";
+            this.colIsin.HeaderText = "ISIN";
+            this.colIsin.MinimumWidth = 8;
+            this.colIsin.Name = "colIsin";
+            this.colIsin.ReadOnly = true;
+            this.colIsin.Width = 81;
+            // 
+            // _NomProducte
+            // 
+            this._NomProducte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this._NomProducte.DataPropertyName = "_NomProducte";
+            this._NomProducte.HeaderText = "Nom";
+            this._NomProducte.MinimumWidth = 200;
+            this._NomProducte.Name = "_NomProducte";
+            this._NomProducte.ReadOnly = true;
+            // 
             // EmpresesProductesTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -697,6 +697,8 @@ namespace Inversions.GUI
             this.flpProducte.PerformLayout();
             this.grOrdreGridProducte.ResumeLayout(false);
             this.grOrdreGridProducte.PerformLayout();
+            this.grIsinProducte.ResumeLayout(false);
+            this.grIsinProducte.PerformLayout();
             this.grMonedaProducte.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -707,8 +709,6 @@ namespace Inversions.GUI
             this.flpFons.ResumeLayout(false);
             this.grNomProducte.ResumeLayout(false);
             this.grNomProducte.PerformLayout();
-            this.grIsinProducte.ResumeLayout(false);
-            this.grIsinProducte.PerformLayout();
             this.gbTipusProducte.ResumeLayout(false);
             this.pnDesaCanvisProductes.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -739,10 +739,6 @@ namespace Inversions.GUI
         private System.Windows.Forms.GroupBox grMercatProducte;
         private Controls.ComboBox2 cbMercatProducte;
         private System.Windows.Forms.DataGridView dgvProductes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _IdProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _OrdreGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIsin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _NomProducte;
         private System.Windows.Forms.FlowLayoutPanel flpAccions;
         private System.Windows.Forms.FlowLayoutPanel flpFons;
         private System.Windows.Forms.TextBox tbTickerAccio;
@@ -763,5 +759,9 @@ namespace Inversions.GUI
         private Controls.ComboBox2 cbMonedaProducte;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox ckBuscaTickerExchange;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _IdProd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _OrdreGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIsin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _NomProducte;
     }
 }

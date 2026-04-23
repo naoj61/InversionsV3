@@ -1,0 +1,21 @@
+	
+-- Taula Productes
+	-- Creo ISIN a Productes
+		ALTER TABLE Productes ADD [ISIN] varchar(25) NULL;
+
+	-- Moc valors des de ProdFons a Producte
+		UPDATE p
+		SET p.ISIN = pf.ISIN
+		FROM Productes p
+		INNER JOIN Productes_ProdFons pf ON p.Id = pf.Id;
+
+	-- Creo index
+		CREATE UNIQUE NONCLUSTERED INDEX [IU_Isin_Productes] ON [dbo].[Productes]([ISIN] ASC) WHERE ([ISIN] IS NOT NULL);
+
+-- Taula ProdFons
+	-- Elimino index
+	DROP INDEX Productes_ProdFons.[IU_Isin_Productes_ProdFons]
+
+	-- Elimino ISIN de ProdFons
+	ALTER TABLE Productes_ProdFons DROP COLUMN ISIN;
+

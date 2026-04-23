@@ -27,7 +27,6 @@ namespace Inversions.ClassesEntity
         public abstract string _TipusNomProducte { get; }
         public abstract Mercat _Mercat { get; set; }
         public abstract string _NomMercat { get; }
-        public abstract string _Isin { get; }
         public abstract string _Descripcio { get; }
         // ReSharper restore UnusedMember.Global
 

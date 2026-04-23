@@ -36,11 +36,6 @@ namespace Inversions.ClassesEntity
             get { return Mercat == null ? null : Mercat.Nom; }
         }
 
-        public override string _Isin
-        {
-            get { return null; }
-        }
-
         public override string _Descripcio
         {
             get { return null; }

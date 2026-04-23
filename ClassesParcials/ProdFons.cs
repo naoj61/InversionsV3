@@ -36,11 +36,6 @@ namespace Inversions.ClassesEntity
             get { return null; }
         }
 
-        public override string _Isin
-        {
-            get { return ISIN; }
-        }
-
         public override string _Descripcio
         {
             get { return Descripcio; }

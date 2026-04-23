@@ -25,6 +25,7 @@ namespace Inversions.ClassesEntity
         public Nullable<int> OrdreGrid { get; set; }
         public string MonedaCodi { get; set; }
         public string TickerExchange { get; set; }
+        public string ISIN { get; set; }
         public byte[] RowVersion { get; private set; }
     
         public virtual Empresa Empresa { get; set; }

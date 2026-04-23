@@ -205,6 +205,8 @@ namespace Inversions.GUI
                 ntbOrdreGridProducte.Valor = producte.OrdreGrid.GetValueOrDefault();
                 cbMonedaProducte.SelectedItem = producte.Moneda;
                 tbTickerExchange.Text = producte.TickerExchange;
+                tbIsinProducte.Text = producte.ISIN;
+                ckBuscaTickerExchange.Checked = String.IsNullOrEmpty(producte.TickerExchange);
 
                 if (producte is ProdAccions)
                 {
@@ -213,7 +215,6 @@ namespace Inversions.GUI
                 }
                 else if (producte is ProdFons)
                 {
-                    tbIsinProducte.Text = producte._Isin;
                     tbDescripcioProducte.Text = producte._Descripcio;
                     cbTipusProducte.SelectedItem = ((ProdFons)producte).Tipus;
                 }
@@ -463,8 +464,11 @@ namespace Inversions.GUI
 
                     prod.MonedaCodi = ((Moneda)cbMonedaProducte.SelectedItem).Codi;
                     prod.OrdreGrid = ntbOrdreGridProducte._IntValue;
+                    
+                    prod.ISIN = String.IsNullOrWhiteSpace(tbIsinProducte.Text) 
+                        ? null : tbIsinProducte.Text.Trim().ToUpper();
 
-                    string tickerIsin = null;
+                    var tickerIsin = prod.ISIN;
 
                     if (vProducteSeleccionat is ProdAccions)
                     {
@@ -473,31 +477,21 @@ namespace Inversions.GUI
                         var ticker = String.IsNullOrWhiteSpace(tbTickerAccio.Text)
                         ? null : tbTickerAccio.Text.Trim().ToUpper();
 
-                        if (ckBuscaTickerExchange.Checked)
-                            tickerIsin = ticker;
-
                         prodAccio.MercatId = ((Mercat)cbMercatProducte.SelectedItem).Id;
                         prodAccio.Ticker = ticker;
+                        if (String.IsNullOrEmpty(tickerIsin))
+                            tickerIsin = ticker;
                     }
                     else
                     {
                         var prodFons = (ProdFons)prod;
 
-                        var isin = String.IsNullOrWhiteSpace(tbIsinProducte.Text)
-                        ? null : tbIsinProducte.Text.Trim().ToUpper();
-
-                        if (ckBuscaTickerExchange.Checked)
-                            tickerIsin = isin;
-
                         prodFons.Nom = tbNomProducte.Text;
-                        prodFons.ISIN = isin;
                         prodFons.Tipus = (TipusFons)cbTipusProducte.SelectedItem;
                         prodFons.Descripcio = tbDescripcioProducte.Text;
                     }
 
-                    if (string.IsNullOrWhiteSpace(tickerIsin))
-                        prod.TickerExchange = null;
-                    else
+                    if(ckBuscaTickerExchange.Checked && !string.IsNullOrEmpty(tickerIsin))
                     {
                         try
                         {
@@ -512,9 +506,9 @@ namespace Inversions.GUI
                             MessageBox.Show($"No s'ha pogut obtenir el ticker exchange de la acció. \nError: {ex.Message}"
                                 , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }
+                    } 
 
-                    if (esProdNou)
+                        if (esProdNou)
                         conn.Productes.Add(prod);
                     else
                         conn.Productes.AddOrUpdate(prod);
@@ -856,12 +850,12 @@ namespace Inversions.GUI
                     if (lastSortedColumnIndex == e.ColumnIndex)
                     {
                         // Si se hace clic nuevamente en la misma columna, invertir el orden
-                        dgvProductes.DataSource = productes.OrderByDescending(o => o._Isin).ToList();
+                        dgvProductes.DataSource = productes.OrderByDescending(o => o.ISIN).ToList();
                         lastSortedColumnIndex = -1; // Reiniciar para permitir ordenar de nuevo
                     }
                     else
                     {
-                        dgvProductes.DataSource = productes.OrderBy(o => o._Isin).ToList();
+                        dgvProductes.DataSource = productes.OrderBy(o => o.ISIN).ToList();
                         lastSortedColumnIndex = e.ColumnIndex;
                     }
                     break;

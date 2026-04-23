@@ -108,6 +108,7 @@
           <Property Name="OrdreGrid" Type="int" />
           <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="TickerExchange" Type="varchar" MaxLength="20" />
+          <Property Name="ISIN" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="Productes_ProdAccions">
           <Key>
@@ -123,7 +124,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ISIN" Type="varchar" MaxLength="25" />
           <Property Name="Tipus" Type="int" Nullable="false" />
           <Property Name="Descripcio" Type="nvarchar(max)" />
         </EntityType>
@@ -539,6 +539,7 @@
           <Property Name="OrdreGrid" Type="Int32" />
           <Property Name="MonedaCodi" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="TickerExchange" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ISIN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="RowVersion" Type="Binary" Nullable="false" ConcurrencyMode="Fixed" cg:SetterAccess="Private" annotation:StoreGeneratedPattern="Computed" MaxLength="8" FixedLength="true" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <NavigationProperty Name="Moviments" Relationship="InversionsBD.FK_ProdMov" FromRole="Producte" ToRole="Moviment" />
           <NavigationProperty Name="Moneda" Relationship="InversionsBD.FK_MonedaProducte" FromRole="Producte" ToRole="Moneda" />
@@ -557,7 +558,6 @@
         </Association>
         <EntityType Name="ProdFons" BaseType="InversionsBD.Producte" >
           <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ISIN" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Gestors" Relationship="InversionsBD.ProdFonsGestor" FromRole="ProdFons" ToRole="Gestor" />
           <Property Name="Tipus" Type="InversionsBD.TipusFons" Nullable="false" />
           <Property Name="Descripcio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -828,6 +828,7 @@
     <EntitySetMapping Name="Productes">
       <EntityTypeMapping TypeName="IsTypeOf(InversionsBD.Producte)">
         <MappingFragment StoreEntitySet="Productes">
+                <ScalarProperty Name="ISIN" ColumnName="ISIN" />
                 <ScalarProperty Name="TickerExchange" ColumnName="TickerExchange" />
                 <ScalarProperty Name="MonedaCodi" ColumnName="MonedaCodi" />
                 <ScalarProperty Name="OrdreGrid" ColumnName="OrdreGrid" />
@@ -841,7 +842,6 @@
           <ScalarProperty Name="Tipus" ColumnName="Tipus" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
-          <ScalarProperty Name="ISIN" ColumnName="ISIN" />
           <ScalarProperty Name="Descripcio" ColumnName="Descripcio" />
         </MappingFragment>
       </EntityTypeMapping>

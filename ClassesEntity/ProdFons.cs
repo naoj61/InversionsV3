@@ -20,7 +20,6 @@ namespace Inversions.ClassesEntity
         }
     
         public string Nom { get; set; }
-        public string ISIN { get; set; }
         public TipusFons Tipus { get; set; }
         public string Descripcio { get; set; }
     
