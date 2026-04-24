@@ -18,9 +18,6 @@ namespace Inversions.GUI
         {
             InitializeComponent();
 
-            tbIsin.Dock = DockStyle.Fill;
-            tbMercat.Dock = DockStyle.Fill;
-
             cbTipusProducteFiltreTab2.SelectedIndexChanged -= cbTipusProducteFiltreTab2_SelectedIndexChanged;
             cbTipusProducteFiltreTab2.DataSource = Enum.GetValues(typeof (Producte.TipusProducte));
             cbTipusProducteFiltreTab2.Focus();
@@ -246,13 +243,8 @@ namespace Inversions.GUI
 
             if (vProducteSeleccioatAnt != _ProducteSeleccionat)
             {
-                if (prod == null)
-                {
-                    gbIsinMercat.Text = "ISIN";
-                    tbIsin.BringToFront();
-                }
-                else
-                {
+                if (prod != null)
+                                {
                     lbEmpresa.Text = prod._NomEmpresa;
                     tbMoneda.Text = prod.MonedaCodi;
 
@@ -266,6 +258,7 @@ namespace Inversions.GUI
                     tbPigHistoric.Valor = prod.pigEnData4(); // PiG cartera + vendes reals + dividents - despeses, sense tenir en compte el preu original en cas de traspàs.
                     //tbEnCartera.Valor = prod.pig2Cartera(DateTime.Now, false, true); // PiG cartera + dividents - despeses, sense tenir en  compte el preu original.
                     tbEnCartera.Valor = prod.pigEnCartera4(false, true);
+                    tbIsin.Text = prod.ISIN;
 
                     if (prod is ProdFons)
                     {
@@ -274,14 +267,9 @@ namespace Inversions.GUI
                         tbPigEnCarteraOrig.Valor = prod.pigEnCartera4(true, true);
 
                         var prodFons = (ProdFons) prod;
-                        tbIsin.Text = prodFons.ISIN;
                         vDescripcioFons = prodFons.Descripcio;
 
-                        gbIsinMercat.Text = "ISIN";
-                        tbIsin.BringToFront();
-
-                        tbIsin.TabStop = true;
-                        tbMercat.TabStop = false;
+                        gbMercat.Visible = false;
 
                         lbFons.Text = String.Format("{0}-{1}", prod.Id, prod._NomProducte);
                     }
@@ -290,11 +278,7 @@ namespace Inversions.GUI
                         var prodAccions = (ProdAccions) prod;
                         tbMercat.Text = prodAccions.Mercat.Nom;
 
-                        gbIsinMercat.Text = "Mercat";
-                        tbMercat.BringToFront();
-
-                        tbIsin.TabStop = false;
-                        tbMercat.TabStop = true;
+                        gbMercat.Visible = true;
                     }
                 }
 
