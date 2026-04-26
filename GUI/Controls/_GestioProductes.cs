@@ -301,12 +301,15 @@ namespace Inversions.GUI
 
         private void GestioProductes_Load(object sender, EventArgs e)
         {
-            // Aquí només s'executa al entrar en la perstanya.
-            for (int any = Program.PrimerAny; any <= DateTime.Today.Year; any++)
+            if (!DesignMode)
             {
-                cbFiltreAny.Items.Add(any);
+                // Aquí només s'executa al entrar en la perstanya.
+                for (int any = Program.PrimerAny; any <= DateTime.Today.Year; any++)
+                {
+                    cbFiltreAny.Items.Add(any);
+                }
+                cbFiltreAny.SelectedItem = DateTime.Today.Year; 
             }
-            cbFiltreAny.SelectedItem = DateTime.Today.Year;
         }
 
         private void ckFiltreAny_CheckedChanged(object sender, EventArgs e)

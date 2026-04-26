@@ -208,7 +208,7 @@ namespace Inversions.GUI
             ntbPiGActual.Valor = Moviment.MovimentsUsuari.Where(w => w._EsVendaReal && w.Data.Year == vAnyRenda).ToList().Sum(s => s.pigVenda4(true, true, true));
             ntbIngressosExterns.Valor = valorIngressosExterns(vAnyRenda);
             ntbDividents.Valor = Moviment.MovimentsUsuari.Where(w => w.Data.Year == vAnyRenda && w.TipusMoviment == TipusMoviment.Dividends)
-                .ToList().Sum(s => s.PreuParticipacio);
+                .ToList().Sum(s => s._PreuParticipacioEuros);
         }
 
         /// <summary>

@@ -26,8 +26,8 @@ namespace Inversions.GUI
 
                 _Id = compra.Id;
                 _Data = compra.Data;
-                _PreuParticipacio = compra.PreuParticipacio;
-                _ImportCompraBrut = compra.PreuParticipacio * compra.Participacions;
+                _PreuParticipacio = compra._PreuParticipacioEuros;
+                _ImportCompraBrut = compra._PreuParticipacioEuros * compra.Participacions;
                 _PigDeLaCompra = compra.pigCompra4(true, false, ambCartera);
                 _PigDeLaCompraOrigen = compra.pigCompra4(true, true, ambCartera);
                 if (ambDividends)

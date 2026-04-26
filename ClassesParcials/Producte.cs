@@ -113,7 +113,7 @@ namespace Inversions.ClassesEntity
 
             return MovimentsProducteUsuari
                 .Where(w => w._EsDividents && w.Data >= dataInici.Date && w.Data <= dataFi)
-                .Sum(s => s.PreuParticipacio);
+                .Sum(s => s._PreuParticipacioEuros);
         }
 
 
@@ -135,16 +135,17 @@ namespace Inversions.ClassesEntity
         /// <returns></returns>
         private decimal valorParticipacio(DateTime data)
         {
-            var valoracions = ValoracionsProducte.Where(w => w.Data <= data).Select(val => new {val.Data, val.PreuParticipacio}).ToList();
+            //PreuParticipacio
+            var valoracions = ValoracionsProducte.Where(w => w.Data <= data).Select(val => new {val.Data, preuEnEuros = val.PreuParticipacio}).ToList();
 
             var moviments = Moviments.Where(w => w.Data <= data && (w.TipusMoviment == TipusMoviment.Compra || w.TipusMoviment == TipusMoviment.Venda))
-                .Select(mov => new {mov.Data, mov.PreuParticipacio}).ToList();
+                .Select(mov => new {mov.Data, preuEnEuros = mov._PreuParticipacioEuros}).ToList();
 
             var tot = valoracions.Union(moviments).OrderBy(o => o.Data).ToList();
 
             if (tot.Any())
             {
-                return tot.Last().PreuParticipacio;
+                return tot.Last().preuEnEuros;
             }
 
             //throw new ApplicationException("No hi ha cap moviment ni cap valoració disponibles.");
@@ -549,13 +550,13 @@ namespace Inversions.ClassesEntity
                     data1 = data1.AddSeconds(1);
                     despesesSenseSplit = (mov1.Despeses.GetValueOrDefault() / mov1.Participacions * particSenseSplit);
 
-                    desaCompra(connexio, data1, particSenseSplit, mov1.PreuParticipacio, mov1.CanviAplicat, despesesSenseSplit, descripcio, null, false, false);
+                    desaCompra(connexio, data1, particSenseSplit, mov1._PreuParticipacioEuros, mov1.CanviAplicat, despesesSenseSplit, descripcio, null, false, false);
                 }
 
                 // Calculo el nou preu i les participacions del Split i creo una compra amb les participacions afectades.
                 data1 = data1.AddSeconds(1);
                 int participacions = particSplit * factorConversor;
-                decimal preuParticipacio = (mov1.PreuParticipacio / factorConversor);
+                decimal preuParticipacio = (mov1._PreuParticipacioEuros / factorConversor);
                 decimal despesesSplit = (mov1.Despeses.GetValueOrDefault() - despesesSenseSplit);
                 desaCompra(connexio, data1, participacions, preuParticipacio, mov1.CanviAplicat, despesesSplit, descripcio, null, false, false);
             }
@@ -605,7 +606,7 @@ namespace Inversions.ClassesEntity
                     despesesSenseContraSplit = (mov1.Despeses.GetValueOrDefault() / mov1.Participacions * particSenseContraSplit);
 
                     // Creo una nova compra amb la part de la compra original que no li afecta el ContraSplit
-                    desaCompra(connexio, data1, particSenseContraSplit, mov1.PreuParticipacio, mov1.CanviAplicat, despesesSenseContraSplit, descripcio, null, false, false);
+                    desaCompra(connexio, data1, particSenseContraSplit, mov1._PreuParticipacioEuros, mov1.CanviAplicat, despesesSenseContraSplit, descripcio, null, false, false);
                 }
 
 
@@ -622,7 +623,7 @@ namespace Inversions.ClassesEntity
                     // Creo una compra amb el nou numero de participacions i nou preu.
                     data1 = data1.AddSeconds(1);
                     int participacions = particContraSplit / factorConversor;
-                    decimal preuParticipacio = (mov1.PreuParticipacio * factorConversor); // Calculo el nou preu i les participacions del contraSplit
+                    decimal preuParticipacio = (mov1._PreuParticipacioEuros * factorConversor); // Calculo el nou preu i les participacions del contraSplit
                     decimal despesesContraSplit = (mov1.Despeses.GetValueOrDefault() - despesesSenseContraSplit);
                     desaCompra(connexio, data1, participacions, preuParticipacio, mov1.CanviAplicat, despesesContraSplit, descripcio, null, false, false);
                 }

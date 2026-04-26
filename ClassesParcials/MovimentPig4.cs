@@ -46,7 +46,7 @@ namespace Inversions.ClassesEntity
             else if (ambCartera)
                 importCompra = _ImportBrut;
             else
-                importCompra = (Participacions - partsEnCartera) * PreuParticipacio;
+                importCompra = (Participacions - partsEnCartera) * _PreuParticipacioEuros;
 
             decimal pig = importActualPartsEnCartera + importPartsVenudes - importCompra;
 
@@ -103,7 +103,7 @@ namespace Inversions.ClassesEntity
                 if (compraDiv != null)
                 {
                     // Si aquesta compra està afectada, acumulo el dividend.
-                    div += dividend.PreuParticipacio / partsEnCarteraDiv * compraDiv._PartsUtilitzades;
+                    div += dividend._PreuParticipacioEuros / partsEnCarteraDiv * compraDiv._PartsUtilitzades;
                 }
             }
 

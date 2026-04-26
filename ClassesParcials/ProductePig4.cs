@@ -59,7 +59,7 @@ namespace Inversions.ClassesEntity
 
         public decimal _PreuParticipacio
         {
-            get { return vVenda.PreuParticipacio; }
+            get { return vVenda._PreuParticipacioEuros; }
         }
 
         public decimal _Despeses
@@ -155,7 +155,7 @@ namespace Inversions.ClassesEntity
 
         public decimal _PreuParticipacio
         {
-            get { return vCompra.PreuParticipacio; }
+            get { return vCompra._PreuParticipacioEuros; }
         }
 
         public decimal _Despeses
@@ -624,7 +624,7 @@ namespace Inversions.ClassesEntity
             List<Moviment> compres = MovimentsProducteUsuari.Where(w => w._EsCompra && w.Data >= dataHoraIni && w.Data <= dataHoraFi).ToList();
             List<Moviment> vendes = MovimentsProducteUsuari.Where(w => w._EsVenda && w.Data >= dataHoraIni && w.Data <= dataHoraFi).ToList();
             decimal dividents = inclouDividents
-                ? MovimentsProducteUsuari.Where(w => w._EsDividents && w.Data >= dataHoraIni && w.Data <= dataHoraFi).Sum(s => s.PreuParticipacio)
+                ? MovimentsProducteUsuari.Where(w => w._EsDividents && w.Data >= dataHoraIni && w.Data <= dataHoraFi).Sum(s => s._PreuParticipacioEuros)
                 : 0;
 
             decimal partsEnCarteraFi = partsEnCartera(dataHoraFi);
@@ -634,8 +634,8 @@ namespace Inversions.ClassesEntity
             decimal preuPartFi = preuParticipacioEnData(dataHoraFi);
 
             decimal piGPartsIniciFinal = (preuPartFi - preuPartIni) * (partsEnCarteraFi - partsComprades);
-            decimal piGPartsComprades = compres.Sum(s => (preuPartFi - s.PreuParticipacio) * s.Participacions - s.Despeses.GetValueOrDefault());
-            decimal piGPartsVenudes = vendes.Sum(s => (s.PreuParticipacio - preuPartIni) * s.Participacions - s.Despeses.GetValueOrDefault());
+            decimal piGPartsComprades = compres.Sum(s => (preuPartFi - s._PreuParticipacioEuros) * s.Participacions - s.Despeses.GetValueOrDefault());
+            decimal piGPartsVenudes = vendes.Sum(s => (s._PreuParticipacioEuros - preuPartIni) * s.Participacions - s.Despeses.GetValueOrDefault());
 
 
             return piGPartsIniciFinal + piGPartsComprades + piGPartsVenudes + dividents;
@@ -667,7 +667,7 @@ namespace Inversions.ClassesEntity
                 }
             }
 
-            return basicPigVendaOCartera4(venda.Data, venda.Participacions, venda.PreuParticipacio, pigOrig, out despesesCompres);
+            return basicPigVendaOCartera4(venda.Data, venda.Participacions, venda._PreuParticipacioEuros, pigOrig, out despesesCompres);
         }
 
         /// <summary>

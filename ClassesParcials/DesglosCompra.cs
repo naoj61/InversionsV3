@@ -24,7 +24,7 @@ namespace Inversions.ClassesEntity
 
         public decimal _PreuParticipacioOrig
         {
-            get { return MovCompraOrig.PreuParticipacio; }
+            get { return MovCompraOrig._PreuParticipacioEuros; }
         }
 
 

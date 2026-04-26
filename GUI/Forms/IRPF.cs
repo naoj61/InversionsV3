@@ -110,7 +110,7 @@ namespace Inversions.GUI.Forms
 
             public decimal _PreuUnitariVenda
             {
-                get { return vVenda.PreuParticipacio; }
+                get { return vVenda._PreuParticipacioEuros; }
             }
 
             public decimal _ImportCompraBrutUtil
@@ -120,7 +120,7 @@ namespace Inversions.GUI.Forms
 
             public decimal _ImportVendaBrutUtil
             {
-                get { return _ParticipacionsUtilitzades * vVenda.PreuParticipacio; }
+                get { return _ParticipacionsUtilitzades * vVenda._PreuParticipacioEuros; }
             }
 
             public decimal _ImportCompraNetUtil
@@ -238,7 +238,7 @@ namespace Inversions.GUI.Forms
 
             public decimal _PreuUnitari
             {
-                get { return _Venda.PreuParticipacio; }
+                get { return _Venda._PreuParticipacioEuros; }
             }
 
             public decimal _Despeses

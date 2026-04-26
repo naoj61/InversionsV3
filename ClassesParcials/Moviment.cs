@@ -10,6 +10,11 @@ namespace Inversions.ClassesEntity
     public partial class Moviment
     {
         #region *** Atributs ***
+        
+        public decimal _PreuParticipacioEuros
+        {
+            get { return PreuParticipacio / CanviAplicat; }
+        }
 
         public decimal _ImportBrut
         {

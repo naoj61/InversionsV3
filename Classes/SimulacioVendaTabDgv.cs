@@ -295,7 +295,7 @@ namespace Inversions.GUI
         {
             get
             {
-                decimal costOrig = vDesglosCompra._CompraOrig.PreuParticipacio * vDesglosCompra._PartsDisponiblesOrig;
+                decimal costOrig = vDesglosCompra._CompraOrig._PreuParticipacioEuros * vDesglosCompra._PartsDisponiblesOrig;
                 decimal valorSim = PreuParticipacioSimulacio * vDesglosCompra._PartsDisponibles;
 
                 return valorSim - costOrig;
@@ -306,7 +306,7 @@ namespace Inversions.GUI
         {
             get
             {
-                decimal costOrig = vDesglosCompra._CompraOrig.PreuParticipacio * vDesglosCompra._ParticipacionsOrig;
+                decimal costOrig = vDesglosCompra._CompraOrig._PreuParticipacioEuros * vDesglosCompra._ParticipacionsOrig;
                 decimal valorSim = PreuParticipacioSimulacio * vDesglosCompra._Participacions;
 
                 return valorSim - costOrig;
@@ -317,7 +317,7 @@ namespace Inversions.GUI
         {
             get
             {
-                decimal costOrig = vDesglosCompra._CompraOrig.PreuParticipacio * vDesglosCompra._PartsUtilitzadesOrig;
+                decimal costOrig = vDesglosCompra._CompraOrig._PreuParticipacioEuros * vDesglosCompra._PartsUtilitzadesOrig;
                 decimal valorSim = PreuParticipacioSimulacio * vDesglosCompra._PartsUtilitzades;
 
                 return valorSim - costOrig;
@@ -329,7 +329,7 @@ namespace Inversions.GUI
         {
             get
             {
-                decimal cost = vDesglosCompra._Compra.PreuParticipacio * vDesglosCompra._Participacions;
+                decimal cost = vDesglosCompra._Compra._PreuParticipacioEuros * vDesglosCompra._Participacions;
                 decimal valorSim = PreuParticipacioSimulacio * vDesglosCompra._Participacions;
 
                 return valorSim - cost;

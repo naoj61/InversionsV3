@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Comuns;
+using Inversions.ClassesEntity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Comuns;
-using Inversions.ClassesEntity;
 
 namespace Inversions.GUI
 {
@@ -248,7 +249,7 @@ namespace Inversions.GUI
                             }
                             else if (tipusMoviment == TipusMoviment.Venda)
                             {
-                                decimal? pigVendaReal = String.IsNullOrEmpty(ntbPigVendaReal.Text) ? (decimal?) null : ntbPigVendaReal.Valor;
+                                decimal? pigVendaReal = String.IsNullOrEmpty(ntbPigVendaReal.Text) ? (decimal?)null : ntbPigVendaReal.Valor;
 
                                 prodOrigenContext.desaVenda(conn, data1, DateTime.Now.TimeOfDay, tbNumParticipacions._DecimalValue, ntbPreuParticipacio._DecimalValue,
                                     tbCanviAplicat._DecimalValue, tbDespeses._DecimalValue, pigVendaReal, tbDescripcio.Text);
@@ -324,7 +325,7 @@ namespace Inversions.GUI
 
             Producte.TipusProducte tipusProd = gestioProductesTabMoviments._ProducteSeleccionat._TipusProducte;
             bool esUnaAccio = tipusProd == Producte.TipusProducte.Accions;
-            var tipusMov = (TipusMoviment) cbTipusMoviment.SelectedItem;
+            var tipusMov = (TipusMoviment)cbTipusMoviment.SelectedItem;
 
             gestioProductesTabMoviments.Enabled = false;
             cbTipusMoviment.Enabled = false;
@@ -389,7 +390,7 @@ namespace Inversions.GUI
 
         private void btDesaMoviment_Click(object sender, EventArgs e)
         {
-            var tp = (TipusMoviment) cbTipusMoviment.SelectedItem;
+            var tp = (TipusMoviment)cbTipusMoviment.SelectedItem;
 
             if (tp == TipusMoviment.Venda && !String.IsNullOrEmpty(ntbPigVendaReal.Text) && ntbPigVendaReal.Valor == 0)
             {
@@ -462,7 +463,7 @@ namespace Inversions.GUI
 
             try
             {
-                desaMoviment(tp, prod, (ProdFons) cProducteTraspas.SelectedItem);
+                desaMoviment(tp, prod, (ProdFons)cProducteTraspas.SelectedItem);
             }
             catch (Exception ex1)
             {
@@ -518,7 +519,7 @@ namespace Inversions.GUI
             {
                 if (e.ColumnIndex == 10 || e.ColumnIndex == 11)
                 {
-                    var prodTraspas = (Producte) dgvMovimentsProd.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    var prodTraspas = (Producte)dgvMovimentsProd.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     if (prodTraspas != null)
                     {
                         gestioProductesTabMoviments.seleccionaProducte(prodTraspas);
@@ -536,7 +537,7 @@ namespace Inversions.GUI
         {
             if (cbTipusMoviment.SelectedItem != null)
             {
-                switch ((TipusMoviment) cbTipusMoviment.SelectedItem)
+                switch ((TipusMoviment)cbTipusMoviment.SelectedItem)
                 {
                     case TipusMoviment.Compra:
                         compra();
@@ -572,6 +573,60 @@ namespace Inversions.GUI
                 calculaPreuPartTraspasCompra();
         }
 
+        private void dgvMovimentsProd_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // 1. Comprovem que estem a la columna que volem formatar (la de l'import)
+            // I ens assegurem que la cel·la no estigui buida
+            if (dgvMovimentsProd.Columns[e.ColumnIndex].Name == "colPreuUnitari" && e.Value != null)
+            {
+                var registre = (StrDgvMovimentsProd)dgvMovimentsProd.Rows[e.RowIndex].DataBoundItem;
+
+                // 2. Obtenim quina és la moneda d'aquesta fila en concret
+                string codiMoneda = registre._CanviAplicat == 1 ? "EUR" : registre._Prod.MonedaCodi;
+
+                // 3. Comprovem que el valor de la cel·la sigui un número vàlid
+                if (decimal.TryParse(e.Value.ToString(), out decimal import))
+                {
+                    /* 
+                    // 4. Assignem la cultura corresponent segons el codi de la moneda
+                    CultureInfo cultura;
+
+                    switch (codiMoneda)
+                    {
+                        case "USD":
+                            cultura = new CultureInfo("en-US"); // Dòlar americà ($)
+                            break;
+                        case "GBP":
+                            cultura = new CultureInfo("en-GB"); // Lliura esterlina (£)
+                            break;
+                        case "JPY":
+                            cultura = new CultureInfo("ja-JP"); // Ien japonès (¥)
+                            break;
+                        case "DKK":
+                            cultura = new CultureInfo("da-DK"); // Corona danesa (kr)
+                            break;
+                        case "EUR":
+                        default:
+                            cultura = new CultureInfo("ca-ES"); // Euro (€) amb format català
+                            break;
+                    }
+
+                    // 5. Formatem el número utilitzant "C" (Currency/Moneda) i la cultura triada
+                    e.Value = import.ToString("C", cultura);
+
+                    */
+
+                    // Si vols mostrar només el valor numèric amb 4 decimals i després el codi de la moneda, pots fer-ho així:
+                    e.Value = import.ToString("0.0000 ") + codiMoneda;
+
+
+                    // 6. Avisem al DataGridView que ja hem donat format a la cel·la
+                    // perquè no intenti aplicar el seu format per defecte per sobre
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
         #endregion *** Events ***
 
         /// <summary>
@@ -582,12 +637,14 @@ namespace Inversions.GUI
             private StrDgvMovimentsProd(Moviment moviment)
                 : this()
             {
+                _Moviment = moviment;
                 _Id = moviment.Id;
                 _Prod = moviment.Prod;
                 _Data = moviment.Data;
                 _Participacions = moviment.Participacions;
                 _PreuParticipacio = moviment.PreuParticipacio;
-                _ImportBrut = moviment.Participacions == 0 ? moviment.PreuParticipacio : moviment.Participacions * moviment.PreuParticipacio;
+                _PreuParticipacioEur = moviment._PreuParticipacioEuros;
+                _ImportBrut = moviment.Participacions == 0 ? moviment._PreuParticipacioEuros : moviment.Participacions * moviment._PreuParticipacioEuros;
                 _ImportNet = _ImportBrut + (moviment._EsCompra ? moviment.Despeses.GetValueOrDefault() : -moviment.Despeses.GetValueOrDefault());
                 _CanviAplicat = moviment.CanviAplicat;
                 _Despeses = moviment.Despeses.GetValueOrDefault();
@@ -605,9 +662,8 @@ namespace Inversions.GUI
                 _Descripcio = moviment.Descripcio;
             }
 
+            internal Moviment _Moviment { get; private set; }
 
-// ReSharper disable MemberCanBePrivate.Local
-// ReSharper disable UnusedAutoPropertyAccessor.Local
             public int _Id { get; private set; }
 
             public string _TipusMoviment { get; private set; }
@@ -619,6 +675,8 @@ namespace Inversions.GUI
             public decimal _Participacions { get; private set; }
 
             public decimal _PreuParticipacio { get; private set; }
+
+            public decimal _PreuParticipacioEur { get; private set; }
 
             public decimal _ImportBrut { get; private set; }
 
@@ -638,9 +696,6 @@ namespace Inversions.GUI
             {
                 return movimentsProducte.Select(moviment => new StrDgvMovimentsProd(moviment)).ToList();
             }
-
-// ReSharper restore UnusedAutoPropertyAccessor.Local
-// ReSharper restore MemberCanBePrivate.Local
         }
     }
 }
