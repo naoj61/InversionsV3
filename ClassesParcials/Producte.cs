@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Comuns;
 
@@ -644,7 +645,7 @@ namespace Inversions.ClassesEntity
         /// <param name="dataHora"></param>
         /// <param name="preuParticipacio"></param>
         /// <param name="sobreescriuSiExisteix">Indica que se sobreescriurà la valoració si ja existeix.</param>
-        private void afegeigPreuAValoracions(InversionsBDContext connexio, DateTime dataHora, decimal preuParticipacio, bool sobreescriuSiExisteix)
+        private async Task afegeigPreuAValoracions(InversionsBDContext connexio, DateTime dataHora, decimal preuParticipacio, bool sobreescriuSiExisteix)
         {
             // Crea una valoració amb el preu del moviment
             Valoracio val = ValoracionsProducte.SingleOrDefault(a => a.Data.Date == dataHora.Date);
@@ -652,7 +653,7 @@ namespace Inversions.ClassesEntity
             {
                 try
                 {
-                    Valoracio.Nova(connexio, this, dataHora, preuParticipacio);
+                    await Valoracio.Nova(connexio, this, dataHora, preuParticipacio);
                 }
                 catch (SqlException ex)
                 {

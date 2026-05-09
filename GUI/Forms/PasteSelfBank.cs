@@ -252,7 +252,7 @@ namespace Inversions.GUI
         }
 
 
-        private void btDesa_Click(object sender, EventArgs e)
+        private async void btDesa_Click(object sender, EventArgs e)
         {
             using (var connexio = InversionsBDContext.Create())
             {
@@ -271,11 +271,13 @@ namespace Inversions.GUI
                         if (val == null)
                         {
                             // Només noves valoracions. No modifica
-                            val = connexio.Valoracions.Create();
-                            val.ProdId = producte.Id;
-                            val.Data = data;
+                           
+                            val = await Valoracio.Nova(connexio, producte, data, preuPart);
+                            //    val = connexio.Valoracions.Create();
+                            //    val.ProdId = producte.Id;
+                            //    val.Data = data;
 
-                            connexio.Valoracions.Add(val);
+                            //    connexio.Valoracions.Add(val);
                         }
 
                         val.PreuParticipacio = preuPart;

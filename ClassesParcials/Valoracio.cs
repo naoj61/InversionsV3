@@ -5,6 +5,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Comuns;
 
 namespace Inversions.ClassesEntity
@@ -69,8 +70,8 @@ namespace Inversions.ClassesEntity
         /// <param name="conn"></param>
         /// <param name="producte"></param>
         /// <param name="data"></param>
-        /// <param name="import"></param>
-        internal static Valoracio Nova(InversionsBDContext conn, Producte producte, DateTime data, decimal import)
+        /// <param name="preuPart"></param>
+        internal async static Task<Valoracio> Nova(InversionsBDContext conn, Producte producte, DateTime data, decimal preuPart, decimal? preuPartApi = null)
         {
             // Alta
             Valoracio val = null;
@@ -79,7 +80,27 @@ namespace Inversions.ClassesEntity
                 val = conn.Valoracio.Create();
                 val.ProdId = producte.Id;
                 val.Data = data;
-                val.PreuParticipacio = import;
+                val.PreuParticipacio = preuPart;
+                
+                if (preuPartApi.HasValue)
+                    val.PreuParticipacioApi = preuPartApi;
+                else
+                {
+                    if (!String.IsNullOrEmpty(producte.TickerExchange))
+                    {
+                        try
+                        {
+                            var valor = await EodhdUserService.UltimTancamentEODHd(producte.TickerExchange);
+
+                            if (valor != null)
+                                val.PreuParticipacioApi = valor;
+                        }
+                        catch (Exception ex)
+                        {
+                            Utilitats.EscriuLog(ex);
+                        }
+                    }
+                }
 
                 conn.Valoracions.Add(val);
                 //conn.SaveChanges();
@@ -111,7 +132,7 @@ namespace Inversions.ClassesEntity
         /// <param name="conn"></param>
         /// <param name="data"></param>
         /// <param name="import"></param>
-        internal void modifica(InversionsBDContext conn, DateTime data, decimal import)
+        internal void modifica(InversionsBDContext conn, DateTime data, decimal import, decimal? importApi = null)
         {
             Valoracio val = null;
             try
@@ -122,6 +143,7 @@ namespace Inversions.ClassesEntity
 
                 val.Data = data;
                 val.PreuParticipacio = import;
+                val.PreuParticipacioApi = importApi ?? val.PreuParticipacioApi; // Si no s'ha passat importApi, es manté el valor actual.
 
                 conn.Valoracions.AddOrUpdate(val);
                 //conn.SaveChanges();

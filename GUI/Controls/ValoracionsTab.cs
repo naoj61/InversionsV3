@@ -622,7 +622,7 @@ namespace Inversions.GUI
             modeConsulta();
         }
 
-        private void btDesa_Click(object sender, EventArgs e)
+        private async void btDesa_Click(object sender, EventArgs e)
         {
             Cursor cursor = Cursor;
             Cursor = Cursors.WaitCursor;
@@ -641,7 +641,7 @@ namespace Inversions.GUI
                     {
                         if (vEsNouValor)
                         {
-                            Valoracio.Nova(conn, gestioProductesTabValoracions._ProducteSeleccionat, cData.Value, tbImport._DecimalValue);
+                            await Valoracio.Nova(conn, gestioProductesTabValoracions._ProducteSeleccionat, cData.Value, tbImport._DecimalValue);
                             conn.SaveChanges();
                             Valoracio.RefrescaTaula();
                         }
