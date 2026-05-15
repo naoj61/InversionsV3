@@ -300,6 +300,7 @@ namespace Inversions.GUI
             btCopiaValorsDelPaste.Enabled = false;
             btCancela.Enabled = true;
             btDesa.Enabled = true;
+            btLlegeixApi.Enabled = true;
             dgvValoracions.Enabled = false;
             gestioProductesTabValoracions.Enabled = false;
             cData.Enabled = true;
@@ -320,6 +321,7 @@ namespace Inversions.GUI
             btCopiaValorsDelPaste.Enabled = true;
             btCancela.Enabled = false;
             btDesa.Enabled = false;
+            btLlegeixApi.Enabled = false;
             dgvValoracions.Enabled = true;
             gestioProductesTabValoracions.Enabled = true;
             cData.Enabled = false;
@@ -856,6 +858,42 @@ namespace Inversions.GUI
         }
 
         #endregion *** Events ***
-    
+
+        private async void btLlegeixApi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var prod = gestioProductesTabValoracions._ProducteSeleccionat;
+                var data = cData.Value;
+
+                var valor = await EodhdUserService.PreuTancamentEODHdPerData(prod.TickerExchange, data);
+
+                if (valor.HasValue)
+                {
+                    decimal? moneda;
+                    if (prod.Moneda.Codi == "EUR")
+                        moneda = 1m;
+                    else
+                        moneda = await EodhdUserService.PreuTancamentEODHdPerData(prod.Moneda.TickerExchange, data);
+
+                    if (moneda.HasValue)
+                    {
+                        var valorEur = valor.Value / moneda.Value;
+
+                        tbImport.Valor = Math.Round(valorEur, 3);
+                    }
+                    else
+                        throw new ExceptionApi("No s'ha trobat la moneda.", System.Net.HttpStatusCode.NotFound);
+                }
+                else
+                    throw new ExceptionApi("No s'ha trobat el valor.", System.Net.HttpStatusCode.NotFound);
+
+            }
+            catch (ExceptionApi ex)
+            {
+                Utilitats.EscriuLog(ex, true);
+            }
+
+        }
     }
 }

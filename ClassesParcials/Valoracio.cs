@@ -71,7 +71,7 @@ namespace Inversions.ClassesEntity
         /// <param name="producte"></param>
         /// <param name="data"></param>
         /// <param name="preuPart"></param>
-        internal async static Task<Valoracio> Nova(InversionsBDContext conn, Producte producte, DateTime data, decimal preuPart, decimal? preuPartApi = null)
+        internal async static Task<Valoracio> Nova(InversionsBDContext conn, Producte producte, DateTime data, decimal preuPart)
         {
             // Alta
             Valoracio val = null;
@@ -81,26 +81,6 @@ namespace Inversions.ClassesEntity
                 val.ProdId = producte.Id;
                 val.Data = data;
                 val.PreuParticipacio = preuPart;
-                
-                if (preuPartApi.HasValue)
-                    val.PreuParticipacioApi = preuPartApi;
-                else
-                {
-                    if (!String.IsNullOrEmpty(producte.TickerExchange))
-                    {
-                        try
-                        {
-                            var valor = await EodhdUserService.UltimTancamentEODHd(producte.TickerExchange);
-
-                            if (valor != null)
-                                val.PreuParticipacioApi = valor;
-                        }
-                        catch (Exception ex)
-                        {
-                            Utilitats.EscriuLog(ex);
-                        }
-                    }
-                }
 
                 conn.Valoracions.Add(val);
                 //conn.SaveChanges();
@@ -132,7 +112,7 @@ namespace Inversions.ClassesEntity
         /// <param name="conn"></param>
         /// <param name="data"></param>
         /// <param name="import"></param>
-        internal void modifica(InversionsBDContext conn, DateTime data, decimal import, decimal? importApi = null)
+        internal void modifica(InversionsBDContext conn, DateTime data, decimal import)
         {
             Valoracio val = null;
             try
@@ -143,7 +123,6 @@ namespace Inversions.ClassesEntity
 
                 val.Data = data;
                 val.PreuParticipacio = import;
-                val.PreuParticipacioApi = importApi ?? val.PreuParticipacioApi; // Si no s'ha passat importApi, es manté el valor actual.
 
                 conn.Valoracions.AddOrUpdate(val);
                 //conn.SaveChanges();

@@ -47,6 +47,9 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btCapturaValorPaste = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ckLbAccesApi = new System.Windows.Forms.CheckedListBox();
+            this.btLlegeigApi = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colEstatOriginalCheckBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomFons = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +63,7 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +75,7 @@
             this.tbPaste.Multiline = true;
             this.tbPaste.Name = "tbPaste";
             this.tbPaste.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbPaste.Size = new System.Drawing.Size(433, 722);
+            this.tbPaste.Size = new System.Drawing.Size(433, 704);
             this.tbPaste.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -84,13 +88,14 @@
             this.flowLayoutPanel1.Controls.Add(this.ckSobreescriuValoracions);
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.btCapturaValorPaste);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 722);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 704);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1343, 79);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1343, 97);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // ckTancaAlDesar
@@ -237,6 +242,42 @@
             this.btCapturaValorPaste.UseVisualStyleBackColor = true;
             this.btCapturaValorPaste.Click += new System.EventHandler(this.btCapturaValorPaste_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ckLbAccesApi);
+            this.groupBox2.Controls.Add(this.btLlegeigApi);
+            this.groupBox2.Location = new System.Drawing.Point(52, 9);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(191, 79);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Accés API";
+            // 
+            // ckLbAccesApi
+            // 
+            this.ckLbAccesApi.CheckOnClick = true;
+            this.ckLbAccesApi.FormattingEnabled = true;
+            this.ckLbAccesApi.Items.AddRange(new object[] {
+            "Accions",
+            "Fons"});
+            this.ckLbAccesApi.Location = new System.Drawing.Point(0, 25);
+            this.ckLbAccesApi.Name = "ckLbAccesApi";
+            this.ckLbAccesApi.Size = new System.Drawing.Size(104, 50);
+            this.ckLbAccesApi.TabIndex = 7;
+            this.ckLbAccesApi.SelectedValueChanged += new System.EventHandler(this.ckLbAccesApi_SelectedValueChanged);
+            // 
+            // btLlegeigApi
+            // 
+            this.btLlegeigApi.Enabled = false;
+            this.btLlegeigApi.Location = new System.Drawing.Point(110, 20);
+            this.btLlegeigApi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btLlegeigApi.Name = "btLlegeigApi";
+            this.btLlegeigApi.Size = new System.Drawing.Size(76, 55);
+            this.btLlegeigApi.TabIndex = 0;
+            this.btLlegeigApi.Text = "Llegeig API";
+            this.btLlegeigApi.UseVisualStyleBackColor = true;
+            this.btLlegeigApi.Click += new System.EventHandler(this.btLlegeigApi_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -256,8 +297,9 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(910, 722);
+            this.dataGridView1.Size = new System.Drawing.Size(910, 704);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -265,13 +307,16 @@
             // colEstatOriginalCheckBox
             // 
             this.colEstatOriginalCheckBox.HeaderText = "EstatCheckBox";
+            this.colEstatOriginalCheckBox.MinimumWidth = 8;
             this.colEstatOriginalCheckBox.Name = "colEstatOriginalCheckBox";
             this.colEstatOriginalCheckBox.Visible = false;
+            this.colEstatOriginalCheckBox.Width = 150;
             // 
             // colNomFons
             // 
             this.colNomFons.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colNomFons.HeaderText = "Nom Fons";
+            this.colNomFons.MinimumWidth = 8;
             this.colNomFons.Name = "colNomFons";
             this.colNomFons.ReadOnly = true;
             this.colNomFons.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -281,6 +326,7 @@
             // 
             this.colSeleccionat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.colSeleccionat.HeaderText = "Selec";
+            this.colSeleccionat.MinimumWidth = 8;
             this.colSeleccionat.Name = "colSeleccionat";
             this.colSeleccionat.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colSeleccionat.Width = 55;
@@ -292,6 +338,7 @@
             dataGridViewCellStyle1.NullValue = null;
             this.colData.DefaultCellStyle = dataGridViewCellStyle1;
             this.colData.HeaderText = "Data";
+            this.colData.MinimumWidth = 8;
             this.colData.Name = "colData";
             this.colData.ReadOnly = true;
             this.colData.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -302,10 +349,11 @@
             // 
             this.colValorActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "#,#0.00###### €";
+            dataGridViewCellStyle2.Format = "#,#0.00# €";
             dataGridViewCellStyle2.NullValue = null;
             this.colValorActual.DefaultCellStyle = dataGridViewCellStyle2;
             this.colValorActual.HeaderText = "Valor Act";
+            this.colValorActual.MinimumWidth = 8;
             this.colValorActual.Name = "colValorActual";
             this.colValorActual.ReadOnly = true;
             this.colValorActual.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -316,10 +364,11 @@
             // 
             this.colValorNou.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "#,#0.00###### €";
+            dataGridViewCellStyle3.Format = "#,#0.00# €";
             dataGridViewCellStyle3.NullValue = "0";
             this.colValorNou.DefaultCellStyle = dataGridViewCellStyle3;
             this.colValorNou.HeaderText = "Valor Nou";
+            this.colValorNou.MinimumWidth = 8;
             this.colValorNou.Name = "colValorNou";
             this.colValorNou.ReadOnly = true;
             this.colValorNou.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -334,6 +383,7 @@
             dataGridViewCellStyle4.NullValue = null;
             this.colPercentatge.DefaultCellStyle = dataGridViewCellStyle4;
             this.colPercentatge.HeaderText = "%";
+            this.colPercentatge.MinimumWidth = 8;
             this.colPercentatge.Name = "colPercentatge";
             this.colPercentatge.ReadOnly = true;
             this.colPercentatge.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -348,6 +398,7 @@
             dataGridViewCellStyle5.NullValue = null;
             this.colDif.DefaultCellStyle = dataGridViewCellStyle5;
             this.colDif.HeaderText = "Dif";
+            this.colDif.MinimumWidth = 8;
             this.colDif.Name = "colDif";
             this.colDif.ReadOnly = true;
             this.colDif.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -376,6 +427,7 @@
             this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -398,6 +450,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbColumnaPreuParticio;
+        private System.Windows.Forms.Button btCapturaValorPaste;
+        private System.Windows.Forms.Button btLlegeigApi;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstatOriginalCheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomFons;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colSeleccionat;
@@ -406,6 +460,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorNou;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPercentatge;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDif;
-        private System.Windows.Forms.Button btCapturaValorPaste;
+        private System.Windows.Forms.CheckedListBox ckLbAccesApi;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

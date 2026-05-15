@@ -101,6 +101,7 @@ namespace Inversions.GUI
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbTitolValoracionsPerData = new System.Windows.Forms.Label();
             this.btCopiaValorsDelPaste = new System.Windows.Forms.Button();
+            this.btLlegeixApi = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvValoracionsPerData = new Controls.DataGridView3();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -198,10 +199,10 @@ namespace Inversions.GUI
             // 
             this.btCancela.Enabled = false;
             this.btCancela.ForeColor = System.Drawing.Color.Red;
-            this.btCancela.Location = new System.Drawing.Point(495, 61);
+            this.btCancela.Location = new System.Drawing.Point(495, 62);
             this.btCancela.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btCancela.Name = "btCancela";
-            this.btCancela.Size = new System.Drawing.Size(130, 45);
+            this.btCancela.Size = new System.Drawing.Size(129, 45);
             this.btCancela.TabIndex = 6;
             this.btCancela.Text = "Cancela";
             this.btCancela.UseVisualStyleBackColor = true;
@@ -210,10 +211,10 @@ namespace Inversions.GUI
             // btNouValor
             // 
             this.btNouValor.Enabled = false;
-            this.btNouValor.Location = new System.Drawing.Point(189, 9);
+            this.btNouValor.Location = new System.Drawing.Point(175, 10);
             this.btNouValor.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btNouValor.Name = "btNouValor";
-            this.btNouValor.Size = new System.Drawing.Size(130, 45);
+            this.btNouValor.Size = new System.Drawing.Size(103, 45);
             this.btNouValor.TabIndex = 1;
             this.btNouValor.Text = "Nou Valor";
             this.btNouValor.UseVisualStyleBackColor = true;
@@ -223,10 +224,10 @@ namespace Inversions.GUI
             // 
             this.btDesa.Enabled = false;
             this.btDesa.ForeColor = System.Drawing.Color.Green;
-            this.btDesa.Location = new System.Drawing.Point(339, 61);
+            this.btDesa.Location = new System.Drawing.Point(350, 62);
             this.btDesa.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btDesa.Name = "btDesa";
-            this.btDesa.Size = new System.Drawing.Size(130, 45);
+            this.btDesa.Size = new System.Drawing.Size(129, 45);
             this.btDesa.TabIndex = 5;
             this.btDesa.Text = "Desa";
             this.btDesa.UseVisualStyleBackColor = true;
@@ -247,10 +248,10 @@ namespace Inversions.GUI
             // btModifica
             // 
             this.btModifica.Enabled = false;
-            this.btModifica.Location = new System.Drawing.Point(339, 9);
+            this.btModifica.Location = new System.Drawing.Point(286, 10);
             this.btModifica.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btModifica.Name = "btModifica";
-            this.btModifica.Size = new System.Drawing.Size(130, 45);
+            this.btModifica.Size = new System.Drawing.Size(103, 45);
             this.btModifica.TabIndex = 2;
             this.btModifica.Text = "Modifica";
             this.btModifica.UseVisualStyleBackColor = true;
@@ -311,10 +312,10 @@ namespace Inversions.GUI
             // btEsborra
             // 
             this.btEsborra.Enabled = false;
-            this.btEsborra.Location = new System.Drawing.Point(495, 9);
+            this.btEsborra.Location = new System.Drawing.Point(397, 10);
             this.btEsborra.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.btEsborra.Name = "btEsborra";
-            this.btEsborra.Size = new System.Drawing.Size(130, 45);
+            this.btEsborra.Size = new System.Drawing.Size(103, 45);
             this.btEsborra.TabIndex = 3;
             this.btEsborra.Text = "Esborra";
             this.btEsborra.UseVisualStyleBackColor = true;
@@ -965,6 +966,7 @@ namespace Inversions.GUI
             this.panel2.Controls.Add(this.btNouValor);
             this.panel2.Controls.Add(this.gbFiltreTipusProducte);
             this.panel2.Controls.Add(this.btEsborra);
+            this.panel2.Controls.Add(this.btLlegeixApi);
             this.panel2.Controls.Add(this.btCancela);
             this.panel2.Controls.Add(this.pnEdicio);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -996,6 +998,19 @@ namespace Inversions.GUI
             this.btCopiaValorsDelPaste.Text = "Còpia des d\'un Paste";
             this.btCopiaValorsDelPaste.UseVisualStyleBackColor = false;
             this.btCopiaValorsDelPaste.Click += new System.EventHandler(this.btCopiaValorsDelPaste_Click);
+            // 
+            // btLlegeixApi
+            // 
+            this.btLlegeixApi.Enabled = false;
+            this.btLlegeixApi.ForeColor = System.Drawing.Color.Blue;
+            this.btLlegeixApi.Location = new System.Drawing.Point(526, 10);
+            this.btLlegeixApi.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.btLlegeixApi.Name = "btLlegeixApi";
+            this.btLlegeixApi.Size = new System.Drawing.Size(98, 45);
+            this.btLlegeixApi.TabIndex = 6;
+            this.btLlegeixApi.Text = "Llegeix API";
+            this.btLlegeixApi.UseVisualStyleBackColor = true;
+            this.btLlegeixApi.Click += new System.EventHandler(this.btLlegeixApi_Click);
             // 
             // panel3
             // 
@@ -1256,5 +1271,6 @@ namespace Inversions.GUI
         private NumericTextBoxColumn2 colVariacioEuros2;
         private NumericTextBoxColumn2 Column1;
         private CheckedComboBoxControl ccbFiltreTipusProducte;
+        private System.Windows.Forms.Button btLlegeixApi;
     }
 }

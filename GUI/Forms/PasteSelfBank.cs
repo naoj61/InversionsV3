@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Comuns;
+using Inversions.ClassesEntity;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using Comuns;
-using Inversions.ClassesEntity;
+using static Comuns.Utilitats;
 
 namespace Inversions.GUI
 {
@@ -273,11 +274,6 @@ namespace Inversions.GUI
                             // Només noves valoracions. No modifica
                            
                             val = await Valoracio.Nova(connexio, producte, data, preuPart);
-                            //    val = connexio.Valoracions.Create();
-                            //    val.ProdId = producte.Id;
-                            //    val.Data = data;
-
-                            //    connexio.Valoracions.Add(val);
                         }
 
                         val.PreuParticipacio = preuPart;
@@ -358,6 +354,66 @@ namespace Inversions.GUI
         private void btCapturaValorPaste_Click(object sender, EventArgs e)
         {
             capturaValorsPaste();
+        }
+
+        private async void btLlegeigApi_Click(object sender, EventArgs e)
+        {
+          
+#if DEBUG
+            var data = Festiu.UltimDiaLaborable(new DateTime(2026, 5, 13));
+#else
+            var data = Festiu.UltimDiaLaborable(DateTime.Today.AddDays(-1));
+#endif                        
+            
+            bool avis = false;
+            dataGridView1.Rows.Clear();
+
+            foreach (Producte prod in Producte.Tuples.ToList().Where(w => w._Participacions > 0))
+            {
+                if (prod is ProdFons && !ckLbAccesApi.CheckedItems.Contains("Fons"))
+                    continue;
+
+                if (prod is ProdAccions && !ckLbAccesApi.CheckedItems.Contains("Accions"))
+                    continue;
+
+                if (!String.IsNullOrEmpty(prod.TickerExchange))
+                {
+                    try
+                    {
+                        var valor = await EodhdUserService.PreuTancamentEODHdPerData(prod.TickerExchange, data);
+
+                        if (valor.HasValue)
+                        {
+                            decimal? moneda;
+                            if (prod.Moneda.Codi == "EUR")
+                                moneda = 1m;
+                            else
+                                moneda = await EodhdUserService.PreuTancamentEODHdPerData(prod.Moneda.TickerExchange, data);
+
+                            if (moneda.HasValue)
+                            {
+                                var valorEur = valor.Value / moneda.Value;
+
+                                creaValoracio(data, prod, valorEur, ref avis);
+                            }
+                        }
+                    }
+                    catch (ExceptionApi ex)
+                    {
+                        Utilitats.EscriuLog(ex, true);
+                    }
+                }
+            }
+
+            btDesa.Enabled = dataGridView1.Rows.Count > 0;
+
+            if (avis && dataGridView1.Rows.Count > 0)
+                MessageBox.Show(String.Format("Diferència superior al {0}%. Comprova els valors", DiferenciaMaimaxPreu));
+        }
+
+        private void ckLbAccesApi_SelectedValueChanged(object sender, EventArgs e)
+        {
+            btLlegeigApi.Enabled = ckLbAccesApi.CheckedItems.Count > 0;
         }
     }
 }
