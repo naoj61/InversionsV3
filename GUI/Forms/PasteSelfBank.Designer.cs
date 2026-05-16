@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbPaste = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.ckTancaAlDesar = new System.Windows.Forms.CheckBox();
@@ -50,6 +50,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ckLbAccesApi = new System.Windows.Forms.CheckedListBox();
             this.btLlegeigApi = new System.Windows.Forms.Button();
+            this.dtpDataApi = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colEstatOriginalCheckBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomFons = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,7 +76,7 @@
             this.tbPaste.Multiline = true;
             this.tbPaste.Name = "tbPaste";
             this.tbPaste.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbPaste.Size = new System.Drawing.Size(433, 704);
+            this.tbPaste.Size = new System.Drawing.Size(433, 702);
             this.tbPaste.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -91,11 +92,11 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBox2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 704);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 702);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1343, 97);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1552, 99);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // ckTancaAlDesar
@@ -103,7 +104,7 @@
             this.ckTancaAlDesar.AutoSize = true;
             this.ckTancaAlDesar.Checked = true;
             this.ckTancaAlDesar.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckTancaAlDesar.Location = new System.Drawing.Point(1189, 26);
+            this.ckTancaAlDesar.Location = new System.Drawing.Point(1398, 26);
             this.ckTancaAlDesar.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.ckTancaAlDesar.Name = "ckTancaAlDesar";
             this.ckTancaAlDesar.Size = new System.Drawing.Size(139, 24);
@@ -114,7 +115,7 @@
             // btDesa
             // 
             this.btDesa.Enabled = false;
-            this.btDesa.Location = new System.Drawing.Point(1074, 10);
+            this.btDesa.Location = new System.Drawing.Point(1283, 10);
             this.btDesa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btDesa.Name = "btDesa";
             this.btDesa.Size = new System.Drawing.Size(109, 55);
@@ -127,7 +128,7 @@
             // 
             this.panel1.Controls.Add(this.dtpDataUnica);
             this.panel1.Controls.Add(this.ckDataUnica);
-            this.panel1.Location = new System.Drawing.Point(934, 9);
+            this.panel1.Location = new System.Drawing.Point(1143, 9);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(134, 61);
             this.panel1.TabIndex = 4;
@@ -158,7 +159,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cbColumnaPreuParticio);
-            this.groupBox1.Location = new System.Drawing.Point(728, 9);
+            this.groupBox1.Location = new System.Drawing.Point(937, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 60);
             this.groupBox1.TabIndex = 3;
@@ -187,7 +188,7 @@
             // 
             // ckSobreescriuValoracions
             // 
-            this.ckSobreescriuValoracions.Location = new System.Drawing.Point(593, 9);
+            this.ckSobreescriuValoracions.Location = new System.Drawing.Point(802, 9);
             this.ckSobreescriuValoracions.Name = "ckSobreescriuValoracions";
             this.ckSobreescriuValoracions.Size = new System.Drawing.Size(129, 61);
             this.ckSobreescriuValoracions.TabIndex = 2;
@@ -199,7 +200,7 @@
             // 
             this.panel2.Controls.Add(this.textBox3);
             this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Location = new System.Drawing.Point(364, 9);
+            this.panel2.Location = new System.Drawing.Point(573, 9);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(223, 58);
             this.panel2.TabIndex = 5;
@@ -233,7 +234,7 @@
             // 
             // btCapturaValorPaste
             // 
-            this.btCapturaValorPaste.Location = new System.Drawing.Point(249, 10);
+            this.btCapturaValorPaste.Location = new System.Drawing.Point(458, 10);
             this.btCapturaValorPaste.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btCapturaValorPaste.Name = "btCapturaValorPaste";
             this.btCapturaValorPaste.Size = new System.Drawing.Size(109, 55);
@@ -246,9 +247,10 @@
             // 
             this.groupBox2.Controls.Add(this.ckLbAccesApi);
             this.groupBox2.Controls.Add(this.btLlegeigApi);
-            this.groupBox2.Location = new System.Drawing.Point(52, 9);
+            this.groupBox2.Controls.Add(this.dtpDataApi);
+            this.groupBox2.Location = new System.Drawing.Point(202, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(191, 79);
+            this.groupBox2.Size = new System.Drawing.Size(250, 81);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Accés API";
@@ -260,7 +262,7 @@
             this.ckLbAccesApi.Items.AddRange(new object[] {
             "Accions",
             "Fons"});
-            this.ckLbAccesApi.Location = new System.Drawing.Point(0, 25);
+            this.ckLbAccesApi.Location = new System.Drawing.Point(6, 22);
             this.ckLbAccesApi.Name = "ckLbAccesApi";
             this.ckLbAccesApi.Size = new System.Drawing.Size(104, 50);
             this.ckLbAccesApi.TabIndex = 7;
@@ -269,14 +271,22 @@
             // btLlegeigApi
             // 
             this.btLlegeigApi.Enabled = false;
-            this.btLlegeigApi.Location = new System.Drawing.Point(110, 20);
+            this.btLlegeigApi.Location = new System.Drawing.Point(116, 46);
             this.btLlegeigApi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btLlegeigApi.Name = "btLlegeigApi";
-            this.btLlegeigApi.Size = new System.Drawing.Size(76, 55);
+            this.btLlegeigApi.Size = new System.Drawing.Size(127, 30);
             this.btLlegeigApi.TabIndex = 0;
             this.btLlegeigApi.Text = "Llegeig API";
             this.btLlegeigApi.UseVisualStyleBackColor = true;
             this.btLlegeigApi.Click += new System.EventHandler(this.btLlegeigApi_Click);
+            // 
+            // dtpDataApi
+            // 
+            this.dtpDataApi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataApi.Location = new System.Drawing.Point(116, 14);
+            this.dtpDataApi.Name = "dtpDataApi";
+            this.dtpDataApi.Size = new System.Drawing.Size(127, 26);
+            this.dtpDataApi.TabIndex = 8;
             // 
             // dataGridView1
             // 
@@ -299,7 +309,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(910, 704);
+            this.dataGridView1.Size = new System.Drawing.Size(1119, 702);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -334,9 +344,9 @@
             // colData
             // 
             this.colData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colData.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle26.Format = "d";
+            dataGridViewCellStyle26.NullValue = null;
+            this.colData.DefaultCellStyle = dataGridViewCellStyle26;
             this.colData.HeaderText = "Data";
             this.colData.MinimumWidth = 8;
             this.colData.Name = "colData";
@@ -348,10 +358,10 @@
             // colValorActual
             // 
             this.colValorActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "#,#0.00# €";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colValorActual.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle27.Format = "#,#0.00# €";
+            dataGridViewCellStyle27.NullValue = null;
+            this.colValorActual.DefaultCellStyle = dataGridViewCellStyle27;
             this.colValorActual.HeaderText = "Valor Act";
             this.colValorActual.MinimumWidth = 8;
             this.colValorActual.Name = "colValorActual";
@@ -363,10 +373,10 @@
             // colValorNou
             // 
             this.colValorNou.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "#,#0.00# €";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.colValorNou.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle28.Format = "#,#0.00# €";
+            dataGridViewCellStyle28.NullValue = "0";
+            this.colValorNou.DefaultCellStyle = dataGridViewCellStyle28;
             this.colValorNou.HeaderText = "Valor Nou";
             this.colValorNou.MinimumWidth = 8;
             this.colValorNou.Name = "colValorNou";
@@ -378,10 +388,10 @@
             // colPercentatge
             // 
             this.colPercentatge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "#0.000 %";
-            dataGridViewCellStyle4.NullValue = null;
-            this.colPercentatge.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle29.Format = "#0.000 %";
+            dataGridViewCellStyle29.NullValue = null;
+            this.colPercentatge.DefaultCellStyle = dataGridViewCellStyle29;
             this.colPercentatge.HeaderText = "%";
             this.colPercentatge.MinimumWidth = 8;
             this.colPercentatge.Name = "colPercentatge";
@@ -393,10 +403,10 @@
             // colDif
             // 
             this.colDif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "#,#0.00 €";
-            dataGridViewCellStyle5.NullValue = null;
-            this.colDif.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle30.Format = "#,#0.00 €";
+            dataGridViewCellStyle30.NullValue = null;
+            this.colDif.DefaultCellStyle = dataGridViewCellStyle30;
             this.colDif.HeaderText = "Dif";
             this.colDif.MinimumWidth = 8;
             this.colDif.Name = "colDif";
@@ -410,7 +420,7 @@
             this.AcceptButton = this.btCapturaValorPaste;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1343, 801);
+            this.ClientSize = new System.Drawing.Size(1552, 801);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tbPaste);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -420,6 +430,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "PasteSelfBank";
+            this.Load += new System.EventHandler(this.PasteSelfBank_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -462,5 +473,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDif;
         private System.Windows.Forms.CheckedListBox ckLbAccesApi;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DateTimePicker dtpDataApi;
     }
 }

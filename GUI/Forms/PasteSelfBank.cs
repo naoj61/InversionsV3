@@ -358,13 +358,8 @@ namespace Inversions.GUI
 
         private async void btLlegeigApi_Click(object sender, EventArgs e)
         {
-          
-#if DEBUG
-            var data = Festiu.UltimDiaLaborable(new DateTime(2026, 5, 13));
-#else
-            var data = Festiu.UltimDiaLaborable(DateTime.Today.AddDays(-1));
-#endif                        
-            
+            var data = dtpDataApi.Value;
+
             bool avis = false;
             dataGridView1.Rows.Clear();
 
@@ -414,6 +409,11 @@ namespace Inversions.GUI
         private void ckLbAccesApi_SelectedValueChanged(object sender, EventArgs e)
         {
             btLlegeigApi.Enabled = ckLbAccesApi.CheckedItems.Count > 0;
+        }
+
+        private void PasteSelfBank_Load(object sender, EventArgs e)
+        {
+            dtpDataApi.Value = Festiu.UltimDiaLaborable(DateTime.Today.AddDays(-1));
         }
     }
 }
