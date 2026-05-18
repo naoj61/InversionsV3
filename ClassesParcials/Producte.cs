@@ -45,16 +45,29 @@ namespace Inversions.ClassesEntity
             get { return Empresa == null ? null : Empresa.Nom; }
         }
 
+        /// <summary>
+        /// Gets the total participations held by all users at the current system time.
+        /// </summary>
+        /// <remarks>Uses DateTime.Now to include movements from the current day and calls partsEnCartera
+        /// with a null user filter to aggregate across all users.</remarks>
+        public decimal _ParticipacionsTotsElsUsuaris
+        {
+            get
+            {
+                // Utilitzo Now perqué amb Today, al fer un moviment, aquest no el compta fins el dia següent.
+                return partsEnCartera(null, DateTime.Now);
+            }
+        }
 
         /// <summary>
-        ///     Torna les participacions actuals.
+        /// Torna les participacions actuals.
         /// </summary>
         public decimal _Participacions
         {
             get
             {
                 // Utilitzo Now perqué amb Today, al fer un moviment, aquest no el compta fins el dia següent.
-                return partsEnCartera(DateTime.Now);
+                return partsEnCartera(Usuari.Seleccionat, DateTime.Now);
             }
         }
 
@@ -259,15 +272,34 @@ namespace Inversions.ClassesEntity
 
 
         /// <summary>
-        ///     Participacions en cartera d'un producte en una data.
+        /// Participacions en cartera d'un producte en una data.
         /// </summary>
         /// <param name="dataHora">Si null, data d'avui.</param>
         /// <returns></returns>
         internal decimal partsEnCartera(DateTime? dataHora = null)
         {
+            return partsEnCartera(Usuari.Seleccionat, dataHora);
+        }
+
+        /// <summary>
+        /// Participacions en cartera d'un producte i un usuari en una data.
+        /// </summary>
+        /// <param name="usuari">Si null, totes els usuaris</param>
+        /// <param name="dataHora"></param>
+        /// <returns></returns>
+        internal decimal partsEnCartera(Usuari usuari, DateTime? dataHora = null)
+        {
             DateTime dataH = dataHora.GetValueOrDefault(DateTime.Now);
-            decimal partsComprades = MovimentsProducteUsuari.Where(w => w._EsCompra && w.Data <= dataH).Sum(s => s.Participacions);
-            decimal partsVenudes = MovimentsProducteUsuari.Where(w => w._EsVenda && w.Data <= dataH).Sum(s => s.Participacions);
+
+            var movs = Moviment.Tuples.Where(w => w.ProdId == Id).ToList();
+
+            if (usuari != null)
+            {
+                 movs = movs.Where(w => w.UsuariId == usuari.Id).ToList();
+            }
+
+            decimal partsComprades = movs.Where(w => w._EsCompra && w.Data <= dataH).Sum(s => s.Participacions);
+            decimal partsVenudes = movs.Where(w => w._EsVenda && w.Data <= dataH).Sum(s => s.Participacions);
 
             return partsComprades - partsVenudes;
         }

@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using static Comuns.Utilitats;
 
 namespace Inversions.GUI
 {
@@ -18,7 +17,6 @@ namespace Inversions.GUI
         {
             InitializeComponent();
 
-            int xx = Convert.ToInt32(Program.LlegeigVariableEnRegistreWindows("ColumnaPreuParticio", false));
             cbColumnaPreuParticio.SelectedIndex = Convert.ToInt32(Program.LlegeigVariableEnRegistreWindows("ColumnaPreuParticio", false));
             cbColumnaPreuParticio.SelectedIndexChanged += cbColumnaPreuParticio_SelectedIndexChanged;
 
@@ -60,7 +58,7 @@ namespace Inversions.GUI
                 dataGridView1.Rows.Clear();
 
                 string text1 = tbPaste.Text.Replace(Environment.NewLine, "\t");
-                string[] items = text1.Split(new[] {'\t'}, StringSplitOptions.RemoveEmptyEntries);
+                string[] items = text1.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
                 ProdAccions prod = null;
                 int pos = items[0] == "Kraken" ? 1 : 4;
@@ -129,7 +127,7 @@ namespace Inversions.GUI
                 dataGridView1.Rows.Clear();
 
                 string text1 = tbPaste.Text.Replace(Environment.NewLine, "\t");
-                string[] items = text1.Split(new[] {'\t'}, StringSplitOptions.RemoveEmptyEntries);
+                string[] items = text1.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
                 ProdFons prod = null;
                 int? posPreuPart = null;
                 int? pos = null;
@@ -261,18 +259,18 @@ namespace Inversions.GUI
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        if (!(bool) (row.Cells[colSeleccionat.Name]).Value)
+                        if (!(bool)(row.Cells[colSeleccionat.Name]).Value)
                             continue;
 
-                        var producte = (Producte) row.Cells[colNomFons.Name].Value;
-                        DateTime data = ckDataUnica.Checked ? dtpDataUnica.Value : (DateTime) row.Cells[colData.Name].Value;
-                        var preuPart = (decimal) row.Cells[colValorNou.Name].Value;
+                        var producte = (Producte)row.Cells[colNomFons.Name].Value;
+                        DateTime data = ckDataUnica.Checked ? dtpDataUnica.Value : (DateTime)row.Cells[colData.Name].Value;
+                        var preuPart = (decimal)row.Cells[colValorNou.Name].Value;
 
                         Valoracio val = connexio.Valoracions.SingleOrDefault(w => w.ProdId == producte.Id && w.Data == data);
                         if (val == null)
                         {
                             // Només noves valoracions. No modifica
-                           
+
                             val = await Valoracio.Nova(connexio, producte, data, preuPart);
                         }
 
@@ -324,9 +322,9 @@ namespace Inversions.GUI
         {
             if (dataGridView1.Rows.Count > 0 && e.ColumnIndex == colSeleccionat.Index)
             {
-                var estatOriginalCheckBox = (bool) dataGridView1.Rows[e.RowIndex].Cells[colEstatOriginalCheckBox.Name].Value;
+                var estatOriginalCheckBox = (bool)dataGridView1.Rows[e.RowIndex].Cells[colEstatOriginalCheckBox.Name].Value;
                 //var valorActualCheckBox = (bool)dataGridView1.CurrentCell.Value;
-                var valorActualCheckBox = (bool) dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                var valorActualCheckBox = (bool)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 if (!estatOriginalCheckBox && valorActualCheckBox && !ckSobreescriuValoracions.Checked)
                 {
                     if (MessageBox.Show("Marco per sobreescriure valoracions?", "La valoració ja existeix", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -348,7 +346,7 @@ namespace Inversions.GUI
         private void validaDataUnica()
         {
             // Comprovar si s'han de sobreescriure valors per la data.
-            capturaValorsPaste(ckDataUnica.Checked ? dtpDataUnica.Value : (DateTime?) null);
+            capturaValorsPaste(ckDataUnica.Checked ? dtpDataUnica.Value : (DateTime?)null);
         }
 
         private void btCapturaValorPaste_Click(object sender, EventArgs e)
@@ -363,14 +361,17 @@ namespace Inversions.GUI
             bool avis = false;
             dataGridView1.Rows.Clear();
 
-            foreach (Producte prod in Producte.Tuples.ToList().Where(w => w._Participacions > 0))
+            var ProdsAmbPartsTotsElsUsuaris = Producte.Tuples.ToList().Where(w => w._ParticipacionsTotsElsUsuaris > 0).OrderBy(o => o._TipusProducte).ToList();
+
+            if (!ckLbAccesApi.CheckedItems.Contains("Fons"))
+                ProdsAmbPartsTotsElsUsuaris = ProdsAmbPartsTotsElsUsuaris.Where(w => w is not ProdFons).ToList();
+
+            if (!ckLbAccesApi.CheckedItems.Contains("Accions"))
+                ProdsAmbPartsTotsElsUsuaris = ProdsAmbPartsTotsElsUsuaris.Where(w => w is not ProdAccions).ToList();
+
+
+            foreach (Producte prod in ProdsAmbPartsTotsElsUsuaris.OrderBy(o => o._TipusProducte))
             {
-                if (prod is ProdFons && !ckLbAccesApi.CheckedItems.Contains("Fons"))
-                    continue;
-
-                if (prod is ProdAccions && !ckLbAccesApi.CheckedItems.Contains("Accions"))
-                    continue;
-
                 if (!String.IsNullOrEmpty(prod.TickerExchange))
                 {
                     try
@@ -395,7 +396,11 @@ namespace Inversions.GUI
                     }
                     catch (ExceptionApi ex)
                     {
-                        Utilitats.EscriuLog(ex, true);
+                        if (MessageBox.Show($"Error: {ex.Message}. \nProd: {prod} \nVols continuar?", "API EODHD",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -413,6 +418,12 @@ namespace Inversions.GUI
 
         private void PasteSelfBank_Load(object sender, EventArgs e)
         {
+            for (int i = 0; i < ckLbAccesApi.Items.Count; i++)
+            {
+                ckLbAccesApi.SetItemChecked(i, true);
+            }
+            btLlegeigApi.Enabled = true;
+
             dtpDataApi.Value = Festiu.UltimDiaLaborable(DateTime.Today.AddDays(-1));
         }
     }
