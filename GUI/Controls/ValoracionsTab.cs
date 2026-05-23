@@ -866,7 +866,7 @@ namespace Inversions.GUI
                 var prod = gestioProductesTabValoracions._ProducteSeleccionat;
                 var data = cData.Value;
 
-                var valor = await EodhdUserService.PreuTancamentEODHdPerData(prod.TickerExchange, data);
+                var valor = await EodhdUserService.PreuTancamentEODHdPerData(prod.TickerExchange, data, false);
 
                 if (valor.HasValue)
                 {
@@ -874,7 +874,7 @@ namespace Inversions.GUI
                     if (prod.Moneda.Codi == "EUR")
                         moneda = 1m;
                     else
-                        moneda = await EodhdUserService.PreuTancamentEODHdPerData(prod.Moneda.TickerExchange, data);
+                        moneda = await EodhdUserService.PreuTancamentEODHdPerData(prod.Moneda.TickerExchange, data, false);
 
                     if (moneda.HasValue)
                     {

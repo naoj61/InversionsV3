@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbPaste = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.ckTancaAlDesar = new System.Windows.Forms.CheckBox();
@@ -60,6 +60,7 @@
             this.colValorNou = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPercentatge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ckNoCache = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -245,12 +246,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ckNoCache);
             this.groupBox2.Controls.Add(this.ckLbAccesApi);
             this.groupBox2.Controls.Add(this.btLlegeigApi);
             this.groupBox2.Controls.Add(this.dtpDataApi);
-            this.groupBox2.Location = new System.Drawing.Point(202, 9);
+            this.groupBox2.Location = new System.Drawing.Point(98, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 81);
+            this.groupBox2.Size = new System.Drawing.Size(354, 81);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Accés API";
@@ -271,10 +273,10 @@
             // btLlegeigApi
             // 
             this.btLlegeigApi.Enabled = false;
-            this.btLlegeigApi.Location = new System.Drawing.Point(116, 46);
+            this.btLlegeigApi.Location = new System.Drawing.Point(234, 22);
             this.btLlegeigApi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btLlegeigApi.Name = "btLlegeigApi";
-            this.btLlegeigApi.Size = new System.Drawing.Size(127, 30);
+            this.btLlegeigApi.Size = new System.Drawing.Size(73, 50);
             this.btLlegeigApi.TabIndex = 0;
             this.btLlegeigApi.Text = "Llegeig API";
             this.btLlegeigApi.UseVisualStyleBackColor = true;
@@ -283,9 +285,9 @@
             // dtpDataApi
             // 
             this.dtpDataApi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataApi.Location = new System.Drawing.Point(116, 14);
+            this.dtpDataApi.Location = new System.Drawing.Point(116, 22);
             this.dtpDataApi.Name = "dtpDataApi";
-            this.dtpDataApi.Size = new System.Drawing.Size(127, 26);
+            this.dtpDataApi.Size = new System.Drawing.Size(112, 26);
             this.dtpDataApi.TabIndex = 8;
             // 
             // dataGridView1
@@ -344,9 +346,9 @@
             // colData
             // 
             this.colData.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle26.Format = "d";
-            dataGridViewCellStyle26.NullValue = null;
-            this.colData.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colData.DefaultCellStyle = dataGridViewCellStyle1;
             this.colData.HeaderText = "Data";
             this.colData.MinimumWidth = 8;
             this.colData.Name = "colData";
@@ -358,10 +360,10 @@
             // colValorActual
             // 
             this.colValorActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle27.Format = "#,#0.00# €";
-            dataGridViewCellStyle27.NullValue = null;
-            this.colValorActual.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "#,#0.00# €";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colValorActual.DefaultCellStyle = dataGridViewCellStyle2;
             this.colValorActual.HeaderText = "Valor Act";
             this.colValorActual.MinimumWidth = 8;
             this.colValorActual.Name = "colValorActual";
@@ -373,10 +375,10 @@
             // colValorNou
             // 
             this.colValorNou.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle28.Format = "#,#0.00# €";
-            dataGridViewCellStyle28.NullValue = "0";
-            this.colValorNou.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "#,#0.00# €";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.colValorNou.DefaultCellStyle = dataGridViewCellStyle3;
             this.colValorNou.HeaderText = "Valor Nou";
             this.colValorNou.MinimumWidth = 8;
             this.colValorNou.Name = "colValorNou";
@@ -388,10 +390,10 @@
             // colPercentatge
             // 
             this.colPercentatge.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle29.Format = "#0.000 %";
-            dataGridViewCellStyle29.NullValue = null;
-            this.colPercentatge.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "#0.000 %";
+            dataGridViewCellStyle4.NullValue = null;
+            this.colPercentatge.DefaultCellStyle = dataGridViewCellStyle4;
             this.colPercentatge.HeaderText = "%";
             this.colPercentatge.MinimumWidth = 8;
             this.colPercentatge.Name = "colPercentatge";
@@ -403,10 +405,10 @@
             // colDif
             // 
             this.colDif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle30.Format = "#,#0.00 €";
-            dataGridViewCellStyle30.NullValue = null;
-            this.colDif.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "#,#0.00 €";
+            dataGridViewCellStyle5.NullValue = null;
+            this.colDif.DefaultCellStyle = dataGridViewCellStyle5;
             this.colDif.HeaderText = "Dif";
             this.colDif.MinimumWidth = 8;
             this.colDif.Name = "colDif";
@@ -414,6 +416,16 @@
             this.colDif.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colDif.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colDif.Width = 35;
+            // 
+            // ckNoCache
+            // 
+            this.ckNoCache.AutoSize = true;
+            this.ckNoCache.Location = new System.Drawing.Point(115, 51);
+            this.ckNoCache.Name = "ckNoCache";
+            this.ckNoCache.Size = new System.Drawing.Size(105, 24);
+            this.ckNoCache.TabIndex = 9;
+            this.ckNoCache.Text = "No Cache";
+            this.ckNoCache.UseVisualStyleBackColor = true;
             // 
             // PasteSelfBank
             // 
@@ -439,6 +451,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -474,5 +487,6 @@
         private System.Windows.Forms.CheckedListBox ckLbAccesApi;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DateTimePicker dtpDataApi;
+        private System.Windows.Forms.CheckBox ckNoCache;
     }
 }

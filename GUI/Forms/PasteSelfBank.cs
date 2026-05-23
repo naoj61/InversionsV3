@@ -376,7 +376,7 @@ namespace Inversions.GUI
                 {
                     try
                     {
-                        var valor = await EodhdUserService.PreuTancamentEODHdPerData(prod.TickerExchange, data);
+                        var valor = await EodhdUserService.PreuTancamentEODHdPerData(prod.TickerExchange, data, ckNoCache.Checked);
 
                         if (valor.HasValue)
                         {
@@ -384,7 +384,7 @@ namespace Inversions.GUI
                             if (prod.Moneda.Codi == "EUR")
                                 moneda = 1m;
                             else
-                                moneda = await EodhdUserService.PreuTancamentEODHdPerData(prod.Moneda.TickerExchange, data);
+                                moneda = await EodhdUserService.PreuTancamentEODHdPerData(prod.Moneda.TickerExchange, data, ckNoCache.Checked);
 
                             if (moneda.HasValue)
                             {
