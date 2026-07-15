@@ -534,30 +534,40 @@ namespace Inversions.GUI
 
         private void actualitzaLlistaValoracionsTotal()
         {
-            byte resultat = 0;
-            
-            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.Accions)) resultat |= 1 << 0; // Primer bit
-            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.Criptos)) resultat |= 1 << 1; // Segon bit
-            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.RF)) resultat |= 1 << 2; // Tercer bit
-            if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.RV)) resultat |= 1 << 3; // Quart bit
-
-            if (resultat == 0)
+            Cursor cursor = Cursor;
+            try
             {
-                dgvValoracionsPerData.Rows.Clear();
-                chTotals.Series[0].Points.Clear();
-                return;
+                Cursor = Cursors.WaitCursor;
+                
+                byte resultat = 0;
+
+                if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.Accions)) resultat |= 1 << 0; // Primer bit
+                if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.Criptos)) resultat |= 1 << 1; // Segon bit
+                if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.RF)) resultat |= 1 << 2; // Tercer bit
+                if (ccbFiltreTipusProducte.IsCheckedByValue(TipusProd.RV)) resultat |= 1 << 3; // Quart bit
+
+                if (resultat == 0)
+                {
+                    dgvValoracionsPerData.Rows.Clear();
+                    chTotals.Series[0].Points.Clear();
+                    return;
+                }
+
+                dgvValoracionsPerData.SuspendLayout();
+
+                dgvValoracionsPerData.DataSource = StrDgvValoracionsPerData
+                    .CarregaStruct(dtpDataIniciLlista.Value, resultat, chTotals).OrderBy(o => o._Data).ToList();
+
+                int ultimaFilaX = dgvValoracionsPerData.Rows.GetLastRow(DataGridViewElementStates.Visible);
+                if (ultimaFilaX >= 0)
+                    dgvValoracionsPerData.FirstDisplayedScrollingRowIndex = ultimaFilaX;
+
+                dgvValoracionsPerData.ResumeLayout();
             }
-
-            dgvValoracionsPerData.SuspendLayout();
-
-            dgvValoracionsPerData.DataSource = StrDgvValoracionsPerData
-                .CarregaStruct(dtpDataIniciLlista.Value, resultat, chTotals).OrderBy(o => o._Data).ToList();
-
-            int ultimaFilaX = dgvValoracionsPerData.Rows.GetLastRow(DataGridViewElementStates.Visible);
-            if (ultimaFilaX >= 0)
-                dgvValoracionsPerData.FirstDisplayedScrollingRowIndex = ultimaFilaX;
-
-            dgvValoracionsPerData.ResumeLayout();
+            finally
+            {
+                Cursor = cursor;
+            }
         }
 
         #region *** Events ***
