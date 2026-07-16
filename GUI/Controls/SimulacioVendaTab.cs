@@ -292,9 +292,11 @@ namespace Inversions.GUI
             }
 
             cbAny.SelectedIndexChanged += cbAny_SelectedIndexChanged;
-            cbAny.SelectedItem = Convert.ToInt32(DateTime.Today.Year);
-        
-            Principal.ActiveForm.AcceptButton = btRecalcula;
+            cbAny.SelectedItem = DateTime.Today.Year;
+
+            // Assignar el botó per defecte al formulari que conté aquest control
+            // L'interrogant és per evitar error si this.FindForm() és null.
+            this.FindForm()?.AcceptButton = btRecalcula;
         }
 
         private void ctrProductes_EventProducteSeleccionat(object sender, EventArgs e)
