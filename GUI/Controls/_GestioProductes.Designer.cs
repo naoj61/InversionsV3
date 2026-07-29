@@ -56,8 +56,9 @@ namespace Inversions.GUI
             this.btDescripcioFons = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbIsin = new System.Windows.Forms.GroupBox();
-            this.tbMercat = new System.Windows.Forms.TextBox();
             this.tbIsin = new System.Windows.Forms.TextBox();
+            this.gbMercat = new System.Windows.Forms.GroupBox();
+            this.tbMercat = new System.Windows.Forms.TextBox();
             this.gbMoneda = new System.Windows.Forms.GroupBox();
             this.tbMoneda = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -91,7 +92,6 @@ namespace Inversions.GUI
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbTipusProducteFiltreTab2 = new System.Windows.Forms.ComboBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.gbMercat = new System.Windows.Forms.GroupBox();
             this.pnDadesProducte.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -106,6 +106,7 @@ namespace Inversions.GUI
             this.pnDescripcioFons.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbIsin.SuspendLayout();
+            this.gbMercat.SuspendLayout();
             this.gbMoneda.SuspendLayout();
             this.panel2.SuspendLayout();
             this.gbFiltres.SuspendLayout();
@@ -119,7 +120,6 @@ namespace Inversions.GUI
             this.gbFons.SuspendLayout();
             this.gbEmpresa.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.gbMercat.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnDadesProducte
@@ -351,7 +351,7 @@ namespace Inversions.GUI
             this.tbPigHistoric.TabIndex = 0;
             this.tbPigHistoric.Text = "0,00 €";
             this.tbPigHistoric.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.tbPigHistoric, "PiG històric. No inclou dividends");
+            this.toolTip1.SetToolTip(this.tbPigHistoric, "PiG històric. Inclou dividends.");
             this.tbPigHistoric.Valor = new decimal(new int[] {
             0,
             0,
@@ -573,19 +573,6 @@ namespace Inversions.GUI
             this.gbIsin.TabStop = false;
             this.gbIsin.Text = "ISIN";
             // 
-            // tbMercat
-            // 
-            this.tbMercat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbMercat.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMercat.Location = new System.Drawing.Point(10, 23);
-            this.tbMercat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbMercat.Name = "tbMercat";
-            this.tbMercat.ReadOnly = true;
-            this.tbMercat.Size = new System.Drawing.Size(118, 25);
-            this.tbMercat.TabIndex = 1;
-            this.tbMercat.Text = "Mercat";
-            this.tbMercat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // tbIsin
             // 
             this.tbIsin.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -599,6 +586,32 @@ namespace Inversions.GUI
             this.tbIsin.TabStop = false;
             this.tbIsin.Text = "ISIN";
             this.tbIsin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // gbMercat
+            // 
+            this.gbMercat.Controls.Add(this.tbMercat);
+            this.gbMercat.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gbMercat.Location = new System.Drawing.Point(81, 0);
+            this.gbMercat.Margin = new System.Windows.Forms.Padding(3, 4, 10, 4);
+            this.gbMercat.Name = "gbMercat";
+            this.gbMercat.Padding = new System.Windows.Forms.Padding(10, 4, 10, 10);
+            this.gbMercat.Size = new System.Drawing.Size(138, 64);
+            this.gbMercat.TabIndex = 2;
+            this.gbMercat.TabStop = false;
+            this.gbMercat.Text = "Mercat";
+            // 
+            // tbMercat
+            // 
+            this.tbMercat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbMercat.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMercat.Location = new System.Drawing.Point(10, 23);
+            this.tbMercat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbMercat.Name = "tbMercat";
+            this.tbMercat.ReadOnly = true;
+            this.tbMercat.Size = new System.Drawing.Size(118, 25);
+            this.tbMercat.TabIndex = 1;
+            this.tbMercat.Text = "Mercat";
+            this.tbMercat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gbMoneda
             // 
@@ -998,19 +1011,6 @@ namespace Inversions.GUI
             this.cbTipusProducteFiltreTab2.TabIndex = 0;
             this.cbTipusProducteFiltreTab2.SelectedIndexChanged += new System.EventHandler(this.cbTipusProducteFiltreTab2_SelectedIndexChanged);
             // 
-            // gbMercat
-            // 
-            this.gbMercat.Controls.Add(this.tbMercat);
-            this.gbMercat.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gbMercat.Location = new System.Drawing.Point(81, 0);
-            this.gbMercat.Margin = new System.Windows.Forms.Padding(3, 4, 10, 4);
-            this.gbMercat.Name = "gbMercat";
-            this.gbMercat.Padding = new System.Windows.Forms.Padding(10, 4, 10, 10);
-            this.gbMercat.Size = new System.Drawing.Size(138, 64);
-            this.gbMercat.TabIndex = 2;
-            this.gbMercat.TabStop = false;
-            this.gbMercat.Text = "Mercat";
-            // 
             // GestioProductes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1045,6 +1045,8 @@ namespace Inversions.GUI
             this.panel1.ResumeLayout(false);
             this.gbIsin.ResumeLayout(false);
             this.gbIsin.PerformLayout();
+            this.gbMercat.ResumeLayout(false);
+            this.gbMercat.PerformLayout();
             this.gbMoneda.ResumeLayout(false);
             this.gbMoneda.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1063,8 +1065,6 @@ namespace Inversions.GUI
             this.gbFons.ResumeLayout(false);
             this.gbEmpresa.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.gbMercat.ResumeLayout(false);
-            this.gbMercat.PerformLayout();
             this.ResumeLayout(false);
 
         }
