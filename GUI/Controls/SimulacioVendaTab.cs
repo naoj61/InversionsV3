@@ -447,7 +447,7 @@ namespace Inversions.GUI
             {
                 Validacions();
 
-                ntbNumParticipacions.Valor = Math.Round(vProducteSeleccionat._Participacions, 3) - ntbPartsSaltades.Valor;
+                ntbNumParticipacions.Valor = vProducteSeleccionat._Participacions - ntbPartsSaltades.Valor;
 
                 SimulacioVendaTabDgv.OmpleDataGrid(ntbNumParticipacions.Valor, ntbPartsSaltades.Valor, ntbPreuParticipacio.Valor);
 
