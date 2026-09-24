@@ -156,7 +156,7 @@
             // gbPreuPartic
             // 
             this.gbPreuPartic.Controls.Add(this.ntbPreuParticipacio);
-            this.gbPreuPartic.Location = new System.Drawing.Point(441, 4);
+            this.gbPreuPartic.Location = new System.Drawing.Point(473, 4);
             this.gbPreuPartic.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbPreuPartic.Name = "gbPreuPartic";
             this.gbPreuPartic.Padding = new System.Windows.Forms.Padding(6);
@@ -199,7 +199,7 @@
             this.gbFactorConversor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbFactorConversor.Name = "gbFactorConversor";
             this.gbFactorConversor.Padding = new System.Windows.Forms.Padding(6);
-            this.gbFactorConversor.Size = new System.Drawing.Size(142, 62);
+            this.gbFactorConversor.Size = new System.Drawing.Size(174, 62);
             this.gbFactorConversor.TabIndex = 3;
             this.gbFactorConversor.TabStop = false;
             this.gbFactorConversor.Text = "Factor Conversor";
@@ -220,7 +220,7 @@
             this.ntbFactorConversor.Location = new System.Drawing.Point(6, 23);
             this.ntbFactorConversor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ntbFactorConversor.Name = "ntbFactorConversor";
-            this.ntbFactorConversor.Size = new System.Drawing.Size(130, 24);
+            this.ntbFactorConversor.Size = new System.Drawing.Size(162, 24);
             this.ntbFactorConversor.TabIndex = 0;
             this.ntbFactorConversor.Text = "0";
             this.ntbFactorConversor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -356,7 +356,7 @@
             this.gbCanviAplicat.Size = new System.Drawing.Size(108, 62);
             this.gbCanviAplicat.TabIndex = 5;
             this.gbCanviAplicat.TabStop = false;
-            this.gbCanviAplicat.Text = "Canvi €/x";
+            this.gbCanviAplicat.Text = "Canvi x/€";
             // 
             // tbCanviAplicat
             // 
@@ -902,7 +902,7 @@
             dataGridViewCellStyle4.NullValue = null;
             this.colPreuUnitariEur.DefaultCellStyle = dataGridViewCellStyle4;
             this.colPreuUnitariEur.HeaderText = "Preu Unitari €";
-            this.colPreuUnitariEur.MinimumWidth = 8;
+            this.colPreuUnitariEur.MinimumWidth = 50;
             this.colPreuUnitariEur.Name = "colPreuUnitariEur";
             this.colPreuUnitariEur.ReadOnly = true;
             this.colPreuUnitariEur.Width = 97;
@@ -936,16 +936,16 @@
             // 
             // colCanviAplicat
             // 
-            this.colCanviAplicat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.colCanviAplicat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colCanviAplicat.DataPropertyName = "_CanviAplicat";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle7.Format = "C4";
             this.colCanviAplicat.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colCanviAplicat.HeaderText = "Canvi Aplicat";
-            this.colCanviAplicat.MinimumWidth = 70;
+            this.colCanviAplicat.HeaderText = "Canvi Aplicat x/€";
+            this.colCanviAplicat.MinimumWidth = 50;
             this.colCanviAplicat.Name = "colCanviAplicat";
             this.colCanviAplicat.ReadOnly = true;
-            this.colCanviAplicat.Width = 70;
+            this.colCanviAplicat.Width = 108;
             // 
             // colDespeses
             // 
