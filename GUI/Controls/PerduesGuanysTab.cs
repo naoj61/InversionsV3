@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Comuns;
+using Controls;
+using Inversions.ClassesEntity;
+using Inversions.GUI.Forms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
-using Comuns;
-using Inversions.ClassesEntity;
-using Inversions.GUI.Forms;
 
 namespace Inversions.GUI
 {
@@ -37,8 +39,8 @@ namespace Inversions.GUI
                 _PercentPiGOrig = _PigDeLaCompraOrigen / _ImportCompraBrut;
             }
 
-// ReSharper disable MemberCanBePrivate.Local
-// ReSharper disable UnusedAutoPropertyAccessor.Local
+            // ReSharper disable MemberCanBePrivate.Local
+            // ReSharper disable UnusedAutoPropertyAccessor.Local
             public int _Id { get; private set; }
 
             public DateTime _Data { get; private set; }
@@ -124,7 +126,7 @@ namespace Inversions.GUI
 
             gestioProductesTabValoracions._NomesAmbParticipacions = true;
 
-            cbTipusProducteFiltreTab2.DataSource = Enum.GetValues(typeof (Producte.TipusProducte));
+            cbTipusProducteFiltreTab2.DataSource = Enum.GetValues(typeof(Producte.TipusProducte));
             cbTipusProducteFiltreTab2.SelectedIndex = -1;
             cbTipusProducteFiltreTab2.SelectedIndexChanged += cbTipusProducteFiltreTab2_SelectedIndexChanged;
             cbTipusProducteFiltreTab2.SelectedIndex = 0;
@@ -163,8 +165,7 @@ namespace Inversions.GUI
             if (cbTipusProducteFiltreTab2.SelectedItem != null)
                 calculaPiG();
 
-            if (cbAnysPiGEnCartera.SelectedItem != null)
-                ompleDgvPiGEnCartera();
+            ompleDgvPiG();
 
             //gestioProductesTabValoracions.refrescaDadesControl(false);
             gestioProductesTabValoracions.refrescaDadesControl();
@@ -172,7 +173,7 @@ namespace Inversions.GUI
 
         private void calculaPiG()
         {
-            var tipusProducte = (Producte.TipusProducte) cbTipusProducteFiltreTab2.SelectedItem;
+            var tipusProducte = (Producte.TipusProducte)cbTipusProducteFiltreTab2.SelectedItem;
 
             int ultimAny = DateTime.Today.Year;
 
@@ -198,8 +199,7 @@ namespace Inversions.GUI
 
             dgvPiGAnualsTributen.ClearSelection();
 
-            lbTotalPigTributen.ForeColor = pigTotalTributa < 0 ? Color.Red : Color.Black;
-            lbTotalPigTributen.Text = pigTotalTributa.ToString("#,##0.00 €");
+            ntbTotalPigTributen.Valor = pigTotalTributa;
 
             ntbPigActualPartsEnCartera.Valor = Producte.PigEnCartera4(tipusProducte, null, ultimAny, true, true);
             ntbPigRealMesCartera.Valor = ntbPigActualPartsEnCartera.Valor + pigTotalTributa;
@@ -311,13 +311,35 @@ namespace Inversions.GUI
             calculaPiG();
         }
 
-        private void ompleDgvPiGEnCartera()
+        /// <summary>
+        ///    Omple el DataGridView amb el PiG de  l'any seleccionat, en cartera o real segons la selecció de l'usuari.
+        /// </summary>
+        private void ompleDgvPiG()
         {
-            // PiG en cartera
+            if(cbAnysPiGEnCartera.SelectedItem == null)
+                return;
 
+            int anyDades = (int)cbAnysPiGEnCartera.SelectedItem;
+            
+            if (rbPigReal.Checked)
+            {
+                ompleDgvPiGReal(anyDades);
+            }
+            else
+            {
+                ompleDgvPiGEnCartera(anyDades);
+            }
+        }
+
+        /// <summary>
+        ///    Omple el DataGridView amb el PiG en cartera per producte segons l'any seleccionat
+        /// </summary>
+        /// <param name="anyDades"></param>
+        private void ompleDgvPiGEnCartera(int anyDades)
+        {
             List<Producte> productes;
 
-            switch ((Producte.TipusProducte) cbTipusProducteFiltreTab2.SelectedItem)
+            switch ((Producte.TipusProducte)cbTipusProducteFiltreTab2.SelectedItem)
             {
                 case Producte.TipusProducte.Tots:
                     productes = Producte.Tuples.ToList();
@@ -332,10 +354,8 @@ namespace Inversions.GUI
                     return;
             }
 
-            var anyDades = (int) cbAnysPiGEnCartera.SelectedItem;
             var dataIni = new DateTime(anyDades, 1, 1);
             DateTime dataFi = new DateTime(anyDades + 1, 1, 1).AddTicks(-1);
-
             // ** Selecciones només productes amb cartera i els ordena.
             productes = productes.Where(producte => producte.partsEnCartera(dataFi) > 0).OrderBy(o => o.OrdreGrid).ToList();
 
@@ -343,8 +363,6 @@ namespace Inversions.GUI
             dgvPiGEnCartera.Rows.Clear();
             foreach (Producte prod in productes)
             {
-                //var pigProdAny = prod.pigEnAny4(anyDades, false, false) + prod.pigHistoric4(anyDades, false, true, true);
-                //var pigProdAny = prod.pigEnAny4(anyDades, false, true, true, true);
                 if (dataFi > DateTime.Now)
                     dataFi = DateTime.Now;
 
@@ -370,6 +388,59 @@ namespace Inversions.GUI
             lbTotalPigEnCartera.Text = pigTotalEncartera.ToString("#,##0.00 €");
         }
 
+        /// <summary>
+        ///   Omple el DataGridView amb el PiG real per producte segons l'any seleccionat
+        /// </summary>
+        /// <param name="anyDades"></param>
+        private void ompleDgvPiGReal(int anyDades)
+        {
+            List<Producte> productes;
+
+            switch ((Producte.TipusProducte)cbTipusProducteFiltreTab2.SelectedItem)
+            {
+                case Producte.TipusProducte.Tots:
+                    productes = Producte.Tuples.ToList();
+                    break;
+                case Producte.TipusProducte.Accions:
+                    productes = new List<Producte>(ProdAccions.Tuples);
+                    break;
+                case Producte.TipusProducte.Fons:
+                    productes = new List<Producte>(ProdFons.Tuples);
+                    break;
+                default:
+                    return;
+            }
+
+            decimal pigTotalEncartera = 0;
+            dgvPiGEnCartera.Rows.Clear();
+            var productesAmbPig = new List<(Producte, decimal)>();
+            foreach (Producte prod in productes)
+            {
+                decimal pigProdAny = prod.pigEnAny4(anyDades, true, true, false, true);
+
+                if (!Utilitats.EsZero(pigProdAny))
+                {
+                    productesAmbPig.Add((prod, pigProdAny));
+                }
+            }
+
+            foreach (var (prod, pigProdAny) in productesAmbPig.OrderByDescending(o => o.Item1.OrdreGrid))
+            {
+                int ff = dgvPiGEnCartera.Rows.Add(prod, pigProdAny);
+                dgvPiGEnCartera.Rows[ff].Cells[1].Style.ForeColor = pigProdAny < 0 ? Color.Red : Color.Black;
+            }
+
+            pigTotalEncartera = productesAmbPig.Sum(s => s.Item2);
+
+            if (dgvPiGEnCartera.RowCount > 0)
+                dgvPiGEnCartera.FirstDisplayedScrollingRowIndex = 0;
+
+            dgvPiGEnCartera.ClearSelection();
+
+            lbTotalPigEnCartera.ForeColor = pigTotalEncartera < 0 ? Color.Red : Color.Black;
+            lbTotalPigEnCartera.Text = pigTotalEncartera.ToString("#,##0.00 €");
+        }
+
         #endregion *** Mètodes ***
 
         #region *** Events ***
@@ -381,7 +452,7 @@ namespace Inversions.GUI
 
         private void gestioProductesTabValoracions_ProducteSeleccionat(object sender, EventArgs e)
         {
-            var prodSel = (Producte) sender;
+            var prodSel = (Producte)sender;
 
             if (vProdSelAnt != prodSel)
             {
@@ -470,8 +541,8 @@ namespace Inversions.GUI
             decimal pigOrig = 0;
             foreach (DataGridViewRow selectedRow in dgvCompresProducte.SelectedRows)
             {
-                pig += (decimal) selectedRow.Cells["PigDeLaCompra"].Value;
-                pigOrig += (decimal) selectedRow.Cells["PigOrigen"].Value;
+                pig += (decimal)selectedRow.Cells["PigDeLaCompra"].Value;
+                pigOrig += (decimal)selectedRow.Cells["PigOrigen"].Value;
             }
 
             ntbPigCompra.Valor = pig;
@@ -493,15 +564,15 @@ namespace Inversions.GUI
 
         private void cbAnysPiGEnCartera_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ompleDgvPiGEnCartera();
+            ompleDgvPiG();
         }
 
         private void dgvPiGEnCartera_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
             // *** Faig que la línia "Total" sempre surti al final. ***
 
-            var r1 = (Producte) dgvPiGEnCartera[0, e.RowIndex1].Value;
-            var r2 = (Producte) dgvPiGEnCartera[0, e.RowIndex2].Value;
+            var r1 = (Producte)dgvPiGEnCartera[0, e.RowIndex1].Value;
+            var r2 = (Producte)dgvPiGEnCartera[0, e.RowIndex2].Value;
 
             if (r1._NomProducte == "Total")
             {
@@ -535,24 +606,24 @@ namespace Inversions.GUI
 
         private void ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var prod = (Producte) dgvPiGEnCartera.SelectedRows[0].Cells[0].Value;
-            var parentForm = (Principal) ParentForm;
+            var prod = (Producte)dgvPiGEnCartera.SelectedRows[0].Cells[0].Value;
+            var parentForm = (Principal)ParentForm;
             if (parentForm != null)
                 parentForm.obreMovimentsTab(prod);
         }
 
         private void ToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            var prod = (Producte) dgvPiGEnCartera.SelectedRows[0].Cells[0].Value;
-            var parentForm = (Principal) ParentForm;
+            var prod = (Producte)dgvPiGEnCartera.SelectedRows[0].Cells[0].Value;
+            var parentForm = (Principal)ParentForm;
             if (parentForm != null)
                 parentForm.obreValoracionsTab(prod);
         }
 
         private void ToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            var prod = (Producte) dgvPiGEnCartera.SelectedRows[0].Cells[0].Value;
-            var parentForm = (Principal) ParentForm;
+            var prod = (Producte)dgvPiGEnCartera.SelectedRows[0].Cells[0].Value;
+            var parentForm = (Principal)ParentForm;
             if (parentForm != null)
                 parentForm.obreSimulacióVendaTab(prod);
         }
@@ -575,6 +646,11 @@ namespace Inversions.GUI
         private void ntb_Leave(object sender, EventArgs e)
         {
             acceptButton(null);
+        }
+
+        private void rbPigRealMesCartera_CheckedChanged(object sender, EventArgs e)
+        {
+            ompleDgvPiG();
         }
 
         #endregion *** Events ***
