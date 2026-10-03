@@ -155,6 +155,20 @@ namespace Inversions.ClassesEntity
             var moviments = Moviments.Where(w => w.Data <= data && (w.TipusMoviment == TipusMoviment.Compra || w.TipusMoviment == TipusMoviment.Venda))
                 .Select(mov => new {mov.Data, preuEnEuros = mov._PreuParticipacioEuros}).ToList();
 
+            if (!valoracions.Any() && !moviments.Any())
+            {
+                // Si no hi ha cap valoració ni cap moviment, segurament és perquè s'ha comprat en data posterior a 'data'
+                // agafa el primer moviment de compra.
+                var movsCompra = Moviments
+                    .Where(w => w.TipusMoviment == TipusMoviment.Compra)
+                    .Select(mov => new { mov.Data, preuEnEuros = mov._PreuParticipacioEuros });
+                
+                if(!movsCompra.Any())
+                    throw new ApplicationException("No hi ha cap moviment ni cap valoració disponibles.");
+
+                return movsCompra.OrderBy(o => o.Data).First().preuEnEuros;
+            }
+
             var tot = valoracions.Union(moviments).OrderBy(o => o.Data).ToList();
 
             if (tot.Any())
@@ -162,7 +176,6 @@ namespace Inversions.ClassesEntity
                 return tot.Last().preuEnEuros;
             }
 
-            //throw new ApplicationException("No hi ha cap moviment ni cap valoració disponibles.");
             return 0;
         }
 

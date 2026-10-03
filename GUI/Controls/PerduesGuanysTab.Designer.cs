@@ -35,27 +35,27 @@ namespace Inversions.GUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle112 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle111 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle113 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle122 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle115 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle116 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle117 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle118 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle119 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle120 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle121 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle123 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle126 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle124 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle125 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnPigRight = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dgvPiGEnCartera = new System.Windows.Forms.DataGridView();
@@ -70,7 +70,7 @@ namespace Inversions.GUI
             this.panel5 = new System.Windows.Forms.Panel();
             this.rbPigReal = new System.Windows.Forms.RadioButton();
             this.rbPigRealMesCartera = new System.Windows.Forms.RadioButton();
-            this.lbPiGEnCartera = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbAnysPiGEnCartera = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ntbPigRealMesCartera = new Controls.NumericTextBox2();
@@ -127,12 +127,14 @@ namespace Inversions.GUI
             this.dtpFiltreDataFi = new Controls.DateTimePickerNullable();
             this.gestioProductesTabValoracions = new Inversions.GUI.GestioProductes();
             this.object_1b4b50bb_f8eb_4633_9a92_57d1d83caa82 = new System.Windows.Forms.RadioButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnPigRight.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPiGEnCartera)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPiGAnualsTributen)).BeginInit();
@@ -162,7 +164,7 @@ namespace Inversions.GUI
             this.pnPigRight.Location = new System.Drawing.Point(1029, 0);
             this.pnPigRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnPigRight.Name = "pnPigRight";
-            this.pnPigRight.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.pnPigRight.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.pnPigRight.Size = new System.Drawing.Size(430, 822);
             this.pnPigRight.TabIndex = 1;
             // 
@@ -172,9 +174,10 @@ namespace Inversions.GUI
             this.panel8.Controls.Add(this.panel9);
             this.panel8.Controls.Add(this.panel6);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(5, 522);
+            this.panel8.Location = new System.Drawing.Point(4, 542);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(420, 300);
+            this.panel8.Size = new System.Drawing.Size(422, 280);
             this.panel8.TabIndex = 22;
             // 
             // dgvPiGEnCartera
@@ -184,35 +187,35 @@ namespace Inversions.GUI
             this.dgvPiGEnCartera.AllowUserToOrderColumns = true;
             this.dgvPiGEnCartera.AllowUserToResizeRows = false;
             this.dgvPiGEnCartera.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle106.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle106.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle106.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle106.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle106.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle106.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle106.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPiGEnCartera.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle106;
+            dataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle85.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle85.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle85.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle85.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle85.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle85.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPiGEnCartera.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
             this.dgvPiGEnCartera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiGEnCartera.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPigEnCarteraProd,
             this.colPigEnCarteraPig});
-            dataGridViewCellStyle108.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle108.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle108.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle108.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle108.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle108.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle108.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPiGEnCartera.DefaultCellStyle = dataGridViewCellStyle108;
+            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle87.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle87.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle87.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle87.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPiGEnCartera.DefaultCellStyle = dataGridViewCellStyle87;
             this.dgvPiGEnCartera.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPiGEnCartera.Location = new System.Drawing.Point(0, 68);
+            this.dgvPiGEnCartera.Location = new System.Drawing.Point(0, 60);
             this.dgvPiGEnCartera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvPiGEnCartera.Name = "dgvPiGEnCartera";
             this.dgvPiGEnCartera.ReadOnly = true;
             this.dgvPiGEnCartera.RowHeadersVisible = false;
             this.dgvPiGEnCartera.RowHeadersWidth = 62;
             this.dgvPiGEnCartera.RowTemplate.Height = 24;
-            this.dgvPiGEnCartera.Size = new System.Drawing.Size(420, 194);
+            this.dgvPiGEnCartera.Size = new System.Drawing.Size(422, 182);
             this.dgvPiGEnCartera.TabIndex = 1;
             this.dgvPiGEnCartera.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPiGEnCartera_CellMouseClick);
             this.dgvPiGEnCartera.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dgvPiGEnCartera_SortCompare);
@@ -228,10 +231,10 @@ namespace Inversions.GUI
             // colPigEnCarteraPig
             // 
             this.colPigEnCarteraPig.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle107.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle107.Format = "C2";
-            dataGridViewCellStyle107.NullValue = null;
-            this.colPigEnCarteraPig.DefaultCellStyle = dataGridViewCellStyle107;
+            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle86.Format = "C2";
+            dataGridViewCellStyle86.NullValue = null;
+            this.colPigEnCarteraPig.DefaultCellStyle = dataGridViewCellStyle86;
             this.colPigEnCarteraPig.HeaderText = "P i G";
             this.colPigEnCarteraPig.MinimumWidth = 8;
             this.colPigEnCarteraPig.Name = "colPigEnCarteraPig";
@@ -245,16 +248,17 @@ namespace Inversions.GUI
             this.panel9.Controls.Add(this.label7);
             this.panel9.Controls.Add(this.lbTotalPigEnCartera);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(0, 262);
+            this.panel9.Location = new System.Drawing.Point(0, 242);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(420, 38);
+            this.panel9.Size = new System.Drawing.Size(422, 38);
             this.panel9.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Right;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(111, 0);
+            this.label6.Location = new System.Drawing.Point(113, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(125, 38);
             this.label6.TabIndex = 0;
@@ -266,10 +270,10 @@ namespace Inversions.GUI
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Right;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(236, 0);
+            this.label8.Location = new System.Drawing.Point(238, 0);
             this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label8.Size = new System.Drawing.Size(54, 27);
+            this.label8.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.label8.Size = new System.Drawing.Size(54, 28);
             this.label8.TabIndex = 3;
             this.label8.Text = "0,00€";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -278,7 +282,7 @@ namespace Inversions.GUI
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(290, 0);
+            this.label7.Location = new System.Drawing.Point(292, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 38);
             this.label7.TabIndex = 2;
@@ -290,10 +294,10 @@ namespace Inversions.GUI
             this.lbTotalPigEnCartera.AutoSize = true;
             this.lbTotalPigEnCartera.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbTotalPigEnCartera.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalPigEnCartera.Location = new System.Drawing.Point(366, 0);
+            this.lbTotalPigEnCartera.Location = new System.Drawing.Point(368, 0);
             this.lbTotalPigEnCartera.Name = "lbTotalPigEnCartera";
-            this.lbTotalPigEnCartera.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.lbTotalPigEnCartera.Size = new System.Drawing.Size(54, 27);
+            this.lbTotalPigEnCartera.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.lbTotalPigEnCartera.Size = new System.Drawing.Size(54, 28);
             this.lbTotalPigEnCartera.TabIndex = 1;
             this.lbTotalPigEnCartera.Text = "0,00€";
             this.lbTotalPigEnCartera.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -302,14 +306,13 @@ namespace Inversions.GUI
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel6.Controls.Add(this.panel5);
-            this.panel6.Controls.Add(this.lbPiGEnCartera);
-            this.panel6.Controls.Add(this.cbAnysPiGEnCartera);
+            this.panel6.Controls.Add(this.groupBox4);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(0, 6, 0, 5);
-            this.panel6.Size = new System.Drawing.Size(420, 68);
+            this.panel6.Size = new System.Drawing.Size(422, 60);
             this.panel6.TabIndex = 0;
             this.panel6.Text = "P i G en cartera en l\'any";
             // 
@@ -318,20 +321,22 @@ namespace Inversions.GUI
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.rbPigReal);
             this.panel5.Controls.Add(this.rbPigRealMesCartera);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(275, 53);
+            this.panel5.Size = new System.Drawing.Size(200, 56);
             this.panel5.TabIndex = 0;
             // 
             // rbPigReal
             // 
             this.rbPigReal.AutoSize = true;
-            this.rbPigReal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rbPigReal.Location = new System.Drawing.Point(0, 24);
+            this.rbPigReal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.rbPigReal.Location = new System.Drawing.Point(0, 30);
+            this.rbPigReal.Margin = new System.Windows.Forms.Padding(3, 2, 9, 2);
             this.rbPigReal.Name = "rbPigReal";
             this.rbPigReal.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.rbPigReal.Size = new System.Drawing.Size(273, 24);
+            this.rbPigReal.Size = new System.Drawing.Size(198, 24);
             this.rbPigReal.TabIndex = 1;
             this.rbPigReal.Text = "PiG Real";
             this.rbPigReal.UseVisualStyleBackColor = true;
@@ -342,35 +347,37 @@ namespace Inversions.GUI
             this.rbPigRealMesCartera.Checked = true;
             this.rbPigRealMesCartera.Dock = System.Windows.Forms.DockStyle.Top;
             this.rbPigRealMesCartera.Location = new System.Drawing.Point(0, 0);
+            this.rbPigRealMesCartera.Margin = new System.Windows.Forms.Padding(3, 2, 9, 2);
             this.rbPigRealMesCartera.Name = "rbPigRealMesCartera";
             this.rbPigRealMesCartera.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.rbPigRealMesCartera.Size = new System.Drawing.Size(273, 24);
+            this.rbPigRealMesCartera.Size = new System.Drawing.Size(198, 24);
             this.rbPigRealMesCartera.TabIndex = 0;
             this.rbPigRealMesCartera.TabStop = true;
             this.rbPigRealMesCartera.Text = "PiG en Cartera";
             this.rbPigRealMesCartera.UseVisualStyleBackColor = true;
             this.rbPigRealMesCartera.CheckedChanged += new System.EventHandler(this.rbPigRealMesCartera_CheckedChanged);
             // 
-            // lbPiGEnCartera
+            // groupBox4
             // 
-            this.lbPiGEnCartera.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbPiGEnCartera.Location = new System.Drawing.Point(275, 6);
-            this.lbPiGEnCartera.Name = "lbPiGEnCartera";
-            this.lbPiGEnCartera.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.lbPiGEnCartera.Size = new System.Drawing.Size(46, 53);
-            this.lbPiGEnCartera.TabIndex = 1;
-            this.lbPiGEnCartera.Text = "Any:";
-            this.lbPiGEnCartera.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.groupBox4.Controls.Add(this.cbAnysPiGEnCartera);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox4.Location = new System.Drawing.Point(315, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(103, 56);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Any";
             // 
             // cbAnysPiGEnCartera
             // 
             this.cbAnysPiGEnCartera.Dock = System.Windows.Forms.DockStyle.Right;
             this.cbAnysPiGEnCartera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAnysPiGEnCartera.FormattingEnabled = true;
-            this.cbAnysPiGEnCartera.Location = new System.Drawing.Point(321, 6);
+            this.cbAnysPiGEnCartera.Location = new System.Drawing.Point(5, 21);
+            this.cbAnysPiGEnCartera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAnysPiGEnCartera.Name = "cbAnysPiGEnCartera";
             this.cbAnysPiGEnCartera.Size = new System.Drawing.Size(95, 28);
-            this.cbAnysPiGEnCartera.TabIndex = 2;
+            this.cbAnysPiGEnCartera.TabIndex = 3;
             // 
             // panel2
             // 
@@ -382,11 +389,12 @@ namespace Inversions.GUI
             this.panel2.Controls.Add(this.ntbTotalPigTributen);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(5, 322);
+            this.panel2.Location = new System.Drawing.Point(4, 322);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.MinimumSize = new System.Drawing.Size(422, 220);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(9);
-            this.panel2.Size = new System.Drawing.Size(420, 200);
+            this.panel2.Size = new System.Drawing.Size(422, 220);
             this.panel2.TabIndex = 2;
             // 
             // ntbPigRealMesCartera
@@ -406,7 +414,7 @@ namespace Inversions.GUI
             this.ntbPigRealMesCartera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ntbPigRealMesCartera.Name = "ntbPigRealMesCartera";
             this.ntbPigRealMesCartera.ReadOnly = true;
-            this.ntbPigRealMesCartera.Size = new System.Drawing.Size(400, 30);
+            this.ntbPigRealMesCartera.Size = new System.Drawing.Size(402, 30);
             this.ntbPigRealMesCartera.TabIndex = 3;
             this.ntbPigRealMesCartera.Text = "0,00 €";
             this.ntbPigRealMesCartera.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -423,7 +431,7 @@ namespace Inversions.GUI
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(9, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(400, 31);
+            this.label3.Size = new System.Drawing.Size(402, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "PiG Real + Cartera";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -445,7 +453,7 @@ namespace Inversions.GUI
             this.ntbPigActualPartsEnCartera.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ntbPigActualPartsEnCartera.Name = "ntbPigActualPartsEnCartera";
             this.ntbPigActualPartsEnCartera.ReadOnly = true;
-            this.ntbPigActualPartsEnCartera.Size = new System.Drawing.Size(400, 30);
+            this.ntbPigActualPartsEnCartera.Size = new System.Drawing.Size(402, 30);
             this.ntbPigActualPartsEnCartera.TabIndex = 2;
             this.ntbPigActualPartsEnCartera.Text = "0,00 €";
             this.ntbPigActualPartsEnCartera.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -462,7 +470,7 @@ namespace Inversions.GUI
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 70);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(400, 31);
+            this.label1.Size = new System.Drawing.Size(402, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "PiG actual de les participacions en cartera";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -484,7 +492,7 @@ namespace Inversions.GUI
             this.ntbTotalPigTributen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ntbTotalPigTributen.Name = "ntbTotalPigTributen";
             this.ntbTotalPigTributen.ReadOnly = true;
-            this.ntbTotalPigTributen.Size = new System.Drawing.Size(400, 30);
+            this.ntbTotalPigTributen.Size = new System.Drawing.Size(402, 30);
             this.ntbTotalPigTributen.TabIndex = 5;
             this.ntbTotalPigTributen.Text = "0,00 €";
             this.ntbTotalPigTributen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -501,7 +509,7 @@ namespace Inversions.GUI
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(9, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(400, 31);
+            this.label9.Size = new System.Drawing.Size(402, 31);
             this.label9.TabIndex = 4;
             this.label9.Text = "PiG Real";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -511,10 +519,10 @@ namespace Inversions.GUI
             this.panel3.Controls.Add(this.dgvPiGAnualsTributen);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(5, 66);
+            this.panel3.Location = new System.Drawing.Point(4, 66);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(420, 256);
+            this.panel3.Size = new System.Drawing.Size(422, 256);
             this.panel3.TabIndex = 21;
             // 
             // dgvPiGAnualsTributen
@@ -524,26 +532,26 @@ namespace Inversions.GUI
             this.dgvPiGAnualsTributen.AllowUserToOrderColumns = true;
             this.dgvPiGAnualsTributen.AllowUserToResizeRows = false;
             this.dgvPiGAnualsTributen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle109.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle109.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle109.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle109.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle109.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle109.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle109.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPiGAnualsTributen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle109;
+            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle88.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle88.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle88.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle88.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle88.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle88.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPiGAnualsTributen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle88;
             this.dgvPiGAnualsTributen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiGAnualsTributen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAny,
             this.colPigTributa});
-            dataGridViewCellStyle112.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle112.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle112.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle112.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle112.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle112.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle112.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPiGAnualsTributen.DefaultCellStyle = dataGridViewCellStyle112;
+            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle91.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle91.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPiGAnualsTributen.DefaultCellStyle = dataGridViewCellStyle91;
             this.dgvPiGAnualsTributen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPiGAnualsTributen.Location = new System.Drawing.Point(0, 31);
             this.dgvPiGAnualsTributen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -552,7 +560,7 @@ namespace Inversions.GUI
             this.dgvPiGAnualsTributen.RowHeadersVisible = false;
             this.dgvPiGAnualsTributen.RowHeadersWidth = 62;
             this.dgvPiGAnualsTributen.RowTemplate.Height = 24;
-            this.dgvPiGAnualsTributen.Size = new System.Drawing.Size(420, 225);
+            this.dgvPiGAnualsTributen.Size = new System.Drawing.Size(422, 225);
             this.dgvPiGAnualsTributen.TabIndex = 1;
             this.dgvPiGAnualsTributen.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPiGAnualsTributen_CellDoubleClick);
             // 
@@ -560,10 +568,10 @@ namespace Inversions.GUI
             // 
             this.colAny._NegatiusEnVermell = true;
             this.colAny.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle110.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle110.Format = "0000";
-            dataGridViewCellStyle110.NullValue = null;
-            this.colAny.DefaultCellStyle = dataGridViewCellStyle110;
+            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle89.Format = "0000";
+            dataGridViewCellStyle89.NullValue = null;
+            this.colAny.DefaultCellStyle = dataGridViewCellStyle89;
             this.colAny.HeaderText = "Any";
             this.colAny.MinimumWidth = 8;
             this.colAny.Name = "colAny";
@@ -575,9 +583,9 @@ namespace Inversions.GUI
             // colPigTributa
             // 
             this.colPigTributa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle111.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle111.Format = "c2";
-            this.colPigTributa.DefaultCellStyle = dataGridViewCellStyle111;
+            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle90.Format = "c2";
+            this.colPigTributa.DefaultCellStyle = dataGridViewCellStyle90;
             this.colPigTributa.HeaderText = "P i G Total";
             this.colPigTributa.MinimumWidth = 8;
             this.colPigTributa.Name = "colPigTributa";
@@ -591,7 +599,7 @@ namespace Inversions.GUI
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(420, 31);
+            this.label2.Size = new System.Drawing.Size(422, 31);
             this.label2.TabIndex = 0;
             this.label2.Text = "P i G que tributen";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -601,11 +609,11 @@ namespace Inversions.GUI
             this.groupBox5.Controls.Add(this.cbTipusProducteFiltreTab2);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(5, 0);
+            this.groupBox5.Location = new System.Drawing.Point(4, 0);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox5.Size = new System.Drawing.Size(420, 66);
+            this.groupBox5.Size = new System.Drawing.Size(422, 66);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tipus Producte";
@@ -619,7 +627,7 @@ namespace Inversions.GUI
             this.cbTipusProducteFiltreTab2.Location = new System.Drawing.Point(6, 24);
             this.cbTipusProducteFiltreTab2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbTipusProducteFiltreTab2.Name = "cbTipusProducteFiltreTab2";
-            this.cbTipusProducteFiltreTab2.Size = new System.Drawing.Size(408, 34);
+            this.cbTipusProducteFiltreTab2.Size = new System.Drawing.Size(410, 34);
             this.cbTipusProducteFiltreTab2.TabIndex = 0;
             // 
             // pnPigFill
@@ -643,14 +651,14 @@ namespace Inversions.GUI
             this.dgvCompresProducte.AllowUserToOrderColumns = true;
             this.dgvCompresProducte.AllowUserToResizeRows = false;
             this.dgvCompresProducte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle113.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle113.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle113.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle113.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle113.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle113.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle113.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCompresProducte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle113;
+            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle92.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle92.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle92.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle92.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle92.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle92.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCompresProducte.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle92;
             this.dgvCompresProducte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCompresProducte.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -661,34 +669,34 @@ namespace Inversions.GUI
             this.PercentPiG,
             this.PigOrigen,
             this.PercentPiGOrig});
-            dataGridViewCellStyle122.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle122.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle122.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle122.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle122.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle122.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle122.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCompresProducte.DefaultCellStyle = dataGridViewCellStyle122;
+            dataGridViewCellStyle101.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle101.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle101.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle101.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle101.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle101.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle101.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCompresProducte.DefaultCellStyle = dataGridViewCellStyle101;
             this.dgvCompresProducte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCompresProducte.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvCompresProducte.Location = new System.Drawing.Point(0, 34);
+            this.dgvCompresProducte.Location = new System.Drawing.Point(0, 32);
             this.dgvCompresProducte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvCompresProducte.Name = "dgvCompresProducte";
             this.dgvCompresProducte.ReadOnly = true;
             this.dgvCompresProducte.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dgvCompresProducte.RowTemplate.Height = 24;
             this.dgvCompresProducte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCompresProducte.Size = new System.Drawing.Size(724, 190);
+            this.dgvCompresProducte.Size = new System.Drawing.Size(724, 192);
             this.dgvCompresProducte.TabIndex = 2;
             this.dgvCompresProducte.VirtualMode = true;
             // 
             // Id
             // 
             this.Id.DataPropertyName = "_Id";
-            dataGridViewCellStyle114.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle114.Format = "N0";
-            dataGridViewCellStyle114.NullValue = null;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle114;
+            dataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle93.Format = "N0";
+            dataGridViewCellStyle93.NullValue = null;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle93;
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 8;
             this.Id.Name = "Id";
@@ -699,10 +707,10 @@ namespace Inversions.GUI
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "_Data";
-            dataGridViewCellStyle115.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle115.Format = "d";
-            dataGridViewCellStyle115.NullValue = null;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle115;
+            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle94.Format = "d";
+            dataGridViewCellStyle94.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle94;
             this.dataGridViewTextBoxColumn3.HeaderText = "Data Compra";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -715,9 +723,9 @@ namespace Inversions.GUI
             // 
             this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.dataGridViewTextBoxColumn12.DataPropertyName = "_PreuParticipacio";
-            dataGridViewCellStyle116.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle116.Format = "C3";
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle116;
+            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle95.Format = "C3";
+            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle95;
             this.dataGridViewTextBoxColumn12.HeaderText = "Preu Unit. Compra";
             this.dataGridViewTextBoxColumn12.MinimumWidth = 95;
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
@@ -731,9 +739,9 @@ namespace Inversions.GUI
             this.ImportCompraBrut._NegatiusEnVermell = true;
             this.ImportCompraBrut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.ImportCompraBrut.DataPropertyName = "_ImportCompraBrut";
-            dataGridViewCellStyle117.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle117.Format = "C2";
-            this.ImportCompraBrut.DefaultCellStyle = dataGridViewCellStyle117;
+            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle96.Format = "C2";
+            this.ImportCompraBrut.DefaultCellStyle = dataGridViewCellStyle96;
             this.ImportCompraBrut.HeaderText = "Import Compra";
             this.ImportCompraBrut.MinimumWidth = 97;
             this.ImportCompraBrut.Name = "ImportCompraBrut";
@@ -747,9 +755,9 @@ namespace Inversions.GUI
             this.PigDeLaCompra._NegatiusEnVermell = true;
             this.PigDeLaCompra.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.PigDeLaCompra.DataPropertyName = "_PigDeLaCompra";
-            dataGridViewCellStyle118.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle118.Format = "C2";
-            this.PigDeLaCompra.DefaultCellStyle = dataGridViewCellStyle118;
+            dataGridViewCellStyle97.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle97.Format = "C2";
+            this.PigDeLaCompra.DefaultCellStyle = dataGridViewCellStyle97;
             this.PigDeLaCompra.HeaderText = "PiG";
             this.PigDeLaCompra.MinimumWidth = 97;
             this.PigDeLaCompra.Name = "PigDeLaCompra";
@@ -763,10 +771,10 @@ namespace Inversions.GUI
             this.PercentPiG._NegatiusEnVermell = true;
             this.PercentPiG.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.PercentPiG.DataPropertyName = "_PercentPiG";
-            dataGridViewCellStyle119.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle119.Format = "#,##0.00 %";
-            dataGridViewCellStyle119.NullValue = null;
-            this.PercentPiG.DefaultCellStyle = dataGridViewCellStyle119;
+            dataGridViewCellStyle98.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle98.Format = "#,##0.00 %";
+            dataGridViewCellStyle98.NullValue = null;
+            this.PercentPiG.DefaultCellStyle = dataGridViewCellStyle98;
             this.PercentPiG.HeaderText = "%";
             this.PercentPiG.MinimumWidth = 40;
             this.PercentPiG.Name = "PercentPiG";
@@ -780,9 +788,9 @@ namespace Inversions.GUI
             this.PigOrigen._NegatiusEnVermell = true;
             this.PigOrigen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.PigOrigen.DataPropertyName = "_PigDeLaCompraOrigen";
-            dataGridViewCellStyle120.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle120.Format = "C2";
-            this.PigOrigen.DefaultCellStyle = dataGridViewCellStyle120;
+            dataGridViewCellStyle99.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle99.Format = "C2";
+            this.PigOrigen.DefaultCellStyle = dataGridViewCellStyle99;
             this.PigOrigen.HeaderText = "PigOrigen";
             this.PigOrigen.MinimumWidth = 97;
             this.PigOrigen.Name = "PigOrigen";
@@ -796,10 +804,10 @@ namespace Inversions.GUI
             this.PercentPiGOrig._NegatiusEnVermell = true;
             this.PercentPiGOrig.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.PercentPiGOrig.DataPropertyName = "_PercentPiGOrig";
-            dataGridViewCellStyle121.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle121.Format = "#,##0.00 %";
-            dataGridViewCellStyle121.NullValue = null;
-            this.PercentPiGOrig.DefaultCellStyle = dataGridViewCellStyle121;
+            dataGridViewCellStyle100.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle100.Format = "#,##0.00 %";
+            dataGridViewCellStyle100.NullValue = null;
+            this.PercentPiGOrig.DefaultCellStyle = dataGridViewCellStyle100;
             this.PercentPiGOrig.HeaderText = "%";
             this.PercentPiGOrig.MinimumWidth = 40;
             this.PercentPiGOrig.Name = "PercentPiGOrig";
@@ -815,8 +823,9 @@ namespace Inversions.GUI
             this.flowLayoutPanel1.Controls.Add(this.ckAmbDividends);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(724, 34);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(724, 32);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // ckAmbCartera
@@ -824,10 +833,11 @@ namespace Inversions.GUI
             this.ckAmbCartera.AutoSize = true;
             this.ckAmbCartera.Checked = true;
             this.ckAmbCartera.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckAmbCartera.Location = new System.Drawing.Point(3, 3);
+            this.ckAmbCartera.Location = new System.Drawing.Point(3, 2);
+            this.ckAmbCartera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ckAmbCartera.Name = "ckAmbCartera";
             this.ckAmbCartera.Padding = new System.Windows.Forms.Padding(2);
-            this.ckAmbCartera.Size = new System.Drawing.Size(129, 28);
+            this.ckAmbCartera.Size = new System.Drawing.Size(125, 28);
             this.ckAmbCartera.TabIndex = 0;
             this.ckAmbCartera.Text = "Amb Cartera";
             this.ckAmbCartera.UseVisualStyleBackColor = true;
@@ -838,10 +848,11 @@ namespace Inversions.GUI
             this.ckAmbDividends.AutoSize = true;
             this.ckAmbDividends.Checked = true;
             this.ckAmbDividends.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckAmbDividends.Location = new System.Drawing.Point(138, 3);
+            this.ckAmbDividends.Location = new System.Drawing.Point(134, 2);
+            this.ckAmbDividends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ckAmbDividends.Name = "ckAmbDividends";
             this.ckAmbDividends.Padding = new System.Windows.Forms.Padding(2);
-            this.ckAmbDividends.Size = new System.Drawing.Size(145, 28);
+            this.ckAmbDividends.Size = new System.Drawing.Size(141, 28);
             this.ckAmbDividends.TabIndex = 1;
             this.ckAmbDividends.Text = "Amb Dividends";
             this.ckAmbDividends.UseVisualStyleBackColor = true;
@@ -851,6 +862,7 @@ namespace Inversions.GUI
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(724, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(21, 224);
             this.panel4.TabIndex = 1;
@@ -863,8 +875,9 @@ namespace Inversions.GUI
             this.panel1.Controls.Add(this.label4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(745, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panel1.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.panel1.Size = new System.Drawing.Size(284, 224);
             this.panel1.TabIndex = 20;
             // 
@@ -875,44 +888,44 @@ namespace Inversions.GUI
             this.dgvPiGProductePerAny.AllowUserToOrderColumns = true;
             this.dgvPiGProductePerAny.AllowUserToResizeRows = false;
             this.dgvPiGProductePerAny.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle123.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle123.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle123.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle123.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle123.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle123.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle123.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPiGProductePerAny.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle123;
+            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle102.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle102.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle102.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle102.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle102.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle102.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPiGProductePerAny.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle102;
             this.dgvPiGProductePerAny.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiGProductePerAny.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
-            dataGridViewCellStyle126.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle126.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle126.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle126.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle126.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle126.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle126.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPiGProductePerAny.DefaultCellStyle = dataGridViewCellStyle126;
+            dataGridViewCellStyle105.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle105.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle105.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle105.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle105.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle105.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPiGProductePerAny.DefaultCellStyle = dataGridViewCellStyle105;
             this.dgvPiGProductePerAny.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPiGProductePerAny.Location = new System.Drawing.Point(5, 29);
+            this.dgvPiGProductePerAny.Location = new System.Drawing.Point(4, 29);
             this.dgvPiGProductePerAny.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvPiGProductePerAny.Name = "dgvPiGProductePerAny";
             this.dgvPiGProductePerAny.ReadOnly = true;
             this.dgvPiGProductePerAny.RowHeadersVisible = false;
             this.dgvPiGProductePerAny.RowHeadersWidth = 62;
             this.dgvPiGProductePerAny.RowTemplate.Height = 24;
-            this.dgvPiGProductePerAny.Size = new System.Drawing.Size(279, 85);
+            this.dgvPiGProductePerAny.Size = new System.Drawing.Size(280, 85);
             this.dgvPiGProductePerAny.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle124.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle124.Format = "0000";
-            dataGridViewCellStyle124.NullValue = null;
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle124;
+            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle103.Format = "0000";
+            dataGridViewCellStyle103.NullValue = null;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle103;
             this.dataGridViewTextBoxColumn8.HeaderText = "Any";
             this.dataGridViewTextBoxColumn8.MinimumWidth = 40;
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
@@ -924,9 +937,9 @@ namespace Inversions.GUI
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle125.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle125.Format = "c2";
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle125;
+            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle104.Format = "c2";
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle104;
             this.dataGridViewTextBoxColumn9.HeaderText = "P i G Total Origen";
             this.dataGridViewTextBoxColumn9.MinimumWidth = 20;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
@@ -938,11 +951,11 @@ namespace Inversions.GUI
             this.groupBox3.Controls.Add(this.ntbPigCompra);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(5, 114);
+            this.groupBox3.Location = new System.Drawing.Point(4, 114);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 9, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.groupBox3.Size = new System.Drawing.Size(279, 55);
+            this.groupBox3.Size = new System.Drawing.Size(280, 55);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PiG Total";
@@ -958,9 +971,10 @@ namespace Inversions.GUI
             this.ntbPigCompra.BackColor = System.Drawing.SystemColors.Window;
             this.ntbPigCompra.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ntbPigCompra.Location = new System.Drawing.Point(3, 22);
+            this.ntbPigCompra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ntbPigCompra.Name = "ntbPigCompra";
             this.ntbPigCompra.ReadOnly = true;
-            this.ntbPigCompra.Size = new System.Drawing.Size(273, 25);
+            this.ntbPigCompra.Size = new System.Drawing.Size(274, 25);
             this.ntbPigCompra.TabIndex = 0;
             this.ntbPigCompra.Text = "0,00 €";
             this.ntbPigCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -975,11 +989,11 @@ namespace Inversions.GUI
             this.gbPigCompraOrig.Controls.Add(this.ntbPigCompraOrig);
             this.gbPigCompraOrig.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gbPigCompraOrig.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPigCompraOrig.Location = new System.Drawing.Point(5, 169);
+            this.gbPigCompraOrig.Location = new System.Drawing.Point(4, 169);
             this.gbPigCompraOrig.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbPigCompraOrig.Name = "gbPigCompraOrig";
             this.gbPigCompraOrig.Padding = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.gbPigCompraOrig.Size = new System.Drawing.Size(279, 55);
+            this.gbPigCompraOrig.Size = new System.Drawing.Size(280, 55);
             this.gbPigCompraOrig.TabIndex = 3;
             this.gbPigCompraOrig.TabStop = false;
             this.gbPigCompraOrig.Text = "PiG Total Orig";
@@ -995,9 +1009,10 @@ namespace Inversions.GUI
             this.ntbPigCompraOrig.BackColor = System.Drawing.SystemColors.Window;
             this.ntbPigCompraOrig.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ntbPigCompraOrig.Location = new System.Drawing.Point(3, 22);
+            this.ntbPigCompraOrig.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ntbPigCompraOrig.Name = "ntbPigCompraOrig";
             this.ntbPigCompraOrig.ReadOnly = true;
-            this.ntbPigCompraOrig.Size = new System.Drawing.Size(273, 25);
+            this.ntbPigCompraOrig.Size = new System.Drawing.Size(274, 25);
             this.ntbPigCompraOrig.TabIndex = 0;
             this.ntbPigCompraOrig.Text = "0,00 €";
             this.ntbPigCompraOrig.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1012,9 +1027,9 @@ namespace Inversions.GUI
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 0);
+            this.label4.Location = new System.Drawing.Point(4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(279, 29);
+            this.label4.Size = new System.Drawing.Size(280, 29);
             this.label4.TabIndex = 0;
             this.label4.Text = "PiG Producte";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1025,8 +1040,9 @@ namespace Inversions.GUI
             this.panel7.Controls.Add(this.gbFiltreDates);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(0, 722);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.panel7.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.panel7.Size = new System.Drawing.Size(1029, 100);
             this.panel7.TabIndex = 20;
             // 
@@ -1039,11 +1055,11 @@ namespace Inversions.GUI
             this.gbSimulacioPig.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbSimulacioPig.Enabled = false;
             this.gbSimulacioPig.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbSimulacioPig.Location = new System.Drawing.Point(435, 3);
+            this.gbSimulacioPig.Location = new System.Drawing.Point(435, 2);
             this.gbSimulacioPig.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbSimulacioPig.Name = "gbSimulacioPig";
             this.gbSimulacioPig.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbSimulacioPig.Size = new System.Drawing.Size(594, 94);
+            this.gbSimulacioPig.Size = new System.Drawing.Size(594, 96);
             this.gbSimulacioPig.TabIndex = 1;
             this.gbSimulacioPig.TabStop = false;
             this.gbSimulacioPig.Text = "Simulació PiG Orig";
@@ -1067,7 +1083,7 @@ namespace Inversions.GUI
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 6, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(131, 56);
+            this.groupBox2.Size = new System.Drawing.Size(130, 56);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dif.PiG Act.";
@@ -1088,7 +1104,7 @@ namespace Inversions.GUI
             this.ntbDiferencia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ntbDiferencia.Name = "ntbDiferencia";
             this.ntbDiferencia.ReadOnly = true;
-            this.ntbDiferencia.Size = new System.Drawing.Size(125, 25);
+            this.ntbDiferencia.Size = new System.Drawing.Size(124, 25);
             this.ntbDiferencia.TabIndex = 0;
             this.ntbDiferencia.Text = "0,00 €";
             this.ntbDiferencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1105,7 +1121,7 @@ namespace Inversions.GUI
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 8);
-            this.groupBox1.Size = new System.Drawing.Size(131, 56);
+            this.groupBox1.Size = new System.Drawing.Size(130, 56);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PiG";
@@ -1121,9 +1137,10 @@ namespace Inversions.GUI
             this.ntbPiG.BackColor = System.Drawing.SystemColors.Window;
             this.ntbPiG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ntbPiG.Location = new System.Drawing.Point(4, 22);
+            this.ntbPiG.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ntbPiG.Name = "ntbPiG";
             this.ntbPiG.ReadOnly = true;
-            this.ntbPiG.Size = new System.Drawing.Size(123, 25);
+            this.ntbPiG.Size = new System.Drawing.Size(122, 25);
             this.ntbPiG.TabIndex = 0;
             this.ntbPiG.Text = "0,00 €";
             this.ntbPiG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1180,11 +1197,11 @@ namespace Inversions.GUI
             this.gbFiltreDates.Controls.Add(this.dtpFiltreDataFi);
             this.gbFiltreDates.Dock = System.Windows.Forms.DockStyle.Left;
             this.gbFiltreDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFiltreDates.Location = new System.Drawing.Point(0, 3);
+            this.gbFiltreDates.Location = new System.Drawing.Point(0, 2);
             this.gbFiltreDates.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbFiltreDates.Name = "gbFiltreDates";
             this.gbFiltreDates.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbFiltreDates.Size = new System.Drawing.Size(435, 94);
+            this.gbFiltreDates.Size = new System.Drawing.Size(435, 96);
             this.gbFiltreDates.TabIndex = 0;
             this.gbFiltreDates.TabStop = false;
             this.gbFiltreDates.Text = "PiG entre dates";
@@ -1196,7 +1213,7 @@ namespace Inversions.GUI
             this.ckPiGEntreDatesNomesProdSel.Location = new System.Drawing.Point(15, 61);
             this.ckPiGEntreDatesNomesProdSel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ckPiGEntreDatesNomesProdSel.Name = "ckPiGEntreDatesNomesProdSel";
-            this.ckPiGEntreDatesNomesProdSel.Size = new System.Drawing.Size(173, 24);
+            this.ckPiGEntreDatesNomesProdSel.Size = new System.Drawing.Size(169, 24);
             this.ckPiGEntreDatesNomesProdSel.TabIndex = 2;
             this.ckPiGEntreDatesNomesProdSel.Text = "Només Prod. Sel.";
             this.ckPiGEntreDatesNomesProdSel.UseVisualStyleBackColor = true;
@@ -1314,6 +1331,7 @@ namespace Inversions.GUI
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1349,8 +1367,6 @@ namespace Inversions.GUI
         private GestioProductes gestioProductesTabValoracions;
         private System.Windows.Forms.Panel pnPigRight;
         private System.Windows.Forms.Panel pnPigFill;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox cbTipusProducteFiltreTab2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dgvPiGAnualsTributen;
@@ -1375,8 +1391,6 @@ namespace Inversions.GUI
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.DataGridView dgvPiGEnCartera;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label lbPiGEnCartera;
-        private System.Windows.Forms.ComboBox cbAnysPiGEnCartera;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.GroupBox gbSimulacioPig;
         private System.Windows.Forms.Button btSimulacioPiG;
@@ -1417,5 +1431,10 @@ namespace Inversions.GUI
         private RadioButton rbPigReal;
         private RadioButton rbPigRealMesCartera;
         private RadioButton object_1b4b50bb_f8eb_4633_9a92_57d1d83caa82;
+        private GroupBox groupBox5;
+        private ComboBox cbTipusProducteFiltreTab2;
+        private GroupBox groupBox4;
+        private ComboBox cbAnysPiGEnCartera;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

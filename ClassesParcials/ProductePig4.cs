@@ -582,17 +582,24 @@ namespace Inversions.ClassesEntity
         internal decimal pigEnCartera4(bool pigOrig, bool inclouDespeses, DateTime? dataHora = null
             , decimal? preuParticipacio = null)
         {
-            DateTime data = dataHora.GetValueOrDefault(DateTime.Now);
-            decimal parts = partsEnCartera(data);
-            decimal preuPart = preuParticipacio.GetValueOrDefault(valorParticipacio(data));
+            try
+            {
+                DateTime data = dataHora.GetValueOrDefault(DateTime.Now);
+                decimal parts = partsEnCartera(data);
+                decimal preuPart = preuParticipacio.GetValueOrDefault(valorParticipacio(data));
 
-            decimal despesesCompres;
-            decimal pig = basicPigVendaOCartera4(data, parts, preuPart, pigOrig, out despesesCompres);
+                decimal despesesCompres;
+                decimal pig = basicPigVendaOCartera4(data, parts, preuPart, pigOrig, out despesesCompres);
 
-            if (inclouDespeses)
-                pig -= despesesCompres;
+                if (inclouDespeses)
+                    pig -= despesesCompres;
 
-            return pig;
+                return pig;
+            }
+            catch (ApplicationException)
+            {
+                return 0;
+            }
         }
 
         /// <summary>
@@ -602,8 +609,10 @@ namespace Inversions.ClassesEntity
         /// <param name="dataHoraIni"></param>
         /// <param name="dataHoraFi"></param>
         /// <param name="inclouDividents"></param>
+        /// <param name="inclouVendesReals"></param>
         /// <returns></returns>
-        internal decimal pigEnCarteraEntreDates(DateTime dataHoraIni, DateTime dataHoraFi, bool inclouDividents)
+        internal decimal pigEnCarteraEntreDates(DateTime dataHoraIni, DateTime dataHoraFi
+            , bool inclouDividents, bool inclouVendesReals)
         {
             /*
              * L'objectiu és saber el PiG de les participacions en cartera en un període. 
@@ -635,8 +644,9 @@ namespace Inversions.ClassesEntity
 
             decimal piGPartsIniciFinal = (preuPartFi - preuPartIni) * (partsEnCarteraFi - partsComprades);
             decimal piGPartsComprades = compres.Sum(s => (preuPartFi - s._PreuParticipacioEuros) * s.Participacions - s.Despeses.GetValueOrDefault());
-            decimal piGPartsVenudes = vendes.Sum(s => (s._PreuParticipacioEuros - preuPartIni) * s.Participacions - s.Despeses.GetValueOrDefault());
-
+            decimal piGPartsVenudes = inclouVendesReals 
+                ? piGPartsVenudes = vendes.Sum(s => (s._PreuParticipacioEuros - preuPartIni) * s.Participacions - s.Despeses.GetValueOrDefault()) 
+                : 0;
 
             return piGPartsIniciFinal + piGPartsComprades + piGPartsVenudes + dividents;
         }

@@ -320,23 +320,6 @@ namespace Inversions.GUI
                 return;
 
             int anyDades = (int)cbAnysPiGEnCartera.SelectedItem;
-            
-            if (rbPigReal.Checked)
-            {
-                ompleDgvPiGReal(anyDades);
-            }
-            else
-            {
-                ompleDgvPiGEnCartera(anyDades);
-            }
-        }
-
-        /// <summary>
-        ///    Omple el DataGridView amb el PiG en cartera per producte segons l'any seleccionat
-        /// </summary>
-        /// <param name="anyDades"></param>
-        private void ompleDgvPiGEnCartera(int anyDades)
-        {
             List<Producte> productes;
 
             switch ((Producte.TipusProducte)cbTipusProducteFiltreTab2.SelectedItem)
@@ -354,65 +337,50 @@ namespace Inversions.GUI
                     return;
             }
 
-            var dataIni = new DateTime(anyDades, 1, 1);
-            DateTime dataFi = new DateTime(anyDades + 1, 1, 1).AddTicks(-1);
-            // ** Selecciones només productes amb cartera i els ordena.
-            productes = productes.Where(producte => producte.partsEnCartera(dataFi) > 0).OrderBy(o => o.OrdreGrid).ToList();
-
-            decimal pigTotalEncartera = 0;
-            dgvPiGEnCartera.Rows.Clear();
-            foreach (Producte prod in productes)
+            if (rbPigReal.Checked)
             {
-                if (dataFi > DateTime.Now)
-                    dataFi = DateTime.Now;
+                productesAmbPigReal(anyDades, productes);
+            }
+            else
+            {
+                productesAmbPigEnCartera(anyDades, productes);
+            }
+        }
 
-                decimal pigProdAny = prod.pigEnCarteraEntreDates(dataIni, dataFi, true);
+        /// <summary>
+        ///   Omple el DataGridView amb el PiG en cartera per producte segons l'any seleccionat
+        /// </summary>
+        /// <param name="anyDades"></param>
+        /// <param name="productes"></param>
+        private void productesAmbPigEnCartera(int anyDades, List<Producte> productes)
+        {
+            DateTime dataFi = new DateTime(anyDades + 1, 1, 1).AddTicks(-1);
+            dataFi = dataFi > DateTime.Now ? DateTime.Now : dataFi;
 
+            // ** Selecciones només productes amb cartera i els ordena.
+            var prods = productes.Where(producte => producte.partsEnCartera(dataFi) > 0);
 
+            var productesAmbPig = new List<(Producte, decimal)>();
+            foreach (Producte prod in prods)
+            {
+                decimal pigProdAny = prod.pigEnCarteraEntreDates(new(dataFi.Year, 1, 1), dataFi, false, false);
+                
                 if (!Utilitats.EsZero(pigProdAny))
                 {
-                    int ff = dgvPiGEnCartera.Rows.Add(prod, pigProdAny);
-
-                    dgvPiGEnCartera.Rows[ff].Cells[1].Style.ForeColor = pigProdAny < 0 ? Color.Red : Color.Black;
-
-                    pigTotalEncartera += pigProdAny;
+                    productesAmbPig.Add((prod, pigProdAny));
                 }
             }
 
-            if (dgvPiGEnCartera.RowCount > 0)
-                dgvPiGEnCartera.FirstDisplayedScrollingRowIndex = 0;
-
-            dgvPiGEnCartera.ClearSelection();
-
-            lbTotalPigEnCartera.ForeColor = pigTotalEncartera < 0 ? Color.Red : Color.Black;
-            lbTotalPigEnCartera.Text = pigTotalEncartera.ToString("#,##0.00 €");
+            ompleDgvPiGEnCartera(productesAmbPig);
         }
+
 
         /// <summary>
         ///   Omple el DataGridView amb el PiG real per producte segons l'any seleccionat
         /// </summary>
         /// <param name="anyDades"></param>
-        private void ompleDgvPiGReal(int anyDades)
+        private void productesAmbPigReal(int anyDades, List<Producte> productes)
         {
-            List<Producte> productes;
-
-            switch ((Producte.TipusProducte)cbTipusProducteFiltreTab2.SelectedItem)
-            {
-                case Producte.TipusProducte.Tots:
-                    productes = Producte.Tuples.ToList();
-                    break;
-                case Producte.TipusProducte.Accions:
-                    productes = new List<Producte>(ProdAccions.Tuples);
-                    break;
-                case Producte.TipusProducte.Fons:
-                    productes = new List<Producte>(ProdFons.Tuples);
-                    break;
-                default:
-                    return;
-            }
-
-            decimal pigTotalEncartera = 0;
-            dgvPiGEnCartera.Rows.Clear();
             var productesAmbPig = new List<(Producte, decimal)>();
             foreach (Producte prod in productes)
             {
@@ -424,13 +392,22 @@ namespace Inversions.GUI
                 }
             }
 
-            foreach (var (prod, pigProdAny) in productesAmbPig.OrderByDescending(o => o.Item1.OrdreGrid))
+            ompleDgvPiGEnCartera(productesAmbPig);
+        }
+
+
+        private void ompleDgvPiGEnCartera(List<(Producte, decimal)> productesAmbPig)
+        {
+            dgvPiGEnCartera.Rows.Clear();
+            decimal pigTotalEncartera = 0;
+            foreach (var (prod, pigProdAny) in productesAmbPig.OrderBy(o => o.Item1.OrdreGrid))
             {
                 int ff = dgvPiGEnCartera.Rows.Add(prod, pigProdAny);
-                dgvPiGEnCartera.Rows[ff].Cells[1].Style.ForeColor = pigProdAny < 0 ? Color.Red : Color.Black;
-            }
 
-            pigTotalEncartera = productesAmbPig.Sum(s => s.Item2);
+                dgvPiGEnCartera.Rows[ff].Cells[1].Style.ForeColor = pigProdAny < 0 ? Color.Red : Color.Black;
+
+                pigTotalEncartera += pigProdAny;
+            }
 
             if (dgvPiGEnCartera.RowCount > 0)
                 dgvPiGEnCartera.FirstDisplayedScrollingRowIndex = 0;
@@ -440,6 +417,7 @@ namespace Inversions.GUI
             lbTotalPigEnCartera.ForeColor = pigTotalEncartera < 0 ? Color.Red : Color.Black;
             lbTotalPigEnCartera.Text = pigTotalEncartera.ToString("#,##0.00 €");
         }
+
 
         #endregion *** Mètodes ***
 
