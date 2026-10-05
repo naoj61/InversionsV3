@@ -79,7 +79,7 @@
             this.tbPaste.Multiline = true;
             this.tbPaste.Name = "tbPaste";
             this.tbPaste.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbPaste.Size = new System.Drawing.Size(433, 700);
+            this.tbPaste.Size = new System.Drawing.Size(433, 743);
             this.tbPaste.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -95,11 +95,11 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBox2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 700);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 743);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1552, 101);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1778, 101);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // ckTancaAlDesar
@@ -107,7 +107,7 @@
             this.ckTancaAlDesar.AutoSize = true;
             this.ckTancaAlDesar.Checked = true;
             this.ckTancaAlDesar.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckTancaAlDesar.Location = new System.Drawing.Point(1398, 26);
+            this.ckTancaAlDesar.Location = new System.Drawing.Point(1624, 26);
             this.ckTancaAlDesar.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.ckTancaAlDesar.Name = "ckTancaAlDesar";
             this.ckTancaAlDesar.Size = new System.Drawing.Size(139, 24);
@@ -118,7 +118,7 @@
             // btDesa
             // 
             this.btDesa.Enabled = false;
-            this.btDesa.Location = new System.Drawing.Point(1283, 26);
+            this.btDesa.Location = new System.Drawing.Point(1509, 26);
             this.btDesa.Margin = new System.Windows.Forms.Padding(3, 20, 3, 4);
             this.btDesa.Name = "btDesa";
             this.btDesa.Size = new System.Drawing.Size(109, 55);
@@ -131,7 +131,7 @@
             // 
             this.panel1.Controls.Add(this.dtpDataUnica);
             this.panel1.Controls.Add(this.ckDataUnica);
-            this.panel1.Location = new System.Drawing.Point(1143, 21);
+            this.panel1.Location = new System.Drawing.Point(1369, 21);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(134, 61);
@@ -163,7 +163,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cbColumnaPreuParticio);
-            this.groupBox1.Location = new System.Drawing.Point(961, 9);
+            this.groupBox1.Location = new System.Drawing.Point(1187, 9);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(176, 77);
             this.groupBox1.TabIndex = 3;
@@ -192,7 +192,7 @@
             // 
             // ckSobreescriuValoracions
             // 
-            this.ckSobreescriuValoracions.Location = new System.Drawing.Point(820, 21);
+            this.ckSobreescriuValoracions.Location = new System.Drawing.Point(1046, 21);
             this.ckSobreescriuValoracions.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.ckSobreescriuValoracions.Name = "ckSobreescriuValoracions";
             this.ckSobreescriuValoracions.Size = new System.Drawing.Size(135, 60);
@@ -206,7 +206,7 @@
             // 
             this.panel2.Controls.Add(this.textBox3);
             this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Location = new System.Drawing.Point(591, 21);
+            this.panel2.Location = new System.Drawing.Point(817, 21);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(223, 58);
@@ -241,7 +241,7 @@
             // 
             // btCapturaValorPaste
             // 
-            this.btCapturaValorPaste.Location = new System.Drawing.Point(476, 26);
+            this.btCapturaValorPaste.Location = new System.Drawing.Point(702, 26);
             this.btCapturaValorPaste.Margin = new System.Windows.Forms.Padding(3, 20, 3, 4);
             this.btCapturaValorPaste.Name = "btCapturaValorPaste";
             this.btCapturaValorPaste.Size = new System.Drawing.Size(109, 55);
@@ -256,7 +256,7 @@
             this.groupBox2.Controls.Add(this.ckLbAccesApi);
             this.groupBox2.Controls.Add(this.btLlegeigApi);
             this.groupBox2.Controls.Add(this.dtpDataApi);
-            this.groupBox2.Location = new System.Drawing.Point(138, 9);
+            this.groupBox2.Location = new System.Drawing.Point(364, 9);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 3, 8, 3);
@@ -329,7 +329,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEstatOriginalCheckBox,
             this.colNomFons,
@@ -346,7 +346,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(1119, 700);
+            this.dataGridView1.Size = new System.Drawing.Size(1345, 743);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -361,13 +361,14 @@
             // 
             // colNomFons
             // 
-            this.colNomFons.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colNomFons.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colNomFons.HeaderText = "Nom Fons";
             this.colNomFons.MinimumWidth = 8;
             this.colNomFons.Name = "colNomFons";
             this.colNomFons.ReadOnly = true;
             this.colNomFons.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colNomFons.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNomFons.Width = 88;
             // 
             // colSeleccionat
             // 
@@ -412,7 +413,6 @@
             this.colValorNou.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle3.Format = "#,#0.00# €";
-            dataGridViewCellStyle3.NullValue = "0";
             this.colValorNou.DefaultCellStyle = dataGridViewCellStyle3;
             this.colValorNou.HeaderText = "Valor Nou";
             this.colValorNou.MinimumWidth = 8;
@@ -457,15 +457,16 @@
             this.AcceptButton = this.btCapturaValorPaste;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1552, 801);
+            this.ClientSize = new System.Drawing.Size(1778, 844);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tbPaste);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(1800, 900);
             this.Name = "PasteSelfBank";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "PasteSelfBank";
             this.Load += new System.EventHandler(this.PasteSelfBank_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -502,6 +503,11 @@
         private System.Windows.Forms.ComboBox cbColumnaPreuParticio;
         private System.Windows.Forms.Button btCapturaValorPaste;
         private System.Windows.Forms.Button btLlegeigApi;
+        private System.Windows.Forms.CheckedListBox ckLbAccesApi;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox ckNoCache;
+        private System.Windows.Forms.DateTimePicker dtpDataApi;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEstatOriginalCheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomFons;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colSeleccionat;
@@ -510,10 +516,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colValorNou;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPercentatge;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDif;
-        private System.Windows.Forms.CheckedListBox ckLbAccesApi;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.CheckBox ckNoCache;
-        private System.Windows.Forms.DateTimePicker dtpDataApi;
     }
 }

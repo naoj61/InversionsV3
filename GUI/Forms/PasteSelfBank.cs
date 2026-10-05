@@ -204,6 +204,17 @@ namespace Inversions.GUI
         }
 
 
+        private void creaLecturaErronia(Producte prod, ExceptionApi ex)
+        {
+            int numFila = dataGridView1.Rows.Add(new object[]
+            {
+                false, ex.Message + $" (Prod: {prod})", false, null, null, null, null, null
+            });
+
+            dataGridView1.Rows[numFila].Cells[colNomFons.Name].Style.ForeColor = Color.Red;
+        }
+
+
         /// <summary>
         ///     Crea les valoracions capturades del paste.
         /// </summary>
@@ -369,6 +380,7 @@ namespace Inversions.GUI
             if (!ckLbAccesApi.CheckedItems.Contains("Accions"))
                 ProdsAmbPartsTotsElsUsuaris = ProdsAmbPartsTotsElsUsuaris.Where(w => w is not ProdAccions).ToList();
 
+            bool avisMostrat = false;
 
             foreach (Producte prod in ProdsAmbPartsTotsElsUsuaris.OrderBy(o => o._TipusProducte))
             {
@@ -396,14 +408,19 @@ namespace Inversions.GUI
                     }
                     catch (ExceptionApi ex)
                     {
-                        if (MessageBox.Show($"Error: {ex.Message}. \nProd: {prod} \nVols continuar?", "API EODHD",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                        creaLecturaErronia(prod, ex);
+
+                        if (!avisMostrat)
                         {
-                            break;
+                            MessageBox.Show("Hi ha errors!!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            avisMostrat = true;
                         }
                     }
+                
                 }
             }
+            
+            dataGridView1.ClearSelection();
 
             btDesa.Enabled = dataGridView1.Rows.Count > 0;
 
