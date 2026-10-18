@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace Inversions.GUI
@@ -404,6 +405,12 @@ namespace Inversions.GUI
 
                                 creaValoracio(data, prod, valorEur, ref avis);
                             }
+                        }
+                        else
+                        {
+                            var ex = new ExceptionApi($"No hi ha preu per la data {data:d}", HttpStatusCode.NoContent);
+                            
+                            creaLecturaErronia(prod, ex);
                         }
                     }
                     catch (ExceptionApi ex)
