@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Comuns;
+using Controls;
+using Inversions.ClassesEntity;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
-using Comuns;
-using Inversions.ClassesEntity;
-using Microsoft.Win32;
 
 namespace Inversions.GUI.Forms
 {
@@ -369,6 +370,8 @@ namespace Inversions.GUI.Forms
 
         private void calculaTotalATributar()
         {
+            ntbIngressosForaApp.Valor = sumaImportsIngressosExterns();
+
             ntbTotalTributar.Valor = ntbPiG.Valor + ntbIngressosForaApp.Valor + ntbDividents.Valor
                                      - ntbPerduesAnysAnteriors.Valor - ntbMinimContribuent.Valor;
         }
@@ -410,8 +413,6 @@ namespace Inversions.GUI.Forms
             string dd1 = Utilitats.LlegeixVariableRegistre(Registry.CurrentUser, vClauReg, RegImportMinimContribuent);
             Decimal.TryParse(dd1, out vImportMinimContribuent);
             ntbMinimContribuent.Valor = vImportMinimContribuent;
-
-            ntbIngressosForaApp.Valor = sumaImportsIngressosExterns();
 
             calculaTotalATributar();
         }
@@ -602,7 +603,6 @@ namespace Inversions.GUI.Forms
         {
             carregaTaulaIngressosExterns(vAny);
 
-            ntbIngressosForaApp.Valor = sumaImportsIngressosExterns();
             ntbMinimContribuent.Valor = vImportMinimContribuent;
 
             calculaTotalATributar();
@@ -641,6 +641,11 @@ namespace Inversions.GUI.Forms
 
         #region *** Gestiona Ingressos fora de l'aplicació ***
 
+        private void dgvIngressosForaAplicacio_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            modeEdicio(true);
+        }
+
         private void dgvIngressosForaAplicacio_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
             var dataGridView = sender as DataGridView;
@@ -664,25 +669,19 @@ namespace Inversions.GUI.Forms
                         MessageBox.Show("L'import és obligatòri.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         dataGridView.CurrentCell = dataGridView.Rows[e.RowIndex].Cells["ColumnaImport"];
                     }
-                    else
-                    {
-                        // Habilito els botons Desar i Cancel·lar
-                        modeEdicio(true);
-
-                        ntbIngressosForaApp.Valor = sumaImportsIngressosExterns();
-
-                        calculaTotalATributar();
-                    }
                 }
             }
+        }
+
+        private void dgvIngressosForaAplicacio_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            calculaTotalATributar();
         }
 
         private void dgvIngressosForaAplicacio_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             // Habilito els botons Desar i Cancel·lar
             modeEdicio();
-
-            ntbIngressosForaApp.Valor = sumaImportsIngressosExterns();
 
             calculaTotalATributar();
         }
