@@ -61,7 +61,7 @@ namespace Inversions.GUI.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle139 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle140 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbCompres = new System.Windows.Forms.GroupBox();
-            this.dgvCompresVenda = new Controls.DataGridView3();
+            this.dgvCompresVenda = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,7 +78,7 @@ namespace Inversions.GUI.Forms
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new Controls.NumericTextBoxColumn2();
+            this.Column9 = new Controls.NumericTextBoxColumn3();
             this.flpTotals = new System.Windows.Forms.FlowLayoutPanel();
             this.ckAgrupaCompres = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -101,13 +101,13 @@ namespace Inversions.GUI.Forms
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.gbDividents = new System.Windows.Forms.GroupBox();
-            this.dgvProductes = new Controls.DataGridView3();
+            this.dgvProductes = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbVendes = new System.Windows.Forms.GroupBox();
-            this.dgvVendes = new Controls.DataGridView3();
+            this.dgvVendes = new System.Windows.Forms.DataGridView();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cAny = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,19 +117,19 @@ namespace Inversions.GUI.Forms
             this.cImportCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cImportVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cDespesesCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new Controls.NumericTextBoxColumn2();
+            this.Column2 = new Controls.NumericTextBoxColumn3();
             this.pnAny = new System.Windows.Forms.Panel();
             this.cbDividents = new System.Windows.Forms.CheckBox();
             this.cbVendes = new System.Windows.Forms.CheckBox();
             this.cbAny = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbIngressosForaAplicacio = new System.Windows.Forms.GroupBox();
-            this.dgvIngressosForaAplicacio = new Controls.DataGridView3();
+            this.dgvIngressosForaAplicacio = new System.Windows.Forms.DataGridView();
             this.ColumnsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaUsuari = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaAny = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnaRao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnaImport = new Controls.NumericTextBoxColumn2();
+            this.ColumnaImport = new Controls.NumericTextBoxColumn3();
             this.gbCompres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompresVenda)).BeginInit();
             this.flpTotals.SuspendLayout();
@@ -1230,7 +1230,7 @@ namespace Inversions.GUI.Forms
         #endregion
 
         private System.Windows.Forms.GroupBox gbCompres;
-        private DataGridView3 dgvCompresVenda;
+        private DataGridView dgvCompresVenda;
         private System.Windows.Forms.FlowLayoutPanel flpTotals;
         private System.Windows.Forms.GroupBox groupBox1;
         private NumericTextBox2 ntbMinimContribuent;
@@ -1252,14 +1252,14 @@ namespace Inversions.GUI.Forms
         private System.Windows.Forms.Button btCancela;
         private SplitContainer splitContainer1;
         private GroupBox gbVendes;
-        private DataGridView3 dgvVendes;
+        private DataGridView dgvVendes;
         private GroupBox gbDividents;
-        private DataGridView3 dgvProductes;
+        private DataGridView dgvProductes;
         private Panel pnAny;
         private ComboBox cbAny;
         private Label label1;
         private GroupBox gbIngressosForaAplicacio;
-        private DataGridView3 dgvIngressosForaAplicacio;
+        private DataGridView dgvIngressosForaAplicacio;
         private SplitContainer splitContainer2;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn cAny;
@@ -1270,12 +1270,12 @@ namespace Inversions.GUI.Forms
         private DataGridViewTextBoxColumn cImportCompra;
         private DataGridViewTextBoxColumn cImportVenda;
         private DataGridViewTextBoxColumn cDespesesCompra;
-        private NumericTextBoxColumn2 Column2;
+        private NumericTextBoxColumn3 Column2;
         private DataGridViewTextBoxColumn ColumnsId;
         private DataGridViewTextBoxColumn ColumnaUsuari;
         private DataGridViewTextBoxColumn ColumnaAny;
         private DataGridViewTextBoxColumn ColumnaRao;
-        private NumericTextBoxColumn2 ColumnaImport;
+        private NumericTextBoxColumn3 ColumnaImport;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn Column6;
@@ -1292,7 +1292,7 @@ namespace Inversions.GUI.Forms
         private DataGridViewTextBoxColumn Column7;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private DataGridViewTextBoxColumn Column8;
-        private NumericTextBoxColumn2 Column9;
+        private NumericTextBoxColumn3 Column9;
         private CheckBox cbVendes;
         private CheckBox cbDividents;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

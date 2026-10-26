@@ -64,7 +64,7 @@ namespace Inversions.GUI
             this.btEsborra = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chProd = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dgvValoracions = new Controls.DataGridView3();
+            this.dgvValoracions = new System.Windows.Forms.DataGridView();
             this.pnFiltreValoracions = new System.Windows.Forms.Panel();
             this.tlpPercents = new System.Windows.Forms.TableLayoutPanel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -95,12 +95,12 @@ namespace Inversions.GUI
             this.btCopiaValorsDelPaste = new System.Windows.Forms.Button();
             this.btLlegeixApi = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dgvValoracionsPerData = new Controls.DataGridView3();
+            this.dgvValoracionsPerData = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new Controls.NumericTextBoxColumn2();
-            this.colVariacioPercentatge = new Controls.NumericTextBoxColumn2();
-            this.colVariacioEuros2 = new Controls.NumericTextBoxColumn2();
-            this.Column1 = new Controls.NumericTextBoxColumn2();
+            this.dataGridViewTextBoxColumn4 = new Controls.NumericTextBoxColumn3();
+            this.colVariacioPercentatge = new Controls.NumericTextBoxColumn3();
+            this.colVariacioEuros2 = new Controls.NumericTextBoxColumn3();
+            this.Column1 = new Controls.NumericTextBoxColumn3();
             this.chTotals = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProducte = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,8 +108,8 @@ namespace Inversions.GUI
             this.NumPart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colImport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVariacioPercent = new Controls.NumericTextBoxColumn2();
-            this.colVariacioEuros = new Controls.NumericTextBoxColumn2();
+            this.colVariacioPercent = new Controls.NumericTextBoxColumn3();
+            this.colVariacioEuros = new Controls.NumericTextBoxColumn3();
             this.gbData.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.pnEdicio.SuspendLayout();
@@ -1217,10 +1217,10 @@ namespace Inversions.GUI
         private System.Windows.Forms.Button btCancela;
         private System.Windows.Forms.Button btNouValor;
         private System.Windows.Forms.Button btDesa;
-        private Controls.DataGridView3 dgvValoracions;
+        private System.Windows.Forms.DataGridView dgvValoracions;
         private System.Windows.Forms.Panel pnEdicio;
         private System.Windows.Forms.Button btModifica;
-        private Controls.DataGridView3 dgvValoracionsPerData;
+        private System.Windows.Forms.DataGridView dgvValoracionsPerData;
         private System.Windows.Forms.Button btActualitzaLlista;
         private System.Windows.Forms.GroupBox gbFiltreTipusProducte;
         private System.Windows.Forms.Button btEsborra;
@@ -1258,10 +1258,10 @@ namespace Inversions.GUI
         private NumericTextBox2 ntbPercent1M12;
         private NumericTextBox2 ntbPercent1M;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private NumericTextBoxColumn2 dataGridViewTextBoxColumn4;
-        private NumericTextBoxColumn2 colVariacioPercentatge;
-        private NumericTextBoxColumn2 colVariacioEuros2;
-        private NumericTextBoxColumn2 Column1;
+        private NumericTextBoxColumn3 dataGridViewTextBoxColumn4;
+        private NumericTextBoxColumn3 colVariacioPercentatge;
+        private NumericTextBoxColumn3 colVariacioEuros2;
+        private NumericTextBoxColumn3 Column1;
         private CheckedComboBoxControl ccbFiltreTipusProducte;
         private System.Windows.Forms.Button btLlegeixApi;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
@@ -1270,7 +1270,7 @@ namespace Inversions.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn NumPart;
         private System.Windows.Forms.DataGridViewTextBoxColumn colImport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colValor;
-        private NumericTextBoxColumn2 colVariacioPercent;
-        private NumericTextBoxColumn2 colVariacioEuros;
+        private NumericTextBoxColumn3 colVariacioPercent;
+        private NumericTextBoxColumn3 colVariacioEuros;
     }
 }
