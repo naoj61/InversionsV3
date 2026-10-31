@@ -9,7 +9,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using static Controls.DropDownClosedEventArgs;
 using Cursor = System.Windows.Forms.Cursor;
 
 namespace Inversions.GUI
@@ -249,8 +248,8 @@ namespace Inversions.GUI
 
             cData.Value = Festiu.UltimDiaLaborable(DateTime.Today.AddDays(-1));
 
-            dtpDataIniciLlista.Value = DateTime.Now.AddMonths(-6);
-            dtpDataIniciValoracions.Value = DateTime.Now.AddMonths(-6);
+            dtpDataIniciLlista.Value = DateTime.Now.AddMonths(-3);
+            dtpDataIniciValoracions.Value = DateTime.Now.AddMonths(-3);
 
             //gestioProductesTabValoracions.refrescaDadesControl(true);
             gestioProductesTabValoracions.refrescaDadesControl(null);
